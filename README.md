@@ -17,10 +17,10 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
 
 #### 项目源码
 
-|     |   |   后台系统前端源码  |
+|     |  后台系统源码 |   后台系统前端源码  |
 |---  |--- | --- |
-|   码云  |    |  https://gitee.com/guchengwuyue/yshopmall |
-|   github   |    | 暂无  |
+|   码云  |  https://gitee.com/guchengwuyue/yshopmall  | https://gitee.com/guchengwuyue/yshopmall_qd |
+|   github   |   https://gitee.com/guchengwuyue/yshopmall | https://gitee.com/guchengwuyue/yshopmall_qd  |
 
 #### 开源版本与VIP版本说明
 
