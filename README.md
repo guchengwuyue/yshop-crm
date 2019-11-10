@@ -5,7 +5,7 @@
 yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurity+jwt+redis+Vue的前后端分离的商城系统， 包含商城、拼团、砍价、
 秒杀、优惠券、积分、分销等功能，更适合企业或个人二次开发；
 
-**开发文档**  正在编写中
+**开发文档**  【[查看文档](https://gitee.com/guchengwuyue/yshopmall/wikis/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83?sort_id=1718722)】 
 
 #### 体验地址(手机体验最好用公众号，因为H5模式不支持微信支付，只有余额支付)
 
@@ -20,7 +20,7 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
 |     |  后台系统源码 |   后台系统前端源码  |
 |---  |--- | --- |
 |   码云  |  https://gitee.com/guchengwuyue/yshopmall  | https://gitee.com/guchengwuyue/yshopmall_qd |
-|   github   |   https://gitee.com/guchengwuyue/yshopmall | https://gitee.com/guchengwuyue/yshopmall_qd  |
+|   github   |  https://github.com/guchengwuyue/yshopmall |https://github.com/guchengwuyue/yshopmall_qd  |
 
 #### 开源版本与VIP版本说明
 
@@ -75,7 +75,7 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
         <td><img src="https://images.gitee.com/uploads/images/2019/1107/194030_70f5ce92_477893.png"/></td>
     </tr>
     <tr>
-        <td><img src="https://images.gitee.com/uploads/images/2019/1107/194114_cd0b06ce_477893.png "/></td>
+        <td><img src="https://images.gitee.com/uploads/images/2019/1107/194114_cd0b06ce_477893.png"/></td>
         <td><img src="https://images.gitee.com/uploads/images/2019/1107/194130_abb4f788_477893.png"/></td>
     </tr>
     <tr>
@@ -132,6 +132,7 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
 第二阶段：分销、砍价、拼团
 #### 反馈交流
 - QQ交流群：907721261
+- 喜欢这个商城后台的小伙伴留下你的小星星啦,star,star哦！
 
 ####  特别鸣谢
 - eladmin:https://github.com/elunez/eladmin

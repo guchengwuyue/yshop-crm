@@ -56,6 +56,23 @@ export function formatTime(time, option) {
   }
 }
 
+export function formatTimeTwo(time) {
+  time = time * 1000
+  const d = new Date(time)
+  return (
+    d.getFullYear()+'年'+
+    (d.getMonth() + 1) +
+    '月' +
+    d.getDate() +
+    '日' +
+    d.getHours() +
+    '时' +
+    d.getMinutes() +
+    '分'
+  )
+
+}
+
 export function debounce(func, wait, immediate) {
   let timeout, args, context, timestamp, result
 
