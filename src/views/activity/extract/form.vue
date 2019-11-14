@@ -1,27 +1,18 @@
 <template>
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="500px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
-      <el-form-item label="用户昵称" >
-        <el-input v-model="form.nickname" :disabled="true" style="width: 370px;"/>
-      </el-form-item>
-      <el-form-item label="真实姓名" >
+      <el-form-item label="姓名" >
         <el-input v-model="form.realName" style="width: 370px;"/>
       </el-form-item>
-      <el-form-item label="用户备注" >
-        <el-input v-model="form.mark" style="width: 370px;"/>
+      <el-form-item label="提现金额" >
+        <el-input v-model="form.extractPrice" style="width: 370px;"/>
       </el-form-item>
-      <el-form-item label="手机号码" >
-        <el-input v-model="form.phone" style="width: 370px;"/>
+      <el-form-item label="审核状态" >
+        <el-radio v-model="form.status" :label="-1">无效</el-radio>
+        <el-radio v-model="form.status" :label="1">通过</el-radio>
       </el-form-item>
-      <el-form-item label="用户余额" >
-        <el-input v-model="form.nowMoney" style="width: 370px;"/>
-      </el-form-item>
-      <el-form-item label="用户积分" >
-        <el-input v-model="form.integral" style="width: 370px;"/>
-      </el-form-item>
-      <el-form-item label="推广员" >
-        <el-radio v-model="form.isPromoter" :label="1">开启</el-radio>
-        <el-radio v-model="form.isPromoter" :label="0">关闭</el-radio>
+      <el-form-item label="无效原因" >
+        <el-input v-model="form.failMsg" style="width: 300px;" rows="5" type="textarea"/>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -32,7 +23,7 @@
 </template>
 
 <script>
-import { add, edit } from '@/api/yxUser'
+import { add, edit } from '@/api/yxUserExtract'
 export default {
   props: {
     isAdd: {
@@ -44,38 +35,21 @@ export default {
     return {
       loading: false, dialog: false,
       form: {
+        id: '',
         uid: '',
-        account: '',
-        pwd: '',
         realName: '',
-        birthday: '',
-        cardId: '',
+        extractType: '',
+        bankCode: '',
+        bankAddress: '',
+        alipayCode: '',
+        extractPrice: '',
         mark: '',
-        partnerId: '',
-        groupId: '',
-        nickname: '',
-        avatar: '',
-        phone: '',
+        balance: '',
+        failMsg: '',
+        failTime: '',
         addTime: '',
-        addIp: '',
-        lastTime: '',
-        lastIp: '',
-        nowMoney: '',
-        brokeragePrice: '',
-        integral: '',
-        signNum: '',
         status: '',
-        level: '',
-        spreadUid: '',
-        spreadTime: '',
-        userType: '',
-        isPromoter: 0,
-        payCount: '',
-        spreadCount: '',
-        cleanTime: '',
-        addres: '',
-        adminid: '',
-        loginType: ''
+        wechat: ''
       },
       rules: {
       }
@@ -125,38 +99,21 @@ export default {
       this.dialog = false
       this.$refs['form'].resetFields()
       this.form = {
+        id: '',
         uid: '',
-        account: '',
-        pwd: '',
         realName: '',
-        birthday: '',
-        cardId: '',
+        extractType: '',
+        bankCode: '',
+        bankAddress: '',
+        alipayCode: '',
+        extractPrice: '',
         mark: '',
-        partnerId: '',
-        groupId: '',
-        nickname: '',
-        avatar: '',
-        phone: '',
+        balance: '',
+        failMsg: '',
+        failTime: '',
         addTime: '',
-        addIp: '',
-        lastTime: '',
-        lastIp: '',
-        nowMoney: '',
-        brokeragePrice: '',
-        integral: '',
-        signNum: '',
         status: '',
-        level: '',
-        spreadUid: '',
-        spreadTime: '',
-        userType: '',
-        isPromoter: '',
-        payCount: '',
-        spreadCount: '',
-        cleanTime: '',
-        addres: '',
-        adminid: '',
-        loginType: ''
+        wechat: ''
       }
     }
   }
