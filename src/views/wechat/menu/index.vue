@@ -15,10 +15,10 @@
                 <span @click="activeMenu(menu,index,null)" ><i class="icon-sub"></i>{{ menu.name || '一级菜单' }}</span>
                 <div class="sub-menu">
                   <ul>
-                    <li v-for="(child, cindex) in menu.sub_button" :class="{active:child === checkedMenu}">
+                    <li v-for="(child, cindex) in menu.subButtons" :class="{active:child === checkedMenu}">
                       <span @click="activeMenu(child,cindex,index)">{{ child.name || '二级菜单' }}</span>
                     </li>
-                    <li v-if="menu.sub_button.length < 5" @click="addChild(menu,index)"><i class="icon-add"></i></li>
+                    <li v-if="menu.subButtons.length < 5" @click="addChild(menu,index)"><i class="icon-add"></i></li>
                   </ul>
                 </div>
               </li>
@@ -67,8 +67,8 @@
               <!-- 小程序 -->
               <div class="wrchat-app item" :class="{show:checkedMenu.type=='miniprogram'}">
                 <div class="list">
-                  <span class="el-form-item__label">appid</span>
-                  <input class="form-control" v-model="checkedMenu.appid" type="text" />
+                  <span class="el-form-item__label">appId</span>
+                  <input class="form-control" v-model="checkedMenu.appId" type="text" />
                 </div>
                 <div class="list">
                   <span class="el-form-item__label">备用网页url</span>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="list">
                   <span class="el-form-item__label">小程序路径</span>
-                  <input class="form-control" v-model="checkedMenu.pagepath" type="text" />
+                  <input class="form-control" v-model="checkedMenu.pagePath" type="text" />
                 </div>
               </div>
               <!-- 多客服 -->
@@ -170,7 +170,7 @@ export default {
       return {
         type:'click',
         name:'',
-        sub_button:[]
+        subButtons:[]
       };
     },
     defaultChildData:function(){
@@ -189,8 +189,8 @@ export default {
     },
     addChild:function(menu,index){
       if(!this.check()) return false;
-      var data = this.defaultChildData(),id = menu.sub_button.length;
-      menu.sub_button.push(data);
+      var data = this.defaultChildData(),id = menu.subButtons.length;
+      menu.subButtons.push(data);
       this.checkedMenu = data;
       this.checkedMenuId = id;
       this.parentMenuId = index;
@@ -198,7 +198,7 @@ export default {
     delMenu:function(){
       console.log(this.parentMenuId);
       this.parentMenuId === null ?
-        this.menus.splice(this.checkedMenuId,1) : this.menus[this.parentMenuId].sub_button.splice(this.checkedMenuId,1);
+        this.menus.splice(this.checkedMenuId,1) : this.menus[this.parentMenuId].subButtons.splice(this.checkedMenuId,1);
       this.parentMenuId = null;
       this.checkedMenu = {};
       this.checkedMenuId = null;
@@ -206,7 +206,7 @@ export default {
     activeMenu:function(menu,index,pid){
       if(!this.check()) return false;
       pid === null ?
-        (this.checkedMenu = menu) : (this.checkedMenu = this.menus[pid].sub_button[index],this.parentMenuId = pid);
+        (this.checkedMenu = menu) : (this.checkedMenu = this.menus[pid].subButtons[index],this.parentMenuId = pid);
       this.checkedMenuId=index
     },
     check:function(){
@@ -248,8 +248,8 @@ export default {
         return false;
       }
       if(this.checkedMenu.type == 'miniprogram'
-        && (!this.checkedMenu.appid
-          || !this.checkedMenu.pagepath
+        && (!this.checkedMenu.appId
+          || !this.checkedMenu.pagePath
           || !this.checkedMenu.url)){
         //$eb.message('请填写完整小程序配置!');
         this.$message({
@@ -268,7 +268,7 @@ export default {
      // this.$message.error('错了哦，这是一条错误消息')
       //return false;
       if(!this.check()) return false
-      console.log(this.menus.length)
+      //console.log(this.menus.length)
       if(!this.menus.length){
         this.$message({
           message: '请添加菜单',
@@ -277,13 +277,13 @@ export default {
         })
         return false;
       }
-      add({button:this.menus}).then(function (res) {
+      add({buttons:this.menus}).then(function (res) {
         console.log(555)
         Message({message: '添加成功',type: 'success'})
       }).catch(function(err){
         //$eb.message('error',err);
         //this.$message.error('错了哦，这是一条错误消息');
-        Message({message: err,type: 'error'})
+        //Message({message: "2222",type: 'error'})
       })
     }
   }

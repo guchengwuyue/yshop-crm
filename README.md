@@ -9,10 +9,10 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
 
 #### 体验地址(手机体验最好用公众号，因为H5模式不支持微信支付，只有余额支付)
 
-|     |   后台系统  |   前端(公众号)及H5  |
+|     |   后台系统  |   前端(公众号)  |
 |---  |--- | --- |
-|   |  https://yshop.dayouqiantu.cn  | https://h5.dayouqiantu.cn  |
-|    |  后台体验账号/密码：admin/123456   |  公众号:![输入图片说明](https://images.gitee.com/uploads/images/2019/1107/193634_bd80bf04_477893.jpeg "175139_e07592c8_477893.jpeg")   |
+|   |  https://yshop.dayouqiantu.cn  |g公众号：YshopMall  |
+|    |  后台体验账号/密码：admin/123456   |  公众号:![输入图片说明](https://images.gitee.com/uploads/images/2019/1116/060936_fd73496c_477893.jpeg "qrcode_for_gh_95df5a2881cc_258.jpg")   |
 
 
 #### 项目源码
@@ -128,8 +128,8 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
 
 
 #### 项目下步工作计划
-- 分销功能及其提现功能上线啦
-- 下步计划：砍价或拼团
+第一阶段：积分功能、优惠券功能、公众号功能
+第二阶段：分销、砍价、拼团
 #### 反馈交流
 - QQ交流群：907721261
 - 喜欢这个商城后台的小伙伴留下你的小星星啦,star,star哦！
