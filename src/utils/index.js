@@ -43,8 +43,7 @@ export function formatTime(time, option) {
   } else {
     return (
       d.getFullYear()+'年'+
-      d.getMonth() +
-      1 +
+      (d.getMonth() + 1) +
       '月' +
       d.getDate() +
       '日' +

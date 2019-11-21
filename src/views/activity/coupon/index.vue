@@ -27,8 +27,8 @@
           <span>{{ scope.row.couponTime }}天</span>
         </template>
       </el-table-column>
-      <el-table-column prop="sort" label="排序"/>
-      <el-table-column label="状态" align="center">
+      <el-table-column prop="sort" label="排序" width="100" />
+      <el-table-column label="状态" width="100" align="center">
         <template slot-scope="scope">
           <div>
             <el-tag v-if="scope.row.status === 1" style="cursor: pointer" :type="''">开启</el-tag>
@@ -41,26 +41,35 @@
           <span>{{ formatTime(scope.row.addTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column v-if="checkPermission(['ADMIN','YXSTORECOUPON_ALL','YXSTORECOUPON_EDIT','YXSTORECOUPON_DELETE'])" label="操作" width="150px" align="center">
+      <el-table-column width="200" v-if="checkPermission(['ADMIN','YXSTORECOUPON_ALL','YXSTORECOUPON_EDIT','YXSTORECOUPON_DELETE'])" label="操作" align="center">
         <template slot-scope="scope">
           <el-button v-permission="['ADMIN','YXSTORECOUPON_ALL','YXSTORECOUPON_EDIT']" size="mini"
           type="primary" @click="edit2(scope.row)">
             发布
           </el-button>
-          <el-button v-permission="['ADMIN','YXSTORECOUPON_ALL','YXSTORECOUPON_EDIT']" size="mini"
-          type="primary" icon="el-icon-edit" @click="edit(scope.row)"/>
-          <el-popover
-            v-permission="['ADMIN','YXSTORECOUPON_ALL','YXSTORECOUPON_DELETE']"
-            :ref="scope.row.id"
-            placement="top"
-            width="180">
-            <p>确定删除本条数据吗？</p>
-            <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="$refs[scope.row.id].doClose()">取消</el-button>
-              <el-button :loading="delLoading" type="primary" size="mini" @click="subDelete(scope.row.id)">确定</el-button>
-            </div>
-            <el-button slot="reference" type="danger" icon="el-icon-delete" size="mini"/>
-          </el-popover>
+          <el-dropdown size="mini" split-button type="primary" trigger="click">
+            操作
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>
+                <el-button v-permission="['ADMIN','YXSTORECOUPON_ALL','YXSTORECOUPON_EDIT']" size="mini"
+                           type="primary" icon="el-icon-edit" @click="edit(scope.row)">编辑</el-button>
+              </el-dropdown-item>
+              <el-dropdown-item>
+                <el-popover
+                  v-permission="['ADMIN','YXSTORECOUPON_ALL','YXSTORECOUPON_DELETE']"
+                  :ref="scope.row.id"
+                  placement="top"
+                  width="180">
+                  <p>确定删除本条数据吗？</p>
+                  <div style="text-align: right; margin: 0">
+                    <el-button size="mini" type="text" @click="$refs[scope.row.id].doClose()">取消</el-button>
+                    <el-button :loading="delLoading" type="primary" size="mini" @click="subDelete(scope.row.id)">确定</el-button>
+                  </div>
+                  <el-button slot="reference" type="danger" icon="el-icon-delete" size="mini">删除</el-button>
+                </el-popover>
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </template>
       </el-table-column>
     </el-table>

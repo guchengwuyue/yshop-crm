@@ -22,6 +22,7 @@
     <!--表单组件-->
     <eForm ref="form" :is-add="isAdd"/>
     <eAttr ref="form2" :is-attr="isAttr"/>
+    <comForm ref="form3" :is-add="isAdd"/>
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
       <el-table-column prop="id" label="商品id"/>
@@ -46,19 +47,33 @@
       <el-table-column v-if="checkPermission(['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT','YXSTOREPRODUCT_DELETE'])" label="操作" width="185px" align="center">
         <template slot-scope="scope">
           <el-button slot="reference" type="danger"  size="mini" @click="attr(scope.row)">属性</el-button>
-          <el-button v-permission="['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT']" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)"/>
-          <el-popover
-            v-permission="['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_DELETE']"
-            :ref="scope.row.id"
-            placement="top"
-            width="180">
-            <p>确定删除本条数据吗？</p>
-            <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="$refs[scope.row.id].doClose()">取消</el-button>
-              <el-button :loading="delLoading" type="primary" size="mini" @click="subDelete(scope.row.id)">确定</el-button>
-            </div>
-            <el-button slot="reference" type="danger" icon="el-icon-delete" size="mini"/>
-          </el-popover>
+          <el-dropdown size="mini" split-button type="primary" trigger="click">
+            操作
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>
+                <el-button v-permission="['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT']" size="mini"
+                           type="primary" icon="el-icon-edit" @click="edit(scope.row)">编辑</el-button>
+              </el-dropdown-item>
+              <el-dropdown-item>
+                <el-popover
+                  v-permission="['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_DELETE']"
+                  :ref="scope.row.id"
+                  placement="top"
+                  width="180">
+                  <p>确定删除本条数据吗？</p>
+                  <div style="text-align: right; margin: 0">
+                    <el-button size="mini" type="text" @click="$refs[scope.row.id].doClose()">取消</el-button>
+                    <el-button :loading="delLoading" type="primary" size="mini" @click="subDelete(scope.row.id)">确定</el-button>
+                  </div>
+                  <el-button slot="reference" type="danger" icon="el-icon-delete" size="mini">删除</el-button>
+                </el-popover>
+              </el-dropdown-item>
+              <el-dropdown-item>
+                <el-button v-permission="['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT']" size="mini"
+                           type="primary" @click="editC(scope.row)">开启拼团</el-button>
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </template>
       </el-table-column>
     </el-table>
@@ -79,8 +94,9 @@ import initData from '@/mixins/initData'
 import { del, onsale } from '@/api/yxStoreProduct'
 import eForm from './form'
 import eAttr from './attr'
+import comForm from '@/views/activity/combination/form'
 export default {
-  components: { eForm, eAttr },
+  components: { eForm, eAttr, comForm },
   mixins: [initData],
   data() {
     return {
@@ -193,6 +209,35 @@ export default {
         browse: data.browse,
         codePath: data.codePath,
         soureLink: data.soureLink
+      }
+      _this.dialog = true
+    },
+    editC(data) {
+      this.isAdd = false
+      const _this = this.$refs.form3
+      _this.form = {
+        productId: data.id,
+        merId: data.merId,
+        image: data.image,
+        images: data.sliderImage,
+        title: data.storeName,
+        info: data.storeInfo,
+        postage: data.postage,
+        unitName: data.unitName,
+        sort: data.sort,
+        sales: data.sales,
+        stock: data.stock,
+        isShow: data.isShow,
+        isHost: data.isHot,
+        description: data.description,
+        isPostage: data.isPostage,
+        people: 0,
+        price: 0,
+        effectiveTime: 24,
+        combination: 1,
+        cost: data.cost,
+        isDel: 0,
+        browse: 0
       }
       _this.dialog = true
     },

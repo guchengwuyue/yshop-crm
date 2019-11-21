@@ -7,7 +7,7 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
 
 **开发文档**  【[查看文档](https://gitee.com/guchengwuyue/yshopmall/wikis/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83?sort_id=1718722)】 
 
-#### 体验地址(手机体验最好用公众号，因为H5模式不支持微信支付，只有余额支付)
+#### 体验地址
 
 |     |   后台系统  |   前端(公众号)  |
 |---  |--- | --- |
@@ -72,29 +72,28 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
 <table>
     <tr>
         <td><img src="https://images.gitee.com/uploads/images/2019/1107/194017_9207632f_477893.png"/></td>
-        <td><img src="https://images.gitee.com/uploads/images/2019/1107/194030_70f5ce92_477893.png"/></td>
+        <td><img src="https://images.gitee.com/uploads/images/2019/1121/230257_5844f5f1_477893.png"/></td>
     </tr>
     <tr>
-        <td><img src="https://images.gitee.com/uploads/images/2019/1107/194114_cd0b06ce_477893.png"/></td>
-        <td><img src="https://images.gitee.com/uploads/images/2019/1107/194130_abb4f788_477893.png"/></td>
+        <td><img src="https://images.gitee.com/uploads/images/2019/1121/230051_971db503_477893.png "/></td>
+        <td><img src="https://images.gitee.com/uploads/images/2019/1121/230342_f379583e_477893.png"/></td>
     </tr>
     <tr>
-        <td><img src="https://images.gitee.com/uploads/images/2019/1107/194147_63de73f4_477893.png"/></td>
+        <td><img src="https://images.gitee.com/uploads/images/2019/1121/230224_5f0dec5d_477893.png"/></td>
         <td><img src="https://images.gitee.com/uploads/images/2019/1107/194207_7b3b1f53_477893.png"/></td>
     </tr>
     <tr>   
-         <td><img src="https://images.gitee.com/uploads/images/2019/1107/194217_3f47214f_477893.png"/></td>
+         <td><img src="https://images.gitee.com/uploads/images/2019/1121/230424_f01fca77_477893.png"/></td>
          <td></td>
     </tr>
 </table>
-
 <table>
     <tr>
-        <td><img src="https://images.gitee.com/uploads/images/2019/1107/201443_df1cc3a6_477893.png"/></td>
-        <td><img src="https://images.gitee.com/uploads/images/2019/1107/201540_ef6123a9_477893.png"/></td>
+        <td><img src="https://images.gitee.com/uploads/images/2019/1121/231156_df0430c8_477893.jpeg"/></td>
+        <td><img src="https://images.gitee.com/uploads/images/2019/1121/231246_797725e6_477893.jpeg"/></td>
     </tr>
     <tr>
-        <td><img src="https://images.gitee.com/uploads/images/2019/1107/201601_acd0ccd3_477893.png"/></td>
+        <td><img src="https://images.gitee.com/uploads/images/2019/1121/231335_7d732dbd_477893.jpeg"/></td>
         <td><img src="https://images.gitee.com/uploads/images/2019/1107/201622_f913b59c_477893.png"/></td>
     </tr>
     <tr>
@@ -127,9 +126,16 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
     * 2.2 Element
 
 
-#### 项目下步工作计划
-第一阶段：积分功能、优惠券功能、公众号功能
-第二阶段：分销、砍价、拼团
+#### 项目发布明细
+
+- 1.0版本
+- 1.1版本新增积分与优惠券抵扣
+- 1.2版本分销功能已经发布
+- 1.2.1增加了未付款订单取消功能库存销量退出、优惠券、积分功能，个人中心增加了积分流水
+- 1.3版本新增拼团功能，已经发布
+- 1.4版本规划：补充公众号功能、新增redisson队列、发布mpvue小程序
+
+	
 #### 反馈交流
 - QQ交流群：907721261
 - 喜欢这个商城后台的小伙伴留下你的小星星啦,star,star哦！

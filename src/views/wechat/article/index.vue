@@ -27,7 +27,7 @@
       </el-table-column>
       <el-table-column :show-overflow-tooltip="true" prop="addTime" label="创建日期">
         <template slot-scope="scope">
-          <span>{{ formatTime(scope.row.addTime) }}</span>
+          <span>{{ scope.row.addTime }}</span>
         </template>
       </el-table-column>
       <el-table-column v-if="checkPermission(['ADMIN','YXARTICLE_ALL','YXARTICLE_EDIT','YXARTICLE_DELETE'])" label="操作" width="180px" align="center">

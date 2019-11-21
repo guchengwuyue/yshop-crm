@@ -50,7 +50,7 @@ export default {
         sort: 0,
         status: 1,
         addTime: '',
-        isDel: 0
+        //isDel: 0
       },
       rules: {
       }

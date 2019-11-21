@@ -25,14 +25,14 @@
     <eRefund ref="form2" :is-add="isAdd"/>
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
-      <el-table-column prop="orderId" label="订单号">
+      <el-table-column prop="orderId" width="140" label="订单号">
         <template slot-scope="scope">
           <span>{{ scope.row.orderId }}</span>
-          <p>[{{ scope.row.pinkName }}]</p>
+          <p>{{ scope.row.pinkName }}</p>
         </template>
       </el-table-column>
       <el-table-column prop="realName" label="用户姓名"/>
-      <el-table-column prop="cartInfoList" label="商品信息">
+      <el-table-column prop="cartInfoList" width="300" label="商品信息">
         <template slot-scope="scope" >
           <div v-for="(item,index) in scope.row.cartInfoList">
             <span><img style="width: 30px;height: 30px;margin:0;cursor: pointer;"
@@ -57,34 +57,46 @@
           <span v-html="scope.row.statusName">{{ scope.row.addTime }}</span>
         </template>
       </el-table-column>
-      <el-table-column prop="addTime" label="创建时间">
+      <el-table-column prop="addTime" width="160" label="创建时间">
         <template slot-scope="scope">
           <span>{{ formatTime(scope.row.addTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column v-if="checkPermission(['ADMIN','YXSTOREORDER_ALL','YXSTOREORDER_EDIT','YXSTOREORDER_DELETE'])" label="操作" width="150px" align="center">
+      <el-table-column v-if="checkPermission(['ADMIN','YXSTOREORDER_ALL','YXSTOREORDER_EDIT','YXSTOREORDER_DELETE'])" label="操作" width="200" align="center">
         <template slot-scope="scope">
-          <el-button v-if="scope.row._status == 2" v-permission="['ADMIN','YXSTOREORDER_ALL','YXSTOREORDER_EDIT']" size="mini" type="primary"
-           @click="edit(scope.row)">
-            去发货</el-button>
-          <el-button v-if="scope.row._status == 3" v-permission="['ADMIN','YXSTOREORDER_ALL','YXSTOREORDER_EDIT']" size="mini" type="primary"
-                     @click="refund(scope.row)">
-            立刻退款</el-button>
           <el-button  v-permission="['ADMIN','YXSTOREORDER_ALL','YXSTOREORDER_EDIT']" size="mini" type="primary"
                      @click="detail(scope.row)">
             订单详情</el-button>
-          <el-popover
-            v-permission="['ADMIN','YXSTOREORDER_ALL','YXSTOREORDER_DELETE']"
-            :ref="scope.row.id"
-            placement="top"
-            width="180">
-            <p>确定删除本条数据吗？</p>
-            <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="$refs[scope.row.id].doClose()">取消</el-button>
-              <el-button :loading="delLoading" type="primary" size="mini" @click="subDelete(scope.row.id)">确定</el-button>
-            </div>
-            <el-button slot="reference" type="danger" icon="el-icon-delete" size="mini"/>
-          </el-popover>
+          <el-dropdown size="mini" split-button type="primary" trigger="click">
+            操作
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>
+                <el-button v-if="scope.row._status == 2" v-permission="['ADMIN','YXSTOREORDER_ALL','YXSTOREORDER_EDIT']" size="mini" type="primary"
+                           @click="edit(scope.row)">
+                  去发货</el-button>
+              </el-dropdown-item>
+              <el-dropdown-item>
+                <el-button v-if="scope.row._status == 3" v-permission="['ADMIN','YXSTOREORDER_ALL','YXSTOREORDER_EDIT']" size="mini" type="primary"
+                           @click="refund(scope.row)">
+                  立刻退款</el-button>
+              </el-dropdown-item>
+              <el-dropdown-item>
+                <el-popover
+                  v-permission="['ADMIN','YXSTOREORDER_ALL','YXSTOREORDER_DELETE']"
+                  :ref="scope.row.id"
+                  placement="top"
+                  width="180">
+                  <p>确定删除本条数据吗？</p>
+                  <div style="text-align: right; margin: 0">
+                    <el-button size="mini" type="text" @click="$refs[scope.row.id].doClose()">取消</el-button>
+                    <el-button :loading="delLoading" type="primary" size="mini" @click="subDelete(scope.row.id)">确定</el-button>
+                  </div>
+                  <el-button slot="reference" type="danger" icon="el-icon-delete" size="mini">删除</el-button>
+                </el-popover>
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+
         </template>
       </el-table-column>
     </el-table>
