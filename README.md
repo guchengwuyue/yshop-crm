@@ -11,7 +11,7 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
 
 |     |   后台系统  |   前端(公众号)  |
 |---  |--- | --- |
-|   |  https://yshop.dayouqiantu.cn  |g公众号：YshopMall  |
+|   |  https://yshop.dayouqiantu.cn  |H5:https://h5.dayouqiantu.cn 测试号：hupeng/123456,也可以自行注册 |
 |    |  后台体验账号/密码：admin/123456   |  公众号:![输入图片说明](https://images.gitee.com/uploads/images/2019/1116/060936_fd73496c_477893.jpeg "qrcode_for_gh_95df5a2881cc_258.jpg")   |
 
 
@@ -23,7 +23,6 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
 |   github   |  https://github.com/guchengwuyue/yshopmall |https://github.com/guchengwuyue/yshopmall_qd  |
 
 #### 开源版本与VIP版本说明
-
 
 ###  开源版
 1.包括整个商城系统后台、数据库、api(只是简单的配置好模块);
@@ -41,7 +40,6 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
 
 4、VIP为终身，【[详情请查看](https://gitee.com/guchengwuyue/yshopmall/wikis/pages?sort_id=1715823&doc_id=441578)】 
 
-
 ## 商城功能
 
 * 一：商品模块：商品添加、规格设置，商品上下架等
@@ -51,11 +49,10 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
 * 五：配置模块：各种配置
 * 六：用户模块：登陆、注册、会员卡等
 * 七：其他等
-        
+       
 
 ####  已经完成功能
 - 可以具体查看演示地址查看当前版本已经完成的功能，不再絮叨啦
-
 
 
 #### 项目结构
@@ -84,7 +81,7 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
     </tr>
     <tr>   
          <td><img src="https://images.gitee.com/uploads/images/2019/1121/230424_f01fca77_477893.png"/></td>
-         <td></td>
+         <td><img src="https://images.gitee.com/uploads/images/2019/1127/211402_4103f8e0_477893.png"/></td>
     </tr>
 </table>
 <table>
@@ -104,11 +101,11 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
 
 ## 技术选型
 * 1 后端使用技术
-    * 1.1 SpringBoot
+    * 1.1 SpringBoot2
     * 1.2 mybatis、MyBatis-Plus
     * 1.3 SpringSecurity
-    * 1.4 JAP
-    * 1.5 Druid1
+    * 1.4 JPA
+    * 1.5 Druid
     * 1.6 Slf4j
     * 1.7 Fastjson
     * 1.8 JWT
@@ -120,6 +117,7 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
     * 1.14 Lombok
     * 1.15 Hutool
     * 1.16 Mapstruct
+	* 1.17 Redisson
         
 * 前端使用技术
     * 2.1 Vue 全家桶
@@ -133,7 +131,8 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
 - 1.2版本分销功能已经发布
 - 1.2.1增加了未付款订单取消功能库存销量退出、优惠券、积分功能，个人中心增加了积分流水
 - 1.3版本新增拼团功能，已经发布
-- 1.4版本规划：补充公众号功能、新增redisson队列、发布mpvue小程序
+- 1.3.1版本手机端新增商户管理、后台新增统计
+- 1.4版本规划：补充公众号功能、发布mpvue小程序
 
 	
 #### 反馈交流
