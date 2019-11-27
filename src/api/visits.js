@@ -20,3 +20,18 @@ export function getChartData() {
     method: 'get'
   })
 }
+
+
+export function gett() {
+  return request({
+    url: 'api/data/count',
+    method: 'get'
+  })
+}
+
+export function chart() {
+  return request({
+    url: 'api/data/chart',
+    method: 'get'
+  })
+}

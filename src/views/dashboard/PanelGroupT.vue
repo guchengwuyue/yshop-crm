@@ -3,44 +3,44 @@
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel">
         <div class="card-panel-icon-wrapper icon-people">
-          <i class="el-icon-price-tag card-panel-icon"></i>
+          <i class="el-icon-s-order card-panel-icon"></i>
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">今日成交额</div>
-          <count-to :start-val="0" :end-val="count.todayPrice" :duration="2600" class="card-panel-num"/>
+          <div class="card-panel-text">今日订单数</div>
+          <count-to :start-val="0" :end-val="count.todayCount" :duration="2600" class="card-panel-num"/>
         </div>
       </div>
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel">
         <div class="card-panel-icon-wrapper icon-message">
-          <i class="el-icon-money card-panel-icon"></i>
+          <i class="el-icon-s-order card-panel-icon"></i>
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">昨日成交额</div>
-          <count-to :start-val="0" :end-val="count.proPrice" :duration="3000" class="card-panel-num"/>
+          <div class="card-panel-text">昨日订单数</div>
+          <count-to :start-val="0" :end-val="count.proCount" :duration="3000" class="card-panel-num"/>
         </div>
       </div>
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel">
         <div class="card-panel-icon-wrapper icon-money">
-          <i class="el-icon-price-tag card-panel-icon"></i>
+          <i class="el-icon-s-order card-panel-icon"></i>
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">上周成交额</div>
-          <count-to :start-val="0" :end-val="count.lastWeekPrice" :duration="3200" class="card-panel-num"/>
+          <div class="card-panel-text">上周订单数</div>
+          <count-to :start-val="0" :end-val="count.lastWeekCount" :duration="3200" class="card-panel-num"/>
         </div>
       </div>
     </el-col>
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel">
         <div class="card-panel-icon-wrapper icon-shopping">
-          <i class="el-icon-money card-panel-icon"></i>
+          <i class="el-icon-s-order card-panel-icon"></i>
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">本月成交额</div>
-          <count-to :start-val="0" :end-val="count.monthPrice" :duration="3600" class="card-panel-num"/>
+          <div class="card-panel-text">本月订单数</div>
+          <count-to :start-val="0" :end-val="count.monthCount" :duration="3600" class="card-panel-num"/>
         </div>
       </div>
     </el-col>

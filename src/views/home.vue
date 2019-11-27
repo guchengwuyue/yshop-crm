@@ -2,28 +2,24 @@
   <div class="dashboard-container">
     <div class="dashboard-editor-container">
       <panel-group/>
-
-      <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
-        <line-chart/>
-      </el-row>
+      <panel-group-t/>
 
       <el-row :gutter="32">
-        <el-col :xs="24" :sm="24" :lg="8">
+        <el-col :xs="24" :sm="24" :lg="12">
+
           <div class="chart-wrapper">
-            <raddar-chart/>
-          </div>
-        </el-col>
-        <el-col :xs="24" :sm="24" :lg="8">
-          <div class="chart-wrapper">
-            <pie-chart/>
-          </div>
-        </el-col>
-        <el-col :xs="24" :sm="24" :lg="8">
-          <div class="chart-wrapper">
+            <p>本月成交额</p>
             <bar-chart/>
           </div>
         </el-col>
+        <el-col :xs="24" :sm="24" :lg="12">
+          <div class="chart-wrapper">
+            <p>本月订单数</p>
+            <pie-chart/>
+          </div>
+        </el-col>
       </el-row>
+
     </div>
   </div>
 </template>
@@ -31,9 +27,9 @@
 <script>
 import { mapGetters } from 'vuex'
 import PanelGroup from './dashboard/PanelGroup'
+import PanelGroupT from './dashboard/PanelGroupT'
 import LineChart from './dashboard/LineChart'
-import RaddarChart from './dashboard/RaddarChart'
-import PieChart from './dashboard/PieChart'
+import PieChart from './dashboard/BarChartT'
 import BarChart from './dashboard/BarChart'
 import { count } from '@/api/visits'
 
@@ -46,8 +42,8 @@ export default {
   name: 'Dashboard',
   components: {
     PanelGroup,
+    PanelGroupT,
     LineChart,
-    RaddarChart,
     PieChart,
     BarChart },
   computed: {

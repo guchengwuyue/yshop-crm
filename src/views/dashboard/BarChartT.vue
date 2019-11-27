@@ -53,7 +53,7 @@ export default {
       this.chart = echarts.init(this.$el, 'macarons')
 
       chart().then(res => {
-         var _info = res.chart,
+         var _info = res.chartT,
           day = [],
           num = [];
         _info.forEach(function(item) {
