@@ -85,7 +85,6 @@
                   <div class="col-sm-10 group-item">
                     <select class="form-control m-b" v-model="type" name="account">
                       <option value="text">文字消息</option>
-                      <option value="image">图片消息</option>
                     </select>
                   </div>
                     </el-col>
@@ -212,7 +211,7 @@ export default {
       add({key:this.key,status:this.status,data:this.dataGroup[this.type],type:this.type}).then(function (res) {
         Message({message: '设置成功',type: 'success'})
       }).catch(function(err){
-        Message({message: err,type: 'error'})
+        //Message({message: err,type: 'error'})
       })
     },
     check: function(){
@@ -225,14 +224,6 @@ export default {
         case 'image':
           if(dataGroup.image.src == '')
             return this.returnError('请上传图片');
-          break;
-        case 'news':
-          if(dataGroup.news.length < 1)
-            return this.returnError('请选择图文消息');
-          break;
-        case 'voice':
-          if(dataGroup.voice.src == '')
-            return this.returnError('请上传声音');
           break;
       }
       return true;
