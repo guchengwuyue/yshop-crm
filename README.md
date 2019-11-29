@@ -2,8 +2,7 @@
 
 
 #### 项目简介
-yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurity+jwt+redis+Vue的前后端分离的商城系统， 包含商城、拼团、砍价、
-秒杀、优惠券、积分、分销等功能，更适合企业或个人二次开发；
+yshop基于当前流行技术组合的前后端分离商城系统： SpringBoot2+Jpa+MybatisPlus+SpringSecurity+jwt+redis+Vue的前后端分离的商城系统， 包含商城、拼团、砍价、商户管理、 秒杀、优惠券、积分、分销等功能，更适合企业或个人二次开发；；
 
 **开发文档**  【[查看文档](https://gitee.com/guchengwuyue/yshopmall/wikis/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83?sort_id=1718722)】 
 
@@ -54,7 +53,6 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
 ####  已经完成功能
 - 可以具体查看演示地址查看当前版本已经完成的功能，不再絮叨啦
 
-
 #### 项目结构
 项目采用分模块开发方式
 - yshop-api       公众号(H5)API模块
@@ -86,16 +84,16 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
 </table>
 <table>
     <tr>
-        <td><img src="https://images.gitee.com/uploads/images/2019/1121/231156_df0430c8_477893.jpeg"/></td>
-        <td><img src="https://images.gitee.com/uploads/images/2019/1121/231246_797725e6_477893.jpeg"/></td>
+        <td><img src="https://images.gitee.com/uploads/images/2019/1129/234509_744765f9_477893.jpeg"/></td>
+        <td><img src="https://images.gitee.com/uploads/images/2019/1129/234538_62ba99b7_477893.jpeg"/></td>
     </tr>
     <tr>
-        <td><img src="https://images.gitee.com/uploads/images/2019/1121/231335_7d732dbd_477893.jpeg"/></td>
-        <td><img src="https://images.gitee.com/uploads/images/2019/1107/201622_f913b59c_477893.png"/></td>
+        <td><img src="https://images.gitee.com/uploads/images/2019/1129/234601_7fb028a6_477893.jpeg"/></td>
+        <td><img src="https://images.gitee.com/uploads/images/2019/1129/234622_6f593729_477893.jpeg"/></td>
     </tr>
     <tr>
-        <td><img src="https://images.gitee.com/uploads/images/2019/1107/201646_5bc6df48_477893.png"/></td>
-        <td><img src="https://images.gitee.com/uploads/images/2019/1107/201706_32ee305c_477893.png"/></td>
+        <td><img src="https://images.gitee.com/uploads/images/2019/1129/234644_242668a1_477893.jpeg"/></td>
+        <td><img src="https://images.gitee.com/uploads/images/2019/1129/234703_49e8fe4f_477893.jpeg"/></td>
     </tr>
 </table>
 
@@ -123,7 +121,6 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
     * 2.1 Vue 全家桶
     * 2.2 Element
 
-
 #### 项目发布明细
 
 - 1.0版本
@@ -132,6 +129,8 @@ yshop基于当前流行技术组合： SpringBoot2+Jpa+MybatisPlus+SpringSecurit
 - 1.2.1增加了未付款订单取消功能库存销量退出、优惠券、积分功能，个人中心增加了积分流水
 - 1.3版本新增拼团功能，已经发布
 - 1.3.1版本手机端新增商户管理、后台新增统计
+- 1.3.2新增后台微信相关及其支付配置，新增自动回复配置
+- 1.3.3新增 后台微信图文发送功能，小程序配置，增加小程序授权等,修复一些bug等
 - 1.4版本规划：补充公众号功能、发布mpvue小程序
 
 	
