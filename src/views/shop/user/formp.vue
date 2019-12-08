@@ -1,18 +1,18 @@
 <template>
-  <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="500px">
+  <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '余额修改'" width="500px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
-      <el-form-item label="分类名称" >
-        <el-input v-model="form.name" style="width: 370px;"/>
+      <el-form-item label="用户昵称" >
+        <el-input v-model="form.nickname" :disabled="true" style="width: 370px;"/>
       </el-form-item>
-      <el-form-item label="跳转url" >
-        <el-input v-model="form.url" style="width: 370px;"/>
+      <el-form-item label="修改余额" >
+        <el-radio v-model="form.ptype" :label="1">增加</el-radio>
+        <el-radio v-model="form.ptype" :label="2">减少</el-radio>
       </el-form-item>
-      <el-form-item label="分类图标(90*90)" >
-        <pic-upload v-model="form.pic" style="width: 500px;"/>
+      <el-form-item label="用户余额" >
+        <el-input v-model="form.money" style="width: 370px;"/>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
-      <!--<el-input v-model="form.groupName" />-->
       <el-button type="text" @click="cancel">取消</el-button>
       <el-button :loading="loading" type="primary" @click="doSubmit">确认</el-button>
     </div>
@@ -20,10 +20,8 @@
 </template>
 
 <script>
-import { add, edit } from '@/api/yxSystemGroupData'
-import picUpload from '@/components/pic-upload'
+import { add, edit, editp } from '@/api/yxUser'
 export default {
-  components: { picUpload },
   props: {
     isAdd: {
       type: Boolean,
@@ -34,13 +32,10 @@ export default {
     return {
       loading: false, dialog: false,
       form: {
-        id: '',
-        groupName: 'routine_home_menus',
-        name: '',
-        url: '',
-        pic: '',
-        sort: '',
-        status: ''
+        uid: '',
+        nickname: '',
+        money: '',
+        ptype: '1'
       },
       rules: {
       }
@@ -72,7 +67,7 @@ export default {
       })
     },
     doEdit() {
-      edit(this.form).then(res => {
+      editp(this.form).then(res => {
         this.resetForm()
         this.$notify({
           title: '修改成功',
@@ -90,12 +85,38 @@ export default {
       this.dialog = false
       this.$refs['form'].resetFields()
       this.form = {
-        id: '',
-        groupName: 'routine_home_menus',
-        value: '',
+        uid: '',
+        account: '',
+        pwd: '',
+        realName: '',
+        birthday: '',
+        cardId: '',
+        mark: '',
+        partnerId: '',
+        groupId: '',
+        nickname: '',
+        avatar: '',
+        phone: '',
         addTime: '',
-        sort: '',
-        status: ''
+        addIp: '',
+        lastTime: '',
+        lastIp: '',
+        nowMoney: '',
+        brokeragePrice: '',
+        integral: '',
+        signNum: '',
+        status: '',
+        level: '',
+        spreadUid: '',
+        spreadTime: '',
+        userType: '',
+        isPromoter: '',
+        payCount: '',
+        spreadCount: '',
+        cleanTime: '',
+        addres: '',
+        adminid: '',
+        loginType: ''
       }
     }
   }

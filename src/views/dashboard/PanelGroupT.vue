@@ -28,7 +28,7 @@
           <i class="el-icon-s-order card-panel-icon"></i>
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">上周订单数</div>
+          <div class="card-panel-text">近七天订单数</div>
           <count-to :start-val="0" :end-val="count.lastWeekCount" :duration="3200" class="card-panel-num"/>
         </div>
       </div>

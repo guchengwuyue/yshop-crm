@@ -1,14 +1,11 @@
 <template>
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="500px">
-    <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
-      <el-form-item label="分类名称" >
-        <el-input v-model="form.name" style="width: 370px;"/>
+    <el-form ref="form" :model="form" :rules="rules" size="small" label-width="100px">
+      <el-form-item label="第几天" >
+        <el-input v-model="form.day" style="width: 370px;"/>
       </el-form-item>
-      <el-form-item label="跳转url" >
-        <el-input v-model="form.url" style="width: 370px;"/>
-      </el-form-item>
-      <el-form-item label="分类图标(90*90)" >
-        <pic-upload v-model="form.pic" style="width: 500px;"/>
+      <el-form-item label="获取积分" >
+        <el-input v-model="form.sign_num" style="width: 370px;"/>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -35,12 +32,9 @@ export default {
       loading: false, dialog: false,
       form: {
         id: '',
-        groupName: 'routine_home_menus',
-        name: '',
-        url: '',
-        pic: '',
-        sort: '',
-        status: ''
+        groupName: 'sign_day_num',
+        day: 1,
+        sign_num: 0
       },
       rules: {
       }
@@ -91,7 +85,7 @@ export default {
       this.$refs['form'].resetFields()
       this.form = {
         id: '',
-        groupName: 'routine_home_menus',
+        groupName: 'sign_day_num',
         value: '',
         addTime: '',
         sort: '',

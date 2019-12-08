@@ -85,7 +85,7 @@ export default {
       this.$refs['form'].resetFields()
       this.form = {
         id: '',
-        groupName: '',
+        groupName: 'routine_home_roll_news',
         value: '',
         addTime: '',
         sort: '',

@@ -95,7 +95,7 @@ export default {
       this.$refs['form'].resetFields()
       this.form = {
         id: '',
-        groupName: '',
+        groupName: 'routine_home_activity',
         value: '',
         addTime: '',
         sort: '',

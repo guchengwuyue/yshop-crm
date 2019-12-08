@@ -12,6 +12,7 @@
     </div>
     <!--表单组件-->
     <eForm ref="form" :is-add="isAdd"/>
+    <pForm ref="formp" :is-add="isAdd"/>
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
       <el-table-column prop="uid" label="用户id"/>
@@ -40,10 +41,21 @@
       </el-table-column>
       <el-table-column prop="spreadUid" label="推荐人"/>
       <el-table-column prop="payCount" label="购买次数"/>
-      <el-table-column v-if="checkPermission(['ADMIN','YXUSER_ALL','YXUSER_EDIT','YXUSER_DELETE'])" label="操作" width="150px" align="center">
+      <el-table-column v-if="checkPermission(['ADMIN','YXUSER_ALL','YXUSER_EDIT','YXUSER_DELETE'])" label="操作" width="185" align="center">
         <template slot-scope="scope">
-          <el-button v-permission="['ADMIN','YXUSER_ALL','YXUSER_EDIT']" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)"/>
-          <el-popover
+          <el-button v-permission="['ADMIN','YXUSER_ALL','YXUSER_EDIT']" size="mini"
+          type="primary" icon="el-icon-edit" @click="edit(scope.row)"/>
+          <el-dropdown size="mini" split-button type="primary" trigger="click">
+            操作
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>
+                <el-button v-permission="['ADMIN','YXUSER_ALL','YXUSER_EDIT']" size="mini"
+                            type="primary" @click="editP(scope.row)">修改余额</el-button>
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+         <!--
+         <el-popover
             v-permission="['ADMIN','YXUSER_ALL','YXUSER_DELETE']"
             :ref="scope.row.uid"
             placement="top"
@@ -55,6 +67,7 @@
             </div>
             <el-button slot="reference" type="danger" icon="el-icon-delete" size="mini"/>
           </el-popover>
+          -->
         </template>
       </el-table-column>
     </el-table>
@@ -74,9 +87,10 @@ import checkPermission from '@/utils/permission'
 import initData from '@/mixins/initData'
 import { del, onStatus } from '@/api/yxUser'
 import eForm from './form'
+import pForm from './formp'
 import { formatTime } from '@/utils/index'
 export default {
-  components: { eForm },
+  components: { eForm, pForm },
   mixins: [initData],
   data() {
     return {
@@ -183,6 +197,17 @@ export default {
         addres: data.addres,
         adminid: data.adminid,
         loginType: data.loginType
+      }
+      _this.dialog = true
+    },
+    editP(data) {
+      this.isAdd = false
+      const _this = this.$refs.formp
+      _this.form = {
+        uid: data.uid,
+        nickname: data.nickname,
+        ptype: 1,
+        money: 0
       }
       _this.dialog = true
     }

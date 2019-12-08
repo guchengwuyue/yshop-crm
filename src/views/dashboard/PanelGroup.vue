@@ -28,7 +28,7 @@
           <i class="el-icon-price-tag card-panel-icon"></i>
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">上周成交额</div>
+          <div class="card-panel-text">近七天成交额</div>
           <count-to :start-val="0" :end-val="count.lastWeekPrice" :duration="3200" class="card-panel-num"/>
         </div>
       </div>

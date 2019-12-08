@@ -31,9 +31,9 @@
       <el-form-item label="商品价格" >
         <el-input v-model="form.price" />
       </el-form-item>
-      <el-form-item label="会员价格" >
-        <el-input v-model="form.vipPrice"/>
-      </el-form-item>
+      <!--<el-form-item label="会员价格" >-->
+        <!--<el-input v-model="form.vipPrice"/>-->
+      <!--</el-form-item>-->
       <el-form-item label="市场价" >
         <el-input v-model="form.otPrice"/>
       </el-form-item>

@@ -30,3 +30,11 @@ export function onStatus(id, data) {
     data
   })
 }
+
+export function editp(data) {
+  return request({
+    url: 'api/yxUser/money',
+    method: 'post',
+    data
+  })
+}
