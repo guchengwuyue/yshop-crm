@@ -3,15 +3,7 @@
     <!--工具栏-->
     <div class="head-container">
       <!-- 新增 -->
-      <div style="display: inline-block;margin: 0px 2px;">
-        <el-button
-          v-permission="['ADMIN','YXSTOREPRODUCTREPLY_ALL','YXSTOREPRODUCTREPLY_CREATE']"
-          class="filter-item"
-          size="mini"
-          type="primary"
-          icon="el-icon-plus"
-          @click="add">新增</el-button>
-      </div>
+
     </div>
     <!--表单组件-->
     <eForm ref="form" :is-add="isAdd"/>
@@ -23,7 +15,16 @@
       <el-table-column prop="productScore" label="商品分数"/>
       <el-table-column prop="serviceScore" label="服务分数"/>
       <el-table-column prop="comment" label="评论内容"/>
-      <el-table-column prop="pics" label="评论图片"/>
+      <el-table-column prop="" label="评论图片">
+        <template slot-scope="scope">
+          <div v-if="scope.row.pics">
+            <a :href="pic" v-for="pic in handlePic(scope.row.pics)" style="color: #42b983" target="_blank">
+              <img :src="pic" alt="点击打开" class="el-avatar">
+            </a>
+          </div>
+          <div v-else>无图</div>
+        </template>
+      </el-table-column>
       <el-table-column prop="addTime" label="评论时间">
         <template slot-scope="scope">
           <span>{{ formatTime(scope.row.addTime) }}</span>
@@ -78,6 +79,9 @@ export default {
     })
   },
   methods: {
+    handlePic(pics) {
+      return pics.split(',')
+    },
     formatTime,
     checkPermission,
     beforeInit() {

@@ -44,9 +44,9 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column v-if="checkPermission(['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT','YXSTOREPRODUCT_DELETE'])" label="操作" width="185px" align="center">
+      <el-table-column v-if="checkPermission(['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT','YXSTOREPRODUCT_DELETE'])" label="操作" width="205px" align="center">
         <template slot-scope="scope">
-          <el-button slot="reference" type="danger"  size="mini" @click="attr(scope.row)">属性</el-button>
+          <el-button slot="reference" type="danger"  size="mini" @click="attr(scope.row)">规格属性</el-button>
           <el-dropdown size="mini" split-button type="primary" trigger="click">
             操作
             <el-dropdown-menu slot="dropdown">
