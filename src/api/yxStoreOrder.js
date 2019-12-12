@@ -30,3 +30,10 @@ export function refund(data) {
     data
   })
 }
+
+export function get() {
+  return request({
+    url: 'api/yxExpress',
+    method: 'get',
+  })
+}

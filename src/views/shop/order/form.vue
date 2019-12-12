@@ -5,9 +5,9 @@
         <!--<el-input v-model="form.deliveryName" style="width: 370px;"/>-->
         <el-select v-model="form.deliveryName" filterable placeholder="请选择" style="width: 370px;">
           <el-option
-            v-for="item in dicts"
+            v-for="item in express"
             :key="item.id"
-            :label="item.label"
+            :label="item.name"
             :value="item.id" />
         </el-select>
       </el-form-item>
@@ -24,15 +24,12 @@
 
 <script>
 import initDict from '@/mixins/initDict'
-import { add, edit } from '@/api/yxStoreOrder'
+import { add, edit, get } from '@/api/yxStoreOrder'
 export default {
   mixins: [initDict],
 
   created() {
-    this.$nextTick(() => {
-      // 加载数据字典
-      this.getDict('express_companys')
-    })
+    this.get()
   },
   props: {
     isAdd: {
@@ -42,7 +39,7 @@ export default {
   },
   data() {
     return {
-      loading: false, dialog: false,
+      loading: false, dialog: false, express: [],
       form: {
         id: '',
         deliveryName: '',
@@ -152,6 +149,14 @@ export default {
         isRemind: '',
         isSystemDel: ''
       }
+    },
+    get() {
+      get().then(res => {
+        this.express = res.content
+      }).catch(err => {
+        this.loading = false
+        console.log(err.response.data.message)
+      })
     }
   }
 }

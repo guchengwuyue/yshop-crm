@@ -58,10 +58,11 @@ yshop基于当前流行技术组合的前后端分离商城系统： SpringBoot2
 - yshop-api       公众号(H5)API模块
 - yshop-mp        微信相关模块
 - yshop-common    公共模块
-- yshop-system    商城系统模块
+- yshop-system    后台模块
 - yshop-logging   日志模块
 - yshop-tools     第三方工具模块
 - yshop-generator 代码生成模块
+- yshop-shop      商城模块
 
 #### 系统预览
 <table>
@@ -84,7 +85,7 @@ yshop基于当前流行技术组合的前后端分离商城系统： SpringBoot2
 </table>
 <table>
     <tr>
-        <td><img src="https://images.gitee.com/uploads/images/2019/1130/114819_99540fd3_477893.jpeg"/></td>
+        <td><img src="https://images.gitee.com/uploads/images/2019/1211/161553_20c039ff_477893.jpeg"/></td>
         <td><img src="https://images.gitee.com/uploads/images/2019/1129/234538_62ba99b7_477893.jpeg"/></td>
     </tr>
     <tr>
@@ -144,6 +145,7 @@ yshop基于当前流行技术组合的前后端分离商城系统： SpringBoot2
 - yshop1.4.2 发布更新如下：
    -1.商品新增多图评价
    -2.订单新增快递查询
+-1.4.3版本，后台图标更新,后台模块重新拆分,物流快递单独管理,导出最新sql
 
 	
 #### 反馈交流
