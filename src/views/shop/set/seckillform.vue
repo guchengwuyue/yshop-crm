@@ -1,11 +1,11 @@
 <template>
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="500px">
-    <el-form ref="form" :model="form" :rules="rules" size="small" label-width="100px">
-      <el-form-item label="第几天" >
-        <el-input v-model="form.day" style="width: 300px;"/>
+    <el-form ref="form" :model="form" :rules="rules" size="small" label-width="150px">
+      <el-form-item label="开启时间(整数小时)" >
+        <el-input v-model="form.time" style="width: 270px;"/>
       </el-form-item>
-      <el-form-item label="获取积分" >
-        <el-input v-model="form.sign_num" style="width: 300px;"/>
+      <el-form-item label="持续时间(整数小时)" >
+        <el-input v-model="form.continued" style="width: 270px;"/>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -32,9 +32,9 @@ export default {
       loading: false, dialog: false,
       form: {
         id: '',
-        groupName: 'sign_day_num',
-        day: 1,
-        sign_num: 0
+        groupName: 'routine_seckill_time',
+        time: 5,
+        continued: 2
       },
       rules: {
       }
@@ -85,7 +85,7 @@ export default {
       this.$refs['form'].resetFields()
       this.form = {
         id: '',
-        groupName: 'sign_day_num',
+        groupName: 'routine_seckill_time',
         value: '',
         addTime: '',
         sort: '',

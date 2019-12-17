@@ -5,7 +5,7 @@
         <span>收货信息</span>
         <!--<el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>-->
       </div>
-      <div>用户昵称: {{ form.nickname }}</div>
+      <div>用户昵称:{{ form.nickname }}</div>
       <div>收货人: {{ form.realName }}</div>
       <div>联系电话: {{ form.userPhone }}</div>
       <div>收货地址: {{ form.userAddress }}</div>

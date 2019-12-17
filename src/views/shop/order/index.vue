@@ -80,7 +80,7 @@
                            @click="refund(scope.row)">
                   立刻退款</el-button>
               </el-dropdown-item>
-              <el-dropdown-item>
+              <el-dropdown-item v-if="scope.row._status == 1 || scope.row._status == 6 || scope.row._status == 7">
                 <el-popover
                   v-permission="['ADMIN','YXSTOREORDER_ALL','YXSTOREORDER_DELETE']"
                   :ref="scope.row.id"

@@ -23,6 +23,7 @@
     <eForm ref="form" :is-add="isAdd"/>
     <eAttr ref="form2" :is-attr="isAttr"/>
     <comForm ref="form3" :is-add="isAdd"/>
+    <killForm ref="form4" :is-add="isAdd"/>
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
       <el-table-column prop="id" label="商品id"/>
@@ -72,6 +73,10 @@
                 <el-button v-permission="['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT']" size="mini"
                            type="primary" @click="editC(scope.row)">开启拼团</el-button>
               </el-dropdown-item>
+              <el-dropdown-item>
+              <el-button v-permission="['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT']" size="mini"
+                         type="primary" @click="editD(scope.row)">开启秒杀</el-button>
+              </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </template>
@@ -95,8 +100,9 @@ import { del, onsale } from '@/api/yxStoreProduct'
 import eForm from './form'
 import eAttr from './attr'
 import comForm from '@/views/activity/combination/form'
+import killForm from '@/views/activity/seckill/form'
 export default {
-  components: { eForm, eAttr, comForm },
+  components: { eForm, eAttr, comForm, killForm },
   mixins: [initData],
   data() {
     return {
@@ -236,6 +242,38 @@ export default {
         effectiveTime: 24,
         combination: 1,
         cost: data.cost,
+        isDel: 0,
+        browse: 0
+      }
+      _this.dialog = true
+    },
+    editD(data) {
+      this.isAdd = false
+      const _this = this.$refs.form4
+      _this.form = {
+        productId: data.id,
+        merId: data.merId,
+        image: data.image,
+        images: data.sliderImage,
+        title: data.storeName,
+        info: data.storeInfo,
+        postage: data.postage,
+        unitName: data.unitName,
+        sort: data.sort,
+        sales: data.sales,
+        stock: data.stock,
+        isShow: data.isShow,
+        status: 1,
+        isHot: data.isHot,
+        description: data.description,
+        isPostage: data.isPostage,
+        people: 0,
+        price: 0.01,
+        effectiveTime: 24,
+        otPrice: data.otPrice,
+        cost: data.cost,
+        num: 1,
+        giveIntegral: 0,
         isDel: 0,
         browse: 0
       }
