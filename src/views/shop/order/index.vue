@@ -23,6 +23,8 @@
     <eForm ref="form" :is-add="isAdd"/>
     <eDetail ref="form1" :is-add="isAdd"/>
     <eRefund ref="form2" :is-add="isAdd"/>
+    <editOrder ref="form3" :is-add="isAdd"/>
+    <eRemark ref="form4" :is-add="isAdd"/>
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
       <el-table-column prop="orderId" width="140" label="订单号">
@@ -71,6 +73,11 @@
             操作
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>
+                <el-button v-permission="['ADMIN','YXSTOREORDER_ALL','YXSTOREORDER_EDIT']" size="mini" type="success"
+                           @click="remark(scope.row)">
+                  订单备注</el-button>
+              </el-dropdown-item>
+              <el-dropdown-item>
                 <el-button v-if="scope.row._status == 2" v-permission="['ADMIN','YXSTOREORDER_ALL','YXSTOREORDER_EDIT']" size="mini" type="primary"
                            @click="edit(scope.row)">
                   去发货</el-button>
@@ -80,7 +87,12 @@
                            @click="refund(scope.row)">
                   立刻退款</el-button>
               </el-dropdown-item>
-              <el-dropdown-item v-if="scope.row._status == 1 || scope.row._status == 6 || scope.row._status == 7">
+              <el-dropdown-item v-if="scope.row._status == 1">
+                <el-button v-permission="['ADMIN','YXSTOREORDER_ALL','YXSTOREORDER_EDIT']" size="mini" type="primary"
+                           @click="editOrder(scope.row)">
+                  修改订单</el-button>
+              </el-dropdown-item>
+              <el-dropdown-item v-if="scope.row._status == 1">
                 <el-popover
                   v-permission="['ADMIN','YXSTOREORDER_ALL','YXSTOREORDER_DELETE']"
                   :ref="scope.row.id"
@@ -118,9 +130,11 @@ import { del } from '@/api/yxStoreOrder'
 import eForm from './form'
 import eDetail from './detail'
 import eRefund from './refund'
+import editOrder from './edit'
+import eRemark from './remark'
 import { formatTime } from '@/utils/index'
 export default {
-  components: { eForm, eDetail, eRefund },
+  components: { eForm, eDetail, eRefund, editOrder, eRemark },
   mixins: [initData],
   data() {
     return {
@@ -186,6 +200,122 @@ export default {
     edit(data) {
       this.isAdd = false
       const _this = this.$refs.form
+      _this.form = {
+        id: data.id,
+        orderId: data.orderId,
+        uid: data.uid,
+        realName: data.realName,
+        userPhone: data.userPhone,
+        userAddress: data.userAddress,
+        cartId: data.cartId,
+        freightPrice: data.freightPrice,
+        totalNum: data.totalNum,
+        totalPrice: data.totalPrice,
+        totalPostage: data.totalPostage,
+        payPrice: data.payPrice,
+        payPostage: data.payPostage,
+        deductionPrice: data.deductionPrice,
+        couponId: data.couponId,
+        couponPrice: data.couponPrice,
+        paid: data.paid,
+        payTime: data.payTime,
+        payType: data.payType,
+        addTime: data.addTime,
+        status: data.status,
+        refundStatus: data.refundStatus,
+        refundReasonWapImg: data.refundReasonWapImg,
+        refundReasonWapExplain: data.refundReasonWapExplain,
+        refundReasonTime: data.refundReasonTime,
+        refundReasonWap: data.refundReasonWap,
+        refundReason: data.refundReason,
+        refundPrice: data.refundPrice,
+        deliveryName: data.deliveryName,
+        deliveryType: data.deliveryType,
+        deliveryId: data.deliveryId,
+        gainIntegral: data.gainIntegral,
+        useIntegral: data.useIntegral,
+        backIntegral: data.backIntegral,
+        mark: data.mark,
+        isDel: data.isDel,
+        unique: data.unique,
+        remark: data.remark,
+        merId: data.merId,
+        isMerCheck: data.isMerCheck,
+        combinationId: data.combinationId,
+        pinkId: data.pinkId,
+        cost: data.cost,
+        seckillId: data.seckillId,
+        bargainId: data.bargainId,
+        verifyCode: data.verifyCode,
+        storeId: data.storeId,
+        shippingType: data.shippingType,
+        isChannel: data.isChannel,
+        isRemind: data.isRemind,
+        isSystemDel: data.isSystemDel
+      }
+      _this.dialog = true
+    },
+    editOrder(data) {
+      this.isAdd = false
+      const _this = this.$refs.form3
+      _this.form = {
+        id: data.id,
+        orderId: data.orderId,
+        uid: data.uid,
+        realName: data.realName,
+        userPhone: data.userPhone,
+        userAddress: data.userAddress,
+        cartId: data.cartId,
+        freightPrice: data.freightPrice,
+        totalNum: data.totalNum,
+        totalPrice: data.totalPrice,
+        totalPostage: data.totalPostage,
+        payPrice: data.payPrice,
+        payPostage: data.payPostage,
+        deductionPrice: data.deductionPrice,
+        couponId: data.couponId,
+        couponPrice: data.couponPrice,
+        paid: data.paid,
+        payTime: data.payTime,
+        payType: data.payType,
+        addTime: data.addTime,
+        status: data.status,
+        refundStatus: data.refundStatus,
+        refundReasonWapImg: data.refundReasonWapImg,
+        refundReasonWapExplain: data.refundReasonWapExplain,
+        refundReasonTime: data.refundReasonTime,
+        refundReasonWap: data.refundReasonWap,
+        refundReason: data.refundReason,
+        refundPrice: data.refundPrice,
+        deliveryName: data.deliveryName,
+        deliveryType: data.deliveryType,
+        deliveryId: data.deliveryId,
+        gainIntegral: data.gainIntegral,
+        useIntegral: data.useIntegral,
+        backIntegral: data.backIntegral,
+        mark: data.mark,
+        isDel: data.isDel,
+        unique: data.unique,
+        remark: data.remark,
+        merId: data.merId,
+        isMerCheck: data.isMerCheck,
+        combinationId: data.combinationId,
+        pinkId: data.pinkId,
+        cost: data.cost,
+        seckillId: data.seckillId,
+        bargainId: data.bargainId,
+        verifyCode: data.verifyCode,
+        storeId: data.storeId,
+        shippingType: data.shippingType,
+        isChannel: data.isChannel,
+        isRemind: data.isRemind,
+        isSystemDel: data.isSystemDel
+      }
+      _this.dialog = true
+    },
+    remark(data) {
+      this.isAdd = false
+      const _this = this.$refs.form4
       _this.form = {
         id: data.id,
         orderId: data.orderId,

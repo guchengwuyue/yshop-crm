@@ -1,54 +1,25 @@
 <template>
-  <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '订单详情'" width="700px">
-    <el-card>
-      <div slot="header">
-        <span>收货信息</span>
-      </div>
-      <div class="text item">用户昵称:{{ form.nickname }}</div>
-      <div class="text item">收货人: {{ form.realName }}</div>
-      <div class="text item">联系电话: {{ form.userPhone }}</div>
-      <div class="text item">收货地址: {{ form.userAddress }}</div>
-    </el-card>
-    <el-card>
-      <div slot="header">
-        <span>订单信息</span>
-      </div>
-      <el-row :gutter="24">
-        <el-col :span="12">
-          <div class="text item">订单编号: {{ form.orderId }}</div>
-          <div class="text item">商品总数: {{ form.totalNum }}</div>
-          <div class="text item">支付邮费: {{ form.totalPostage }}</div>
-          <div class="text item">实际支付: {{ form.payPrice }}</div>
-          <div class="text item">支付方式: {{ form.payTypeName }}</div>
-        </el-col>
-        <el-col :span="12">
-          <div class="text item">订单状态: {{ form.statusName }}</div>
-          <div class="text item">商品总价: {{ form.totalPrice }}</div>
-          <div class="text item">优惠券金额: {{ form.couponPrice }}</div>
-          <div class="text item">创建时间: {{ formatTime(form.addTime) }}</div>
-          <div class="text item">支付时间: {{ formatTime(form.payTime) }}</div>
-        </el-col>
-      </el-row>
-    </el-card>
-    <el-card>
-      <div slot="header">
-        <span>物流信息</span>
-      </div>
-      <div class="text item">快递公司:{{ form.deliveryName }}</div>
-      <div class="text item">快递单号:{{ form.deliveryId }}</div>
-    </el-card>
-    <el-card>
-      <div slot="header">
-        <span>备注信息</span>
-      </div>
-      <div class="text item">{{ form.remark }}</div>
-    </el-card>
+  <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="500px">
+    <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
+      <el-form-item label="订单号" >
+        <el-input v-model="form.orderId" :disabled="true" style="width: 370px;" />
+      </el-form-item>
+      <el-form-item label="原始邮费" >
+        <el-input v-model="form.totalPostage" :disabled="true" style="width: 370px;" />
+      </el-form-item>
+      <el-form-item label="实际支付" >
+        <el-input v-model="form.payPrice" style="width: 370px;"/>
+      </el-form-item>
+    </el-form>
+    <div slot="footer" class="dialog-footer">
+      <el-button type="text" @click="cancel">取消</el-button>
+      <el-button :loading="loading" type="primary" @click="doSubmit">确认</el-button>
+    </div>
   </el-dialog>
 </template>
 
 <script>
-import { add, edit } from '@/api/yxStoreOrder'
-import { formatTime } from '@/utils/index'
+import { add, editOrder } from '@/api/yxStoreOrder'
 export default {
   props: {
     isAdd: {
@@ -120,7 +91,6 @@ export default {
     }
   },
   methods: {
-    formatTime,
     cancel() {
       this.resetForm()
     },
@@ -146,7 +116,7 @@ export default {
       })
     },
     doEdit() {
-      edit(this.form).then(res => {
+      editOrder(this.form).then(res => {
         this.resetForm()
         this.$notify({
           title: '修改成功',
@@ -222,12 +192,5 @@ export default {
 </script>
 
 <style scoped>
-  .text {
-    font-size: 12px;
-  }
-
-  .item {
-    padding: 6px 0;
-  }
 
 </style>
