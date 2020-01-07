@@ -26,7 +26,7 @@ export function edit(data) {
 export function get() {
   return request({
     url: 'api/yxWechatReply',
-    method: 'get',
+    method: 'get'
   })
 }
 

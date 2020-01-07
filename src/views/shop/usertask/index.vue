@@ -6,21 +6,21 @@
 
     </div>
     <!--表单组件-->
-    <eForm ref="form" :is-add="isAdd"/>
+    <eForm ref="form" :is-add="isAdd" />
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
-      <el-table-column prop="levalName" label="等级名称"/>
-      <el-table-column prop="name" label="任务名称"/>
-      <el-table-column prop="sort" label="排序"/>
+      <el-table-column prop="levalName" label="等级名称" />
+      <el-table-column prop="name" label="任务名称" />
+      <el-table-column prop="sort" label="排序" />
       <el-table-column prop="isShow" label="是否显示">
         <template slot-scope="scope">
           <el-tag v-if="scope.row.isShow === 1" style="cursor: pointer" :type="''">是</el-tag>
-          <el-tag style="cursor: pointer" v-else :type=" 'info' ">否</el-tag>
+          <el-tag v-else style="cursor: pointer" :type=" 'info' ">否</el-tag>
         </template>
       </el-table-column>
-      <el-table-column v-if="checkPermission(['ADMIN','YXSYSTEMUSERTASK_ALL','YXSYSTEMUSERTASK_EDIT','YXSYSTEMUSERTASK_DELETE'])" label="操作" width="150px" align="center">
+      <el-table-column v-if="checkPermission(['admin','YXSYSTEMUSERTASK_ALL','YXSYSTEMUSERTASK_EDIT','YXSYSTEMUSERTASK_DELETE'])" label="操作" width="150px" align="center">
         <template slot-scope="scope">
-          <el-button v-permission="['ADMIN','YXSYSTEMUSERTASK_ALL','YXSYSTEMUSERTASK_EDIT']" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)"/>
+          <el-button v-permission="['admin','YXSYSTEMUSERTASK_ALL','YXSYSTEMUSERTASK_EDIT']" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)" />
         </template>
       </el-table-column>
     </el-table>
@@ -31,13 +31,14 @@
       style="margin-top: 8px;"
       layout="total, prev, pager, next, sizes"
       @size-change="sizeChange"
-      @current-change="pageChange"/>
+      @current-change="pageChange"
+    />
   </div>
 </template>
 
 <script>
 import checkPermission from '@/utils/permission'
-import initData from '@/mixins/initData'
+import initData from '@/mixins/crud'
 import { del } from '@/api/yxSystemUserTask'
 import eForm from './form'
 export default {
@@ -45,7 +46,7 @@ export default {
   mixins: [initData],
   data() {
     return {
-      delLoading: false,
+      delLoading: false
     }
   },
   created() {

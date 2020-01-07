@@ -1,120 +1,120 @@
 <template>
   <div class="app-container">
     <div class="wechat-reply-wrapper">
-      <div class="ibox-title"><p>{{msg}}</p></div>
-        <div class="ibox-content clearfix">
-          <el-row :gutter="20">
-            <el-col :span="8">
+      <div class="ibox-title"><p>{{ msg }}</p></div>
+      <div class="ibox-content clearfix">
+        <el-row :gutter="20">
+          <el-col :span="8">
             <div class="view-wrapper col-sm-4">
               <div class="mobile-header">公众号</div>
               <section class="view-body" style="overflow:scroll;">
                 <div class="time-wrapper"><span class="time">9:36</span></div>
                 <div class="view-item text-box clearfix" :class="{show:type=='text'}">
-                  <div class="avatar fl"><img src="../../../assets/wechat/head.gif" /></div>
+                  <div class="avatar fl"><img src="../../../assets/wechat/head.gif"></div>
                   <div class="box-content fl">
-                    {{dataGroup.text.content}}
+                    {{ dataGroup.text.content }}
                   </div>
                 </div>
 
-                <div class="view-item news-box" :class="{show:type=='news'}" v-if="dataGroup.news.length >0">
-                  <div class="vn-content" v-if="dataGroup.news.length ==1">
-                    <div class="vn-title">{{dataGroup.news[0].title}}</div>
-                    <div class="vn-time">{{dataGroup.news[0].date}}</div>
-                    <div class="vn-picture" :style="{backgroundImage: 'url('+dataGroup.news[0].image+')'}"></div>
-                    <div class="vn-picture-info">{{dataGroup.news[0].description}}</div>
+                <div v-if="dataGroup.news.length >0" class="view-item news-box" :class="{show:type=='news'}">
+                  <div v-if="dataGroup.news.length ==1" class="vn-content">
+                    <div class="vn-title">{{ dataGroup.news[0].title }}</div>
+                    <div class="vn-time">{{ dataGroup.news[0].date }}</div>
+                    <div class="vn-picture" :style="{backgroundImage: 'url('+dataGroup.news[0].image+')'}" />
+                    <div class="vn-picture-info">{{ dataGroup.news[0].description }}</div>
                     <div class="vn-more">
                       <a :href="dataGroup.news[0].url">阅读原文</a>
                     </div>
                   </div>
-                  <div class="vn-content" v-else>
+                  <div v-else class="vn-content">
                     <div class="con-item-box">
-                      <div class="vn-picture" :style="{backgroundImage: 'url('+dataGroup.news[0].image+')'}"></div>
-                      <div class="first-title">{{dataGroup.news[0].title}}</div>
+                      <div class="vn-picture" :style="{backgroundImage: 'url('+dataGroup.news[0].image+')'}" />
+                      <div class="first-title">{{ dataGroup.news[0].title }}</div>
                     </div>
-                    <div class="con-item-list clearfix" v-for="(newinfos,index) in dataGroup.news" v-if="index>0">
-                      <div class="list-tit-info fl">{{newinfos.title}}</div>
-                      <div class="list-pic fr" :style="{backgroundImage: 'url('+newinfos.image+')'}"></div>
+                    <div v-for="(newinfos,index) in dataGroup.news" v-if="index>0" class="con-item-list clearfix">
+                      <div class="list-tit-info fl">{{ newinfos.title }}</div>
+                      <div class="list-pic fr" :style="{backgroundImage: 'url('+newinfos.image+')'}" />
                     </div>
                   </div>
                 </div>
 
                 <div class="view-item text-box clearfix" :class="{show:type=='image'}">
-                  <div class="avatar fl"><img src="../../../assets/wechat/head.gif" /></div>
+                  <div class="avatar fl"><img src="../../../assets/wechat/head.gif"></div>
                   <div class="box-content fl">
-                    <img class="picbox" :src="dataGroup.image.src" alt="" />
+                    <img class="picbox" :src="dataGroup.image.src" alt="">
                   </div>
                 </div>
 
-          </section>
-        </div>
-            </el-col>
-            <el-col :span="12">
+              </section>
+            </div>
+          </el-col>
+          <el-col :span="12">
             <div class="control-wrapper col-sm-8">
-          <section>
-            <form action="" method="post" enctype="multipart/form-data">
-              <div class="control-title">{{msg}}</div>
-              <div class="control-body">
-                <div class="form-group clearfix">
-                  <el-row :gutter="20">
-                    <el-col :span="4">
-                  <label class="col-sm-2 control-label tips" for="">规则状态</label>
-                    </el-col>
-                    <el-col :span="16">
-                  <div class="group-item">
-                    <div class="radio i-checks" style="display:inline;margin-left: 5px;">
-                      <label class="" style="padding-left: 0;">
-                        <input style="position: relative;top: 1px;left: 3px;" checked="checked" v-model="status" type="radio" value="1" name="status">
-                        启用</label>
-                    </div>
-                    <div class="radio i-checks" style="display:inline;margin-left: 10px;">
-                      <label class="" style="padding-left: 0;">
-                        <input style="position: relative;top: 1px;left: 3px;" type="radio" value="0" v-model="status" name="status">
-                        禁用
-                      </label>
-                    </div>
-                  </div>
-                    </el-col>
-                  </el-row>
-                </div>
-                <div class="form-group clearfix">
-                  <el-row :gutter="20">
-                    <el-col :span="4">
-                  <label class="col-sm-2 tips" for="">消息类型</label>
-                    </el-col>
-                    <el-col :span="16">
-                  <div class="col-sm-10 group-item">
-                    <select class="form-control m-b" v-model="type" name="account">
-                      <option value="text">文字消息</option>
-                    </select>
-                  </div>
-                    </el-col>
-                  </el-row>
-                </div>
-                <div class="control-main">
-                  <!-- 文字 -->
-                  <div class="control-item control-main-txt" :class="{show:type=='text'}">
+              <section>
+                <form action="" method="post" enctype="multipart/form-data">
+                  <div class="control-title">{{ msg }}</div>
+                  <div class="control-body">
                     <div class="form-group clearfix">
-                      <label class="col-sm-2 tips" for="">规则内容</label>
-                      <div class="col-sm-10 group-item">
-                        <textarea v-model="dataGroup.text.content" name="" id="" cols="30" rows="10" placeholder="请输入内容"></textarea>
+                      <el-row :gutter="20">
+                        <el-col :span="4">
+                          <label class="col-sm-2 control-label tips" for="">规则状态</label>
+                        </el-col>
+                        <el-col :span="16">
+                          <div class="group-item">
+                            <div class="radio i-checks" style="display:inline;margin-left: 5px;">
+                              <label class="" style="padding-left: 0;">
+                                <input v-model="status" style="position: relative;top: 1px;left: 3px;" checked="checked" type="radio" value="1" name="status">
+                                启用</label>
+                            </div>
+                            <div class="radio i-checks" style="display:inline;margin-left: 10px;">
+                              <label class="" style="padding-left: 0;">
+                                <input v-model="status" style="position: relative;top: 1px;left: 3px;" type="radio" value="0" name="status">
+                                禁用
+                              </label>
+                            </div>
+                          </div>
+                        </el-col>
+                      </el-row>
+                    </div>
+                    <div class="form-group clearfix">
+                      <el-row :gutter="20">
+                        <el-col :span="4">
+                          <label class="col-sm-2 tips" for="">消息类型</label>
+                        </el-col>
+                        <el-col :span="16">
+                          <div class="col-sm-10 group-item">
+                            <select v-model="type" class="form-control m-b" name="account">
+                              <option value="text">文字消息</option>
+                            </select>
+                          </div>
+                        </el-col>
+                      </el-row>
+                    </div>
+                    <div class="control-main">
+                      <!-- 文字 -->
+                      <div class="control-item control-main-txt" :class="{show:type=='text'}">
+                        <div class="form-group clearfix">
+                          <label class="col-sm-2 tips" for="">规则内容</label>
+                          <div class="col-sm-10 group-item">
+                            <textarea id="" v-model="dataGroup.text.content" name="" cols="30" rows="10" placeholder="请输入内容" />
+                          </div>
+                        </div>
+                      </div>
+                      <!-- 图片 -->
+                      <div class="control-item control-main-picture" :class="{show:type=='image'}">
+                        <div class="form-group clearfix">
+                          <pic-upload v-model="dataGroup.image.src" style="width: 500px;" />
+                        </div>
+
                       </div>
                     </div>
                   </div>
-                  <!-- 图片 -->
-                  <div class="control-item control-main-picture" :class="{show:type=='image'}">
-                    <div class="form-group clearfix">
-                      <pic-upload v-model="dataGroup.image.src" style="width: 500px;"/>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-              <div style="text-align: center;"><button type="button" class="el-button el-button--primary" @click="submit">提交</button></div>
-            </form>
-          </section>
-        </div>
-            </el-col>
-          </el-row>
+                  <div style="text-align: center;"><button type="button" class="el-button el-button--primary" @click="submit">提交</button></div>
+                </form>
+              </section>
+            </div>
+          </el-col>
+        </el-row>
       </div>
     </div>
   </div>
@@ -122,7 +122,7 @@
 
 <script>
 import checkPermission from '@/utils/permission'
-import initData from '@/mixins/initData'
+import initData from '@/mixins/crud'
 import { del, add, get } from '@/api/yxWechatReply'
 import eForm from './form'
 import picUpload from '@/components/pic-upload'
@@ -138,20 +138,20 @@ export default {
       type: 'text',
       textBox: '',
       pic: '',
-      key:'',
-      dataGroup:{
-        text:{
-          content:''
+      key: '',
+      dataGroup: {
+        text: {
+          content: ''
         },
-        image:{
-          src:''
+        image: {
+          src: ''
         },
-        voice:{
-          src:''
+        voice: {
+          src: ''
         },
-        news:[]
+        news: []
       },
-      uploadColl: function () {
+      uploadColl: function() {
       },
       uploadLink: '',
       result: null
@@ -160,6 +160,24 @@ export default {
   created() {
     this.$nextTick(() => {
       this.init()
+    })
+  },
+  mounted: function() {
+    this.key = 'subscribe'
+    this.msg = '编辑关注回复'
+    get().then(rese => {
+      this.result = rese
+      this.type = rese.type
+      this.status = rese.status
+      const newData = JSON.parse(rese.data)
+      if (rese.type == 'image') {
+        this.dataGroup.image.src = newDatasrc
+      } else if (rese.type == 'text') {
+        this.dataGroup.text.content = newData.content
+      }
+      if (this.used_key) {
+        this.keyword = this.result.key
+      }
     })
   },
   methods: {
@@ -205,54 +223,27 @@ export default {
       }
       _this.dialog = true
     },
-    submit: function(){
-      if(!this.check()) return false;
+    submit: function() {
+      if (!this.check()) return false
 
-      add({key:this.key,status:this.status,data:this.dataGroup[this.type],type:this.type}).then(function (res) {
-        Message({message: '设置成功',type: 'success'})
-      }).catch(function(err){
-        //Message({message: err,type: 'error'})
+      add({ key: this.key, status: this.status, data: this.dataGroup[this.type], type: this.type }).then(function(res) {
+        Message({ message: '设置成功', type: 'success' })
+      }).catch(function(err) {
+        // Message({message: err,type: 'error'})
       })
     },
-    check: function(){
-      var dataGroup = this.dataGroup;
-      switch (this.type){
+    check: function() {
+      var dataGroup = this.dataGroup
+      switch (this.type) {
         case 'text':
-          if(dataGroup.text.content == '')
-            return this.returnError('请输入文字消息内容');
-          break;
+          if (dataGroup.text.content == '') { return this.returnError('请输入文字消息内容') }
+          break
         case 'image':
-          if(dataGroup.image.src == '')
-            return this.returnError('请上传图片');
-          break;
+          if (dataGroup.image.src == '') { return this.returnError('请上传图片') }
+          break
       }
-      return true;
-    },
-    returnError:function(err){
-      $eb.message('error',err);
-      return false;
+      return true
     }
-  },
-  mounted: function () {
-    this.key = "subscribe"
-    this.msg = "编辑关注回复";
-    get().then(rese=>{
-      this.result = rese
-      this.type = rese.type;
-      this.status = rese.status;
-      let newData = JSON.parse(rese.data)
-      if(rese.type == 'image') {
-        this.dataGroup.image.src = newDatasrc;
-      }else if(rese.type == 'text'){
-        this.dataGroup.text.content = newData.content;
-      }
-      if(this.used_key){
-        this.keyword = this.result.key;
-      }
-    })
-
-
-
   }
 }
 </script>
@@ -283,15 +274,11 @@ export default {
 
   #app .layout-ceiling-main a{ color:#9ba7b5}
 
-
-
   #table-list .mp-search-wrapper{ float: right; margin-left: 12px; }
 
   #table-list .mp-header-wrapper{ overflow: hidden; }
 
   #table-list .mp-header-wrapper h1{ padding-left:15px; float: left; font-size: 18px; line-height: 24px; padding-bottom: 20px; font-weight: 400; color: #464c5b; }
-
-
 
   .mp-form{ padding: 20px 20px 20px 0; }
 
@@ -317,15 +304,11 @@ export default {
 
   .mp-form .add-submit-item .ivu-btn{ position: fixed; left: 0; bottom: 0; border-radius: 0; }
 
-
-
   .vertical-center-modal .ivu-modal{ top: 0; }
 
   .vertical-center-modal .ivu-modal-header{ z-index: 9; position: relative; }
 
   .vertical-center-modal .ivu-modal-close{ z-index: 10; }
-
-
 
   .wechat-reply-wrapper .fl{ float: left;margin-left: 10px; }
   .wechat-reply-wrapper .fr{ float: right; }
@@ -361,13 +344,10 @@ export default {
   .view-wrapper .view-body .view-item .vn-content .con-item-list .list-tit-info{ width: 70%; line-height: 1.5; word-wrap:break-word; }
   .view-wrapper .view-body .view-item .vn-content .con-item-list .list-pic{ width: 20%; min-height: 50px; background-size: cover; background-position: center center; }
 
-
-
   /* 音乐 */
   .view-wrapper .view-body .view-item.music-box .box-content{ position: relative; width: 100%; background: #080; color: #fff; border-color: #080; }
   .view-wrapper .view-body .view-item.music-box .box-content p{ width: 75%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
   .view-wrapper .view-body .view-item.music-box .box-content .music-icon{ position: absolute; right: 11px; top: 50%; width: 30px; height: 30px; background: #0a0; text-align: center; line-height: 30px; margin-top: -15px; font-size: 16px; }
-
 
   .view-wrapper .view-body .view-item.music-box .box-content:after{ display: none; }
   .view-wrapper .view-body .view-item.music-box .box-content:before{ border-top: 10px solid #080; }

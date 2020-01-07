@@ -6,9 +6,10 @@
       :headers="headers"
       :show-file-list="false"
       :on-success="handleUploadSuccess"
-      :before-upload="beforeAvatarUpload">
+      :before-upload="beforeAvatarUpload"
+    >
       <img v-if="value" :src="resourcesUrl + value" class="pic">
-      <i v-else class="el-icon-plus pic-uploader-icon"></i>
+      <i v-else class="el-icon-plus pic-uploader-icon" />
     </el-upload>
   </div>
 </template>
@@ -17,11 +18,11 @@
 import { getToken } from '@/utils/auth'
 import { mapGetters } from 'vuex'
 export default {
-  data () {
+  data() {
     return {
       resourcesUrl: '',
       headers: {
-        'Authorization': 'Bearer ' + getToken()
+        'Authorization': getToken()
       }
     }
   },

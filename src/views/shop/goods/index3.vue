@@ -3,45 +3,47 @@
     <!--工具栏-->
     <div class="head-container">
       <!-- 搜索 -->
-      <el-input v-model="query.value" clearable placeholder="输入搜索内容" style="width: 200px;" class="filter-item" @keyup.enter.native="toQuery"/>
+      <el-input v-model="query.value" clearable placeholder="输入搜索内容" style="width: 200px;" class="filter-item" @keyup.enter.native="toQuery" />
       <el-select v-model="query.type" clearable placeholder="类型" class="filter-item" style="width: 130px">
-        <el-option v-for="item in queryTypeOptions" :key="item.key" :label="item.display_name" :value="item.key"/>
+        <el-option v-for="item in queryTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
       </el-select>
       <el-button class="filter-item" size="mini" type="success" icon="el-icon-search" @click="toQuery">搜索</el-button>
       <!-- 新增 -->
       <div style="display: inline-block;margin: 0px 2px;">
         <el-button
-          v-permission="['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_CREATE']"
+          v-permission="['admin','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_CREATE']"
           class="filter-item"
           size="mini"
           type="primary"
           icon="el-icon-plus"
-          @click="add">新增</el-button>
+          @click="add"
+        >新增</el-button>
       </div>
     </div>
     <!--表单组件-->
-    <eForm ref="form" :is-add="isAdd"/>
+    <eForm ref="form" :is-add="isAdd" />
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
-      <el-table-column prop="id" label="商品id"/>
+      <el-table-column prop="id" label="商品id" />
       <el-table-column ref="table" prop="image" label="商品图片">
         <template slot-scope="scope">
           <a :href="scope.row.image" style="color: #42b983" target="_blank"><img :src="scope.row.image" alt="点击打开" class="el-avatar"></a>
         </template>
       </el-table-column>
-      <el-table-column prop="storeName" label="商品名称"/>
-      <el-table-column prop="cateName" label="分类名称"/>
-      <el-table-column prop="price" label="商品价格"/>
-      <el-table-column prop="sales" label="销量"/>
-      <el-table-column prop="stock" label="库存"/>
-      <el-table-column v-if="checkPermission(['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT','YXSTOREPRODUCT_DELETE'])" label="操作" width="150px" align="center">
+      <el-table-column prop="storeName" label="商品名称" />
+      <el-table-column prop="cateName" label="分类名称" />
+      <el-table-column prop="price" label="商品价格" />
+      <el-table-column prop="sales" label="销量" />
+      <el-table-column prop="stock" label="库存" />
+      <el-table-column v-if="checkPermission(['admin','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT','YXSTOREPRODUCT_DELETE'])" label="操作" width="150px" align="center">
         <template slot-scope="scope">
-          <el-button v-permission="['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT']" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)"/>
+          <el-button v-permission="['admin','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT']" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)" />
           <el-popover
-            v-permission="['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_DELETE']"
             :ref="scope.row.id"
+            v-permission="['admin','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_DELETE']"
             placement="top"
-            width="180">
+            width="180"
+          >
             <p>确定恢复本条数据吗？</p>
             <div style="text-align: right; margin: 0">
               <el-button size="mini" type="text" @click="$refs[scope.row.id].doClose()">取消</el-button>
@@ -59,13 +61,14 @@
       style="margin-top: 8px;"
       layout="total, prev, pager, next, sizes"
       @size-change="sizeChange"
-      @current-change="pageChange"/>
+      @current-change="pageChange"
+    />
   </div>
 </template>
 
 <script>
 import checkPermission from '@/utils/permission'
-import initData from '@/mixins/initData'
+import initData from '@/mixins/crud'
 import { recovery, onsale } from '@/api/yxStoreProduct'
 import eForm from './form'
 export default {

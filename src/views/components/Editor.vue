@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div ref="editor" style="text-align:left;margin: 5px;width: 700px">
-    </div>
+    <div ref="editor" style="text-align:left;margin: 5px;width: 700px" />
   </div>
 </template>
 
@@ -24,7 +23,7 @@ export default {
   data() {
     return {
       headers: {
-        'Authorization': 'Bearer ' + getToken()
+        'Authorization': getToken()
       },
       info: null,
       editor: null
@@ -38,11 +37,11 @@ export default {
   watch: {
     value: function(val) {
       this.editor.txt.html(val)
-      //this.editor.txt.html(val)
+      // this.editor.txt.html(val)
     }
   },
   mounted() {
-    //console.log(222)
+    // console.log(222)
     console.log(this.value)
     this.editor = new E(this.$refs.editor)
     this.editor.customConfig.uploadImgShowBase64 = true // 使用 base64 保存图片

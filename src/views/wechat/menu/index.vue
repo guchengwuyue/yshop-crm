@@ -4,105 +4,105 @@
       <div class="ibox-content clearfix">
         <el-row :gutter="20">
           <el-col :span="8">
-        <div class="view-wrapper col-sm-4">
-          <div class="mobile-header">公众号</div>
-          <section class="view-body">
-            <div class="time-wrapper"><span class="time">9:36</span></div>
-          </section>
-          <div class="menu-footer">
-            <ul class="flex">
-              <li v-for="(menu, index) in menus" :class="{active:menu === checkedMenu}">
-                <span @click="activeMenu(menu,index,null)" ><i class="icon-sub"></i>{{ menu.name || '一级菜单' }}</span>
-                <div class="sub-menu">
-                  <ul>
-                    <li v-for="(child, cindex) in menu.subButtons" :class="{active:child === checkedMenu}">
-                      <span @click="activeMenu(child,cindex,index)">{{ child.name || '二级菜单' }}</span>
-                    </li>
-                    <li v-if="menu.subButtons.length < 5" @click="addChild(menu,index)"><i class="icon-add"></i></li>
-                  </ul>
-                </div>
-              </li>
-              <li v-if="menus.length < 3" @click="addMenu()"><i class="icon-add"></i></li>
-            </ul>
-          </div>
-        </div>
-          </el-col>
-          <el-col :span="12">
-        <div class="control-wrapper menu-control col-sm-8" v-show="checkedMenuId !== null">
-          <section>
-            <div class="control-main">
-              <h3 class="popover-title">菜单名称 <a class="fr" href="javascript:void(0);" @click="delMenu">删除</a></h3>
-              <p class="tips-txt">已添加子菜单，仅可设置菜单名称。</p>
-              <div class="menu-content control-body">
-                <form action="">
-                  <div class="form-group clearfix">
-                    <label for="" class="el-form-item__label" style="width: 80px;">菜单名称</label>
-                    <div class="col-sm-9 group-item">
-                      <input type="text" placeholder="菜单名称" style="width: 370px;" class="el-input__inner" v-model="checkedMenu.name">
+            <div class="view-wrapper col-sm-4">
+              <div class="mobile-header">公众号</div>
+              <section class="view-body">
+                <div class="time-wrapper"><span class="time">9:36</span></div>
+              </section>
+              <div class="menu-footer">
+                <ul class="flex">
+                  <li v-for="(menu, index) in menus" :class="{active:menu === checkedMenu}">
+                    <span @click="activeMenu(menu,index,null)"><i class="icon-sub" />{{ menu.name || '一级菜单' }}</span>
+                    <div class="sub-menu">
+                      <ul>
+                        <li v-for="(child, cindex) in menu.subButtons" :class="{active:child === checkedMenu}">
+                          <span @click="activeMenu(child,cindex,index)">{{ child.name || '二级菜单' }}</span>
+                        </li>
+                        <li v-if="menu.subButtons.length < 5" @click="addChild(menu,index)"><i class="icon-add" /></li>
+                      </ul>
                     </div>
-                  </div>
-                  <div class="form-group clearfix">
-                    <label class="el-form-item__label" style="width: 80px;" for="">规则状态</label>
-                    <div class="group-item col-sm-9">
-                      <select style="width: 370px;" class="el-input__inner" name="" id="" v-model="checkedMenu.type">
-                        <option value="click">关键字</option>
-                        <option value="view">跳转网页</option>
-                        <option value="miniprogram">小程序</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="menu-control-box">
-                  <!-- 关键字 -->
-                  <div class="keywords item" :class="{show:checkedMenu.type=='click'}">
-                    <span class="el-form-item__label">关键字</span>
-                    <input type="text" placeholder="请输入关键字" class="form-control" v-model="checkedMenu.key">
-
-                  </div>
-                  <!-- 跳转地址 -->
-                  <div class="url item" :class="{show:checkedMenu.type=='view'}">
-                    <span class="el-form-item__label">跳转地址</span>
-                    <input type="text" v-model="checkedMenu.url" placeholder="请输入跳转地址" class="form-control">
-                    <p class="text-left"></p>
-                  </div>
-              <!-- 小程序 -->
-              <div class="wrchat-app item" :class="{show:checkedMenu.type=='miniprogram'}">
-                <div class="list">
-                  <span class="el-form-item__label">appId</span>
-                  <input class="form-control" v-model="checkedMenu.appId" type="text" />
-                </div>
-                <div class="list">
-                  <span class="el-form-item__label">备用网页url</span>
-                  <input class="form-control" v-model="checkedMenu.url" type="text" />
-                </div>
-                <div class="list">
-                  <span class="el-form-item__label">小程序路径</span>
-                  <input class="form-control" v-model="checkedMenu.pagePath" type="text" />
-                </div>
-              </div>
-              <!-- 多客服 -->
-              <div class="service item">
-                <p>回复内容</p>
-                <textarea  cols="60" rows="10"></textarea>
+                  </li>
+                  <li v-if="menus.length < 3" @click="addMenu()"><i class="icon-add" /></li>
+                </ul>
               </div>
             </div>
-            </form>
-        </div>
-      </div>
-      </section>
-    </div>
+          </el-col>
+          <el-col :span="12">
+            <div v-show="checkedMenuId !== null" class="control-wrapper menu-control col-sm-8">
+              <section>
+                <div class="control-main">
+                  <h3 class="popover-title">菜单名称 <a class="fr" href="javascript:void(0);" @click="delMenu">删除</a></h3>
+                  <p class="tips-txt">已添加子菜单，仅可设置菜单名称。</p>
+                  <div class="menu-content control-body">
+                    <form action="">
+                      <div class="form-group clearfix">
+                        <label for="" class="el-form-item__label" style="width: 80px;">菜单名称</label>
+                        <div class="col-sm-9 group-item">
+                          <input v-model="checkedMenu.name" type="text" placeholder="菜单名称" style="width: 370px;" class="el-input__inner">
+                        </div>
+                      </div>
+                      <div class="form-group clearfix">
+                        <label class="el-form-item__label" style="width: 80px;" for="">规则状态</label>
+                        <div class="group-item col-sm-9">
+                          <select id="" v-model="checkedMenu.type" style="width: 370px;" class="el-input__inner" name="">
+                            <option value="click">关键字</option>
+                            <option value="view">跳转网页</option>
+                            <option value="miniprogram">小程序</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="menu-control-box">
+                        <!-- 关键字 -->
+                        <div class="keywords item" :class="{show:checkedMenu.type=='click'}">
+                          <span class="el-form-item__label">关键字</span>
+                          <input v-model="checkedMenu.key" type="text" placeholder="请输入关键字" class="form-control">
+
+                        </div>
+                        <!-- 跳转地址 -->
+                        <div class="url item" :class="{show:checkedMenu.type=='view'}">
+                          <span class="el-form-item__label">跳转地址</span>
+                          <input v-model="checkedMenu.url" type="text" placeholder="请输入跳转地址" class="form-control">
+                          <p class="text-left" />
+                        </div>
+                        <!-- 小程序 -->
+                        <div class="wrchat-app item" :class="{show:checkedMenu.type=='miniprogram'}">
+                          <div class="list">
+                            <span class="el-form-item__label">appId</span>
+                            <input v-model="checkedMenu.appId" class="form-control" type="text">
+                          </div>
+                          <div class="list">
+                            <span class="el-form-item__label">备用网页url</span>
+                            <input v-model="checkedMenu.url" class="form-control" type="text">
+                          </div>
+                          <div class="list">
+                            <span class="el-form-item__label">小程序路径</span>
+                            <input v-model="checkedMenu.pagePath" class="form-control" type="text">
+                          </div>
+                        </div>
+                        <!-- 多客服 -->
+                        <div class="service item">
+                          <p>回复内容</p>
+                          <textarea cols="60" rows="10" />
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </section>
+            </div>
           </el-col>
         </el-row>
-  </div>
-  <div class="ibox-content submit">
-    <button class="el-button el-button--primary" @click="submit">保存发布</button>
-  </div>
-  </div>
+      </div>
+      <div class="ibox-content submit">
+        <button class="el-button el-button--primary" @click="submit">保存发布</button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import checkPermission from '@/utils/permission'
-import initData from '@/mixins/initData'
+import initData from '@/mixins/crud'
 import { del, add, get } from '@/api/yxCache'
 import eForm from './form'
 import { Message } from 'element-ui'
@@ -113,16 +113,16 @@ export default {
     return {
       delLoading: false,
       menus: [],
-      checkedMenu:{
-        type:'click',
-        name:''
+      checkedMenu: {
+        type: 'click',
+        name: ''
       },
-      checkedMenuId:null,
-      parentMenuId:null
+      checkedMenuId: null,
+      parentMenuId: null
     }
   },
   created() {
-    get().then(res=>{
+    get().then(res => {
       this.menus = JSON.parse(res.result)
     })
   },
@@ -166,124 +166,124 @@ export default {
       }
       _this.dialog = true
     },
-    defaultMenusData:function(){
+    defaultMenusData: function() {
       return {
-        type:'click',
-        name:'',
-        subButtons:[]
-      };
+        type: 'click',
+        name: '',
+        subButtons: []
+      }
     },
-    defaultChildData:function(){
+    defaultChildData: function() {
       return {
-        type:'click',
-        name:''
-      };
+        type: 'click',
+        name: ''
+      }
     },
-    addMenu:function(){
-      if(!this.check()) return false;
-      var data = this.defaultMenusData(),id = this.menus.length;
-      this.menus.push(data);
-      this.checkedMenu = data;
-      this.checkedMenuId = id;
-      this.parentMenuId = null;
+    addMenu: function() {
+      if (!this.check()) return false
+      var data = this.defaultMenusData(); var id = this.menus.length
+      this.menus.push(data)
+      this.checkedMenu = data
+      this.checkedMenuId = id
+      this.parentMenuId = null
     },
-    addChild:function(menu,index){
-      if(!this.check()) return false;
-      var data = this.defaultChildData(),id = menu.subButtons.length;
-      menu.subButtons.push(data);
-      this.checkedMenu = data;
-      this.checkedMenuId = id;
-      this.parentMenuId = index;
+    addChild: function(menu, index) {
+      if (!this.check()) return false
+      var data = this.defaultChildData(); var id = menu.subButtons.length
+      menu.subButtons.push(data)
+      this.checkedMenu = data
+      this.checkedMenuId = id
+      this.parentMenuId = index
     },
-    delMenu:function(){
-      console.log(this.parentMenuId);
-      this.parentMenuId === null ?
-        this.menus.splice(this.checkedMenuId,1) : this.menus[this.parentMenuId].subButtons.splice(this.checkedMenuId,1);
-      this.parentMenuId = null;
-      this.checkedMenu = {};
-      this.checkedMenuId = null;
+    delMenu: function() {
+      console.log(this.parentMenuId)
+      this.parentMenuId === null
+        ? this.menus.splice(this.checkedMenuId, 1) : this.menus[this.parentMenuId].subButtons.splice(this.checkedMenuId, 1)
+      this.parentMenuId = null
+      this.checkedMenu = {}
+      this.checkedMenuId = null
     },
-    activeMenu:function(menu,index,pid){
-      if(!this.check()) return false;
-      pid === null ?
-        (this.checkedMenu = menu) : (this.checkedMenu = this.menus[pid].subButtons[index],this.parentMenuId = pid);
-      this.checkedMenuId=index
+    activeMenu: function(menu, index, pid) {
+      if (!this.check()) return false
+      pid === null
+        ? (this.checkedMenu = menu) : (this.checkedMenu = this.menus[pid].subButtons[index], this.parentMenuId = pid)
+      this.checkedMenuId = index
     },
-    check:function(){
-      if(this.checkedMenuId === null) return true;
-      if(!this.checkedMenu.name){
-        //$eb.message('请输入按钮名称!');
+    check: function() {
+      if (this.checkedMenuId === null) return true
+      if (!this.checkedMenu.name) {
+        // $eb.message('请输入按钮名称!');
         this.$message({
           message: '请输入按钮名称',
           type: 'error',
           duration: 1000,
           onClose: () => {
-            //this.init()
+            // this.init()
           }
         })
-        return false;
+        return false
       }
-      if(this.checkedMenu.type == 'click' && !this.checkedMenu.key){
-        //$eb.message('请输入关键字!');
+      if (this.checkedMenu.type == 'click' && !this.checkedMenu.key) {
+        // $eb.message('请输入关键字!');
         this.$message({
           message: '请输入关键字',
           type: 'error',
           duration: 1000,
           onClose: () => {
-            //this.init()
+            // this.init()
           }
         })
-        return false;
+        return false
       }
-      if(this.checkedMenu.type == 'view' && !this.checkedMenu.url){
-          this.$message({
+      if (this.checkedMenu.type == 'view' && !this.checkedMenu.url) {
+        this.$message({
           message: '请输入跳转地址',
           type: 'error',
           duration: 1000,
           onClose: () => {
-            //this.init()
+            // this.init()
           }
         })
 
-        return false;
+        return false
       }
-      if(this.checkedMenu.type == 'miniprogram'
-        && (!this.checkedMenu.appId
-          || !this.checkedMenu.pagePath
-          || !this.checkedMenu.url)){
-        //$eb.message('请填写完整小程序配置!');
+      if (this.checkedMenu.type == 'miniprogram' &&
+        (!this.checkedMenu.appId ||
+          !this.checkedMenu.pagePath ||
+          !this.checkedMenu.url)) {
+        // $eb.message('请填写完整小程序配置!');
         this.$message({
           message: '请填写完整小程序配置',
           type: 'error',
           duration: 1000,
           onClose: () => {
-            //this.init()
+            // this.init()
           }
         })
-        return false;
+        return false
       }
-      return true;
+      return true
     },
-    submit:function(){
-     // this.$message.error('错了哦，这是一条错误消息')
-      //return false;
-      if(!this.check()) return false
-      //console.log(this.menus.length)
-      if(!this.menus.length){
+    submit: function() {
+      // this.$message.error('错了哦，这是一条错误消息')
+      // return false;
+      if (!this.check()) return false
+      // console.log(this.menus.length)
+      if (!this.menus.length) {
         this.$message({
           message: '请添加菜单',
           type: 'error',
-          duration: 1000,
+          duration: 1000
         })
-        return false;
+        return false
       }
-      add({buttons:this.menus}).then(function (res) {
+      add({ buttons: this.menus }).then(function(res) {
         console.log(555)
-        Message({message: '添加成功',type: 'success'})
-      }).catch(function(err){
-        //$eb.message('error',err);
-        //this.$message.error('错了哦，这是一条错误消息');
-        //Message({message: "2222",type: 'error'})
+        Message({ message: '添加成功', type: 'success' })
+      }).catch(function(err) {
+        // $eb.message('error',err);
+        // this.$message.error('错了哦，这是一条错误消息');
+        // Message({message: "2222",type: 'error'})
       })
     }
   }
@@ -316,15 +316,11 @@ export default {
 
   #app .layout-ceiling-main a{ color:#9ba7b5}
 
-
-
   #table-list .mp-search-wrapper{ float: right; margin-left: 12px; }
 
   #table-list .mp-header-wrapper{ overflow: hidden; }
 
   #table-list .mp-header-wrapper h1{ padding-left:15px; float: left; font-size: 18px; line-height: 24px; padding-bottom: 20px; font-weight: 400; color: #464c5b; }
-
-
 
   .mp-form{ padding: 20px 20px 20px 0; }
 
@@ -350,15 +346,11 @@ export default {
 
   .mp-form .add-submit-item .ivu-btn{ position: fixed; left: 0; bottom: 0; border-radius: 0; }
 
-
-
   .vertical-center-modal .ivu-modal{ top: 0; }
 
   .vertical-center-modal .ivu-modal-header{ z-index: 9; position: relative; }
 
   .vertical-center-modal .ivu-modal-close{ z-index: 10; }
-
-
 
   .wechat-reply-wrapper .fl{ float: left; }
   .wechat-reply-wrapper .fr{ float: right; }
@@ -394,13 +386,10 @@ export default {
   .view-wrapper .view-body .view-item .vn-content .con-item-list .list-tit-info{ width: 70%; line-height: 1.5; word-wrap:break-word; }
   .view-wrapper .view-body .view-item .vn-content .con-item-list .list-pic{ width: 20%; min-height: 50px; background-size: cover; background-position: center center; }
 
-
-
   /* 音乐 */
   .view-wrapper .view-body .view-item.music-box .box-content{ position: relative; width: 100%; background: #080; color: #fff; border-color: #080; }
   .view-wrapper .view-body .view-item.music-box .box-content p{ width: 75%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
   .view-wrapper .view-body .view-item.music-box .box-content .music-icon{ position: absolute; right: 11px; top: 50%; width: 30px; height: 30px; background: #0a0; text-align: center; line-height: 30px; margin-top: -15px; font-size: 16px; }
-
 
   .view-wrapper .view-body .view-item.music-box .box-content:after{ display: none; }
   .view-wrapper .view-body .view-item.music-box .box-content:before{ border-top: 10px solid #080; }

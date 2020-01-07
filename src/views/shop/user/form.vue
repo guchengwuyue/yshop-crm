@@ -1,26 +1,26 @@
 <template>
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="500px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
-      <el-form-item label="用户昵称" >
-        <el-input v-model="form.nickname" :disabled="true" style="width: 370px;"/>
+      <el-form-item label="用户昵称">
+        <el-input v-model="form.nickname" :disabled="true" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="真实姓名" >
-        <el-input v-model="form.realName" style="width: 370px;"/>
+      <el-form-item label="真实姓名">
+        <el-input v-model="form.realName" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="用户备注" >
-        <el-input v-model="form.mark" style="width: 370px;"/>
+      <el-form-item label="用户备注">
+        <el-input v-model="form.mark" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="手机号码" >
-        <el-input v-model="form.phone" style="width: 370px;"/>
+      <el-form-item label="手机号码">
+        <el-input v-model="form.phone" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="用户积分" >
-        <el-input v-model="form.integral" style="width: 370px;"/>
+      <el-form-item label="用户积分">
+        <el-input v-model="form.integral" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="推广员" >
+      <el-form-item label="推广员">
         <el-radio v-model="form.isPromoter" :label="1">开启</el-radio>
         <el-radio v-model="form.isPromoter" :label="0">关闭</el-radio>
       </el-form-item>
-      <el-form-item label="商户管理" >
+      <el-form-item label="商户管理">
         <el-radio v-model="form.adminid" :label="1">开启</el-radio>
         <el-radio v-model="form.adminid" :label="0">关闭</el-radio>
       </el-form-item>

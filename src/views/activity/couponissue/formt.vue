@@ -1,7 +1,7 @@
 <template>
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '修改状态'" width="500px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="100px">
-      <el-form-item label="状态" >
+      <el-form-item label="状态">
         <el-radio v-model="form.status" :label="1">开启</el-radio>
         <el-radio v-model="form.status" :label="0">关闭</el-radio>
       </el-form-item>
@@ -53,7 +53,7 @@ export default {
       } else this.doEdit()
     },
     doAdd() {
-      //console.log(this.form)
+      // console.log(this.form)
       add(this.form).then(res => {
         this.resetForm()
         this.$notify({

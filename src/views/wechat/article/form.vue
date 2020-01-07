@@ -1,19 +1,19 @@
 <template>
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="900px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
-      <el-form-item label="标题" >
-        <el-input v-model="form.title" style="width: 370px;"/>
+      <el-form-item label="标题">
+        <el-input v-model="form.title" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="作者" >
-        <el-input v-model="form.author" style="width: 370px;"/>
+      <el-form-item label="作者">
+        <el-input v-model="form.author" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="封面" >
-        <pic-upload v-model="form.imageInput" style="width: 370px;"/>
+      <el-form-item label="封面">
+        <pic-upload v-model="form.imageInput" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="简介" >
-        <el-input v-model="form.synopsis" style="width: 370px;" rows="5" type="textarea"/>
+      <el-form-item label="简介">
+        <el-input v-model="form.synopsis" style="width: 370px;" rows="5" type="textarea" />
       </el-form-item>
-      <el-form-item label="正文" >
+      <el-form-item label="正文">
         <editor v-model="form.content" />
       </el-form-item>
     </el-form>

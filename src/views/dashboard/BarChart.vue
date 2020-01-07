@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" :style="{height:height,width:width}"/>
+  <div :class="className" :style="{height:height,width:width}" />
 </template>
 
 <script>
@@ -28,7 +28,7 @@ export default {
   data() {
     return {
       chart: null,
-      day: [],num: []
+      day: [], num: []
     }
   },
   mounted() {
@@ -53,15 +53,15 @@ export default {
       this.chart = echarts.init(this.$el, 'macarons')
 
       chart().then(res => {
-         var _info = res.chart,
-          day = [],
-          num = [];
+        var _info = res.chart
+        var day = []
+        var num = []
         _info.forEach(function(item) {
-          day.push(item.time);
-          num.push(item.num);
-        });
+          day.push(item.time)
+          num.push(item.num)
+        })
 
-        console.log(day,num)
+        console.log(day, num)
 
         this.chart.setOption({
           tooltip: {
@@ -99,13 +99,9 @@ export default {
             animationDuration
           }]
         })
-
       })
 
-      console.log('day:'+this.day)
-
-
-
+      console.log('day:' + this.day)
     }
   }
 }

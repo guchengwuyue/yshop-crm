@@ -1,38 +1,38 @@
 <template>
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '发布优惠券'" width="500px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="100px">
-      <el-form-item label="优惠券ID" >
+      <el-form-item label="优惠券ID">
         <el-input v-model="form.cid" style="width: 300px;" :disabled="true" />
       </el-form-item>
-      <el-form-item label="优惠券名称" >
+      <el-form-item label="优惠券名称">
         <el-input v-model="form.cname" style="width: 300px;" :disabled="true" />
       </el-form-item>
-      <el-form-item label="领取开启时间" >
+      <el-form-item label="领取开启时间">
         <template>
           <el-date-picker
             v-model="form.startTimeDate"
             type="datetime"
-            placeholder="选择日期时间">
-          </el-date-picker>
+            placeholder="选择日期时间"
+          />
         </template>
       </el-form-item>
-      <el-form-item label="券领结束时间" >
+      <el-form-item label="券领结束时间">
         <template>
           <el-date-picker
             v-model="form.endTimeDate"
             type="datetime"
-            placeholder="选择日期时间">
-          </el-date-picker>
+            placeholder="选择日期时间"
+          />
         </template>
       </el-form-item>
-      <el-form-item label="发布数量" >
-        <el-input v-model="form.totalCount" style="width: 300px;"/>
+      <el-form-item label="发布数量">
+        <el-input v-model="form.totalCount" style="width: 300px;" />
       </el-form-item>
-      <el-form-item label="是否不限量" >
+      <el-form-item label="是否不限量">
         <el-radio v-model="form.isPermanent" :label="1">不限量</el-radio>
         <el-radio v-model="form.isPermanent" :label="0">限量</el-radio>
       </el-form-item>
-      <el-form-item label="状态" >
+      <el-form-item label="状态">
         <el-radio v-model="form.status" :label="1">开启</el-radio>
         <el-radio v-model="form.status" :label="0">关闭</el-radio>
       </el-form-item>

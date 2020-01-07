@@ -1,43 +1,42 @@
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="150px">
-      <el-form-item label="AppID" >
-        <el-input v-model="form.wechat_appid" style="width: 370px;"/>
+      <el-form-item label="AppID">
+        <el-input v-model="form.wechat_appid" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="AppSecret" >
+      <el-form-item label="AppSecret">
         <el-input v-model="form.wechat_appsecret" style="width: 370px;" type="password" />
       </el-form-item>
-      <el-form-item label="微信验证TOKEN" >
-        <el-input v-model="form.wechat_token" style="width: 370px;"/>
+      <el-form-item label="微信验证TOKEN">
+        <el-input v-model="form.wechat_token" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="EncodingAESKey" >
-        <el-input v-model="form.wechat_encodingaeskey" style="width: 370px;"/>
+      <el-form-item label="EncodingAESKey">
+        <el-input v-model="form.wechat_encodingaeskey" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="微信服务器地址" >
-        <el-input v-model="form.api" :disabled="true" style="width: 370px;"/>
+      <el-form-item label="微信服务器地址">
+        <el-input v-model="form.api" :disabled="true" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="微信分享图片" >
-        <pic-upload v-model="form.wechat_share_img" style="width: 370px;"/>
+      <el-form-item label="微信分享图片">
+        <pic-upload v-model="form.wechat_share_img" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="微信分享标题" >
-        <el-input v-model="form.wechat_share_title" style="width: 370px;"/>
+      <el-form-item label="微信分享标题">
+        <el-input v-model="form.wechat_share_title" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="微信分享简介" >
-        <el-input v-model="form.wechat_share_synopsis" style="width: 370px;" rows="5" type="textarea"/>
+      <el-form-item label="微信分享简介">
+        <el-input v-model="form.wechat_share_synopsis" style="width: 370px;" rows="5" type="textarea" />
       </el-form-item>
-      <el-form-item label="" >
-        <el-button  type="primary" @click="doSubmit">提交</el-button>
+      <el-form-item label="">
+        <el-button type="primary" @click="doSubmit">提交</el-button>
       </el-form-item>
 
     </el-form>
-
 
   </div>
 </template>
 
 <script>
 import checkPermission from '@/utils/permission'
-import initData from '@/mixins/initData'
+import initData from '@/mixins/crud'
 import { del, add, get } from '@/api/yxSystemConfig'
 import eForm from './form'
 import picUpload from '@/components/pic-upload'
@@ -70,10 +69,10 @@ export default {
     }
   },
   created() {
-    get().then(rese=>{
-      let newObj = {}
-      rese.content.map(function (key,value) {
-        let keyName = key.menuName;
+    get().then(rese => {
+      const newObj = {}
+      rese.content.map(function(key, value) {
+        const keyName = key.menuName
         newObj[keyName] = key.value
       })
 
@@ -84,12 +83,12 @@ export default {
     checkPermission,
     doSubmit() {
       add(this.form).then(res => {
-        Message({message: '设置成功',type: 'success'})
+        Message({ message: '设置成功', type: 'success' })
       }).catch(err => {
-        //this.loading = false
+        // this.loading = false
         console.log(err.response.data.message)
       })
-    },
+    }
 
   }
 }

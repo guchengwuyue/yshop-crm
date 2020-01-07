@@ -5,10 +5,10 @@
       <!-- 新增 -->
     </div>
     <!--表单组件-->
-    <eForm ref="form" :is-add="isAdd"/>
+    <eForm ref="form" :is-add="isAdd" />
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
-      <el-table-column prop="id" label="id"/>
+      <el-table-column prop="id" label="id" />
       <el-table-column prop="uid" label="开团团长" width="150">
         <template slot-scope="scope">
           <span>{{ scope.row.nickname }}/{{ scope.row.uid }}</span>
@@ -19,15 +19,15 @@
           <span>{{ formatTimeTwo(scope.row.addTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column  label="拼团产品">
+      <el-table-column label="拼团产品">
         <template slot-scope="scope">
           <span>{{ scope.row.title }}/{{ scope.row.cid }}</span>
         </template>
       </el-table-column>
-      <el-table-column prop="orderId" label="订单号" width="150"/>
-      <el-table-column prop="totalPrice" label="拼团价"/>
-      <el-table-column prop="people" label="几人团"/>
-      <el-table-column prop="countPeople" label="几人参加"/>
+      <el-table-column prop="orderId" label="订单号" width="150" />
+      <el-table-column prop="totalPrice" label="拼团价" />
+      <el-table-column prop="people" label="几人团" />
+      <el-table-column prop="countPeople" label="几人参加" />
       <el-table-column label="结束时间">
         <template slot-scope="scope">
           <span>{{ formatTimeTwo(scope.row.stopTime) }}</span>
@@ -48,13 +48,14 @@
       style="margin-top: 8px;"
       layout="total, prev, pager, next, sizes"
       @size-change="sizeChange"
-      @current-change="pageChange"/>
+      @current-change="pageChange"
+    />
   </div>
 </template>
 
 <script>
 import checkPermission from '@/utils/permission'
-import initData from '@/mixins/initData'
+import initData from '@/mixins/crud'
 import { del } from '@/api/yxStorePink'
 import eForm from './form'
 import { formatTimeTwo, parseTime } from '@/utils/index'
@@ -63,7 +64,7 @@ export default {
   mixins: [initData],
   data() {
     return {
-      delLoading: false,
+      delLoading: false
     }
   },
   created() {

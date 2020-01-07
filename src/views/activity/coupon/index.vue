@@ -5,24 +5,25 @@
       <!-- 新增 -->
       <div style="display: inline-block;margin: 0px 2px;">
         <el-button
-          v-permission="['ADMIN','YXSTORECOUPON_ALL','YXSTORECOUPON_CREATE']"
+          v-permission="['admin','YXSTORECOUPON_ALL','YXSTORECOUPON_CREATE']"
           class="filter-item"
           size="mini"
           type="primary"
           icon="el-icon-plus"
-          @click="add">新增</el-button>
+          @click="add"
+        >新增</el-button>
       </div>
     </div>
     <!--表单组件-->
-    <eForm ref="form" :is-add="isAdd"/>
-    <eIForm ref="form2" :is-add="isAdd"/>
+    <eForm ref="form" :is-add="isAdd" />
+    <eIForm ref="form2" :is-add="isAdd" />
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
       <!--<el-table-column prop="id" label="ID"/>-->
-      <el-table-column prop="title" label="优惠券名称"/>
-      <el-table-column prop="couponPrice" label="优惠券面值"/>
-      <el-table-column prop="useMinPrice" label="优惠券最低消费"/>
-      <el-table-column  label="优惠券有效期限">
+      <el-table-column prop="title" label="优惠券名称" />
+      <el-table-column prop="couponPrice" label="优惠券面值" />
+      <el-table-column prop="useMinPrice" label="优惠券最低消费" />
+      <el-table-column label="优惠券有效期限">
         <template slot-scope="scope">
           <span>{{ scope.row.couponTime }}天</span>
         </template>
@@ -41,25 +42,35 @@
           <span>{{ formatTime(scope.row.addTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column width="200" v-if="checkPermission(['ADMIN','YXSTORECOUPON_ALL','YXSTORECOUPON_EDIT','YXSTORECOUPON_DELETE'])" label="操作" align="center">
+      <el-table-column v-if="checkPermission(['admin','YXSTORECOUPON_ALL','YXSTORECOUPON_EDIT','YXSTORECOUPON_DELETE'])" width="200" label="操作" align="center">
         <template slot-scope="scope">
-          <el-button v-permission="['ADMIN','YXSTORECOUPON_ALL','YXSTORECOUPON_EDIT']" size="mini"
-          type="primary" @click="edit2(scope.row)">
+          <el-button
+            v-permission="['admin','YXSTORECOUPON_ALL','YXSTORECOUPON_EDIT']"
+            size="mini"
+            type="primary"
+            @click="edit2(scope.row)"
+          >
             发布
           </el-button>
           <el-dropdown size="mini" split-button type="primary" trigger="click">
             操作
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>
-                <el-button v-permission="['ADMIN','YXSTORECOUPON_ALL','YXSTORECOUPON_EDIT']" size="mini"
-                           type="primary" icon="el-icon-edit" @click="edit(scope.row)">编辑</el-button>
+                <el-button
+                  v-permission="['admin','YXSTORECOUPON_ALL','YXSTORECOUPON_EDIT']"
+                  size="mini"
+                  type="primary"
+                  icon="el-icon-edit"
+                  @click="edit(scope.row)"
+                >编辑</el-button>
               </el-dropdown-item>
               <el-dropdown-item>
                 <el-popover
-                  v-permission="['ADMIN','YXSTORECOUPON_ALL','YXSTORECOUPON_DELETE']"
                   :ref="scope.row.id"
+                  v-permission="['admin','YXSTORECOUPON_ALL','YXSTORECOUPON_DELETE']"
                   placement="top"
-                  width="180">
+                  width="180"
+                >
                   <p>确定删除本条数据吗？</p>
                   <div style="text-align: right; margin: 0">
                     <el-button size="mini" type="text" @click="$refs[scope.row.id].doClose()">取消</el-button>
@@ -80,13 +91,14 @@
       style="margin-top: 8px;"
       layout="total, prev, pager, next, sizes"
       @size-change="sizeChange"
-      @current-change="pageChange"/>
+      @current-change="pageChange"
+    />
   </div>
 </template>
 
 <script>
 import checkPermission from '@/utils/permission'
-import initData from '@/mixins/initData'
+import initData from '@/mixins/crud'
 import { del } from '@/api/yxStoreCoupon'
 import eForm from './form'
 import eIForm from '../couponissue/form'
@@ -96,7 +108,7 @@ export default {
   mixins: [initData],
   data() {
     return {
-      delLoading: false,
+      delLoading: false
     }
   },
   created() {
@@ -110,7 +122,7 @@ export default {
     beforeInit() {
       this.url = 'api/yxStoreCoupon'
       const sort = 'id,desc'
-      this.params = { page: this.page, size: this.size, sort: sort, isDel:0 }
+      this.params = { page: this.page, size: this.size, sort: sort, isDel: 0 }
       return true
     },
     subDelete(id) {

@@ -2,19 +2,19 @@
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="500px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
       <el-form-item label="关键字" prop="key">
-        <el-input v-model="form.key" style="width: 370px;"/>
+        <el-input v-model="form.key" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="回复类型" >
-        <el-input v-model="form.type" style="width: 370px;"/>
+      <el-form-item label="回复类型">
+        <el-input v-model="form.type" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="回复数据" >
-        <el-input v-model="form.data" style="width: 370px;"/>
+      <el-form-item label="回复数据">
+        <el-input v-model="form.data" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="0=不可用  1 =可用" >
-        <el-input v-model="form.status" style="width: 370px;"/>
+      <el-form-item label="0=不可用  1 =可用">
+        <el-input v-model="form.status" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="是否隐藏" >
-        <el-input v-model="form.hide" style="width: 370px;"/>
+      <el-form-item label="是否隐藏">
+        <el-input v-model="form.hide" style="width: 370px;" />
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -47,7 +47,7 @@ export default {
       rules: {
         key: [
           { required: true, message: 'please enter', trigger: 'blur' }
-        ],
+        ]
       }
     }
   },

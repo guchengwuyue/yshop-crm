@@ -3,33 +3,33 @@
     <!--工具栏-->
     <div class="head-container">
       <!-- 搜索 -->
-      <el-input v-model="nickname" clearable placeholder="输入用户昵称" style="width: 200px;" class="filter-item" @keyup.enter.native="toQuery"/>
+      <el-input v-model="nickname" clearable placeholder="输入用户昵称" style="width: 200px;" class="filter-item" @keyup.enter.native="toQuery" />
       <el-select v-model="category" clearable placeholder="明细种类" class="filter-item" style="width: 130px">
         <el-option
           v-for="item in categoryOptions"
           :key="item.value"
           :label="item.label"
-          :value="item.value">
-        </el-option>
+          :value="item.value"
+        />
       </el-select>
       <el-select v-model="type" clearable placeholder="明细类型" class="filter-item" style="width: 130px">
         <el-option
           v-for="item in typeOptions"
           :key="item.value"
           :label="item.label"
-          :value="item.value">
-        </el-option>
+          :value="item.value"
+        />
       </el-select>
       <el-button class="filter-item" size="mini" type="success" icon="el-icon-search" @click="toQuery">搜索</el-button>
       <!-- 新增 -->
     </div>
     <!--表单组件-->
-    <eForm ref="form" :is-add="isAdd"/>
-    <pForm ref="formp" :is-add="isAdd"/>
+    <eForm ref="form" :is-add="isAdd" />
+    <pForm ref="formp" :is-add="isAdd" />
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
-      <el-table-column prop="nickname" label="用户昵称"/>
-      <el-table-column prop="title" label="账单标题"/>
+      <el-table-column prop="nickname" label="用户昵称" />
+      <el-table-column prop="title" label="账单标题" />
       <el-table-column prop="category" label="明细种类">
         <template slot-scope="scope">
           <span v-if="scope.row.category == 'now_money'">余额</span>
@@ -57,13 +57,14 @@
       style="margin-top: 8px;"
       layout="total, prev, pager, next, sizes"
       @size-change="sizeChange"
-      @current-change="pageChange"/>
+      @current-change="pageChange"
+    />
   </div>
 </template>
 
 <script>
 import checkPermission from '@/utils/permission'
-import initData from '@/mixins/initData'
+import initData from '@/mixins/crud'
 import { del, onStatus } from '@/api/yxUser'
 import eForm from './form'
 import pForm from './formp'
@@ -120,12 +121,12 @@ export default {
       this.url = 'api/yxUserBill'
       const sort = 'id,desc'
       this.params = {
-              page: this.page,
-              size: this.size,
-              nickname: this.nickname,
-              category: this.category,
-              type: this.type
-          }
+        page: this.page,
+        size: this.size,
+        nickname: this.nickname,
+        category: this.category,
+        type: this.type
+      }
       const query = this.query
       const type = query.type
       const value = query.value

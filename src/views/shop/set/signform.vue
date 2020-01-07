@@ -1,11 +1,11 @@
 <template>
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="500px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="100px">
-      <el-form-item label="第几天" >
-        <el-input v-model="form.day" style="width: 300px;"/>
+      <el-form-item label="第几天">
+        <el-input v-model="form.day" style="width: 300px;" />
       </el-form-item>
-      <el-form-item label="获取积分" >
-        <el-input v-model="form.sign_num" style="width: 300px;"/>
+      <el-form-item label="获取积分">
+        <el-input v-model="form.sign_num" style="width: 300px;" />
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">

@@ -1,14 +1,14 @@
 <template>
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="500px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
-      <el-form-item label="领取优惠券用户ID" >
-        <el-input v-model="form.uid" style="width: 370px;"/>
+      <el-form-item label="领取优惠券用户ID">
+        <el-input v-model="form.uid" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="优惠券前台领取ID" >
-        <el-input v-model="form.issueCouponId" style="width: 370px;"/>
+      <el-form-item label="优惠券前台领取ID">
+        <el-input v-model="form.issueCouponId" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="领取时间" >
-        <el-input v-model="form.addTime" style="width: 370px;"/>
+      <el-form-item label="领取时间">
+        <el-input v-model="form.addTime" style="width: 370px;" />
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">

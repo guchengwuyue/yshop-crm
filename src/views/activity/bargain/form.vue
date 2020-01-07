@@ -1,84 +1,96 @@
 <template>
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '开启砍价'" width="900px">
     <el-form ref="form" :model="form" :rules="rules" :inline="true" size="small" label-width="140px">
-      <el-form-item label="砍价活动名称" >
-        <el-input v-model="form.title" style="width: 500px;"/>
+      <el-form-item label="砍价名称">
+        <el-input v-model="form.title" style="width: 500px;" />
       </el-form-item>
-      <el-form-item label="砍价活动简介" >
-        <el-input v-model="form.info" style="width: 500px;" rows="5" type="textarea"/>
+      <el-form-item label="砍价简介">
+        <el-input v-model="form.info" style="width: 500px;" rows="5" type="textarea" />
       </el-form-item>
-      <el-form-item label="砍价产品名称" >
-        <el-input v-model="form.storeName" style="width: 500px;" />
+      <el-form-item label="单位">
+        <el-input v-model="form.unitName" style="width: 500px;" />
       </el-form-item>
-      <el-form-item label="单位" >
-        <el-input v-model="form.unitName" style="width: 500px;"/>
-      </el-form-item>
-      <el-form-item label="秒杀开始时间" >
+
+      <el-form-item label="秒杀开始时间">
         <template>
           <el-date-picker
             v-model="form.startTimeDate"
             type="datetime"
-            placeholder="选择日期时间">
-          </el-date-picker>
+            placeholder="选择日期时间"
+          />
         </template>
       </el-form-item>
-      <el-form-item label="秒杀结束时间" >
+      <el-form-item label="秒杀结束时间">
         <template>
           <el-date-picker
             v-model="form.endTimeDate"
             type="datetime"
-            placeholder="选择日期时间">
-          </el-date-picker>
+            placeholder="选择日期时间"
+          />
         </template>
       </el-form-item>
-      <el-form-item label="砍价产品主图片" >
-        <pic-upload v-model="form.image" style="width: 500px;"/>
+      <el-form-item label="砍价产品主图片">
+        <pic-upload v-model="form.image" style="width: 500px;" />
       </el-form-item>
-      <el-form-item label="砍价产品轮播图" >
-        <mulpic-upload v-model="form.images" style="width: 500px;"/>
+      <el-form-item label="砍价产品轮播图">
+        <mulpic-upload v-model="form.images" style="width: 500px;" />
       </el-form-item>
-      <el-form-item label="库存" >
+      <el-form-item label="库存">
         <el-input-number v-model="form.stock" />
       </el-form-item>
-      <el-form-item label="销量" >
+      <el-form-item label="销量">
         <el-input-number v-model="form.sales" />
       </el-form-item>
-      <el-form-item label="砍价金额" >
+
+      <!--      <el-form-item label="砍价产品名称" >-->
+      <!--        <el-input v-model="form.storeName" />-->
+      <!--      </el-form-item>-->
+      <el-form-item label="砍价金额">
         <el-input-number v-model="form.price" />
       </el-form-item>
-      <el-form-item label="最低购买价" >
+      <el-form-item label="允许砍到最低价">
         <el-input-number v-model="form.minPrice" />
       </el-form-item>
-      <el-form-item label="允许购买数量" >
+      <el-form-item label="限购">
         <el-input-number v-model="form.num" />
       </el-form-item>
-      <el-form-item label="单次砍最高价" >
+      <el-form-item label="单次砍最高价">
         <el-input-number v-model="form.bargainMaxPrice" />
       </el-form-item>
-      <el-form-item label="单次砍最低价" >
+      <el-form-item label="单次砍最低价">
         <el-input-number v-model="form.bargainMinPrice" />
       </el-form-item>
-      <el-form-item label="成本价" >
+      <el-form-item label="用户每次砍价的次数">
+        <el-input-number v-model="form.bargainNum" />
+      </el-form-item>
+      <el-form-item label="反多少积分">
+        <el-input-number v-model="form.giveIntegral" />
+      </el-form-item>
+      <el-form-item label="砍价状态">
+        <el-radio v-model="form.status" :label="1">到砍价时间自动开启</el-radio>
+        <el-radio v-model="form.status" :label="0" style="width: 110px;">到砍价时间不自动开启</el-radio>
+      </el-form-item>
+      <el-form-item label="成本价">
         <el-input-number v-model="form.cost" />
       </el-form-item>
-      <el-form-item label="排序" >
+      <el-form-item label="排序">
         <el-input-number v-model="form.sort" />
       </el-form-item>
-      <el-form-item label="是否包邮" >
+      <el-form-item label="是否推荐">
+        <el-radio v-model="form.isHot" :label="1">是</el-radio>
+        <el-radio v-model="form.isHot" :label="0" style="width: 110px;">否</el-radio>
+      </el-form-item>
+      <el-form-item label="是否包邮">
         <el-radio v-model="form.isPostage" :label="1">是</el-radio>
         <el-radio v-model="form.isPostage" :label="0" style="width: 110px;">否</el-radio>
       </el-form-item>
-      <el-form-item label="邮费" v-if="form.isPostage ===0">
+      <el-form-item v-if="form.isPostage ===0" label="邮费">
         <el-input-number v-model="form.postage" />
       </el-form-item>
-      <el-form-item label="活动状态" >
-        <el-radio v-model="form.status" :label="1">开启</el-radio>
-        <el-radio v-model="form.status" :label="0" style="width: 110px;">关闭</el-radio>
-      </el-form-item>
-      <el-form-item label="砍价规则" >
+      <el-form-item label="砍价规则">
         <editor v-model="form.rule" />
       </el-form-item>
-      <el-form-item label="砍价详情" >
+      <el-form-item label="砍价详情">
         <editor v-model="form.description" />
       </el-form-item>
     </el-form>
@@ -128,7 +140,7 @@ export default {
         giveIntegral: '',
         info: '',
         cost: '',
-        sort:  0,
+        sort: 0,
         isHot: 0,
         isDel: 0,
         addTime: '',

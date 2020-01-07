@@ -1,11 +1,11 @@
 <template>
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="500px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
-      <el-form-item label="缓存数据" >
-        <el-input v-model="form.result" style="width: 370px;"/>
+      <el-form-item label="缓存数据">
+        <el-input v-model="form.result" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="缓存时间" >
-        <el-input v-model="form.addTime" style="width: 370px;"/>
+      <el-form-item label="缓存时间">
+        <el-input v-model="form.addTime" style="width: 370px;" />
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">

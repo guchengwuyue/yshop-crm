@@ -38,7 +38,7 @@ export function recovery(id) {
   })
 }
 
-export function isFormatAttr(id,data) {
+export function isFormatAttr(id, data) {
   return request({
     url: 'api/yxStoreProduct/isFormatAttr/' + id,
     method: 'post',
@@ -46,7 +46,7 @@ export function isFormatAttr(id,data) {
   })
 }
 
-export function setAttr(id,data) {
+export function setAttr(id, data) {
   return request({
     url: 'api/yxStoreProduct/setAttr/' + id,
     method: 'post',
@@ -54,19 +54,17 @@ export function setAttr(id,data) {
   })
 }
 
-
 export function clearAttr(id) {
   return request({
     url: 'api/yxStoreProduct/clearAttr/' + id,
-    method: 'post',
+    method: 'post'
   })
 }
 
 export function getAttr(id) {
   return request({
     url: 'api/yxStoreProduct/attr/' + id,
-    method: 'get',
+    method: 'get'
   })
 }
-
 

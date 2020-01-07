@@ -63,6 +63,7 @@ yshop基于当前流行技术组合的前后端分离商城系统： SpringBoot2
 - yshop-tools     第三方工具模块
 - yshop-generator 代码生成模块
 - yshop-shop      商城模块
+- yshop-monitor   监控模块
 
 #### 系统预览
 <table>
@@ -85,7 +86,7 @@ yshop基于当前流行技术组合的前后端分离商城系统： SpringBoot2
 </table>
 <table>
     <tr>
-        <td><img src="https://images.gitee.com/uploads/images/2019/1211/161553_20c039ff_477893.jpeg"/></td>
+        <td><img src="https://images.gitee.com/uploads/images/2019/1223/195748_ce8bddc3_477893.jpeg"/></td>
         <td><img src="https://images.gitee.com/uploads/images/2019/1129/234538_62ba99b7_477893.jpeg"/></td>
     </tr>
     <tr>
@@ -117,6 +118,7 @@ yshop基于当前流行技术组合的前后端分离商城系统： SpringBoot2
     * 1.15 Hutool
     * 1.16 Mapstruct
 	* 1.17 Redisson
+	* 1.18 Rocketmq
         
 * 前端使用技术
     * 2.1 Vue 全家桶
@@ -147,6 +149,22 @@ yshop基于当前流行技术组合的前后端分离商城系统： SpringBoot2
    - 2.订单新增快递查询
 - 1.4.3版本，后台图标更新,后台模块重新拆分,物流快递单独管理,导出最新sql
 - 1.4.4版本，新增模板消息通知、H5端商家管理发货修改及其列表时间显示修复
+- yshop1.5版本发布：
+	- 1、新增秒杀功能
+	- 2、手机端新增H5支付
+	- 3、修复其他bug
+- yshop1.6发布：
+  - 1、新增砍价功能
+  - 2、新增加锁功能
+  - 3、修复其他bug
+- yshop1.6.1发布：新增移动端浏览记录，下单增加简单ReentrantLock锁
+- yshop1.6.2发布：修复用户昵称带有表情导致入库失败问题，修复下单订单金额为0不能支付的问题
+- yshop1.6.4发布：后台新增修改订单价格与备注优化订单详情显示明细,修复积分记录标题不显示的问题
+- yshop1.7 发布更新如下：
+   - 1.后台升級eladmin2.4(前端,后台权限,代码生成器等重构,新增服务器监控等)
+   - 2.修复商品分类一些问题
+   - 3.修复redis缓存问题
+   - 4.修复菜单控制台报error问题
 
 	
 #### 反馈交流

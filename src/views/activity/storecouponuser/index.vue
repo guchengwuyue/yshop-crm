@@ -3,21 +3,21 @@
     <!--工具栏-->
     <div class="head-container">
       <!-- 搜索 -->
-      <el-input v-model="query.value" clearable placeholder="输入搜索内容" style="width: 200px;" class="filter-item" @keyup.enter.native="toQuery"/>
+      <el-input v-model="query.value" clearable placeholder="输入搜索内容" style="width: 200px;" class="filter-item" @keyup.enter.native="toQuery" />
       <el-select v-model="query.type" clearable placeholder="类型" class="filter-item" style="width: 130px">
-        <el-option v-for="item in queryTypeOptions" :key="item.key" :label="item.display_name" :value="item.key"/>
+        <el-option v-for="item in queryTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
       </el-select>
       <el-button class="filter-item" size="mini" type="success" icon="el-icon-search" @click="toQuery">搜索</el-button>
       <!-- 新增 -->
     </div>
     <!--表单组件-->
-    <eForm ref="form" :is-add="isAdd"/>
+    <eForm ref="form" :is-add="isAdd" />
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
-      <el-table-column prop="couponTitle" label="优惠券名称"/>
-      <el-table-column prop="nickname" label="所属用户"/>
-      <el-table-column prop="couponPrice" label="优惠券的面值"/>
-      <el-table-column prop="useMinPrice" label="优惠券最低消费"/>
+      <el-table-column prop="couponTitle" label="优惠券名称" />
+      <el-table-column prop="nickname" label="所属用户" />
+      <el-table-column prop="couponPrice" label="优惠券的面值" />
+      <el-table-column prop="useMinPrice" label="优惠券最低消费" />
       <el-table-column label="优惠券开始时间">
         <template slot-scope="scope">
           {{ formatTimeTwo(scope.row.addTime) }}
@@ -30,13 +30,13 @@
       </el-table-column>
       <el-table-column label="获取方式">
         <template slot-scope="scope">
-        <div>
-          <el-tag v-if="scope.row.type == 'get'" style="cursor: pointer" :type="''">手动领取</el-tag>
-          <el-tag v-else :type=" 'info' ">后台发放</el-tag>
-        </div>
+          <div>
+            <el-tag v-if="scope.row.type == 'get'" style="cursor: pointer" :type="''">手动领取</el-tag>
+            <el-tag v-else :type=" 'info' ">后台发放</el-tag>
+          </div>
         </template>
       </el-table-column>
-      <el-table-column  label="是否可用">
+      <el-table-column label="是否可用">
         <template slot-scope="scope">
           <div>
             <el-tag v-if="scope.row.status == 0 && scope.row.isFail == 0" style="cursor: pointer" :type="''">可用</el-tag>
@@ -47,9 +47,9 @@
       <el-table-column label="状态">
         <template slot-scope="scope">
           <div>
-            <el-tag v-if="scope.row.status == 2" >已过期</el-tag>
-            <el-tag v-if="scope.row.status == 1" >已使用</el-tag>
-            <el-tag v-else >未使用</el-tag>
+            <el-tag v-if="scope.row.status == 2">已过期</el-tag>
+            <el-tag v-if="scope.row.status == 1">已使用</el-tag>
+            <el-tag v-else>未使用</el-tag>
           </div>
         </template>
       </el-table-column>
@@ -61,13 +61,14 @@
       style="margin-top: 8px;"
       layout="total, prev, pager, next, sizes"
       @size-change="sizeChange"
-      @current-change="pageChange"/>
+      @current-change="pageChange"
+    />
   </div>
 </template>
 
 <script>
 import checkPermission from '@/utils/permission'
-import initData from '@/mixins/initData'
+import initData from '@/mixins/crud'
 import { del } from '@/api/yxStoreCouponUser'
 import eForm from './form'
 import { formatTimeTwo } from '@/utils/index'

@@ -1,11 +1,11 @@
 <template>
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="500px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="150px">
-      <el-form-item label="开启时间(整数小时)" >
-        <el-input v-model="form.time" style="width: 270px;"/>
+      <el-form-item label="开启时间(整数小时)">
+        <el-input v-model="form.time" style="width: 270px;" />
       </el-form-item>
-      <el-form-item label="持续时间(整数小时)" >
-        <el-input v-model="form.continued" style="width: 270px;"/>
+      <el-form-item label="持续时间(整数小时)">
+        <el-input v-model="form.continued" style="width: 270px;" />
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">

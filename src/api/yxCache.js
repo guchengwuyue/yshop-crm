@@ -26,6 +26,6 @@ export function edit(data) {
 export function get() {
   return request({
     url: 'api/yxCache',
-    method: 'get',
+    method: 'get'
   })
 }

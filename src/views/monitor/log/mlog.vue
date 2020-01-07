@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import initData from '@/mixins/initData'
+import initData from '@/mixins/crud'
 import { parseTime } from '@/utils/index'
 import Search from './search'
 export default {
@@ -40,7 +40,7 @@ export default {
   methods: {
     parseTime,
     beforeInit() {
-      this.url = 'api/mlogs'
+      this.url = 'api/logs/mlogs'
       const sort = 'id,desc'
       const query = this.query
       const value = query.value

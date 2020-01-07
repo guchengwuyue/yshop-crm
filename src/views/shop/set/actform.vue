@@ -1,17 +1,17 @@
 <template>
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="500px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="100px">
-      <el-form-item label="标题" >
-        <el-input v-model="form.title" style="width: 370px;"/>
+      <el-form-item label="标题">
+        <el-input v-model="form.title" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="简介" >
-        <el-input v-model="form.info" style="width: 370px;"/>
+      <el-form-item label="简介">
+        <el-input v-model="form.info" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="跳转url" >
-        <el-input v-model="form.url" style="width: 370px;"/>
+      <el-form-item label="跳转url">
+        <el-input v-model="form.url" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="图片(260*260/416*214)" >
-        <pic-upload v-model="form.pic" style="width: 500px;"/>
+      <el-form-item label="图片(260*260/416*214)">
+        <pic-upload v-model="form.pic" style="width: 500px;" />
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">

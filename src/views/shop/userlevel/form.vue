@@ -1,34 +1,34 @@
 <template>
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="600px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="100px">
-      <el-form-item label="等级名称" >
-        <el-input v-model="form.name" style="width: 370px;"/>
+      <el-form-item label="等级名称">
+        <el-input v-model="form.name" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="是否永久" >
+      <el-form-item label="是否永久">
         <el-radio v-model="form.isForever" :label="1">是</el-radio>
         <el-radio v-model="form.isForever" :label="0" style="width: 200px;">否</el-radio>
       </el-form-item>
-      <el-form-item label="有效时间(天)" >
-        <el-input v-model="form.validDate" style="width: 370px;"/>
+      <el-form-item label="有效时间(天)">
+        <el-input v-model="form.validDate" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="会员等级" >
-        <el-input v-model="form.grade" style="width: 370px;"/>
+      <el-form-item label="会员等级">
+        <el-input v-model="form.grade" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="享受折扣" >
-        <el-input v-model="form.discount" style="width: 370px;"/>
+      <el-form-item label="享受折扣">
+        <el-input v-model="form.discount" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="会员背景" >
-        <pic-upload v-model="form.image"/>
+      <el-form-item label="会员背景">
+        <pic-upload v-model="form.image" />
       </el-form-item>
-      <el-form-item label="会员图标" >
-        <pic-upload v-model="form.icon"/>
+      <el-form-item label="会员图标">
+        <pic-upload v-model="form.icon" />
       </el-form-item>
-      <el-form-item label="是否显示" >
+      <el-form-item label="是否显示">
         <el-radio v-model="form.isShow" :label="1">是</el-radio>
         <el-radio v-model="form.isShow" :label="0" style="width: 200px;">否</el-radio>
       </el-form-item>
-      <el-form-item label="说明" >
-        <el-input v-model="form.explain"  rows="3" type="textarea"/>
+      <el-form-item label="说明">
+        <el-input v-model="form.explain" rows="3" type="textarea" />
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">

@@ -3,65 +3,69 @@
     <!--工具栏-->
     <div class="head-container">
       <!-- 搜索 -->
-      <el-input v-model="query.value" clearable placeholder="输入搜索内容" style="width: 200px;" class="filter-item" @keyup.enter.native="toQuery"/>
+      <el-input v-model="query.value" clearable placeholder="输入搜索内容" style="width: 200px;" class="filter-item" @keyup.enter.native="toQuery" />
       <el-select v-model="query.type" clearable placeholder="类型" class="filter-item" style="width: 130px">
-        <el-option v-for="item in queryTypeOptions" :key="item.key" :label="item.display_name" :value="item.key"/>
+        <el-option v-for="item in queryTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
       </el-select>
       <el-button class="filter-item" size="mini" type="success" icon="el-icon-search" @click="toQuery">搜索</el-button>
       <!-- 新增 -->
       <div style="display: inline-block;margin: 0px 2px;">
         <el-button
-          v-permission="['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_CREATE']"
           class="filter-item"
           size="mini"
           type="primary"
           icon="el-icon-plus"
-          @click="add">新增</el-button>
+          @click="add"
+        >新增</el-button>
       </div>
     </div>
     <!--表单组件-->
-    <eForm ref="form" :is-add="isAdd"/>
-    <eAttr ref="form2" :is-attr="isAttr"/>
-    <comForm ref="form3" :is-add="isAdd"/>
-    <killForm ref="form4" :is-add="isAdd"/>
-    <bargainForm ref = "form5" :is-add="isAdd"/>
+    <eForm ref="form" :is-add="isAdd" />
+    <eAttr ref="form2" :is-attr="isAttr" />
+    <comForm ref="form3" :is-add="isAdd" />
+    <killForm ref="form4" :is-add="isAdd" />
+    <bargainForm ref="form5" :is-add="isAdd" />
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
-      <el-table-column prop="id" label="商品id"/>
+      <el-table-column prop="id" label="商品id" />
       <el-table-column ref="table" prop="image" label="商品图片">
         <template slot-scope="scope">
           <a :href="scope.row.image" style="color: #42b983" target="_blank"><img :src="scope.row.image" alt="点击打开" class="el-avatar"></a>
         </template>
       </el-table-column>
-      <el-table-column prop="storeName" label="商品名称"/>
-      <el-table-column prop="cateName" label="分类名称"/>
-      <el-table-column prop="price" label="商品价格"/>
-      <el-table-column prop="sales" label="销量"/>
-      <el-table-column prop="stock" label="库存"/>
+      <el-table-column prop="storeName" label="商品名称" />
+      <el-table-column prop="cateName" label="分类名称" />
+      <el-table-column prop="price" label="商品价格" />
+      <el-table-column prop="sales" label="销量" />
+      <el-table-column prop="stock" label="库存" />
       <el-table-column label="状态" align="center">
         <template slot-scope="scope">
           <div @click="onSale(scope.row.id,scope.row.isShow)">
             <el-tag v-if="scope.row.isShow === 1" style="cursor: pointer" :type="''">已上架</el-tag>
-            <el-tag style="cursor: pointer" v-else :type=" 'info' ">已下架</el-tag>
+            <el-tag v-else style="cursor: pointer" :type=" 'info' ">已下架</el-tag>
           </div>
         </template>
       </el-table-column>
-      <el-table-column v-if="checkPermission(['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT','YXSTOREPRODUCT_DELETE'])" label="操作" width="205px" align="center">
+      <el-table-column label="操作" width="205px" align="center">
         <template slot-scope="scope">
-          <el-button slot="reference" type="danger"  size="mini" @click="attr(scope.row)">规格属性</el-button>
+          <el-button slot="reference" type="danger" size="mini" @click="attr(scope.row)">规格属性</el-button>
           <el-dropdown size="mini" split-button type="primary" trigger="click">
             操作
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>
-                <el-button v-permission="['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT']" size="mini"
-                           type="primary" icon="el-icon-edit" @click="edit(scope.row)">编辑</el-button>
+                <el-button
+                  size="mini"
+                  type="primary"
+                  icon="el-icon-edit"
+                  @click="edit(scope.row)"
+                >编辑</el-button>
               </el-dropdown-item>
               <el-dropdown-item>
                 <el-popover
-                  v-permission="['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_DELETE']"
                   :ref="scope.row.id"
                   placement="top"
-                  width="180">
+                  width="180"
+                >
                   <p>确定删除本条数据吗？</p>
                   <div style="text-align: right; margin: 0">
                     <el-button size="mini" type="text" @click="$refs[scope.row.id].doClose()">取消</el-button>
@@ -71,16 +75,25 @@
                 </el-popover>
               </el-dropdown-item>
               <el-dropdown-item>
-                <el-button v-permission="['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT']" size="mini"
-                           type="success" @click="editC(scope.row)">开启拼团</el-button>
+                <el-button
+                  size="mini"
+                  type="success"
+                  @click="editC(scope.row)"
+                >开启拼团</el-button>
               </el-dropdown-item>
               <el-dropdown-item>
-                <el-button v-permission="['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT']" size="mini"
-                         type="primary" @click="editD(scope.row)">开启秒杀</el-button>
+                <el-button
+                  size="mini"
+                  type="primary"
+                  @click="editD(scope.row)"
+                >开启秒杀</el-button>
               </el-dropdown-item>
               <el-dropdown-item>
-                <el-button v-permission="['ADMIN','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT']" size="mini"
-                           type="warning" @click="editE(scope.row)">开启砍价</el-button>
+                <el-button
+                  size="mini"
+                  type="warning"
+                  @click="editE(scope.row)"
+                >开启砍价</el-button>
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
@@ -94,13 +107,14 @@
       style="margin-top: 8px;"
       layout="total, prev, pager, next, sizes"
       @size-change="sizeChange"
-      @current-change="pageChange"/>
+      @current-change="pageChange"
+    />
   </div>
 </template>
 
 <script>
 import checkPermission from '@/utils/permission'
-import initData from '@/mixins/initData'
+import initData from '@/mixins/crud'
 import { del, onsale } from '@/api/yxStoreProduct'
 import eForm from './form'
 import eAttr from './attr'
@@ -293,8 +307,7 @@ export default {
         merId: data.merId,
         image: data.image,
         images: data.sliderImage,
-        title: '',
-        storeName: data.storeName,
+        title: data.storeName,
         info: data.storeInfo,
         postage: data.postage,
         unitName: data.unitName,
@@ -314,11 +327,7 @@ export default {
         num: 1,
         giveIntegral: 0,
         isDel: 0,
-        browse: 0,
-        bargainMaxPrice: 10,
-        bargainMinPrice: 0.01,
-        minPrice: 0.01,
-        bargainNum: 1
+        browse: 0
       }
       _this.dialog = true
     },

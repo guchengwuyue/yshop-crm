@@ -2,27 +2,42 @@
   <div class="app-container">
     <!--工具栏-->
     <div class="head-container">
-      <!-- 搜索 -->
-      <el-input v-model="query.value" clearable placeholder="输入搜索内容" style="width: 200px;" class="filter-item" @keyup.enter.native="toQuery"/>
-      <el-select v-model="query.type" clearable placeholder="类型" class="filter-item" style="width: 130px">
-        <el-option v-for="item in queryTypeOptions" :key="item.key" :label="item.display_name" :value="item.key"/>
-      </el-select>
-      <el-button class="filter-item" size="mini" type="success" icon="el-icon-search" @click="toQuery">搜索</el-button>
-      <!-- 新增 -->
-      <div style="display: inline-block;margin: 0px 2px;">
-        <el-button
-          v-permission="['ADMIN','YXSTORECATEGORY_ALL','YXSTORECATEGORY_CREATE']"
-          class="filter-item"
-          size="mini"
-          type="primary"
-          icon="el-icon-plus"
-          @click="add">新增</el-button>
+      <div v-if="crud.props.searchToggle">
+        <!-- 搜索 -->
+        <el-input v-model="query.cateName" clearable size="small" placeholder="输入部门名称搜索" style="width: 200px;" class="filter-item" @keyup.enter.native="crud.toQuery" />
+        <rrOperation :crud="crud" />
       </div>
+      <crudOperation :permission="permission" />
     </div>
     <!--表单组件-->
-    <eForm ref="form" :is-add="isAdd"/>
-    <tree-table v-loading="loading" :expand-all="expand" :data="data" :columns="columns" size="small">
-      <el-table-column label="状态" align="center">
+    <el-dialog append-to-body :close-on-click-modal="false" :before-close="crud.cancelCU" :visible.sync="crud.status.cu > 0" :title="crud.status.title" width="500px">
+      <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
+        <el-form-item label="分类名称">
+          <el-input v-model="form.cateName" style="width: 370px;" />
+        </el-form-item>
+        <el-form-item label="分类图片">
+          <pic-upload v-model="form.pic" style="width: 500px;" />
+        </el-form-item>
+        <el-form-item label="状态">
+          <el-radio-group v-model="form.isShow" style="width: 178px">
+            <el-radio :label="1">显示</el-radio>
+            <el-radio :label="0">隐藏</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item style="margin-bottom: 0;" label="上级分类" prop="pid">
+          <treeselect v-model="form.pid" :options="depts" style="width: 370px;" placeholder="选择上级分类" />
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="text" @click="crud.cancelCU">取消</el-button>
+        <el-button :loading="crud.cu === 2" type="primary" @click="crud.submitCU">确认</el-button>
+      </div>
+    </el-dialog>
+    <!--表格渲染-->
+    <el-table ref="table" v-loading="crud.loading" :tree-props="{children: 'children', hasChildren: 'hasChildren'}" default-expand-all :data="crud.data" row-key="id" @select="crud.selectChange" @select-all="crud.selectAllChange" @selection-change="crud.selectionChangeHandler">
+      <el-table-column :selectable="checkboxT" type="selection" width="55" />
+      <el-table-column v-if="columns.visible('cateName')" label="名称" prop="cateName" />
+      <el-table-column v-if="columns.visible('isShow')" label="状态" align="center" prop="isShow">
         <template slot-scope="scope">
           <div>
             <el-tag v-if="scope.row.isShow === 1" :type="''">显示</el-tag>
@@ -30,118 +45,78 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column prop="sort" label="排序"/>
-      <el-table-column v-if="checkPermission(['ADMIN','YXSTORECATEGORY_ALL','YXSTORECATEGORY_EDIT','YXSTORECATEGORY_DELETE'])" label="操作" width="150px" align="center">
+      <el-table-column v-if="columns.visible('sort')" label="排序" prop="sort" />
+      <el-table-column v-permission="['admin','cate:edit','cate:del']" label="操作" width="130px" align="center" fixed="right">
         <template slot-scope="scope">
-          <el-button v-permission="['ADMIN','YXSTORECATEGORY_ALL','YXSTORECATEGORY_EDIT']" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)"/>
-          <el-popover
-            v-permission="['ADMIN','YXSTORECATEGORY_ALL','YXSTORECATEGORY_DELETE']"
-            :ref="scope.row.id"
-            placement="top"
-            width="180">
-            <p>确定删除本条数据吗？</p>
-            <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="$refs[scope.row.id].doClose()">取消</el-button>
-              <el-button :loading="delLoading" type="primary" size="mini" @click="subDelete(scope.row.id)">确定</el-button>
-            </div>
-            <el-button slot="reference" type="danger" icon="el-icon-delete" size="mini"/>
-          </el-popover>
+          <udOperation
+            :data="scope.row"
+            :permission="permission"
+            :disabled-dle="scope.row.id === 1"
+            msg="确定删除吗,如果存在下级节点则一并删除，此操作不能撤销！"
+          />
         </template>
       </el-table-column>
-    </tree-table>
-    <!--表格渲染-->
+    </el-table>
   </div>
 </template>
 
 <script>
-import treeTable from '@/components/TreeTable'
-import checkPermission from '@/utils/permission'
-import initData from '@/mixins/initData'
-import initDict from '@/mixins/initDict'
-import { del } from '@/api/yxStoreCategory'
-import eForm from './form'
+import crudDept from '@/api/yxStoreCategory'
+import Treeselect from '@riophae/vue-treeselect'
+import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+import CRUD, { presenter, header, form, crud } from '@crud/crud'
+import rrOperation from '@crud/RR.operation'
+import crudOperation from '@crud/CRUD.operation'
+import udOperation from '@crud/UD.operation'
+import picUpload from '@/components/pic-upload'
+
+// crud交由presenter持有
+const defaultCrud = CRUD({ title: '分类', url: 'api/yxStoreCategory', crudMethod: { ...crudDept }})
+const defaultForm = { id: null, cateName: null, pid: 0, isShow: 1 }
 export default {
-  components: { eForm, treeTable },
-  mixins: [initData, initDict],
+  name: 'Dept',
+  components: { Treeselect, crudOperation, rrOperation, udOperation, picUpload },
+  mixins: [presenter(defaultCrud), header(), form(defaultForm), crud()],
   data() {
     return {
-      columns: [
-        {
-          text: '名称',
-          value: 'cateName'
-        }
-      ],
+      depts: [],
+      rules: {
+        cateName: [
+          { required: true, message: '请输入名称', trigger: 'blur' }
+        ]
+      },
+      permission: {
+        add: ['admin', 'cate:add'],
+        edit: ['admin', 'cate:edit'],
+        del: ['admin', 'cate:del']
+      },
       enabledTypeOptions: [
-        { key: 'true', display_name: '显示' },
-        { key: 'false', display_name: '隐藏' }
-      ],
-      delLoading: false,
-      expand: true,
-      queryTypeOptions: [
-        { key: 'cateName', display_name: '分类名称' }
+        { key: 'true', display_name: '正常' },
+        { key: 'false', display_name: '禁用' }
       ]
     }
   },
-  created() {
-    this.$nextTick(() => {
-      this.init()
-      this.getDict('cate_show_status')
-    })
-  },
   methods: {
-    checkPermission,
-    beforeInit() {
-      this.url = 'api/yxStoreCategory'
-      const sort = 'id,desc'
-      this.params = { page: this.page, size: this.size, sort: sort }
-      const query = this.query
-      const type = query.type
-      const value = query.value
-      if (type && value) { this.params[type] = value }
-      return true
-    },
-    subDelete(id) {
-      this.delLoading = true
-      del(id).then(res => {
-        this.delLoading = false
-        this.$refs[id].doClose()
-        this.dleChangePage()
-        this.init()
-        this.$notify({
-          title: '删除成功',
-          type: 'success',
-          duration: 2500
-        })
-      }).catch(err => {
-        this.delLoading = false
-        this.$refs[id].doClose()
-        console.log(err.response.data.message)
+    // 新增与编辑前做的操作
+    [CRUD.HOOK.afterToCU](crud, form) {
+      // 获取所有部门
+      crudDept.getCates({ isShow: true }).then(res => {
+        this.depts = []
+        const dept = { id: 0, label: '顶级类目', children: [] }
+        dept.children = res.content
+        this.depts.push(dept)
       })
     },
-    add() {
-      this.isAdd = true
-      this.$refs.form.dialog = true
-      this.$refs.form.getCates()
+    // 提交前的验证
+    [CRUD.HOOK.afterValidateCU]() {
+      return true
     },
-    edit(data) {
-      this.isAdd = false
-      const _this = this.$refs.form
-      _this.getCates()
-      _this.form = {
-        id: data.id,
-        pid: data.pid,
-        cateName: data.cateName,
-        sort: data.sort,
-        pic: data.pic,
-        isShow: data.isShow,
-        addTime: data.addTime
-      }
-      _this.dialog = true
+    checkboxT(row, rowIndex) {
+      return row.id !== 1
     }
   }
 }
 </script>
 
 <style scoped>
-
 </style>

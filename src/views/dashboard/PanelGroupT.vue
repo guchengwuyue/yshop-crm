@@ -7,7 +7,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">今日订单数</div>
-          <count-to :start-val="0" :end-val="count.todayCount" :duration="2600" class="card-panel-num"/>
+          <count-to :start-val="0" :end-val="count.todayCount" :duration="2600" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -18,7 +18,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">昨日订单数</div>
-          <count-to :start-val="0" :end-val="count.proCount" :duration="3000" class="card-panel-num"/>
+          <count-to :start-val="0" :end-val="count.proCount" :duration="3000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -29,7 +29,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">近七天订单数</div>
-          <count-to :start-val="0" :end-val="count.lastWeekCount" :duration="3200" class="card-panel-num"/>
+          <count-to :start-val="0" :end-val="count.lastWeekCount" :duration="3200" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -40,7 +40,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">本月订单数</div>
-          <count-to :start-val="0" :end-val="count.monthCount" :duration="3600" class="card-panel-num"/>
+          <count-to :start-val="0" :end-val="count.monthCount" :duration="3600" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -48,7 +48,7 @@
 </template>
 <script>
 import CountTo from 'vue-count-to'
-import { get,gett } from '@/api/visits'
+import { get, gett } from '@/api/visits'
 export default {
   components: {
     CountTo

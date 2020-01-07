@@ -4,14 +4,14 @@
       <el-form-item v-if="form.pid !== 0" style="margin-bottom: 0px;" label="上级分类">
         <treeselect v-model="form.pid" :options="cates" style="width: 370px;" placeholder="选择上级类目" />
       </el-form-item>
-      <el-form-item label="分类名称" >
-        <el-input v-model="form.cateName" style="width: 370px;"/>
+      <el-form-item label="分类名称">
+        <el-input v-model="form.cateName" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="分类图片" >
-        <pic-upload v-model="form.pic" style="width: 500px;"/>
+      <el-form-item label="分类图片">
+        <pic-upload v-model="form.pic" style="width: 500px;" />
       </el-form-item>
-      <el-form-item label="排序" >
-        <el-input v-model="form.sort" style="width: 370px;"/>
+      <el-form-item label="排序">
+        <el-input v-model="form.sort" style="width: 370px;" />
       </el-form-item>
       <el-form-item label="状态" prop="enabled">
         <el-radio v-model="form.isShow" :label="1">显示</el-radio>

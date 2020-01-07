@@ -1,73 +1,73 @@
 <template>
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '开启拼团'" width="900px">
     <el-form ref="form" :model="form" :rules="rules" :inline="true" size="small" label-width="140px">
-      <el-form-item label="拼团名称" >
-        <el-input v-model="form.title" style="width: 500px;"/>
+      <el-form-item label="拼团名称">
+        <el-input v-model="form.title" style="width: 500px;" />
       </el-form-item>
-      <el-form-item label="拼团简介" >
-        <el-input v-model="form.info" style="width: 500px;"/>
+      <el-form-item label="拼团简介">
+        <el-input v-model="form.info" style="width: 500px;" />
       </el-form-item>
-      <el-form-item label="单位" >
-        <el-input v-model="form.unitName" style="width: 500px;"/>
+      <el-form-item label="单位">
+        <el-input v-model="form.unitName" style="width: 500px;" />
       </el-form-item>
-      <el-form-item label="拼团开始时间" >
+      <el-form-item label="拼团开始时间">
         <template>
           <el-date-picker
             v-model="form.startTimeDate"
             type="datetime"
-            placeholder="选择日期时间">
-          </el-date-picker>
+            placeholder="选择日期时间"
+          />
         </template>
       </el-form-item>
-      <el-form-item label="拼团结束时间" >
+      <el-form-item label="拼团结束时间">
         <template>
           <el-date-picker
             v-model="form.endTimeDate"
             type="datetime"
-            placeholder="选择日期时间">
-          </el-date-picker>
+            placeholder="选择日期时间"
+          />
         </template>
       </el-form-item>
-      <el-form-item label="产品主图片" >
-        <pic-upload v-model="form.image" style="width: 500px;"/>
+      <el-form-item label="产品主图片">
+        <pic-upload v-model="form.image" style="width: 500px;" />
       </el-form-item>
-      <el-form-item label="产品轮播图" >
-        <mulpic-upload v-model="form.images" style="width: 500px;"/>
+      <el-form-item label="产品轮播图">
+        <mulpic-upload v-model="form.images" style="width: 500px;" />
       </el-form-item>
-      <el-form-item label="拼团时效(单位小时)" >
-        <el-input v-model="form.effectiveTime" style="width: 500px;"/>
+      <el-form-item label="拼团时效(单位小时)">
+        <el-input v-model="form.effectiveTime" style="width: 500px;" />
       </el-form-item>
-      <el-form-item label="拼团价" >
-        <el-input v-model="form.price"/>
+      <el-form-item label="拼团价">
+        <el-input v-model="form.price" />
       </el-form-item>
-      <el-form-item label="拼团人数" >
-        <el-input v-model="form.people"/>
+      <el-form-item label="拼团人数">
+        <el-input v-model="form.people" />
       </el-form-item>
-      <el-form-item label="库存" >
+      <el-form-item label="库存">
         <el-input v-model="form.stock" />
       </el-form-item>
-      <el-form-item label="销量" >
+      <el-form-item label="销量">
         <el-input v-model="form.sales" />
       </el-form-item>
-      <el-form-item label="排序" >
-        <el-input v-model="form.sort"/>
+      <el-form-item label="排序">
+        <el-input v-model="form.sort" />
       </el-form-item>
-      <el-form-item label="邮费" >
-        <el-input v-model="form.postage"/>
+      <el-form-item label="邮费">
+        <el-input v-model="form.postage" />
       </el-form-item>
-      <el-form-item label="是否包邮" >
+      <el-form-item label="是否包邮">
         <el-radio v-model="form.isPostage" :label="1">是</el-radio>
         <el-radio v-model="form.isPostage" :label="0" style="width: 110px;">否</el-radio>
       </el-form-item>
-      <el-form-item label="热门推荐" >
+      <el-form-item label="热门推荐">
         <el-radio v-model="form.isHost" :label="1">是</el-radio>
         <el-radio v-model="form.isHost" :label="0" style="width: 200px;">否</el-radio>
       </el-form-item>
-      <el-form-item label="活动状态" >
+      <el-form-item label="活动状态">
         <el-radio v-model="form.isShow" :label="1">开启</el-radio>
         <el-radio v-model="form.isShow" :label="0" style="width: 200px;">关闭</el-radio>
       </el-form-item>
-      <el-form-item label="详情" >
+      <el-form-item label="详情">
         <editor v-model="form.description" />
       </el-form-item>
     </el-form>
