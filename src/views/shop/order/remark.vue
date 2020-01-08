@@ -1,18 +1,11 @@
 <template>
-  <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '去发货'" width="500px">
+  <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="500px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
-      <el-form-item label="快递公司" >
-        <!--<el-input v-model="form.deliveryName" style="width: 370px;"/>-->
-        <el-select v-model="form.deliveryName" filterable placeholder="请选择" style="width: 370px;">
-          <el-option
-            v-for="item in express"
-            :key="item.id"
-            :label="item.name"
-            :value="item.id" />
-        </el-select>
+      <el-form-item label="订单号" >
+        <el-input v-model="form.orderId" :disabled="true" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="快递单号" >
-        <el-input v-model="form.deliveryId" style="width: 370px;"/>
+      <el-form-item label="订单备注" >
+        <el-input v-model="form.remark" style="width: 370px;" rows="5" type="textarea"/>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -23,13 +16,8 @@
 </template>
 
 <script>
-
-import { add, edit, get } from '@/api/yxStoreOrder'
+import { add, remark } from '@/api/yxStoreOrder'
 export default {
-
-  created() {
-    this.get()
-  },
   props: {
     isAdd: {
       type: Boolean,
@@ -38,12 +26,59 @@ export default {
   },
   data() {
     return {
-      loading: false, dialog: false, express: [],
+      loading: false, dialog: false,
       form: {
         id: '',
+        orderId: '',
+        uid: '',
+        realName: '',
+        userPhone: '',
+        userAddress: '',
+        cartId: '',
+        freightPrice: '',
+        totalNum: '',
+        totalPrice: '',
+        totalPostage: '',
+        payPrice: '',
+        payPostage: '',
+        deductionPrice: '',
+        couponId: '',
+        couponPrice: '',
+        paid: '',
+        payTime: '',
+        payType: '',
+        addTime: '',
+        status: '',
+        refundStatus: '',
+        refundReasonWapImg: '',
+        refundReasonWapExplain: '',
+        refundReasonTime: '',
+        refundReasonWap: '',
+        refundReason: '',
+        refundPrice: '',
         deliveryName: '',
-        deliveryType: 'express',
-        deliveryId: ''
+        deliveryType: '',
+        deliveryId: '',
+        gainIntegral: '',
+        useIntegral: '',
+        backIntegral: '',
+        mark: '',
+        isDel: '',
+        unique: '',
+        remark: '',
+        merId: '',
+        isMerCheck: '',
+        combinationId: '',
+        pinkId: '',
+        cost: '',
+        seckillId: '',
+        bargainId: '',
+        verifyCode: '',
+        storeId: '',
+        shippingType: '',
+        isChannel: '',
+        isRemind: '',
+        isSystemDel: ''
       },
       rules: {
         unique: [
@@ -78,10 +113,10 @@ export default {
       })
     },
     doEdit() {
-      edit(this.form).then(res => {
+      remark(this.form).then(res => {
         this.resetForm()
         this.$notify({
-          title: '操作成功',
+          title: '修改成功',
           type: 'success',
           duration: 2500
         })
@@ -148,14 +183,6 @@ export default {
         isRemind: '',
         isSystemDel: ''
       }
-    },
-    get() {
-      get().then(res => {
-        this.express = res.content
-      }).catch(err => {
-        this.loading = false
-        console.log(err.response.data.message)
-      })
     }
   }
 }

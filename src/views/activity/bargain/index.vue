@@ -158,7 +158,9 @@ export default {
         postage: data.postage,
         rule: data.rule,
         look: data.look,
-        share: data.share
+        share: data.share,
+        startTimeDate: new Date(data.startTimeDate),
+        endTimeDate: new Date(data.endTimeDate)
       }
       _this.dialog = true
     }

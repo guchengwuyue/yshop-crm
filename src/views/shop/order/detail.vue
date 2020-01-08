@@ -3,12 +3,11 @@
     <el-card>
       <div slot="header">
         <span>收货信息</span>
-        <!--<el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>-->
       </div>
-      <div>用户昵称:{{ form.nickname }}</div>
-      <div>收货人: {{ form.realName }}</div>
-      <div>联系电话: {{ form.userPhone }}</div>
-      <div>收货地址: {{ form.userAddress }}</div>
+      <div class="text item">用户昵称:{{ form.nickname }}</div>
+      <div class="text item">收货人: {{ form.realName }}</div>
+      <div class="text item">联系电话: {{ form.userPhone }}</div>
+      <div class="text item">收货地址: {{ form.userAddress }}</div>
     </el-card>
     <el-card>
       <div slot="header">
@@ -16,20 +15,33 @@
       </div>
       <el-row :gutter="24">
         <el-col :span="12">
-          <div>订单编号: {{ form.orderId }}</div>
-          <div>商品总数: {{ form.totalNum }}</div>
-          <div>支付邮费: {{ form.totalPostage }}</div>
-          <div>实际支付: {{ form.payPrice }}</div>
-          <div>支付方式: {{ form.payTypeName }}</div>
+          <div class="text item">订单编号: {{ form.orderId }}</div>
+          <div class="text item">商品总数: {{ form.totalNum }}</div>
+          <div class="text item">支付邮费: {{ form.totalPostage }}</div>
+          <div class="text item">实际支付: {{ form.payPrice }}</div>
+          <div class="text item">支付方式: {{ form.payTypeName }}</div>
         </el-col>
         <el-col :span="12">
-          <div>订单状态: {{ form.statusName }}</div>
-          <div>商品总价: {{ form.totalPrice }}</div>
-          <div>优惠券金额: {{ form.couponPrice }}</div>
-          <div>创建时间: {{ formatTime(form.addTime) }}</div>
-          <div>支付时间: {{ formatTime(form.payTime) }}</div>
+          <div class="text item">订单状态: {{ form.statusName }}</div>
+          <div class="text item">商品总价: {{ form.totalPrice }}</div>
+          <div class="text item">优惠券金额: {{ form.couponPrice }}</div>
+          <div class="text item">创建时间: {{ formatTime(form.addTime) }}</div>
+          <div class="text item">支付时间: {{ formatTime(form.payTime) }}</div>
         </el-col>
       </el-row>
+    </el-card>
+    <el-card>
+      <div slot="header">
+        <span>物流信息</span>
+      </div>
+      <div class="text item">快递公司:{{ form.deliveryName }}</div>
+      <div class="text item">快递单号:{{ form.deliveryId }}</div>
+    </el-card>
+    <el-card>
+      <div slot="header">
+        <span>备注信息</span>
+      </div>
+      <div class="text item">{{ form.remark }}</div>
     </el-card>
   </el-dialog>
 </template>
@@ -103,7 +115,7 @@ export default {
       rules: {
         unique: [
           { required: true, message: 'please enter', trigger: 'blur' }
-        ]
+        ],
       }
     }
   },
@@ -210,5 +222,12 @@ export default {
 </script>
 
 <style scoped>
+  .text {
+    font-size: 12px;
+  }
+
+  .item {
+    padding: 6px 0;
+  }
 
 </style>

@@ -11,7 +11,7 @@
         <el-input v-model="form.unitName" style="width: 500px;" />
       </el-form-item>
 
-      <el-form-item label="秒杀开始时间">
+      <el-form-item label="活动开始时间">
         <template>
           <el-date-picker
             v-model="form.startTimeDate"
@@ -20,7 +20,7 @@
           />
         </template>
       </el-form-item>
-      <el-form-item label="秒杀结束时间">
+      <el-form-item label="活动结束时间">
         <template>
           <el-date-picker
             v-model="form.endTimeDate"

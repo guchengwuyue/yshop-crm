@@ -31,9 +31,25 @@ export function refund(data) {
   })
 }
 
+export function editOrder(data) {
+  return request({
+    url: 'api/yxStoreOrder/edit',
+    method: 'post',
+    data
+  })
+}
+
+export function remark(data) {
+  return request({
+    url: 'api/yxStoreOrder/remark',
+    method: 'post',
+    data
+  })
+}
+
 export function get() {
   return request({
     url: 'api/yxExpress',
-    method: 'get'
+    method: 'get',
   })
 }
