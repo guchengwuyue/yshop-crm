@@ -1,11 +1,14 @@
 <template>
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="500px">
-    <el-form ref="form" :model="form" :rules="rules" size="small" label-width="100px">
+    <el-form ref="form" :model="form" :rules="rules" size="small" label-width="120px">
       <el-form-item label="滚动文字">
-        <el-input v-model="form.info" style="width: 370px;" />
+        <el-input v-model="form.info" style="width: 300px;" />
       </el-form-item>
       <el-form-item label="跳转url">
-        <el-input v-model="form.url" style="width: 370px;" />
+        <el-input v-model="form.url" style="width: 300px;" />
+      </el-form-item>
+      <el-form-item label="小程序跳转page">
+        <el-input v-model="form.wxapp_url" style="width: 300px;" />
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -34,6 +37,7 @@ export default {
         id: '',
         groupName: 'routine_home_roll_news',
         info: '',
+        wxapp_url: '',
         url: ''
       },
       rules: {

@@ -21,6 +21,7 @@
       <el-table-column prop="id" label="ID" />
       <el-table-column prop="map.info" label="滚动文字" />
       <el-table-column prop="map.url" label="链接url" />
+      <el-table-column prop="map.wxapp_url" label="小程序跳转page" />
       <el-table-column v-if="checkPermission(['admin','YXSYSTEMGROUPDATA_ALL','YXSYSTEMGROUPDATA_EDIT','YXSYSTEMGROUPDATA_DELETE'])" label="操作" width="150px" align="center">
         <template slot-scope="scope">
           <el-button v-permission="['admin','YXSYSTEMGROUPDATA_ALL','YXSYSTEMGROUPDATA_EDIT']" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)" />
@@ -109,6 +110,7 @@ export default {
         title: data.map.title,
         info: data.map.info,
         url: data.map.url,
+        wxapp_url: data.map.wxapp_url,
         pic: data.map.pic
       }
       _this.dialog = true

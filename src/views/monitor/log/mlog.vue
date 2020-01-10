@@ -1,6 +1,5 @@
 <template>
   <div class="app-container">
-    <Search :query="query"/>
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
       <el-table-column prop="nickname" label="用户名"/>
@@ -27,10 +26,8 @@
 <script>
 import initData from '@/mixins/crud'
 import { parseTime } from '@/utils/index'
-import Search from './search'
 export default {
   name: 'Log',
-  components: { Search },
   mixins: [initData],
   created() {
     this.$nextTick(() => {
@@ -41,7 +38,6 @@ export default {
     parseTime,
     beforeInit() {
       this.url = 'api/logs/mlogs'
-      const sort = 'id,desc'
       const query = this.query
       const value = query.value
       this.params = { page: this.page, size: this.size }

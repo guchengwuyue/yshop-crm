@@ -160,6 +160,8 @@ export default {
         merId: data.merId,
         image: data.image,
         sliderImage: data.sliderImage,
+        imageArr: data.image.split(','),
+        sliderImageArr: data.sliderImage.split(','),
         storeName: data.storeName,
         storeInfo: data.storeInfo,
         keyword: data.keyword,

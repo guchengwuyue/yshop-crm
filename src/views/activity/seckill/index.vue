@@ -134,6 +134,8 @@ export default {
         productId: data.productId,
         image: data.image,
         images: data.images,
+        imageArr: data.image.split(','),
+        sliderImageArr: data.images.split(','),
         title: data.title,
         info: data.info,
         price: data.price,

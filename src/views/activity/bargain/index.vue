@@ -136,6 +136,8 @@ export default {
         stock: data.stock,
         sales: data.sales,
         images: data.images,
+        imageArr: data.image.split(','),
+        sliderImageArr: data.images.split(','),
         startTime: data.startTime,
         stopTime: data.stopTime,
         storeName: data.storeName,

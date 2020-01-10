@@ -18,10 +18,10 @@
         <el-input v-model="form.discount" style="width: 370px;" />
       </el-form-item>
       <el-form-item label="会员背景">
-        <pic-upload v-model="form.image" />
+        <MaterialList v-model="form.imageArr" style="width: 300px" type="image" :num=1 :width=150 :height=150></MaterialList>
       </el-form-item>
       <el-form-item label="会员图标">
-        <pic-upload v-model="form.icon" />
+        <MaterialList v-model="form.iconArr" style="width: 300px" type="image" :num=1 :width=150 :height=150></MaterialList>
       </el-form-item>
       <el-form-item label="是否显示">
         <el-radio v-model="form.isShow" :label="1">是</el-radio>
@@ -41,8 +41,9 @@
 <script>
 import { add, edit } from '@/api/yxSystemUserLevel'
 import picUpload from '@/components/pic-upload'
+import MaterialList from '@/components/material'
 export default {
-  components: { picUpload },
+  components: { picUpload, MaterialList },
   props: {
     isAdd: {
       type: Boolean,
@@ -58,18 +59,32 @@ export default {
         name: '',
         money: '',
         validDate: '',
-        isForever: '',
+        isForever: 1,
         isPay: '',
-        isShow: '',
+        isShow: 1,
         grade: '',
         discount: '',
         image: '',
         icon: '',
+        imageArr: [],
+        iconArr: [],
         explain: '',
         addTime: '',
         isDel: ''
       },
       rules: {
+      }
+    }
+  },
+  watch:{
+    'form.imageArr': function(val) {
+      if(val){
+        this.form.image = val.join(",");
+      }
+    },
+    'form.iconArr': function(val) {
+      if(val){
+        this.form.icon = val.join(",");
       }
     }
   },
@@ -131,6 +146,8 @@ export default {
         icon: '',
         explain: '',
         addTime: '',
+        imageArr: [],
+        iconArr: [],
         isDel: ''
       }
     }

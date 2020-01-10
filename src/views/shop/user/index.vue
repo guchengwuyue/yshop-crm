@@ -41,7 +41,7 @@
       </el-table-column>
       <el-table-column prop="spreadUid" label="推荐人" />
       <el-table-column prop="payCount" label="购买次数" />
-      <el-table-column v-if="checkPermission(['admin','YXUSER_ALL','YXUSER_EDIT','YXUSER_DELETE'])" label="操作" width="185" align="center">
+      <el-table-column v-if="checkPermission(['admin','YXUSER_ALL','YXUSER_EDIT','YXUSER_DELETE'])" label="操作" width="185" align="center" fixed="right">
         <template slot-scope="scope">
           <el-button
             v-permission="['admin','YXUSER_ALL','YXUSER_EDIT']"

@@ -43,7 +43,7 @@
           <span>{{ formatTimeTwo(scope.row.stopTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column v-if="checkPermission(['admin','YXSTORECOMBINATION_ALL','YXSTORECOMBINATION_EDIT','YXSTORECOMBINATION_DELETE'])" label="操作" width="150px" align="center">
+      <el-table-column v-if="checkPermission(['admin','YXSTORECOMBINATION_ALL','YXSTORECOMBINATION_EDIT','YXSTORECOMBINATION_DELETE'])" label="操作" width="150px" align="center" fixed="right">
         <template slot-scope="scope">
           <el-button v-permission="['admin','YXSTORECOMBINATION_ALL','YXSTORECOMBINATION_EDIT']" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)" />
           <el-popover
@@ -161,6 +161,8 @@ export default {
         merId: data.merId,
         image: data.image,
         images: data.images,
+        imageArr: data.image.split(','),
+        sliderImageArr: data.images.split(','),
         title: data.title,
         attr: data.attr,
         people: data.people,

@@ -21,6 +21,7 @@
       <el-table-column prop="id" label="ID" />
       <el-table-column prop="map.name" label="标题" />
       <el-table-column prop="map.url" label="链接url" />
+      <el-table-column prop="map.wxapp_url" label="小程序跳转page" />
       <el-table-column ref="table" label="图片">
         <template slot-scope="scope">
           <a :href="scope.row.map.pic" style="color: #42b983" target="_blank"><img :src="scope.row.map.pic" alt="点击打开" class="el-avatar"></a>
@@ -113,7 +114,9 @@ export default {
         groupName: data.groupName,
         name: data.map.name,
         url: data.map.url,
-        pic: data.map.pic
+        wxapp_url: data.map.wxapp_url,
+        pic: data.map.pic,
+        imageArr: data.map.pic ? data.map.pic.split(',') : []
       }
       _this.dialog = true
     }

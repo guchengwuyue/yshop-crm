@@ -16,7 +16,7 @@
           <el-input v-model="form.cateName" style="width: 370px;" />
         </el-form-item>
         <el-form-item label="分类图片">
-          <pic-upload v-model="form.pic" style="width: 500px;" />
+          <MaterialList v-model="picArr" type="image" :num=1 :width=150 :height=150></MaterialList>
         </el-form-item>
         <el-form-item label="状态">
           <el-radio-group v-model="form.isShow" style="width: 178px">
@@ -69,16 +69,18 @@ import rrOperation from '@crud/RR.operation'
 import crudOperation from '@crud/CRUD.operation'
 import udOperation from '@crud/UD.operation'
 import picUpload from '@/components/pic-upload'
+import MaterialList from '@/components/material'
 
 // crud交由presenter持有
 const defaultCrud = CRUD({ title: '分类', url: 'api/yxStoreCategory', crudMethod: { ...crudDept }})
 const defaultForm = { id: null, cateName: null, pid: 0, isShow: 1 }
 export default {
   name: 'Dept',
-  components: { Treeselect, crudOperation, rrOperation, udOperation, picUpload },
+  components: { Treeselect, crudOperation, rrOperation, udOperation, picUpload, MaterialList },
   mixins: [presenter(defaultCrud), header(), form(defaultForm), crud()],
   data() {
     return {
+      picArr: [],
       depts: [],
       rules: {
         cateName: [
@@ -96,9 +98,19 @@ export default {
       ]
     }
   },
+  watch:{
+    picArr: function(val) {
+      this.form.pic = val.join(",");
+    }
+  },
   methods: {
     // 新增与编辑前做的操作
     [CRUD.HOOK.afterToCU](crud, form) {
+      console.log(form)
+      if(form.pic){
+        this.picArr = form.pic.split(',')
+      }
+
       // 获取所有部门
       crudDept.getCates({ isShow: true }).then(res => {
         this.depts = []

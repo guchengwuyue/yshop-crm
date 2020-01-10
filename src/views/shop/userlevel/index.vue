@@ -135,6 +135,8 @@ export default {
         discount: data.discount,
         image: data.image,
         icon: data.icon,
+        imageArr: data.image ? data.image.split(',') : [],
+        iconArr: data.icon ? data.icon.split(',') : [],
         explain: data.explain,
         addTime: data.addTime,
         isDel: data.isDel

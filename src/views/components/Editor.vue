@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'qiNiuUploadApi'
+      'uploadApi'
     ])
   },
   watch: {
@@ -49,7 +49,13 @@ export default {
     this.editor.customConfig.uploadImgHeaders = this.headers
     // 自定义文件名，不可修改，修改后会上传失败
     this.editor.customConfig.uploadFileName = 'file'
-    this.editor.customConfig.uploadImgServer = this.qiNiuUploadApi // 上传图片到服务器
+    this.editor.customConfig.uploadImgServer = this.uploadApi // 上传图片到服务器
+    this.editor.customConfig.uploadImgHooks = {
+      customInsert: function (insertImg, result, editor) {
+        var url = result.link
+        insertImg(url)
+      }
+    }
     this.editor.customConfig.onchange = (html) => {
       this.info = html
       this.$emit('change', this.info)

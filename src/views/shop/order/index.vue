@@ -64,7 +64,7 @@
           <span>{{ formatTime(scope.row.addTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column v-if="checkPermission(['admin','YXSTOREORDER_ALL','YXSTOREORDER_EDIT','YXSTOREORDER_DELETE'])" label="操作" width="200" align="center">
+      <el-table-column v-if="checkPermission(['admin','YXSTOREORDER_ALL','YXSTOREORDER_EDIT','YXSTOREORDER_DELETE'])" label="操作" width="200" align="center" fixed="right">
         <template slot-scope="scope">
           <el-button  v-permission="['admin','YXSTOREORDER_ALL','YXSTOREORDER_EDIT']" size="mini" type="primary"
                      @click="detail(scope.row)">

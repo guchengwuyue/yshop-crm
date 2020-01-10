@@ -1,14 +1,17 @@
 <template>
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="500px">
-    <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
+    <el-form ref="form" :model="form" :rules="rules" size="small" label-width="120px">
       <el-form-item label="分类名称">
-        <el-input v-model="form.name" style="width: 370px;" />
+        <el-input v-model="form.name" style="width: 300px;" />
       </el-form-item>
       <el-form-item label="跳转url">
-        <el-input v-model="form.url" style="width: 370px;" />
+        <el-input v-model="form.url" style="width: 300px;" />
+      </el-form-item>
+      <el-form-item label="小程序跳转page">
+        <el-input v-model="form.wxapp_url" style="width: 300px;" />
       </el-form-item>
       <el-form-item label="分类图标(90*90)">
-        <pic-upload v-model="form.pic" style="width: 500px;" />
+        <MaterialList v-model="form.imageArr" style="width: 300px" type="image" :num=1 :width=150 :height=150></MaterialList>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -22,8 +25,9 @@
 <script>
 import { add, edit } from '@/api/yxSystemGroupData'
 import picUpload from '@/components/pic-upload'
+import MaterialList from '@/components/material'
 export default {
-  components: { picUpload },
+  components: { picUpload, MaterialList },
   props: {
     isAdd: {
       type: Boolean,
@@ -38,11 +42,20 @@ export default {
         groupName: 'routine_home_menus',
         name: '',
         url: '',
+        wxapp_url: '',
         pic: '',
+        imageArr: [],
         sort: '',
         status: ''
       },
       rules: {
+      }
+    }
+  },
+  watch:{
+    'form.imageArr': function(val) {
+      if(val){
+        this.form.pic = val.join(",");
       }
     }
   },
@@ -92,6 +105,7 @@ export default {
       this.form = {
         id: '',
         groupName: 'routine_home_menus',
+        imageArr: [],
         value: '',
         addTime: '',
         sort: '',

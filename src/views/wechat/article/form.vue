@@ -8,7 +8,7 @@
         <el-input v-model="form.author" style="width: 370px;" />
       </el-form-item>
       <el-form-item label="封面">
-        <pic-upload v-model="form.imageInput" style="width: 370px;" />
+        <MaterialList v-model="form.imageArr" style="width: 370px" type="image" :num=1 :width=150 :height=150></MaterialList>
       </el-form-item>
       <el-form-item label="简介">
         <el-input v-model="form.synopsis" style="width: 370px;" rows="5" type="textarea" />
@@ -29,8 +29,9 @@ import { add, edit } from '@/api/yxArticle'
 import picUpload from '@/components/pic-upload'
 import editor from '../../components/Editor'
 import yamedit from '@/components/YamlEdit'
+import MaterialList from '@/components/material'
 export default {
-  components: { editor, picUpload, yamedit },
+  components: { editor, picUpload, yamedit, MaterialList },
   props: {
     isAdd: {
       type: Boolean,
@@ -46,6 +47,7 @@ export default {
         title: '',
         author: '',
         imageInput: '',
+        imageArr: [],
         synopsis: '',
         content: '',
         shareTitle: '',
@@ -62,6 +64,13 @@ export default {
         isBanner: ''
       },
       rules: {
+      }
+    }
+  },
+  watch:{
+    'form.imageArr': function(val) {
+      if(val){
+        this.form.imageInput = val.join(",");
       }
     }
   },

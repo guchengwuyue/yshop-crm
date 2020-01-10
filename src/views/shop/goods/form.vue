@@ -17,10 +17,10 @@
         <el-input v-model="form.barCode" style="width: 320px;" />
       </el-form-item>
       <el-form-item label="商品图片">
-        <pic-upload v-model="form.image" style="width: 500px;" />
+        <MaterialList v-model="form.imageArr" style="width: 500px" type="image" :num=1 :width=150 :height=150></MaterialList>
       </el-form-item>
       <el-form-item label="轮播图">
-        <mulpic-upload v-model="form.sliderImage" style="width: 500px;" />
+        <MaterialList v-model="form.sliderImageArr" style="width: 500px" type="image" :num=4 :width=150 :height=150></MaterialList>
       </el-form-item>
       <el-form-item label="商品简介">
         <el-input v-model="form.storeInfo" style="width: 500px;" rows="5" type="textarea" />
@@ -31,9 +31,6 @@
       <el-form-item label="商品价格">
         <el-input v-model="form.price" />
       </el-form-item>
-      <!--<el-form-item label="会员价格" >-->
-      <!--<el-input v-model="form.vipPrice"/>-->
-      <!--</el-form-item>-->
       <el-form-item label="市场价">
         <el-input v-model="form.otPrice" />
       </el-form-item>
@@ -98,8 +95,9 @@ import picUpload from '@/components/pic-upload'
 import mulpicUpload from '@/components/mul-pic-upload'
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+import MaterialList from '@/components/material'
 export default {
-  components: { editor, picUpload, mulpicUpload, Treeselect },
+  components: { editor, picUpload, mulpicUpload, Treeselect, MaterialList },
   props: {
     isAdd: {
       type: Boolean,
@@ -114,6 +112,8 @@ export default {
         merId: 0,
         image: '',
         sliderImage: '',
+        imageArr: [],
+        sliderImageArr: [],
         storeName: '',
         storeInfo: '',
         keyword: '',
@@ -148,6 +148,18 @@ export default {
         soureLink: ''
       },
       rules: {
+      }
+    }
+  },
+  watch:{
+    'form.imageArr': function(val) {
+      if(val){
+        this.form.image = val.join(",");
+      }
+    },
+    'form.sliderImageArr': function(val) {
+      if(val){
+        this.form.sliderImage = val.join(",");
       }
     }
   },
@@ -199,6 +211,8 @@ export default {
         merId: '',
         image: '',
         sliderImage: '',
+        imageArr: [],
+        sliderImageArr: [],
         storeName: '',
         storeInfo: '',
         keyword: '',
@@ -210,16 +224,16 @@ export default {
         postage: '',
         unitName: '',
         sort: '',
-        sales: '',
-        stock: '',
-        isShow: '',
-        isHot: '',
-        isBenefit: '',
-        isBest: '',
-        isNew: '',
+        sales: 0,
+        stock: 0,
+        isShow: 1,
+        isHot: 1,
+        isBenefit: 1,
+        isBest: 1,
+        isNew: 1,
         description: '',
         addTime: '',
-        isPostage: '',
+        isPostage: 1,
         isDel: '',
         merUse: '',
         giveIntegral: '',

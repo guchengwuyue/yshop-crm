@@ -17,7 +17,7 @@
         <el-input v-model="form.api" :disabled="true" style="width: 370px;" />
       </el-form-item>
       <el-form-item label="微信分享图片">
-        <pic-upload v-model="form.wechat_share_img" style="width: 370px;" />
+        <MaterialList v-model="form.imageArr" style="width: 370px" type="image" :num=1 :width=150 :height=150></MaterialList>
       </el-form-item>
       <el-form-item label="微信分享标题">
         <el-input v-model="form.wechat_share_title" style="width: 370px;" />
@@ -41,8 +41,9 @@ import { del, add, get } from '@/api/yxSystemConfig'
 import eForm from './form'
 import picUpload from '@/components/pic-upload'
 import { Message } from 'element-ui'
+import MaterialList from '@/components/material'
 export default {
-  components: { eForm, picUpload },
+  components: { eForm, picUpload, MaterialList },
   mixins: [initData],
   data() {
     return {
@@ -57,6 +58,7 @@ export default {
         wechat_encode: '',
         wechat_encodingaeskey: '',
         wechat_share_img: '',
+        imageArr: [],
         wechat_qrcode: '',
         wechat_type: '',
         wechat_share_title: '',
@@ -65,6 +67,13 @@ export default {
         wechat_avatar: ''
       },
       rules: {
+      }
+    }
+  },
+  watch:{
+    'form.imageArr': function(val) {
+      if(val){
+        this.form.wechat_share_img = val.join(",");
       }
     }
   },
@@ -77,6 +86,7 @@ export default {
       })
 
       this.form = newObj
+      this.form.imageArr =this.form.wechat_share_img.split(',')
     })
   },
   methods: {

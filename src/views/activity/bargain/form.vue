@@ -30,10 +30,10 @@
         </template>
       </el-form-item>
       <el-form-item label="砍价产品主图片">
-        <pic-upload v-model="form.image" style="width: 500px;" />
+        <MaterialList v-model="form.imageArr" style="width: 500px" type="image" :num=1 :width=150 :height=150></MaterialList>
       </el-form-item>
       <el-form-item label="砍价产品轮播图">
-        <mulpic-upload v-model="form.images" style="width: 500px;" />
+        <MaterialList v-model="form.sliderImageArr" style="width: 500px" type="image" :num=4 :width=150 :height=150></MaterialList>
       </el-form-item>
       <el-form-item label="库存">
         <el-input-number v-model="form.stock" />
@@ -41,10 +41,6 @@
       <el-form-item label="销量">
         <el-input-number v-model="form.sales" />
       </el-form-item>
-
-      <!--      <el-form-item label="砍价产品名称" >-->
-      <!--        <el-input v-model="form.storeName" />-->
-      <!--      </el-form-item>-->
       <el-form-item label="砍价金额">
         <el-input-number v-model="form.price" />
       </el-form-item>
@@ -106,8 +102,9 @@ import picUpload from '@/components/pic-upload'
 import mulpicUpload from '@/components/mul-pic-upload'
 import { add, edit } from '@/api/yxStoreBargain'
 import editor from '../../components/Editor'
+import MaterialList from '@/components/material'
 export default {
-  components: { editor, picUpload, mulpicUpload },
+  components: { editor, picUpload, mulpicUpload, MaterialList },
   props: {
     isAdd: {
       type: Boolean,
@@ -126,6 +123,8 @@ export default {
         stock: '',
         sales: '',
         images: '',
+        imageArr: [],
+        sliderImageArr: [],
         startTime: '',
         stopTime: '',
         storeName: '',
@@ -154,6 +153,20 @@ export default {
       },
       rules: {
       }
+    }
+  },
+  watch:{
+    'form.imageArr': function(val) {
+      if(val){
+        this.form.image = val.join(",");
+      }
+
+    },
+    'form.sliderImageArr': function(val) {
+      if(val){
+        this.form.sliderImage = val.join(",");
+      }
+
     }
   },
   methods: {
@@ -208,6 +221,8 @@ export default {
         stock: '',
         sales: '',
         images: '',
+        imageArr: [],
+        sliderImageArr: [],
         startTime: '',
         stopTime: '',
         storeName: '',

@@ -152,6 +152,7 @@ export default {
         title: data.title,
         author: data.author,
         imageInput: data.imageInput,
+        imageArr: data.imageInput.split(','),
         synopsis: data.synopsis,
         content: data.content,
         shareTitle: data.shareTitle,

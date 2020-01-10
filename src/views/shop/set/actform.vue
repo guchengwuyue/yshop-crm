@@ -12,6 +12,7 @@
       </el-form-item>
       <el-form-item label="图片(260*260/416*214)">
         <pic-upload v-model="form.pic" style="width: 500px;" />
+        <MaterialList v-model="form.imageArr" style="width: 500px" type="image" :num=1 :width=150 :height=150></MaterialList>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -25,8 +26,9 @@
 <script>
 import { add, edit } from '@/api/yxSystemGroupData'
 import picUpload from '@/components/pic-upload'
+import MaterialList from '@/components/material'
 export default {
-  components: { picUpload },
+  components: { picUpload, MaterialList },
   props: {
     isAdd: {
       type: Boolean,
@@ -43,10 +45,18 @@ export default {
         info: '',
         url: '',
         pic: '',
+        imageArr: [],
         sort: '',
         status: ''
       },
       rules: {
+      }
+    }
+  },
+  watch:{
+    'form.imageArr': function(val) {
+      if(val){
+        this.form.pic = val.join(",");
       }
     }
   },

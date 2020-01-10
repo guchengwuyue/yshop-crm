@@ -10,6 +10,9 @@
       <el-form-item label="商户密钥">
         <el-input v-model="form.wxpay_mchKey" style="width: 370px;" type="password" />
       </el-form-item>
+      <el-form-item label="微信证书" >
+        <file-upload v-model="form.wxpay_keyPath" style="width: 500px;"/>
+      </el-form-item>
       <el-form-item label="">
         <el-button type="primary" @click="doSubmit">提交</el-button>
       </el-form-item>
@@ -26,8 +29,9 @@ import { del, add, get } from '@/api/yxSystemConfig'
 import eForm from './form'
 import picUpload from '@/components/pic-upload'
 import { Message } from 'element-ui'
+import fileUpload from '@/components/file-upload'
 export default {
-  components: { eForm, picUpload },
+  components: { eForm, picUpload, fileUpload },
   mixins: [initData],
   data() {
     return {
@@ -35,7 +39,8 @@ export default {
       form: {
         wxpay_appId: '',
         wxpay_mchId: '',
-        wxpay_mchKey: ''
+        wxpay_mchKey: '',
+        wxpay_keyPath: ''
       },
       rules: {
       }
