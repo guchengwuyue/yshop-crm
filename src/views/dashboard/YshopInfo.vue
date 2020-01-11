@@ -55,7 +55,7 @@
           </div>
           <div class="text item">
             1、VIP为终身制、拥有全部源代码及其后续的代码（免费）升级及其技术支持。目前商城优惠券、会员、秒杀、分销、砍价等都已经完成！<br />
-            2、价格：vip会员价218元，当然当前价格是整个价格，后续的系统升级vip价格会有相应的调整的，所以早上车更优惠哦！<br />
+            2、价格：vip会员价228元，当然当前价格是整个价格，后续的系统升级vip价格会有相应的调整的，所以早上车更优惠哦！<br />
             3、VIP购买淘宝地址：https://item.taobao.com/item.htm?id=607532386325<br />
             4、加入vip群：931426444,请输入你的淘宝订单编号，即可入群<br />
             5、群里面获取私服git<br />
@@ -68,6 +68,21 @@
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span style="font-weight: bolder">更新日志</span>
+          </div>
+          <div class="text item">
+            <span style="font-weight: bolder">（2020-01-11）yshop1.8.1版本 发布更新如下：</span>
+          </div>
+          <div class="text item">
+            1.修复库存问题#I17Z5X
+          </div>
+          <div class="text item">
+            2.修复评价百分比精度问题#I17UQY
+          </div>
+          <div class="text item">
+            3.修复评价列表问题#I17TZC
+          </div>
+          <div class="text item">
+            4.移动端图片上传修改为统一处理
           </div>
           <div class="text item">
             <span style="font-weight: bolder">（2020-01-10）yshop1.8版本 发布更新如下：</span>

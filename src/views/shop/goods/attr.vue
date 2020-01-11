@@ -381,6 +381,7 @@ export default {
       setAttr(this.form.id, { items: this.items, attrs: this.attrs }).then(res => {
         this.attrs = res
         Message({ message: '操作成功', type: 'success' })
+        this.$parent.init()
       }).catch(err => {
         this.loading = false
         console.log(err.response.data.message)
