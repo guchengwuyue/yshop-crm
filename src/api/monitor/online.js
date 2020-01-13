@@ -7,3 +7,12 @@ export function del(keys) {
     data: keys
   })
 }
+
+export function delT(keys) {
+  return request({
+    url: 'auth/online/delete',
+    method: 'post',
+    data: keys
+  })
+}
+

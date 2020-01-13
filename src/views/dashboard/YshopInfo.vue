@@ -70,6 +70,24 @@
             <span style="font-weight: bolder">更新日志</span>
           </div>
           <div class="text item">
+            <span style="font-weight: bolder">（2020-01-13）yshop1.8.2版本 发布更新如下：</span>
+          </div>
+          <div class="text item">
+            1.移除idworker
+          </div>
+          <div class="text item">
+            2.移动端springsecuriry+jwt验证改进
+          </div>
+          <div class="text item">
+            3.新增注解可匿名访问
+          </div>
+          <div class="text item">
+            4.jwt token redis储存
+          </div>
+          <div class="text item">
+            5.后台新增移动端在线管理会员，后台可监控
+          </div>
+          <div class="text item">
             <span style="font-weight: bolder">（2020-01-11）yshop1.8.1版本 发布更新如下：</span>
           </div>
           <div class="text item">
@@ -83,24 +101,6 @@
           </div>
           <div class="text item">
             4.移动端图片上传修改为统一处理
-          </div>
-          <div class="text item">
-            <span style="font-weight: bolder">（2020-01-10）yshop1.8版本 发布更新如下：</span>
-          </div>
-          <div class="text item">
-            1.新增小程序支付与登录,后台新增小程序跳转页面,
-          </div>
-          <div class="text item">
-            2.后台新增图片素材管理
-          </div>
-          <div class="text item">
-            3.本地上传与七牛云上传合并，修改一个yml即可两者随意切换
-          </div>
-          <div class="text item">
-            4.升级swagger-bootstrap,swaager统一配置迁移到common(防止注解冲突)
-          </div>
-          <div class="text item">
-            5.后台优化操作显示
           </div>
         </el-card>
       </div>
