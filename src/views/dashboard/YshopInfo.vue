@@ -51,15 +51,27 @@
             当然，您也可以对它进行深度定制，以做出更强系统。
           </div>
           <div class="text item">
-            <span style="font-weight: bolder">VIP版：</span>包括了开源版，还包括了移动端(H5+公众号)、小程序(mpvue)即将发布、移动端API
+            <span style="font-weight: bolder">VIP版：</span>包括了开源版，还包括了移动端、移动端API
           </div>
           <div class="text item">
             1、VIP为终身制、拥有全部源代码及其后续的代码（免费）升级及其技术支持。目前商城优惠券、会员、秒杀、分销、砍价等都已经完成！<br />
-            2、价格：vip会员价228元，当然当前价格是整个价格，后续的系统升级vip价格会有相应的调整的，所以早上车更优惠哦！<br />
+            2、价格：vip会员价228元(JAVA+H5+公众号版)，后续的系统升级vip价格会有相应的调整的，所以早上车更优惠哦！<br />
             3、VIP购买淘宝地址：https://item.taobao.com/item.htm?id=607532386325<br />
             4、加入vip群：931426444,请输入你的淘宝订单编号，即可入群<br />
             5、群里面获取私服git<br />
+            <!--6、如果需要小程序需要单独购买看下面<br />-->
+            此版本小程序(mpvue2框架开发)已经发布了一个开发版，加入vip私服git获取演示还没正式上线，大家要早上车早划算，
+            小程序正式上演示版就表示正式发布，即小程序需要单独购买了<br />
           </div>
+          <!--<div class="text item">-->
+            <!--<span style="font-weight: bolder">VIP版如果需要小程序需要另外单独购买：-->
+          <!--</div>-->
+          <!--<div class="text item">-->
+            <!--1、小程序是mpvue框架开发<br />-->
+            <!--2、价格：100元，只是单独的小程序！<br />-->
+            <!--3、购买淘宝地址：https://item.taobao.com/item.htm?id=608056803568<br />-->
+            <!--4、群里面获取私服git<br />-->
+          <!--</div>-->
         </el-card>
       </div>
     </el-col>
@@ -70,37 +82,43 @@
             <span style="font-weight: bolder">更新日志</span>
           </div>
           <div class="text item">
-            <span style="font-weight: bolder">（2020-01-13）yshop1.8.2版本 发布更新如下：</span>
+            <span style="font-weight: bolder">（2020-01-31）yshop1.9.2版本 发布更新如下：</span>
           </div>
           <div class="text item">
-            1.移除idworker
+            1.修复素材库无法分页的问题#I18KJN
           </div>
           <div class="text item">
-            2.移动端springsecuriry+jwt验证改进
+            2.修复订单退款问题#I18GG6
           </div>
           <div class="text item">
-            3.新增注解可匿名访问
+            3.修复分类问题#I17UEI
           </div>
           <div class="text item">
-            4.jwt token redis储存
+            4.修复后台添加角色的问题#I18NCW
           </div>
           <div class="text item">
-            5.后台新增移动端在线管理会员，后台可监控
+            5.修复H5登陆提示信息不一致#I18GZW
           </div>
           <div class="text item">
-            <span style="font-weight: bolder">（2020-01-11）yshop1.8.1版本 发布更新如下：</span>
+            <span style="font-weight: bolder">（2020-01-20）yshop1.9.1版本 发布更新如下：</span>
           </div>
           <div class="text item">
-            1.修复库存问题#I17Z5X
+            1.新增城市接口
           </div>
           <div class="text item">
-            2.修复评价百分比精度问题#I17UQY
+            2.修复小程序登陆与支付问题
           </div>
           <div class="text item">
-            3.修复评价列表问题#I17TZC
+            3.发布mpvue1.0小程序（目前开发版本,已经上传到私服git）
           </div>
           <div class="text item">
-            4.移动端图片上传修改为统一处理
+            4.WxJava升级到3.6
+          </div>
+          <div class="text item">
+            5.微信公众号服务配置重构
+          </div>
+          <div class="text item">
+            6.修复后台配置公众号,API端必须要重启才能生效的问题#I17YFZ
           </div>
         </el-card>
       </div>

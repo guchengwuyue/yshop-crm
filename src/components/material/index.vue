@@ -114,6 +114,7 @@
               </el-row>
               <el-pagination
                 @size-change="sizeChange"
+                @current-change="pageChange"
                 :current-page.sync="page.currentPage"
                 :page-sizes="[12, 24]"
                 :page-size="page.pageSize"
@@ -326,7 +327,7 @@
       getPage(page, params) {
         this.tableLoading = true
         getPage(Object.assign({
-          current: page.currentPage,
+          page: page.currentPage - 1,
           size: page.pageSize,
           descs: this.page.descs,
           ascs: this.page.ascs,
@@ -344,8 +345,15 @@
         })
       },
       sizeChange(val) {
+        console.log(val)
         this.page.currentPage = 1
         this.page.pageSize = val
+        this.getPage(this.page)
+      },
+      pageChange(val) {
+        console.log(val)
+        this.page.currentPage = val
+        //this.page.pageSize = val
         this.getPage(this.page)
       },
       materialRename(item){
