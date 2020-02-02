@@ -1,19 +1,7 @@
 <template>
   <div class="app-container">
     <!--工具栏-->
-    <div class="head-container">
-      <!-- 新增 -->
-      <div style="display: inline-block;margin: 0px 2px;">
-        <el-button
-          v-permission="['admin','YXSTOREBARGAIN_ALL','YXSTOREBARGAIN_CREATE']"
-          class="filter-item"
-          size="mini"
-          type="primary"
-          icon="el-icon-plus"
-          @click="add"
-        >新增</el-button>
-      </div>
-    </div>
+    <div class="head-container" />
     <!--表单组件-->
     <eForm ref="form" :is-add="isAdd" />
     <!--表格渲染-->
