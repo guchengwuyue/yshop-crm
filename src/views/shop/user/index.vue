@@ -7,6 +7,14 @@
       <el-select v-model="query.type" clearable placeholder="类型" class="filter-item" style="width: 130px">
         <el-option v-for="item in queryTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
       </el-select>
+      <el-select v-model="userType" clearable placeholder="用户来源" class="filter-item" style="width: 130px">
+        <el-option
+          v-for="item in statusOptions"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
       <el-button class="filter-item" size="mini" type="success" icon="el-icon-search" @click="toQuery">搜索</el-button>
       <!-- 新增 -->
     </div>
@@ -36,6 +44,15 @@
           <div @click="onStatus(scope.row.uid,scope.row.status)">
             <el-tag v-if="scope.row.status == 1" style="cursor: pointer" :type="''">正常</el-tag>
             <el-tag v-else style="cursor: pointer" :type=" 'info' ">禁用</el-tag>
+          </div>
+        </template>
+      </el-table-column>
+      <el-table-column label="用户来源" align="center">
+        <template slot-scope="scope">
+          <div>
+            <el-tag v-if="scope.row.userType == 'wechat'">公众号</el-tag>
+            <el-tag v-else-if="scope.row.userType == 'routine'">小程序</el-tag>
+            <el-tag v-else>H5</el-tag>
           </div>
         </template>
       </el-table-column>
@@ -105,9 +122,15 @@ export default {
   data() {
     return {
       delLoading: false,
+      userType: '',
       queryTypeOptions: [
         { key: 'nickname', display_name: '用户昵称' },
         { key: 'phone', display_name: '手机号码' }
+      ],
+      statusOptions: [
+        { value: 'routine', label: '小程序' },
+        { value: 'wechat', label: '公众号' },
+        { value: 'H5', label: 'H5' }
       ]
     }
   },
@@ -142,7 +165,7 @@ export default {
     beforeInit() {
       this.url = 'api/yxUser'
       const sort = 'uid,desc'
-      this.params = { page: this.page, size: this.size, sort: sort }
+      this.params = { page: this.page, size: this.size, sort: sort, userType: this.userType }
       const query = this.query
       const type = query.type
       const value = query.value

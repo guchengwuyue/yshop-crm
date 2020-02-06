@@ -10,7 +10,7 @@
             <span style="font-weight: bolder">yshop基于当前流行技术组合的前后端分离商城系统：</span>
             SpringBoot2+Jpa+MybatisPlus+SpringSecurity
             的前后端分离的商城系统，
-             包含商城、拼团、砍价、商户管理、 秒杀、优惠券、积分、分销、会员等功能。
+            包含商城、拼团、砍价、商户管理、 秒杀、优惠券、积分、分销、会员等功能。
           </div>
           <div class="text item">
             <span style="font-weight: bolder">技术选型：</span>
@@ -33,7 +33,10 @@
             <span style="font-weight: bolder">公众号演示：</span><img width="100" height="100" src="https://image.dayouqiantu.cn/qrcode_for_gh_95df5a2881cc_258.jpg">
           </div>
           <div class="text item">
-            <span style="font-weight: bolder">H5演示：</span><a target="_blank" href="https://h5.dayouqiantu.cn">https://h5.dayouqiantu.cn</a> <br />
+            <span style="font-weight: bolder">小程序演示：</span>关注上面公众号之后，选择yshop小程序体验即可
+          </div>
+          <div class="text item">
+            <span style="font-weight: bolder">H5演示：</span><a target="_blank" href="https://h5.dayouqiantu.cn">https://h5.dayouqiantu.cn</a> <br>
             <span style="font-weight: bolder">H5测试号</span>：hupeng/123456,也可以自行注册
           </div>
         </el-card>
@@ -51,27 +54,25 @@
             当然，您也可以对它进行深度定制，以做出更强系统。
           </div>
           <div class="text item">
-            <span style="font-weight: bolder">VIP版：</span>包括了开源版，还包括了移动端、移动端API
+            <span style="font-weight: bolder">VIP版(JAVA++H5+公众号端)：</span>包括了开源版，还包括了移动端、移动端API
           </div>
           <div class="text item">
-            1、VIP为终身制、拥有全部源代码及其后续的代码（免费）升级及其技术支持。目前商城优惠券、会员、秒杀、分销、砍价等都已经完成！<br />
-            2、价格：vip会员价228元(JAVA+H5+公众号版)，后续的系统升级vip价格会有相应的调整的，所以早上车更优惠哦！<br />
-            3、VIP购买淘宝地址：https://item.taobao.com/item.htm?id=607532386325<br />
-            4、加入vip群：931426444,请输入你的淘宝订单编号，即可入群<br />
-            5、群里面获取私服git<br />
-            <!--6、如果需要小程序需要单独购买看下面<br />-->
-            此版本小程序(mpvue2框架开发)已经发布了一个开发版，加入vip私服git获取演示还没正式上线，大家要早上车早划算，
-            小程序正式上演示版就表示正式发布，即小程序需要单独购买了<br />
+            1、VIP为终身制包括JAVA端+H5公众号端，后期免费升级迭代及其技术支持。！<br>
+            2、价格：vip会员价228元(JAVA+H5+公众号版)，后续的系统升级vip价格会有相应的调整的，所以早上车更优惠哦！<br>
+            3、VIP购买淘宝地址：https://item.taobao.com/item.htm?id=607532386325<br>
+            4、加入vip群：931426444,请输入你的淘宝订单编号，即可入群<br>
+            5、群里面获取私服git<br>
+            6、如果需要小程序需要单独购买看下面<br>
           </div>
-          <!--<div class="text item">-->
-            <!--<span style="font-weight: bolder">VIP版如果需要小程序需要另外单独购买：-->
-          <!--</div>-->
-          <!--<div class="text item">-->
-            <!--1、小程序是mpvue框架开发<br />-->
-            <!--2、价格：100元，只是单独的小程序！<br />-->
-            <!--3、购买淘宝地址：https://item.taobao.com/item.htm?id=608056803568<br />-->
-            <!--4、群里面获取私服git<br />-->
-          <!--</div>-->
+          <div class="text item">
+            <span style="font-weight: bolder">VIP版如果需要小程序需要另外单独购买：</span>
+          </div>
+          <div class="text item">
+            1、小程序是mpvue2.0框架开发<br>
+            2、价格：100元，只是单独的小程序！购买小程序请务必要购买上面VIP套餐<br>
+            3、购买淘宝地址：https://item.taobao.com/item.htm?id=608056803568<br>
+            4、群里面获取私服git<br>
+          </div>
         </el-card>
       </div>
     </el-col>
@@ -80,6 +81,48 @@
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span style="font-weight: bolder">更新日志</span>
+          </div>
+          <div class="text item">
+            <span style="font-weight: bolder">（2020-02-06）yshop1.9.4版本 发布更新如下：</span>
+          </div>
+          <div class="text item">
+            1.后台砍价列表显示调整
+          </div>
+          <div class="text item">
+            2.后台会员新增用户来源
+          </div>
+          <div class="text item">
+            3.小程序新增普通二维码功能
+          </div>
+          <div class="text item">
+            4.修复小程序砍价海报问题
+          </div>
+          <div class="text item">
+            5.修复小程序首页滚动新闻不显示的问题
+          </div>
+          <div class="text item">
+            6.修复小程序个人中心积分列表问题
+          </div>
+          <div class="text item">
+            7.修复小程序购物车删除问题#I19176
+          </div>
+          <div class="text item">
+            <span style="font-weight: bolder">（2020-02-04）yshop1.9.3版本 发布更新如下：</span>
+          </div>
+          <div class="text item">
+            1.修复购物车列表问题
+          </div>
+          <div class="text item">
+            2.修复后台图文管理时间显示问题
+          </div>
+          <div class="text item">
+            3.修复砍价增加商品问题
+          </div>
+          <div class="text item">
+            4.修复个人中心优惠券数量不显示问题
+          </div>
+          <div class="text item">
+            5.模板消息推送增加小程序判断(后期会增加小程序消息)
           </div>
           <div class="text item">
             <span style="font-weight: bolder">（2020-01-31）yshop1.9.2版本 发布更新如下：</span>
@@ -98,27 +141,6 @@
           </div>
           <div class="text item">
             5.修复H5登陆提示信息不一致#I18GZW
-          </div>
-          <div class="text item">
-            <span style="font-weight: bolder">（2020-01-20）yshop1.9.1版本 发布更新如下：</span>
-          </div>
-          <div class="text item">
-            1.新增城市接口
-          </div>
-          <div class="text item">
-            2.修复小程序登陆与支付问题
-          </div>
-          <div class="text item">
-            3.发布mpvue1.0小程序（目前开发版本,已经上传到私服git）
-          </div>
-          <div class="text item">
-            4.WxJava升级到3.6
-          </div>
-          <div class="text item">
-            5.微信公众号服务配置重构
-          </div>
-          <div class="text item">
-            6.修复后台配置公众号,API端必须要重启才能生效的问题#I17YFZ
           </div>
         </el-card>
       </div>
