@@ -36,7 +36,7 @@
             <span style="font-weight: bolder">小程序演示：</span>关注上面公众号之后，选择yshop小程序体验即可
           </div>
           <div class="text item">
-            <span style="font-weight: bolder">H5演示：</span><a target="_blank" href="https://h5.dayouqiantu.cn">https://h5.dayouqiantu.cn</a> <br>
+            <span style="font-weight: bolder">H5演示：</span><a target="_blank" href="https://h5.yixiang.co">https://h5.yixiang.co</a> <br>
             <span style="font-weight: bolder">H5测试号</span>：hupeng/123456,也可以自行注册
           </div>
         </el-card>
@@ -58,7 +58,7 @@
           </div>
           <div class="text item">
             1、VIP为终身制包括JAVA端+H5公众号端，后期免费升级迭代及其技术支持。！<br>
-            2、价格：vip会员价228元(JAVA+H5+公众号版)，后续的系统升级vip价格会有相应的调整的，所以早上车更优惠哦！<br>
+            2、价格：vip会员价248元(JAVA+H5+公众号版)，后续的系统升级vip价格会有相应的调整的，所以早上车更优惠哦！<br>
             3、VIP购买淘宝地址：https://item.taobao.com/item.htm?id=607532386325<br>
             4、加入vip群：931426444,请输入你的淘宝订单编号，即可入群<br>
             5、群里面获取私服git<br>
@@ -83,6 +83,48 @@
             <span style="font-weight: bolder">更新日志</span>
           </div>
           <div class="text item">
+            <span style="font-weight: bolder">（2020-02-11）yshop1.9.6版本 发布更新如下：</span>
+          </div>
+          <div class="text item">
+            1、H5(公众号)端新增商品海报功能
+          </div>
+          <div class="text item">
+            2、管理后台配置新增排序与可隐藏选项，同时移动端接口相应更新
+          </div>
+          <div class="text item">
+            3、去除小程序首页新闻轮播图标识
+          </div>
+          <div class="text item">
+            4、修复小程序图片路径写死了问题(只能修改vue中的url,css中的需要自行替换)#I18KRS
+          </div>
+          <div class="text item">
+            5、修改小程序登录成功后，跳到转个人中心问题 #I194VT
+          </div>
+          <div class="text item">
+            6、修复小程序申请退款页面图文#I197FG
+          </div>
+          <div class="text item">
+            7、修复砍价不能下单问题
+          </div>
+          <div class="text item">
+            <span style="font-weight: bolder">（2020-02-07）yshop1.9.5版本 发布更新如下：</span>
+          </div>
+          <div class="text item">
+            1.H5(公众号)新增手机号绑定#I18IVP
+          </div>
+          <div class="text item">
+            2.小程序新增手机号绑定接口(小程序待对接)
+          </div>
+          <div class="text item">
+            3.H5(公众号)端新增我的账户信息管理(头像等信息修改)
+          </div>
+          <div class="text item">
+            4.修复H5注册NULL问题
+          </div>
+          <div class="text item">
+            5.修复小程序未付款订单支付问题#I18ZV5
+          </div>
+          <div class="text item">
             <span style="font-weight: bolder">（2020-02-06）yshop1.9.4版本 发布更新如下：</span>
           </div>
           <div class="text item">
@@ -105,42 +147,6 @@
           </div>
           <div class="text item">
             7.修复小程序购物车删除问题#I19176
-          </div>
-          <div class="text item">
-            <span style="font-weight: bolder">（2020-02-04）yshop1.9.3版本 发布更新如下：</span>
-          </div>
-          <div class="text item">
-            1.修复购物车列表问题
-          </div>
-          <div class="text item">
-            2.修复后台图文管理时间显示问题
-          </div>
-          <div class="text item">
-            3.修复砍价增加商品问题
-          </div>
-          <div class="text item">
-            4.修复个人中心优惠券数量不显示问题
-          </div>
-          <div class="text item">
-            5.模板消息推送增加小程序判断(后期会增加小程序消息)
-          </div>
-          <div class="text item">
-            <span style="font-weight: bolder">（2020-01-31）yshop1.9.2版本 发布更新如下：</span>
-          </div>
-          <div class="text item">
-            1.修复素材库无法分页的问题#I18KJN
-          </div>
-          <div class="text item">
-            2.修复订单退款问题#I18GG6
-          </div>
-          <div class="text item">
-            3.修复分类问题#I17UEI
-          </div>
-          <div class="text item">
-            4.修复后台添加角色的问题#I18NCW
-          </div>
-          <div class="text item">
-            5.修复H5登陆提示信息不一致#I18GZW
           </div>
         </el-card>
       </div>

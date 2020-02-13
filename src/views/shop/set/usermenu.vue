@@ -25,8 +25,17 @@
       <el-table-column ref="table" label="图标">
         <template slot-scope="scope">
           <a :href="scope.row.map.pic" style="color: #42b983" target="_blank">
-          <img :src="scope.row.map.pic" alt="点击打开" class="el-avatar">
+            <img :src="scope.row.map.pic" alt="点击打开" class="el-avatar">
           </a>
+        </template>
+      </el-table-column>
+      <el-table-column prop="sort" label="排序" />
+      <el-table-column label="状态" align="center">
+        <template slot-scope="scope">
+          <div>
+            <el-tag v-if="scope.row.status === 1" style="cursor: pointer" :type="''">显示</el-tag>
+            <el-tag v-else style="cursor: pointer" :type=" 'info' ">不显示</el-tag>
+          </div>
         </template>
       </el-table-column>
       <el-table-column v-if="checkPermission(['admin','YXSYSTEMGROUPDATA_ALL','YXSYSTEMGROUPDATA_EDIT','YXSYSTEMGROUPDATA_DELETE'])" label="操作" width="150px" align="center">
@@ -118,7 +127,9 @@ export default {
         url: data.map.url,
         wxapp_url: data.map.wxapp_url,
         pic: data.map.pic,
-        imageArr: data.map.pic ? data.map.pic.split(',') : []
+        imageArr: data.map.pic ? data.map.pic.split(',') : [],
+        sort: data.sort,
+        status: data.status
       }
       _this.dialog = true
     }

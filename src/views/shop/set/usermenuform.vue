@@ -11,7 +11,14 @@
         <el-input v-model="form.wxapp_url" style="width: 300px;" />
       </el-form-item>
       <el-form-item label="图标(52*52)">
-        <MaterialList v-model="form.imageArr" style="width: 300px" type="image" :num=1 :width=150 :height=150></MaterialList>
+        <MaterialList v-model="form.imageArr" style="width: 300px" type="image" :num="1" :width="150" :height="150" />
+      </el-form-item>
+      <el-form-item label="排序">
+        <el-input v-model="form.sort" style="width: 300px;" />
+      </el-form-item>
+      <el-form-item label="是否显示">
+        <el-radio v-model="form.status" :label="1">是</el-radio>
+        <el-radio v-model="form.status" :label="0" style="width: 200px;">否</el-radio>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -52,10 +59,10 @@ export default {
       }
     }
   },
-  watch:{
+  watch: {
     'form.imageArr': function(val) {
-      if(val){
-        this.form.pic = val.join(",");
+      if (val) {
+        this.form.pic = val.join(',')
       }
     }
   },
@@ -108,8 +115,8 @@ export default {
         imageArr: [],
         value: '',
         addTime: '',
-        sort: '',
-        status: ''
+        sort: 0,
+        status: 1
       }
     }
   }

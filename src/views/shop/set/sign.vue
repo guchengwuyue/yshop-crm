@@ -21,6 +21,15 @@
       <el-table-column prop="id" label="ID" />
       <el-table-column prop="map.day" label="第几天" />
       <el-table-column prop="map.sign_num" label="获取积分" />
+      <el-table-column prop="sort" label="排序" />
+      <el-table-column label="状态" align="center">
+        <template slot-scope="scope">
+          <div>
+            <el-tag v-if="scope.row.status === 1" style="cursor: pointer" :type="''">显示</el-tag>
+            <el-tag v-else style="cursor: pointer" :type=" 'info' ">不显示</el-tag>
+          </div>
+        </template>
+      </el-table-column>
       <el-table-column v-if="checkPermission(['admin','YXSYSTEMGROUPDATA_ALL','YXSYSTEMGROUPDATA_EDIT','YXSYSTEMGROUPDATA_DELETE'])" label="操作" width="150px" align="center">
         <template slot-scope="scope">
           <el-button v-permission="['admin','YXSYSTEMGROUPDATA_ALL','YXSYSTEMGROUPDATA_EDIT']" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)" />
@@ -107,7 +116,9 @@ export default {
         id: data.id,
         groupName: data.groupName,
         day: data.map.day,
-        sign_num: data.map.sign_num
+        sign_num: data.map.sign_num,
+        sort: data.sort,
+        status: data.status
       }
       _this.dialog = true
     }

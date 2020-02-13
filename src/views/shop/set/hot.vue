@@ -20,6 +20,15 @@
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
       <el-table-column prop="id" label="ID" />
       <el-table-column prop="map.title" label="标签" />
+      <el-table-column prop="sort" label="排序" />
+      <el-table-column label="状态" align="center">
+        <template slot-scope="scope">
+          <div>
+            <el-tag v-if="scope.row.status === 1" style="cursor: pointer" :type="''">显示</el-tag>
+            <el-tag v-else style="cursor: pointer" :type=" 'info' ">不显示</el-tag>
+          </div>
+        </template>
+      </el-table-column>
       <el-table-column v-if="checkPermission(['admin','YXSYSTEMGROUPDATA_ALL','YXSYSTEMGROUPDATA_EDIT','YXSYSTEMGROUPDATA_DELETE'])" label="操作" width="150px" align="center">
         <template slot-scope="scope">
           <el-button v-permission="['admin','YXSYSTEMGROUPDATA_ALL','YXSYSTEMGROUPDATA_EDIT']" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)" />
@@ -108,7 +117,9 @@ export default {
         title: data.map.title,
         info: data.map.info,
         url: data.map.url,
-        pic: data.map.pic
+        pic: data.map.pic,
+        sort: data.sort,
+        status: data.status
       }
       _this.dialog = true
     }

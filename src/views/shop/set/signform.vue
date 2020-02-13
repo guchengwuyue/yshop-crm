@@ -7,6 +7,13 @@
       <el-form-item label="获取积分">
         <el-input v-model="form.sign_num" style="width: 300px;" />
       </el-form-item>
+      <el-form-item label="排序">
+        <el-input v-model="form.sort" style="width: 300px;" />
+      </el-form-item>
+      <el-form-item label="是否显示">
+        <el-radio v-model="form.status" :label="1">是</el-radio>
+        <el-radio v-model="form.status" :label="0" style="width: 200px;">否</el-radio>
+      </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
       <!--<el-input v-model="form.groupName" />-->
@@ -34,7 +41,9 @@ export default {
         id: '',
         groupName: 'sign_day_num',
         day: 1,
-        sign_num: 0
+        sign_num: 0,
+        sort: 0,
+        status: 1
       },
       rules: {
       }
