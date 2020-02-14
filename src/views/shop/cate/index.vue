@@ -4,7 +4,7 @@
     <div class="head-container">
       <div v-if="crud.props.searchToggle">
         <!-- 搜索 -->
-        <el-input v-model="query.cateName" clearable size="small" placeholder="输入部门名称搜索" style="width: 200px;" class="filter-item" @keyup.enter.native="crud.toQuery" />
+        <el-input v-model="query.cateName" clearable size="small" placeholder="输入分类名称搜索" style="width: 200px;" class="filter-item" @keyup.enter.native="crud.toQuery" />
         <rrOperation :crud="crud" />
       </div>
       <crudOperation :permission="permission" />
@@ -16,7 +16,7 @@
           <el-input v-model="form.cateName" style="width: 370px;" />
         </el-form-item>
         <el-form-item label="分类图片">
-          <MaterialList v-model="picArr" type="image" :num=1 :width=150 :height=150></MaterialList>
+          <MaterialList v-model="picArr" type="image" :num="1" :width="150" :height="150" />
         </el-form-item>
         <el-form-item label="状态">
           <el-radio-group v-model="form.isShow" style="width: 178px">
@@ -88,9 +88,9 @@ export default {
         ]
       },
       permission: {
-        add: ['admin', 'cate:add'],
-        edit: ['admin', 'cate:edit'],
-        del: ['admin', 'cate:del']
+        add: ['admin', 'YXSTORECATEGORY_CREATE'],
+        edit: ['admin', 'YXSTORECATEGORY_EDIT'],
+        del: ['admin', 'YXSTORECATEGORY_DELETE']
       },
       enabledTypeOptions: [
         { key: 'true', display_name: '正常' },
@@ -98,16 +98,16 @@ export default {
       ]
     }
   },
-  watch:{
+  watch: {
     picArr: function(val) {
-      this.form.pic = val.join(",");
+      this.form.pic = val.join(',')
     }
   },
   methods: {
     // 新增与编辑前做的操作
     [CRUD.HOOK.afterToCU](crud, form) {
       console.log(form)
-      if(form.pic){
+      if (form.pic) {
         this.picArr = form.pic.split(',')
       }
 

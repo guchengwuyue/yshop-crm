@@ -70,7 +70,7 @@
           <div class="text item">
             1、小程序是mpvue2.0框架开发<br>
             2、价格：100元，只是单独的小程序！购买小程序请务必要购买上面VIP套餐<br>
-            3、购买淘宝地址：https://item.taobao.com/item.htm?id=608056803568<br>
+            3、购买淘宝地址：https://item.taobao.com/item.htm?id=612007949053<br>
             4、群里面获取私服git<br>
           </div>
         </el-card>
