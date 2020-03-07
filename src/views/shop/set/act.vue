@@ -116,7 +116,7 @@ export default {
         info: data.map.info,
         url: data.map.url,
         pic: data.map.pic,
-        imageArr: data.map.pic.split(','),
+        imageArr: data.map.pic.split(',')
       }
       _this.dialog = true
     }

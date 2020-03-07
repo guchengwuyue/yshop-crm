@@ -10,7 +10,7 @@
             <span style="font-weight: bolder">yshop基于当前流行技术组合的前后端分离商城系统：</span>
             SpringBoot2+Jpa+MybatisPlus+SpringSecurity
             的前后端分离的商城系统，
-            包含商城、拼团、砍价、商户管理、 秒杀、优惠券、积分、分销、会员等功能。
+            包含商城、拼团、砍价、商户管理、 秒杀、优惠券、积分、分销、会员、充值、门店核销等功能。
           </div>
           <div class="text item">
             <span style="font-weight: bolder">技术选型：</span>
@@ -39,6 +39,10 @@
             <span style="font-weight: bolder">H5演示：</span><a target="_blank" href="https://h5.yixiang.co">https://h5.yixiang.co</a> <br>
             <span style="font-weight: bolder">H5测试号</span>：hupeng/123456,也可以自行注册
           </div>
+          <div class="text item">
+            <span style="font-weight: bolder;color: red">如果想体验手机端商户管理与订单核销功能，记得去后台会员管理，搜索找到自己，
+            然后编辑设置商户管理员开启即可，然后刷新个人中心即可体验</span>
+          </div>
         </el-card>
       </div>
     </el-col>
@@ -58,7 +62,7 @@
           </div>
           <div class="text item">
             1、VIP为终身制包括JAVA端+H5公众号端，后期免费升级迭代及其技术支持。！<br>
-            2、价格：vip会员价248元(JAVA+H5+公众号版)，后续的系统升级vip价格会有相应的调整的，所以早上车更优惠哦！<br>
+            2、价格：vip会员价298元(JAVA+H5+公众号版)，后续的系统升级vip价格会有相应的调整的，所以早上车更优惠哦！<br>
             3、VIP购买淘宝地址：https://item.taobao.com/item.htm?id=607532386325<br>
             4、加入vip群：931426444,请输入你的淘宝订单编号，即可入群<br>
             5、群里面获取私服git<br>
@@ -83,70 +87,121 @@
             <span style="font-weight: bolder">更新日志</span>
           </div>
           <div class="text item">
-            <span style="font-weight: bolder">（2020-02-11）yshop1.9.6版本 发布更新如下：</span>
+            <span style="font-weight: bolder">（2020-03-07）yshop2.0版本 发布更新如下：</span>
           </div>
           <div class="text item">
-            1、H5(公众号)端新增商品海报功能
+            1、优化代码结构与名称，修改get请求参数其统一继承分页参数
           </div>
           <div class="text item">
-            2、管理后台配置新增排序与可隐藏选项，同时移动端接口相应更新
+            2、新增redis监听未付款30分钟取消功能与7天自动收货功能，mq队列作为备选(注释掉)
           </div>
           <div class="text item">
-            3、去除小程序首页新闻轮播图标识
+            3、新增门店到店核销功能
           </div>
           <div class="text item">
-            4、修复小程序图片路径写死了问题(只能修改vue中的url,css中的需要自行替换)#I18KRS
+            4、新增分销全局开关#I19HB1
           </div>
           <div class="text item">
-            5、修改小程序登录成功后，跳到转个人中心问题 #I194VT
+            5、积分新增消费限制#I19TUR
           </div>
           <div class="text item">
-            6、修复小程序申请退款页面图文#I197FG
+            6、新增充值功能#I18V5D
           </div>
           <div class="text item">
-            7、修复砍价不能下单问题
+            7、后台菜单调整，新增财务模块
           </div>
           <div class="text item">
-            <span style="font-weight: bolder">（2020-02-07）yshop1.9.5版本 发布更新如下：</span>
+            8、优化后台配置赋值写法
           </div>
           <div class="text item">
-            1.H5(公众号)新增手机号绑定#I18IVP
+            9、修复管理后台新增表单之后如果直接再新增数据导致默认数据缺失问题#I1AFBK
           </div>
           <div class="text item">
-            2.小程序新增手机号绑定接口(小程序待对接)
+            10、修复提交购物车可能查询多条数据的问题
           </div>
           <div class="text item">
-            3.H5(公众号)端新增我的账户信息管理(头像等信息修改)
+            11、后台登陆背景图固定#I1A0LS
           </div>
           <div class="text item">
-            4.修复H5注册NULL问题
+            12、增加常量与枚举优化硬编码问题
           </div>
           <div class="text item">
-            5.修复小程序未付款订单支付问题#I18ZV5
+            13、微信支付、公众号、模板消息修改
           </div>
           <div class="text item">
-            <span style="font-weight: bolder">（2020-02-06）yshop1.9.4版本 发布更新如下：</span>
+            14、修复代码生成器不全的问题#I1AIO4
           </div>
           <div class="text item">
-            1.后台砍价列表显示调整
+            15、修复营销产品拼团等轮播图不能修改的问题#I1AHXR
           </div>
           <div class="text item">
-            2.后台会员新增用户来源
+            16、移除yshop-monitor模块
           </div>
           <div class="text item">
-            3.小程序新增普通二维码功能
+            17、修复退货理由文字错误#I1AQ7D
           </div>
           <div class="text item">
-            4.修复小程序砍价海报问题
+            18、修复新增分类的图片自动显示上次一次的图片#I1AQBK
           </div>
           <div class="text item">
-            5.修复小程序首页滚动新闻不显示的问题
+            19、新增微信jssdk接口返回所需js权限
           </div>
           <div class="text item">
-            6.修复小程序个人中心积分列表问题
+            20、新增余额充值变动模板消息通知
           </div>
           <div class="text item">
-            7.修复小程序购物车删除问题#I19176
+            21、首页数据缓存优化
+          </div>
+          <div class="text item">
+            22、新增未支付订单显示到期时间
+          </div>
+          <div class="text item">
+            23、修复加入购物车购买后，后台订单中的商品信息数据重复#I1AXNX
+          </div>
+          <div class="text item">
+            24、修复后台-管理商品-规格属性 属性无法删除问题#I1AYL2
+          </div>
+          <div class="text item">
+            25、修复公众号商品直接微信分享标题不显示的问题#I1AX0R
+          </div>
+          <div class="text item">
+            <span style="font-weight: bolder">（2020-02-24）yshop修复优化版本 发布更新如下：</span>
+          </div>
+          <div class="text item">
+            1.修复小程序积分支付功能#I1A03I
+          </div>
+          <div class="text item">
+            2.修复小程序砍价功能上面时间没有进行倒计时#I1A037
+          </div>
+          <div class="text item">
+            3.优化小程序底层导航栏适配ios#I1A1QX
+          </div>
+          <div class="text item">
+            4.修复小程序返回的问题#I1A036
+          </div>
+          <div class="text item">
+            5.修复小程序地址管理#I1A03U
+          </div>
+          <div class="text item">
+            6.调整小程序首页样式修改与H5保持同步
+          </div>
+          <div class="text item">
+            7.H5首页数据加载顺序调整
+          </div>
+          <div class="text item">
+            <span style="font-weight: bolder">（2020-02-20）yshop1.9.10版本 发布更新如下：</span>
+          </div>
+          <div class="text item">
+            1.小程序新增了商品详情海报功能
+          </div>
+          <div class="text item">
+            2.小程序新增了手机号绑定功能
+          </div>
+          <div class="text item">
+            3.修复小程序选择规格的问题#I19PD7
+          </div>
+          <div class="text item">
+            4.修改移动端二维码海报生成拆分为H5端与小程序端
           </div>
         </el-card>
       </div>

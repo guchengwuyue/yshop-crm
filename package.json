@@ -1,7 +1,7 @@
 {
   "name": "yshop-web",
   "version": "2.4.0",
-  "description": "yshop 前端源码",
+  "description": "yshop2.0 前端源码",
   "author": "Zheng Jie",
   "license": "Apache-2.0",
   "scripts": {

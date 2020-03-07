@@ -18,6 +18,12 @@
 import { getToken } from '@/utils/auth'
 import { mapGetters } from 'vuex'
 export default {
+  props: {
+    value: {
+      default: '',
+      type: String
+    }
+  },
   data() {
     return {
       resourcesUrl: '',
@@ -30,12 +36,6 @@ export default {
     ...mapGetters([
       'qiNiuUploadApi'
     ])
-  },
-  props: {
-    value: {
-      default: '',
-      type: String
-    }
   },
   methods: {
     // 图片上传

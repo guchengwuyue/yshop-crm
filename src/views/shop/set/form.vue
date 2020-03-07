@@ -112,11 +112,13 @@ export default {
       this.form = {
         id: '',
         groupName: 'routine_home_banner',
+        name: '',
+        url: '',
+        wxapp_url: '',
+        pic: '',
         imageArr: [],
-        value: '',
-        addTime: '',
-        sort: '',
-        status: ''
+        sort: 0,
+        status: 1
       }
     }
   }

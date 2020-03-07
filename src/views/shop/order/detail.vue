@@ -115,7 +115,7 @@ export default {
       rules: {
         unique: [
           { required: true, message: 'please enter', trigger: 'blur' }
-        ],
+        ]
       }
     }
   },

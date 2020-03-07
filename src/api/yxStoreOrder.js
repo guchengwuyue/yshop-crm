@@ -23,6 +23,15 @@ export function edit(data) {
   })
 }
 
+export function editT(data) {
+  return request({
+    url: 'api/yxStoreOrder/check',
+    method: 'put',
+    data
+  })
+}
+
+
 export function refund(data) {
   return request({
     url: 'api/yxStoreOrder/refund',
@@ -50,6 +59,6 @@ export function remark(data) {
 export function get() {
   return request({
     url: 'api/yxExpress',
-    method: 'get',
+    method: 'get'
   })
 }

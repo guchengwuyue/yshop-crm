@@ -64,7 +64,7 @@ import crudOperation from '@crud/CRUD.operation'
 import pagination from '@crud/Pagination'
 
 // crud交由presenter持有
-const defaultCrud = CRUD({ url: 'auth/online', title: '在线用户' , query: {type : 1} })
+const defaultCrud = CRUD({ url: 'auth/online', title: '在线用户', query: { type: 1 }})
 export default {
   name: 'OnlineUser',
   components: { pagination, crudOperation, rrOperation },

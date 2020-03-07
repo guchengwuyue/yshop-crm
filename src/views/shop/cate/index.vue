@@ -100,14 +100,15 @@ export default {
   },
   watch: {
     picArr: function(val) {
+      console.log();
       this.form.pic = val.join(',')
     }
   },
   methods: {
     // 新增与编辑前做的操作
     [CRUD.HOOK.afterToCU](crud, form) {
-      console.log(form)
-      if (form.pic) {
+      this.picArr = []
+      if (form.pic && form.id) {
         this.picArr = form.pic.split(',')
       }
 

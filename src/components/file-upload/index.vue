@@ -9,7 +9,7 @@
       :file-list="fileList"
       multiple
       :limit="1"
-      >
+    >
       <el-button size="small" type="primary">点击上传</el-button>
     </el-upload>
   </div>
@@ -19,7 +19,13 @@
 import { getToken } from '@/utils/auth'
 import { mapGetters } from 'vuex'
 export default {
-  data () {
+  props: {
+    value: {
+      default: '',
+      type: String
+    }
+  },
+  data() {
     return {
       resourcesUrl: '',
       headers: {
@@ -27,35 +33,29 @@ export default {
       }
     }
   },
-  props: {
-    value: {
-      default: '',
-      type: String
-    }
-  },
   computed: {
     ...mapGetters([
       'uploadApi'
     ]),
-    fileList () {
-      let res = []
+    fileList() {
+      const res = []
       if (this.value) {
-        res.push({name: this.value, url: this.resourcesUrl + this.value, response: this.value})
+        res.push({ name: this.value, url: this.resourcesUrl + this.value, response: this.value })
       }
       this.$emit('input', this.value)
-      console.log("res"+res)
+      console.log('res' + res)
       return res
     }
   },
   methods: {
     // 图片上传
-    handleUploadSuccess (response, file, fileList) {
+    handleUploadSuccess(response, file, fileList) {
       this.$emit('input', file.response.link)
     },
-    handleRemove (file, fileList) {
+    handleRemove(file, fileList) {
       this.$emit('change', file)
     },
-    beforeRemove (file, fileList) {
+    beforeRemove(file, fileList) {
       return this.$confirm(`确定移除 ${file.name}？`)
     }
   }

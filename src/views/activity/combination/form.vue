@@ -29,10 +29,10 @@
         </template>
       </el-form-item>
       <el-form-item label="产品主图片">
-        <MaterialList v-model="form.imageArr" style="width: 500px" type="image" :num=1 :width=150 :height=150></MaterialList>
+        <MaterialList v-model="form.imageArr" style="width: 500px" type="image" :num="1" :width="150" :height="150" />
       </el-form-item>
       <el-form-item label="产品轮播图">
-        <MaterialList v-model="form.sliderImageArr" style="width: 500px" type="image" :num=4 :width=150 :height=150></MaterialList>
+        <MaterialList v-model="form.sliderImageArr" style="width: 500px" type="image" :num="4" :width="150" :height="150" />
       </el-form-item>
       <el-form-item label="拼团时效(单位小时)">
         <el-input v-model="form.effectiveTime" style="width: 500px;" />
@@ -81,11 +81,9 @@
 <script>
 import { add, edit } from '@/api/yxStoreCombination'
 import editor from '../../components/Editor'
-import picUpload from '@/components/pic-upload'
-import mulpicUpload from '@/components/mul-pic-upload'
 import MaterialList from '@/components/material'
 export default {
-  components: { editor, picUpload, mulpicUpload, MaterialList },
+  components: { editor,  MaterialList },
   props: {
     isAdd: {
       type: Boolean,
@@ -134,15 +132,15 @@ export default {
       }
     }
   },
-  watch:{
+  watch: {
     'form.imageArr': function(val) {
-      if(val){
-        this.form.image = val.join(",");
+      if (val) {
+        this.form.image = val.join(',')
       }
     },
     'form.sliderImageArr': function(val) {
-      if(val){
-        this.form.sliderImage = val.join(",");
+      if (val) {
+        this.form.images = val.join(',')
       }
     }
   },

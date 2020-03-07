@@ -86,10 +86,8 @@ export default {
       this.form = {
         id: '',
         groupName: 'routine_seckill_time',
-        value: '',
-        addTime: '',
-        sort: '',
-        status: ''
+        time: 5,
+        continued: 2
       }
     }
   }

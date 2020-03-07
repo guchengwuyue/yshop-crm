@@ -8,7 +8,7 @@
         <el-input v-model="form.author" style="width: 370px;" />
       </el-form-item>
       <el-form-item label="封面">
-        <MaterialList v-model="form.imageArr" style="width: 370px" type="image" :num=1 :width=150 :height=150></MaterialList>
+        <MaterialList v-model="form.imageArr" style="width: 370px" type="image" :num="1" :width="150" :height="150" />
       </el-form-item>
       <el-form-item label="简介">
         <el-input v-model="form.synopsis" style="width: 370px;" rows="5" type="textarea" />
@@ -67,10 +67,10 @@ export default {
       }
     }
   },
-  watch:{
+  watch: {
     'form.imageArr': function(val) {
-      if(val){
-        this.form.imageInput = val.join(",");
+      if (val) {
+        this.form.imageInput = val.join(',')
       }
     }
   },

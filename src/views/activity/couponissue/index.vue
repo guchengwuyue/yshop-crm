@@ -119,6 +119,8 @@ export default {
         cid: data.cid,
         startTime: data.startTime,
         endTime: data.endTime,
+        startTimeDate: data.startTimeDate,
+        endTimeDate: data.endTimeDate,
         totalCount: data.totalCount,
         remainCount: data.remainCount,
         isPermanent: data.isPermanent,

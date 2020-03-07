@@ -12,7 +12,7 @@
       </el-form-item>
       <el-form-item label="图片(260*260/416*214)">
         <pic-upload v-model="form.pic" style="width: 500px;" />
-        <MaterialList v-model="form.imageArr" style="width: 500px" type="image" :num=1 :width=150 :height=150></MaterialList>
+        <MaterialList v-model="form.imageArr" style="width: 500px" type="image" :num="1" :width="150" :height="150" />
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -53,10 +53,10 @@ export default {
       }
     }
   },
-  watch:{
+  watch: {
     'form.imageArr': function(val) {
-      if(val){
-        this.form.pic = val.join(",");
+      if (val) {
+        this.form.pic = val.join(',')
       }
     }
   },

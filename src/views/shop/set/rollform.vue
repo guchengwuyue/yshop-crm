@@ -99,10 +99,11 @@ export default {
       this.form = {
         id: '',
         groupName: 'routine_home_roll_news',
-        value: '',
-        addTime: '',
-        sort: '',
-        status: ''
+        info: '',
+        wxapp_url: '',
+        url: '',
+        sort: 0,
+        status: 1
       }
     }
   }

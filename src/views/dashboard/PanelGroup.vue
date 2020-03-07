@@ -48,7 +48,7 @@
 </template>
 <script>
 import CountTo from 'vue-count-to'
-import { get, gett } from '@/api/visits'
+import { gett } from '@/api/visits'
 export default {
   components: {
     CountTo

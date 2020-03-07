@@ -29,7 +29,6 @@
 import { mapGetters } from 'vuex'
 import PanelGroup from './dashboard/PanelGroup'
 import PanelGroupT from './dashboard/PanelGroupT'
-import LineChart from './dashboard/LineChart'
 import PieChart from './dashboard/BarChartT'
 import BarChart from './dashboard/BarChart'
 import { count } from '@/api/visits'
@@ -46,7 +45,6 @@ export default {
   components: {
     PanelGroup,
     PanelGroupT,
-    LineChart,
     PieChart,
     BarChart,
     YshopInfo

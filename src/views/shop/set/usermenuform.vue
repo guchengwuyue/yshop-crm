@@ -52,8 +52,8 @@ export default {
         wxapp_url: '',
         pic: '',
         imageArr: [],
-        sort: '',
-        status: ''
+        sort: 0,
+        status: 1
       },
       rules: {
       }
@@ -112,9 +112,11 @@ export default {
       this.form = {
         id: '',
         groupName: 'routine_my_menus',
+        name: '',
+        url: '',
+        wxapp_url: '',
+        pic: '',
         imageArr: [],
-        value: '',
-        addTime: '',
         sort: 0,
         status: 1
       }

@@ -5,3 +5,4 @@ module.exports = function(plop) {
   plop.setGenerator('view', viewGenerator)
   plop.setGenerator('component', componentGenerator)
 }
+

@@ -1,6 +1,10 @@
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="150px">
+      <el-form-item label="分销开关">
+        <el-radio v-model="form.store_brokerage_open" :label="1">开启</el-radio>
+        <el-radio v-model="form.store_brokerage_open" :label="2">关闭</el-radio>
+      </el-form-item>
       <el-form-item label="分销模式">
         <el-radio v-model="form.store_brokerage_statu" :label="1">指定分销</el-radio>
         <el-radio v-model="form.store_brokerage_statu" :label="2">人人分销</el-radio>
@@ -43,6 +47,7 @@ export default {
     return {
       delLoading: false,
       form: {
+        store_brokerage_open: 1,
         store_brokerage_statu: 2,
         store_brokerage_ratio: 0,
         store_brokerage_two: 0,
@@ -56,13 +61,17 @@ export default {
   },
   created() {
     get().then(rese => {
-      const newObj = {}
+      const that = this;
       rese.content.map(function(key, value) {
         const keyName = key.menuName
-        newObj[keyName] = key.value
+        const newValue = key.value
+        if(keyName in that.form){
+          that.form[keyName] = newValue
+        }
       })
-      this.form = newObj
+
       this.form.store_brokerage_statu = parseInt(this.form.store_brokerage_statu)
+      this.form.store_brokerage_open = parseInt(this.form.store_brokerage_open)
     })
   },
   methods: {

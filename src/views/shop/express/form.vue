@@ -90,8 +90,7 @@ export default {
         id: '',
         code: '',
         name: '',
-        sort: '',
-        isShow: ''
+        sort: 0
       }
     }
   }

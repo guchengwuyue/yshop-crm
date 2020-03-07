@@ -16,14 +16,6 @@
           :value="item.value"
         />
       </el-select>
-      <el-select v-model="orderType" clearable placeholder="订单类型" class="filter-item" style="width: 130px">
-        <el-option
-          v-for="item in typeOptions"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
       <el-button class="filter-item" size="mini" type="success" icon="el-icon-search" @click="toQuery">搜索</el-button>
       <!-- 新增 -->
     </div>
@@ -54,7 +46,7 @@
             <span>{{ item.cartInfoMap.productInfo.storeName }}&nbsp;{{ item.cartInfoMap.productInfo.attrInfo.suk }}</span>
             <span> | ￥{{ item.cartInfoMap.truePrice }}×{{ item.cartInfoMap.cartNum }}</span>
           </div>
-          <div v-else>
+          <div v-else v-for="(item,index) in scope.row.cartInfoList">
             <span><img
               style="width: 30px;height: 30px;margin:0;cursor: pointer;"
               :src="item.cartInfoMap.productInfo.image"
@@ -105,7 +97,7 @@
                   type="primary"
                   @click="edit(scope.row)"
                 >
-                  去发货</el-button>
+                  订单核销</el-button>
               </el-dropdown-item>
               <el-dropdown-item>
                 <el-button
@@ -163,7 +155,7 @@
 import checkPermission from '@/utils/permission'
 import initData from '@/mixins/crud'
 import { del } from '@/api/yxStoreOrder'
-import eForm from './form'
+import eForm from './formC'
 import eDetail from './detail'
 import eRefund from './refund'
 import editOrder from './edit'
@@ -190,13 +182,6 @@ export default {
         { value: '-1', label: '退款中' },
         { value: '-2', label: '已退款' },
         { value: '-4', label: '已删除' }
-      ],
-      typeOptions: [
-        { value: '0', label: '所有订单' },
-        { value: '1', label: '普通订单' },
-        { value: '2', label: '拼团订单' },
-        { value: '3', label: '秒杀订单' },
-        { value: '4', label: '砍价订单' }
       ]
     }
   },
@@ -211,7 +196,7 @@ export default {
     beforeInit() {
       this.url = 'api/yxStoreOrder'
       const sort = 'id,desc'
-      this.params = { page: this.page, size: this.size, sort: sort, orderStatus: this.status, orderType: this.orderType }
+      this.params = { page: this.page, size: this.size, sort: sort, orderStatus: this.status, orderType: 5 }
       const query = this.query
       const type = query.type
       const value = query.value

@@ -51,7 +51,7 @@ export default {
     this.editor.customConfig.uploadFileName = 'file'
     this.editor.customConfig.uploadImgServer = this.uploadApi // 上传图片到服务器
     this.editor.customConfig.uploadImgHooks = {
-      customInsert: function (insertImg, result, editor) {
+      customInsert: function(insertImg, result, editor) {
         var url = result.link
         insertImg(url)
       }

@@ -1,18 +1,19 @@
 <template>
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '去发货'" width="500px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
-      <el-form-item label="快递公司" >
+      <el-form-item label="快递公司">
         <!--<el-input v-model="form.deliveryName" style="width: 370px;"/>-->
         <el-select v-model="form.deliveryName" filterable placeholder="请选择" style="width: 370px;">
           <el-option
             v-for="item in express"
             :key="item.id"
             :label="item.name"
-            :value="item.id" />
+            :value="item.id"
+          />
         </el-select>
       </el-form-item>
-      <el-form-item label="快递单号" >
-        <el-input v-model="form.deliveryId" style="width: 370px;"/>
+      <el-form-item label="快递单号">
+        <el-input v-model="form.deliveryId" style="width: 370px;" />
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -26,10 +27,6 @@
 
 import { add, edit, get } from '@/api/yxStoreOrder'
 export default {
-
-  created() {
-    this.get()
-  },
   props: {
     isAdd: {
       type: Boolean,
@@ -48,9 +45,13 @@ export default {
       rules: {
         unique: [
           { required: true, message: 'please enter', trigger: 'blur' }
-        ],
+        ]
       }
     }
+  },
+
+  created() {
+    this.get()
   },
   methods: {
     cancel() {

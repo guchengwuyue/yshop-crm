@@ -17,10 +17,10 @@
         <el-input v-model="form.barCode" style="width: 320px;" />
       </el-form-item>
       <el-form-item label="商品图片">
-        <MaterialList v-model="form.imageArr" style="width: 500px" type="image" :num=1 :width=150 :height=150></MaterialList>
+        <MaterialList v-model="form.imageArr" style="width: 500px" type="image" :num="1" :width="150" :height="150" />
       </el-form-item>
       <el-form-item label="轮播图">
-        <MaterialList v-model="form.sliderImageArr" style="width: 500px" type="image" :num=4 :width=150 :height=150></MaterialList>
+        <MaterialList v-model="form.sliderImageArr" style="width: 500px" type="image" :num="4" :width="150" :height="150" />
       </el-form-item>
       <el-form-item label="商品简介">
         <el-input v-model="form.storeInfo" style="width: 500px;" rows="5" type="textarea" />
@@ -151,15 +151,15 @@ export default {
       }
     }
   },
-  watch:{
+  watch: {
     'form.imageArr': function(val) {
-      if(val){
-        this.form.image = val.join(",");
+      if (val) {
+        this.form.image = val.join(',')
       }
     },
     'form.sliderImageArr': function(val) {
-      if(val){
-        this.form.sliderImage = val.join(",");
+      if (val) {
+        this.form.sliderImage = val.join(',')
       }
     }
   },
@@ -208,7 +208,7 @@ export default {
       this.$refs['form'].resetFields()
       this.form = {
         id: '',
-        merId: '',
+        merId: 0,
         image: '',
         sliderImage: '',
         imageArr: [],
@@ -217,34 +217,33 @@ export default {
         storeInfo: '',
         keyword: '',
         barCode: '',
-        cateId: '',
-        price: '',
-        vipPrice: '',
-        otPrice: '',
-        postage: '',
+        cateId: 1,
+        price: 0,
+        vipPrice: 0,
+        otPrice: 0,
+        postage: 0,
         unitName: '',
-        sort: '',
+        sort: 0,
         sales: 0,
         stock: 0,
         isShow: 1,
-        isHot: 1,
-        isBenefit: 1,
-        isBest: 1,
-        isNew: 1,
+        isHot: 0,
+        isBenefit: 0,
+        isBest: 0,
+        isNew: 0,
         description: '',
         addTime: '',
-        isPostage: 1,
-        isDel: '',
-        merUse: '',
-        giveIntegral: '',
-        cost: '',
-        isSeckill: '',
-        isBargain: '',
-        isGood: '',
-        ficti: '',
-        browse: '',
+        isPostage: 0,
+        isDel: 0,
+        merUse: 0,
+        giveIntegral: 0,
+        cost: 0,
+        isSeckill: 0,
+        isBargain: 0,
+        isGood: 0,
+        ficti: 0,
+        browse: 0,
         codePath: '',
-        soureLink: ''
       }
     },
     getCates() {

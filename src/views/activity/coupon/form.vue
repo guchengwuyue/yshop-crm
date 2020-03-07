@@ -102,14 +102,13 @@ export default {
       this.form = {
         id: '',
         title: '',
-        integral: '',
-        couponPrice: '',
-        useMinPrice: '',
-        couponTime: '',
-        sort: '',
-        status: '',
-        addTime: '',
-        isDel: ''
+        integral: 0,
+        couponPrice: 0,
+        useMinPrice: 0,
+        couponTime: 1,
+        sort: 0,
+        status: 1,
+        addTime: ''
       }
     }
   }

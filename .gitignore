@@ -10,7 +10,7 @@ tests/**/coverage/
 tests/e2e/reports
 selenium-debug.log
 
-# Editor directories and files
+#  directories and files
 .idea
 .vscode
 *.suo

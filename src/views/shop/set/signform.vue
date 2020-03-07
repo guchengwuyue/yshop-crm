@@ -95,10 +95,10 @@ export default {
       this.form = {
         id: '',
         groupName: 'sign_day_num',
-        value: '',
-        addTime: '',
-        sort: '',
-        status: ''
+        day: 1,
+        sign_num: 0,
+        sort: 0,
+        status: 1
       }
     }
   }

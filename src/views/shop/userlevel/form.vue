@@ -18,10 +18,10 @@
         <el-input v-model="form.discount" style="width: 370px;" />
       </el-form-item>
       <el-form-item label="会员背景">
-        <MaterialList v-model="form.imageArr" style="width: 300px" type="image" :num=1 :width=150 :height=150></MaterialList>
+        <MaterialList v-model="form.imageArr" style="width: 300px" type="image" :num="1" :width="150" :height="150" />
       </el-form-item>
       <el-form-item label="会员图标">
-        <MaterialList v-model="form.iconArr" style="width: 300px" type="image" :num=1 :width=150 :height=150></MaterialList>
+        <MaterialList v-model="form.iconArr" style="width: 300px" type="image" :num="1" :width="150" :height="150" />
       </el-form-item>
       <el-form-item label="是否显示">
         <el-radio v-model="form.isShow" :label="1">是</el-radio>
@@ -76,15 +76,15 @@ export default {
       }
     }
   },
-  watch:{
+  watch: {
     'form.imageArr': function(val) {
-      if(val){
-        this.form.image = val.join(",");
+      if (val) {
+        this.form.image = val.join(',')
       }
     },
     'form.iconArr': function(val) {
-      if(val){
-        this.form.icon = val.join(",");
+      if (val) {
+        this.form.icon = val.join(',')
       }
     }
   },
@@ -137,17 +137,17 @@ export default {
         name: '',
         money: '',
         validDate: '',
-        isForever: '',
+        isForever: 1,
         isPay: '',
-        isShow: '',
+        isShow: 1,
         grade: '',
         discount: '',
         image: '',
         icon: '',
-        explain: '',
-        addTime: '',
         imageArr: [],
         iconArr: [],
+        explain: '',
+        addTime: '',
         isDel: ''
       }
     }

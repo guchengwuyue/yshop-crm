@@ -10,8 +10,8 @@
       <el-form-item label="商户密钥">
         <el-input v-model="form.wxpay_mchKey" style="width: 370px;" type="password" />
       </el-form-item>
-      <el-form-item label="微信证书" >
-        <file-upload v-model="form.wxpay_keyPath" style="width: 500px;"/>
+      <el-form-item label="微信证书">
+        <file-upload v-model="form.wxpay_keyPath" style="width: 500px;" />
       </el-form-item>
       <el-form-item label="">
         <el-button type="primary" @click="doSubmit">提交</el-button>
@@ -48,13 +48,14 @@ export default {
   },
   created() {
     get().then(rese => {
-      const newObj = {}
+      const that = this
       rese.content.map(function(key, value) {
         const keyName = key.menuName
-        newObj[keyName] = key.value
+        const newValue = key.value
+        if(keyName in that.form){
+          that.form[keyName] = newValue
+        }
       })
-
-      this.form = newObj
     })
   },
   methods: {

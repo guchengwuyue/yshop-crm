@@ -1,17 +1,19 @@
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="150px">
-      <el-form-item label="邮费基础价">
-        <el-input v-model="form.store_postage" style="width: 370px;" />
+      <el-form-item label="开启门店自提">
+        <el-radio v-model="form.store_self_mention" :label="1">开启</el-radio>
+        <el-radio v-model="form.store_self_mention" :label="2">关闭</el-radio>
       </el-form-item>
-      <el-form-item label="满额包邮">
-        <el-input v-model="form.store_free_postage" style="width: 370px;" />
-        <p style="color: red">0表示包邮,大于0表示满多少包邮</p>
+      <el-form-item label="腾讯地图KEY">
+        <el-input v-model="form.tengxun_map_key" style="width: 370px;" />
       </el-form-item>
       <el-form-item label="">
         <el-button type="primary" @click="doSubmit">提交</el-button>
       </el-form-item>
+
     </el-form>
+
   </div>
 </template>
 
@@ -19,18 +21,17 @@
 import checkPermission from '@/utils/permission'
 import initData from '@/mixins/crud'
 import { del, add, get } from '@/api/yxSystemConfig'
-import eForm from './form'
-import picUpload from '@/components/pic-upload'
+
 import { Message } from 'element-ui'
+
 export default {
-  components: { eForm, picUpload },
   mixins: [initData],
   data() {
     return {
       delLoading: false,
       form: {
-        store_postage: '',
-        store_free_postage: ''
+        store_self_mention: 1,
+        tengxun_map_key: ''
       },
       rules: {
       }
@@ -46,6 +47,7 @@ export default {
           that.form[keyName] = newValue
         }
       })
+      this.form.store_self_mention = parseInt(this.form.store_self_mention)
     })
   },
   methods: {

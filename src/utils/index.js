@@ -95,7 +95,7 @@ export function formatTimeTwo(time) {
   time = time * 1000
   const d = new Date(time)
   return (
-    d.getFullYear()+'年'+
+    d.getFullYear() + '年' +
     (d.getMonth() + 1) +
     '月' +
     d.getDate() +
@@ -105,9 +105,7 @@ export function formatTimeTwo(time) {
     d.getMinutes() +
     '分'
   )
-
 }
-
 
 /**
  * @param {string} url

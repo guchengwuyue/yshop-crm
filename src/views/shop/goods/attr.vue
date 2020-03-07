@@ -36,7 +36,7 @@
             :span="3"
             :name="attr"
           >
-            <el-tag closable @on-close="attrRemove(item,k)">{{ attr }}</el-tag>
+            <el-tag closable @close="attrRemove(item,k)">{{ attr }}</el-tag>
           </el-col>
           <el-col :span="5">
             <el-input v-model="item.detailValue" style="width: 150px;" placeholder="设置属性" />
@@ -330,6 +330,7 @@ export default {
       if (this.items.length > 1) { this.items.splice(index, 1) } else { Message({ message: '请设置至少一个规则', type: 'error' }) }
     },
     attrRemove(item, k) {
+      console.log('item:')
       if (item.detail.length == 1) {
         Message({ message: '请设置至少一个属性', type: 'error' })
         return false

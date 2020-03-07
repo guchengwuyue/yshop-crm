@@ -91,10 +91,9 @@ export default {
       this.form = {
         id: '',
         groupName: 'routine_hot_search',
-        value: '',
-        addTime: '',
-        sort: '',
-        status: ''
+        title: '',
+        sort: 0,
+        status: 1
       }
     }
   }

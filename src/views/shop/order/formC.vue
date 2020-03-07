@@ -1,11 +1,10 @@
 <template>
-  <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '退款'" width="500px">
+  <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '订单核销'" width="500px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
-      <el-form-item label="订单号">
-        <el-input v-model="form.orderId" :disabled="true" style="width: 370px;" />
-      </el-form-item>
-      <el-form-item label="退款金额">
-        <el-input v-model="form.payPrice" style="width: 370px;" />
+      <el-form-item label="核销码">
+        <el-input v-model="form.verifyCode" style="width: 370px;" placeholder="请输入核销码" />
+        <p style="color: red">注意:请务必核对核销码的与客户正确性</p>
+        <p style="color: red">注意:手机端也可以核销，去会员管理里把编辑相应会员开启商户管理即可</p>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -16,7 +15,8 @@
 </template>
 
 <script>
-import { add, refund } from '@/api/yxStoreOrder'
+
+import { add, editT, get } from '@/api/yxStoreOrder'
 export default {
   props: {
     isAdd: {
@@ -26,59 +26,12 @@ export default {
   },
   data() {
     return {
-      loading: false, dialog: false,
+      loading: false, dialog: false, express: [],
       form: {
         id: '',
-        orderId: '',
-        uid: '',
-        realName: '',
-        userPhone: '',
-        userAddress: '',
-        cartId: '',
-        freightPrice: '',
-        totalNum: '',
-        totalPrice: '',
-        totalPostage: '',
-        payPrice: '',
-        payPostage: '',
-        deductionPrice: '',
-        couponId: '',
-        couponPrice: '',
-        paid: '',
-        payTime: '',
-        payType: '',
-        addTime: '',
-        status: '',
-        refundStatus: '',
-        refundReasonWapImg: '',
-        refundReasonWapExplain: '',
-        refundReasonTime: '',
-        refundReasonWap: '',
-        refundReason: '',
-        refundPrice: '',
         deliveryName: '',
-        deliveryType: '',
-        deliveryId: '',
-        gainIntegral: '',
-        useIntegral: '',
-        backIntegral: '',
-        mark: '',
-        isDel: '',
-        unique: '',
-        remark: '',
-        merId: '',
-        isMerCheck: '',
-        combinationId: '',
-        pinkId: '',
-        cost: '',
-        seckillId: '',
-        bargainId: '',
-        verifyCode: '',
-        storeId: '',
-        shippingType: '',
-        isChannel: '',
-        isRemind: '',
-        isSystemDel: ''
+        deliveryType: 'express',
+        deliveryId: ''
       },
       rules: {
         unique: [
@@ -86,6 +39,10 @@ export default {
         ]
       }
     }
+  },
+
+  created() {
+    this.get()
   },
   methods: {
     cancel() {
@@ -113,7 +70,7 @@ export default {
       })
     },
     doEdit() {
-      refund(this.form).then(res => {
+      editT(this.form).then(res => {
         this.resetForm()
         this.$notify({
           title: '操作成功',
@@ -183,6 +140,14 @@ export default {
         isRemind: '',
         isSystemDel: ''
       }
+    },
+    get() {
+      get().then(res => {
+        this.express = res.content
+      }).catch(err => {
+        this.loading = false
+        console.log(err.response.data.message)
+      })
     }
   }
 }
