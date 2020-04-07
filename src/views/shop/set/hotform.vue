@@ -36,7 +36,7 @@ export default {
       loading: false, dialog: false,
       form: {
         id: '',
-        groupName: 'routine_hot_search',
+        groupName: 'yshop_hot_search',
         title: '',
         sort: 0,
         status: 1
@@ -90,7 +90,7 @@ export default {
       this.$refs['form'].resetFields()
       this.form = {
         id: '',
-        groupName: 'routine_hot_search',
+        groupName: 'yshop_hot_search',
         title: '',
         sort: 0,
         status: 1

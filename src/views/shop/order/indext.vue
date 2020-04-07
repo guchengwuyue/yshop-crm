@@ -1,22 +1,51 @@
 <template>
   <div class="app-container">
+
+    <el-tabs v-model="status" type="card" @tab-click="handleOrder">
+      <el-tab-pane name="-9">
+        <span slot="label"><i class="el-icon-s-order"></i> 全部订单</span>
+      </el-tab-pane>
+      <el-tab-pane name="0">
+        <span slot="label"><i class="el-icon-bank-card"></i> 未支付</span>
+      </el-tab-pane>
+      <el-tab-pane name="1">
+        <span slot="label"><i class="el-icon-refrigerator"></i> 待核销</span>
+      </el-tab-pane>
+      <el-tab-pane name="3">
+        <span slot="label"><i class="el-icon-document"></i> 待评价</span>
+      </el-tab-pane>
+      <el-tab-pane name="4">
+        <span slot="label"><i class="el-icon-circle-check"></i> 交易完成</span>
+      </el-tab-pane>
+      <el-tab-pane name="-1">
+        <span slot="label"><i class="el-icon-back"></i> 退款中</span>
+      </el-tab-pane>
+      <el-tab-pane name="-2">
+        <span slot="label"><i class="el-icon-finished"></i> 已退款</span>
+      </el-tab-pane>
+      <el-tab-pane name="-4">
+        <span slot="label"><i class="el-icon-circle-close"></i> 已删除</span>
+      </el-tab-pane>
+    </el-tabs>
     <!--工具栏-->
     <div class="head-container">
-
       <!-- 搜索 -->
       <el-input v-model="query.value" clearable placeholder="输入搜索内容" style="width: 200px;" class="filter-item" @keyup.enter.native="toQuery" />
       <el-select v-model="query.type" clearable placeholder="类型" class="filter-item" style="width: 130px">
         <el-option v-for="item in queryTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
       </el-select>
-      <el-select v-model="status" clearable placeholder="订单状态" class="filter-item" style="width: 130px">
-        <el-option
-          v-for="item in statusOptions"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
+      <el-select v-model="storeId" clearable placeholder="选择门店" class="filter-item" style="width: 130px">
+        <el-option v-for="item in storeList" :key="item.key" :label="item.name" :value="item.id" />
       </el-select>
       <el-button class="filter-item" size="mini" type="success" icon="el-icon-search" @click="toQuery">搜索</el-button>
+      <el-button
+        type="danger"
+        class="filter-item"
+        size="mini"
+        icon="el-icon-refresh"
+        @click="toQuery"
+      >刷新</el-button>
+
       <!-- 新增 -->
     </div>
     <!--表单组件-->
@@ -27,7 +56,8 @@
     <eRemark ref="form4" :is-add="isAdd" />
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
-      <el-table-column prop="orderId" width="140" label="订单号">
+      <el-table-column prop="storeName" label="所属门店" />
+      <el-table-column prop="orderId" width="150" label="订单号">
         <template slot-scope="scope">
           <span>{{ scope.row.orderId }}</span>
           <p>{{ scope.row.pinkName }}</p>
@@ -46,7 +76,7 @@
             <span>{{ item.cartInfoMap.productInfo.storeName }}&nbsp;{{ item.cartInfoMap.productInfo.attrInfo.suk }}</span>
             <span> | ￥{{ item.cartInfoMap.truePrice }}×{{ item.cartInfoMap.cartNum }}</span>
           </div>
-          <div v-else v-for="(item,index) in scope.row.cartInfoList">
+          <div v-else>
             <span><img
               style="width: 30px;height: 30px;margin:0;cursor: pointer;"
               :src="item.cartInfoMap.productInfo.image"
@@ -155,6 +185,7 @@
 import checkPermission from '@/utils/permission'
 import initData from '@/mixins/crud'
 import { del } from '@/api/yxStoreOrder'
+import { getAll } from '@/api/yxSystemStore'
 import eForm from './formC'
 import eDetail from './detail'
 import eRefund from './refund'
@@ -166,7 +197,7 @@ export default {
   mixins: [initData],
   data() {
     return {
-      delLoading: false, status, orderType: '0',
+      delLoading: false, status: '-9', orderType: '0', storeList: [] , storeId: null,
       queryTypeOptions: [
         { key: 'orderId', display_name: '订单号' },
         { key: 'realName', display_name: '用户姓名' },
@@ -189,14 +220,24 @@ export default {
     this.$nextTick(() => {
       this.init()
     })
+    this.getStoreAll()
   },
   methods: {
+    getStoreAll() {
+      getAll().then(res => {
+          this.storeList = res
+      })
+    },
     formatTime,
     checkPermission,
+    handleOrder(tab, event) {
+      this.status = tab.name
+      this.toQuery()
+    },
     beforeInit() {
       this.url = 'api/yxStoreOrder'
       const sort = 'id,desc'
-      this.params = { page: this.page, size: this.size, sort: sort, orderStatus: this.status, orderType: 5 }
+      this.params = { page: this.page, size: this.size, sort: sort, orderStatus: this.status, orderType: 5, storeId: this.storeId }
       const query = this.query
       const type = query.type
       const value = query.value
@@ -513,7 +554,8 @@ export default {
         shippingType: data.shippingType,
         isChannel: data.isChannel,
         isRemind: data.isRemind,
-        isSystemDel: data.isSystemDel
+        isSystemDel: data.isSystemDel,
+        nickname: data.userDTO.nickname
       }
       _this.dialog = true
     }

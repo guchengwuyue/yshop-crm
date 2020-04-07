@@ -19,12 +19,15 @@
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
       <el-table-column prop="id" label="ID" />
-      <el-table-column prop="map.title" label="标题" />
-      <el-table-column prop="map.info" label="简介" />
-      <el-table-column prop="map.url" label="链接url" />
-      <el-table-column ref="table" label="图片">
+      <el-table-column prop="map.price" label="额度" />
+      <el-table-column prop="map.give_price" label="赠送" />
+      <el-table-column prop="sort" label="排序" />
+      <el-table-column label="状态" align="center">
         <template slot-scope="scope">
-          <a :href="scope.row.map.pic" style="color: #42b983" target="_blank"><img :src="scope.row.map.pic" alt="点击打开" class="el-avatar"></a>
+          <div>
+            <el-tag v-if="scope.row.status === 1" style="cursor: pointer" :type="''">显示</el-tag>
+            <el-tag v-else style="cursor: pointer" :type=" 'info' ">不显示</el-tag>
+          </div>
         </template>
       </el-table-column>
       <el-table-column v-if="checkPermission(['admin','YXSYSTEMGROUPDATA_ALL','YXSYSTEMGROUPDATA_EDIT','YXSYSTEMGROUPDATA_DELETE'])" label="操作" width="150px" align="center">
@@ -62,7 +65,7 @@
 import checkPermission from '@/utils/permission'
 import initData from '@/mixins/crud'
 import { del } from '@/api/yxSystemGroupData'
-import eForm from './actform'
+import eForm from './rechargeform'
 export default {
   components: { eForm },
   mixins: [initData],
@@ -81,7 +84,7 @@ export default {
     beforeInit() {
       this.url = 'api/yxSystemGroupData'
       const sort = 'id,desc'
-      this.params = { page: this.page, size: this.size, sort: sort, groupName: 'yshop_home_activity' }
+      this.params = { page: this.page, size: this.size, sort: sort, groupName: 'yshop_recharge_price_ways' }
       return true
     },
     subDelete(id) {
@@ -112,11 +115,10 @@ export default {
       _this.form = {
         id: data.id,
         groupName: data.groupName,
-        title: data.map.title,
-        info: data.map.info,
-        url: data.map.url,
-        pic: data.map.pic,
-        imageArr: data.map.pic.split(',')
+        give_price: data.map.give_price,
+        price: data.map.price,
+        sort: data.sort,
+        status: data.status
       }
       _this.dialog = true
     }

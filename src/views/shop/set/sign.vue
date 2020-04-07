@@ -84,7 +84,7 @@ export default {
     beforeInit() {
       this.url = 'api/yxSystemGroupData'
       const sort = 'id,desc'
-      this.params = { page: this.page, size: this.size, sort: sort, groupName: 'sign_day_num' }
+      this.params = { page: this.page, size: this.size, sort: sort, groupName: 'yshop_sign_day_num' }
       return true
     },
     subDelete(id) {

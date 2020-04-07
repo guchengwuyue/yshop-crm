@@ -249,15 +249,7 @@ export default {
 </script>
 
 <style scoped>
-
-  body {
-    font-family: "open sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 13px;
-    color: #676a6c;
-    overflow-x: hidden;
-  }
-
-  .form-control, .single-line {
+  .form-control{
     background-color: #FFF;
     background-image: none;
     border: 1px solid #e5e6e7;
@@ -270,52 +262,17 @@ export default {
     width: 100%;
     font-size: 14px;}
 
-  .flex{ display: -webkit-box; display: -moz-box; display: -webkit-flex; display: -moz-flex; display: -ms-flexbox; display: flex; }
-
   #app .layout-ceiling-main a{ color:#9ba7b5}
-
-  #table-list .mp-search-wrapper{ float: right; margin-left: 12px; }
-
-  #table-list .mp-header-wrapper{ overflow: hidden; }
-
   #table-list .mp-header-wrapper h1{ padding-left:15px; float: left; font-size: 18px; line-height: 24px; padding-bottom: 20px; font-weight: 400; color: #464c5b; }
-
-  .mp-form{ padding: 20px 20px 20px 0; }
-
   .mp-form .ivu-tree li{ margin: 0; }
-
-  .mp-form .ivu-color-picker .ivu-select-dropdown{ left: -38px !important; }
-
-  .mp-form .mp-upload{ display: inline-block; }
-
-  .mp-form .demo-upload-list{ display: inline-block; width: 60px; height: 60px; text-align: center; line-height: 60px; border: 1px solid transparent; border-radius: 4px; overflow: hidden; background: #fff; position: relative; box-shadow: 0 1px 1px rgba(0,0,0,.2); margin-right: 4px; }
-
   .mp-form .demo-upload-list img{ width: 100%; height: 100%; }
-
-  .mp-form .demo-upload-list-cover{ display: none; position: absolute; top: 0; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,.6); }
-
-  .mp-form .demo-upload-list:hover .demo-upload-list-cover{ display: block; }
-
   .mp-form .demo-upload-list-cover i{ color: #fff; font-size: 20px; cursor: pointer; margin: 0 2px; }
-
-  [v-cloak]{ display: none}
-
-  .mp-form .mp-upload-btn{ width:58px; height:58px; line-height:58px; }
-
-  .mp-form .add-submit-item .ivu-btn{ position: fixed; left: 0; bottom: 0; border-radius: 0; }
-
-  .vertical-center-modal .ivu-modal{ top: 0; }
-
-  .vertical-center-modal .ivu-modal-header{ z-index: 9; position: relative; }
-
-  .vertical-center-modal .ivu-modal-close{ z-index: 10; }
-
   .wechat-reply-wrapper .fl{ float: left;margin-left: 10px; }
   .wechat-reply-wrapper .fr{ float: right; }
   .wechat-reply-wrapper .clearfix:after{ content:"."; display:block; height:10px; visibility:hidden; clear:both; }
   .wechat-reply-wrapper .ibox-title{ padding:0px; font-size: 16px; border-bottom: 1px solid #e7eaec; }
   .wechat-reply-wrapper .ibox-title p{ border-left: 2px solid #2494f2; text-indent: 8px; }
-  .wechat-reply-wrapper .ibox-content{ padding: 15px; }
+  .wechat-reply-wrapper .ibox-content{ padding: 15px; font-size: 12px}
   .wechat-reply-wrapper .ibox-content .view-wrapper{ position: relative; width: 317px; background-image:url(../../../assets/wechat/mobile_head.png); background-repeat: no-repeat; background-position: left top; background-color: #f5f5f5; }
   .wechat-reply-wrapper .ibox-content .view-wrapper .mobile-header{ position: relative; left: 0; top: 36px; width: 100%; text-align: center; color: #fff; font-size: 16px; }
   .wechat-reply-wrapper .ibox-content .view-wrapper .view-body{ margin-top: 65px; background-color: #f5f5f5; height: 500px; }
@@ -369,15 +326,13 @@ export default {
   .wechat-reply-wrapper .ibox-content .control-wrapper .control-body .control-main .control-item.show{ display: block; }
 
   /* 微信菜单定制 */
-  .wechat-menu{ position: relative; }
   .wechat-menu ul{ padding: 0; }
-  .wechat-menu .menu-footer{ position: absolute; left:0; bottom: -10px; width: 100%; padding-left: 43px; background: url("../../../assets/wechat/mobile_foot.png") no-repeat 0px 20px; border-top: 1px solid #e7e7eb; }
   .wechat-menu .menu-footer span{display: block;}
-  .wechat-menu .menu-footer .icon-add{ background: url(../../../assets/wechat/index.png) 0 0 no-repeat; width: 14px; height: 14px; vertical-align: middle; display: inline-block; margin-top: -2px; border-bottom: none!important; }
   .wechat-menu .menu-footer li{ position: relative; -webkit-flex: 1; -moz-flex:1; -ms-flex: 1; flex: 1; height: 50px; line-height: 50px; text-align: center; cursor: pointer; list-style: none; border: 1px solid transparent; border-right: 1px solid #e7e7eb; }
   .wechat-menu .menu-footer .icon-sub{ background: url(../../../assets/wechat/index.png) 0 -48px no-repeat; width: 7px; height: 7px; vertical-align: middle; display: inline-block; margin-right: 2px; margin-top: -2px; }
   .wechat-menu .menu-footer .sub-menu{ position: absolute; border-radius: 3px; border: 1px solid #d0d0d0; display: block; bottom: 60px; width: 100%; background-color: #fafafa; }
   .wechat-menu .menu-footer .sub-menu:after{ content: ''; position: absolute; width: 10px; height: 10px; background: #fafafa;-webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); bottom: -5px; border-bottom: 1px solid #d0d0d0; border-right: 1px solid #d0d0d0; left: 50%; margin-left: -5px; }
+
   .wechat-menu .menu-footer .sub-menu li{border-right: 0; border-bottom: 1px solid #d0d0d0;}
   .wechat-menu .menu-footer .sub-menu li:last-child{border-bottom: 0;}
   .wechat-menu .menu-footer .active{border:1px solid #44b549;}

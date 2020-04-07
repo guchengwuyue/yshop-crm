@@ -40,7 +40,7 @@ export default {
       loading: false, dialog: false,
       form: {
         id: '',
-        groupName: 'routine_home_activity',
+        groupName: 'yshop_home_activity',
         title: '',
         info: '',
         url: '',
@@ -105,7 +105,7 @@ export default {
       this.$refs['form'].resetFields()
       this.form = {
         id: '',
-        groupName: 'routine_home_activity',
+        groupName: 'yshop_home_activity',
         value: '',
         addTime: '',
         sort: '',

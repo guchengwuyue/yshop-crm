@@ -34,3 +34,10 @@ export function chart() {
     method: 'get'
   })
 }
+
+export function getOrderCount() {
+  return request({
+    url: 'api/yxStoreOrder/orderCount',
+    method: 'get'
+  })
+}

@@ -17,6 +17,13 @@
           icon="el-icon-plus"
           @click="add"
         >新增</el-button>
+        <el-button
+          type="danger"
+          class="filter-item"
+          size="mini"
+          icon="el-icon-refresh"
+          @click="toQuery"
+        >刷新</el-button>
       </div>
     </div>
     <!--表单组件-->
@@ -34,7 +41,7 @@
         </template>
       </el-table-column>
       <el-table-column prop="storeName" label="商品名称" />
-      <el-table-column prop="cateName" label="分类名称" />
+      <el-table-column prop="storeCategory.cateName" label="分类名称" />
       <el-table-column prop="price" label="商品价格" />
       <el-table-column prop="sales" label="销量" />
       <el-table-column prop="stock" label="库存" />

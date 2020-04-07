@@ -3,6 +3,13 @@
     <!--工具栏-->
     <div class="head-container">
       <!-- 新增 -->
+      <el-button
+        type="danger"
+        class="filter-item"
+        size="mini"
+        icon="el-icon-refresh"
+        @click="toQuery"
+      >刷新</el-button>
     </div>
     <!--表单组件-->
     <eForm ref="form" :is-add="isAdd" />

@@ -9,16 +9,13 @@
       </el-select>
       <el-button class="filter-item" size="mini" type="success" icon="el-icon-search" @click="toQuery">搜索</el-button>
       <!-- 新增 -->
-      <div style="display: inline-block;margin: 0px 2px;">
-        <el-button
-          v-permission="['admin','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_CREATE']"
-          class="filter-item"
-          size="mini"
-          type="primary"
-          icon="el-icon-plus"
-          @click="add"
-        >新增</el-button>
-      </div>
+      <el-button
+        type="danger"
+        class="filter-item"
+        size="mini"
+        icon="el-icon-refresh"
+        @click="toQuery"
+      >刷新</el-button>
     </div>
     <!--表单组件-->
     <eForm ref="form" :is-add="isAdd" />
@@ -31,7 +28,7 @@
         </template>
       </el-table-column>
       <el-table-column prop="storeName" label="商品名称" />
-      <el-table-column prop="cateName" label="分类名称" />
+      <el-table-column prop="storeCategory.cateName" label="分类名称" />
       <el-table-column prop="price" label="商品价格" />
       <el-table-column prop="sales" label="销量" />
       <el-table-column prop="stock" label="库存" />
@@ -101,7 +98,7 @@ export default {
     beforeInit() {
       this.url = 'api/yxStoreProduct'
       const sort = 'id,desc'
-      this.params = { page: this.page, size: this.size, sort: sort, isShow: 0 }
+      this.params = { page: this.page, size: this.size, sort: sort, isShow: 0, isDel: 0 }
       const query = this.query
       const type = query.type
       const value = query.value

@@ -1,5 +1,35 @@
 <template>
   <div class="app-container">
+
+    <el-tabs v-model="status" type="card" @tab-click="handleOrder">
+      <el-tab-pane name="-9">
+        <span slot="label"><i class="el-icon-s-order"></i> 全部订单</span>
+      </el-tab-pane>
+      <el-tab-pane name="0">
+        <span slot="label"><i class="el-icon-bank-card"></i> 未支付</span>
+      </el-tab-pane>
+      <el-tab-pane name="1">
+        <span slot="label"><i class="el-icon-refrigerator"></i> 未发货</span>
+      </el-tab-pane>
+      <el-tab-pane name="2">
+        <span slot="label"><i class="el-icon-truck"></i> 待收货</span>
+      </el-tab-pane>
+      <el-tab-pane name="3">
+        <span slot="label"><i class="el-icon-document"></i> 待评价</span>
+      </el-tab-pane>
+      <el-tab-pane name="4">
+        <span slot="label"><i class="el-icon-circle-check"></i> 交易完成</span>
+      </el-tab-pane>
+      <el-tab-pane name="-1">
+        <span slot="label"><i class="el-icon-back"></i> 退款中</span>
+      </el-tab-pane>
+      <el-tab-pane name="-2">
+        <span slot="label"><i class="el-icon-finished"></i> 已退款</span>
+      </el-tab-pane>
+      <el-tab-pane name="-4">
+        <span slot="label"><i class="el-icon-circle-close"></i> 已删除</span>
+      </el-tab-pane>
+    </el-tabs>
     <!--工具栏-->
     <div class="head-container">
 
@@ -7,14 +37,6 @@
       <el-input v-model="query.value" clearable placeholder="输入搜索内容" style="width: 200px;" class="filter-item" @keyup.enter.native="toQuery" />
       <el-select v-model="query.type" clearable placeholder="类型" class="filter-item" style="width: 130px">
         <el-option v-for="item in queryTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
-      </el-select>
-      <el-select v-model="status" clearable placeholder="订单状态" class="filter-item" style="width: 130px">
-        <el-option
-          v-for="item in statusOptions"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
       </el-select>
       <el-select v-model="orderType" clearable placeholder="订单类型" class="filter-item" style="width: 130px">
         <el-option
@@ -26,6 +48,13 @@
       </el-select>
       <el-button class="filter-item" size="mini" type="success" icon="el-icon-search" @click="toQuery">搜索</el-button>
       <!-- 新增 -->
+      <el-button
+        type="danger"
+        class="filter-item"
+        size="mini"
+        icon="el-icon-refresh"
+        @click="toQuery"
+      >刷新</el-button>
     </div>
     <!--表单组件-->
     <eForm ref="form" :is-add="isAdd" />
@@ -33,6 +62,7 @@
     <eRefund ref="form2" :is-add="isAdd" />
     <editOrder ref="form3" :is-add="isAdd" />
     <eRemark ref="form4" :is-add="isAdd" />
+
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
       <el-table-column prop="orderId" width="140" label="订单号">
@@ -41,7 +71,11 @@
           <p>{{ scope.row.pinkName }}</p>
         </template>
       </el-table-column>
-      <el-table-column prop="realName" label="用户姓名" />
+      <el-table-column prop="realName" label="用户昵称" >
+        <template slot-scope="scope">
+           <span>{{ scope.row.userDTO.nickname }}</span>
+          </template>
+      </el-table-column>
       <el-table-column prop="cartInfoList" width="300" label="商品信息">
         <template slot-scope="scope">
           <div v-for="(item,index) in scope.row.cartInfoList" v-if="item.cartInfoMap.productInfo.attrInfo">
@@ -174,7 +208,7 @@ export default {
   mixins: [initData],
   data() {
     return {
-      delLoading: false, status, orderType: '0',
+      delLoading: false, status: '-9', orderType: '0',
       queryTypeOptions: [
         { key: 'orderId', display_name: '订单号' },
         { key: 'realName', display_name: '用户姓名' },
@@ -208,6 +242,10 @@ export default {
   methods: {
     formatTime,
     checkPermission,
+    handleOrder(tab, event) {
+      this.status = tab.name
+      this.toQuery()
+    },
     beforeInit() {
       this.url = 'api/yxStoreOrder'
       const sort = 'id,desc'
@@ -273,6 +311,7 @@ export default {
         refundReason: data.refundReason,
         refundPrice: data.refundPrice,
         deliveryName: data.deliveryName,
+        deliverySn: data.deliverySn,
         deliveryType: data.deliveryType,
         deliveryId: data.deliveryId,
         gainIntegral: data.gainIntegral,
@@ -507,6 +546,7 @@ export default {
         refundReason: data.refundReason,
         refundPrice: data.refundPrice,
         deliveryName: data.deliveryName,
+        deliverySn: data.deliverySn,
         deliveryType: data.deliveryType,
         deliveryId: data.deliveryId,
         gainIntegral: data.gainIntegral,
@@ -528,7 +568,8 @@ export default {
         shippingType: data.shippingType,
         isChannel: data.isChannel,
         isRemind: data.isRemind,
-        isSystemDel: data.isSystemDel
+        isSystemDel: data.isSystemDel,
+        nickname: data.userDTO.nickname
       }
       _this.dialog = true
     }

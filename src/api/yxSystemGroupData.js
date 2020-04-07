@@ -22,3 +22,10 @@ export function edit(data) {
     data
   })
 }
+
+export function get() {
+  return request({
+    url: 'api/yxSystemGroupData',
+    method: 'get'
+  })
+}

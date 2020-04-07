@@ -14,7 +14,7 @@
         <template>
           <el-date-picker
             v-model="form.startTimeDate"
-            type="datetime"
+            type="date"
             placeholder="选择日期时间"
           />
         </template>
@@ -23,10 +23,20 @@
         <template>
           <el-date-picker
             v-model="form.endTimeDate"
-            type="datetime"
+            type="date"
             placeholder="选择日期时间"
           />
         </template>
+      </el-form-item>
+      <el-form-item label="开始时间" prop="storeId">
+        <el-select v-model="form.timeId" style="width: 178px" placeholder="请先选择开始时间">
+          <el-option
+            v-for="(item, index) in myTimes"
+            :key="index"
+            :label="item.map.time + '点开始，持续' + item.map.continued + '小时'"
+            :value="item.id"
+          />
+        </el-select>
       </el-form-item>
       <el-form-item label="产品主图片">
         <MaterialList v-model="form.imageArr" style="width: 500px" type="image" :num="1" :width="150" :height="150" />
@@ -79,6 +89,7 @@
 
 <script>
 import { add, edit } from '@/api/yxStoreSeckill'
+import { initData } from '@/api/data'
 import editor from '../../components/Editor'
 import MaterialList from '@/components/material'
 export default {
@@ -91,7 +102,7 @@ export default {
   },
   data() {
     return {
-      loading: false, dialog: false,
+      loading: false, dialog: false, myTimes: [],
       form: {
         id: '',
         productId: '',
@@ -121,7 +132,8 @@ export default {
         num: '',
         isShow: '',
         startTimeDate: '',
-        endTimeDate: ''
+        endTimeDate: '',
+        timeId: null
       },
       rules: {
       }
@@ -138,6 +150,13 @@ export default {
         this.form.images = val.join(',')
       }
     }
+  },
+  mounted() {
+    console.log('9999')
+    initData('api/yxSystemGroupData',{ groupName: 'yshop_seckill_time' }).then(res => {
+      //console.log(res.content)
+      this.myTimes = res.content
+    })
   },
   methods: {
     cancel() {

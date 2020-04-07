@@ -32,7 +32,7 @@ export default {
       loading: false, dialog: false,
       form: {
         id: '',
-        groupName: 'routine_seckill_time',
+        groupName: 'yshop_seckill_time',
         time: 5,
         continued: 2
       },
@@ -85,7 +85,7 @@ export default {
       this.$refs['form'].resetFields()
       this.form = {
         id: '',
-        groupName: 'routine_seckill_time',
+        groupName: 'yshop_seckill_time',
         time: 5,
         continued: 2
       }

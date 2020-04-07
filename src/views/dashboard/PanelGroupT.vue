@@ -86,10 +86,14 @@ export default {
     font-size: 12px;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
     color: #666;
     background: #fff;
     box-shadow: 4px 4px 40px rgba(0, 0, 0, .05);
     border-color: rgba(0, 0, 0, .05);
+
+
+
     .icon-people {
       color: #40c9c6;
     }

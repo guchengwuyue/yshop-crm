@@ -30,7 +30,7 @@
             <span style="font-weight: bolder">github：</span><a target="_blank" href="https://github.com/guchengwuyue/yshopmall">访问github</a>
           </div>
           <div class="text item">
-            <span style="font-weight: bolder">公众号演示：</span><img width="100" height="100" src="https://image.dayouqiantu.cn/qrcode_for_gh_95df5a2881cc_258.jpg">
+            <span style="font-weight: bolder">公众号演示：</span><img width="100" height="100" src="https://image.dayouqiantu.cn/5e79f9ff4c694.jpg">
           </div>
           <div class="text item">
             <span style="font-weight: bolder">小程序演示：</span>关注上面公众号之后，选择yshop小程序体验即可
@@ -40,7 +40,7 @@
             <span style="font-weight: bolder">H5测试号</span>：hupeng/123456,也可以自行注册
           </div>
           <div class="text item">
-            <span style="font-weight: bolder;color: red">如果想体验手机端商户管理与订单核销功能，记得去后台会员管理，搜索找到自己，
+            <span style="font-weight: bolder;color: red">如果想体验手机端商户管理功能，记得去后台会员管理，搜索找到自己，
             然后编辑设置商户管理员开启即可，然后刷新个人中心即可体验</span>
           </div>
         </el-card>
@@ -62,20 +62,31 @@
           </div>
           <div class="text item">
             1、VIP为终身制包括JAVA端+H5公众号端，后期免费升级迭代及其技术支持。！<br>
-            2、价格：vip会员价298元(JAVA+H5+公众号版)，后续的系统升级vip价格会有相应的调整的，所以早上车更优惠哦！<br>
+            2、价格：vip会员价299元(JAVA+H5+公众号版)，后续的系统升级vip价格会有相应的调整的，所以早上车更优惠哦！<br>
             3、VIP购买淘宝地址：https://item.taobao.com/item.htm?id=607532386325<br>
             4、加入vip群：931426444,请输入你的淘宝订单编号，即可入群<br>
             5、群里面获取私服git<br>
             6、如果需要小程序需要单独购买看下面<br>
+            7、此套餐必须购买才能进VIP会员群<br>
           </div>
           <div class="text item">
-            <span style="font-weight: bolder">VIP版如果需要小程序需要另外单独购买：</span>
+            <span style="font-weight: bolder">VIP版如果需要小程序端需要另外单独购买：</span>
           </div>
           <div class="text item">
             1、小程序是mpvue2.0框架开发<br>
             2、价格：100元，只是单独的小程序！购买小程序请务必要购买上面VIP套餐<br>
             3、购买淘宝地址：https://item.taobao.com/item.htm?id=612007949053<br>
             4、群里面获取私服git<br>
+            5、可选<br>
+          </div>
+          <div class="text item">
+            <span style="font-weight: bolder">VIP版如果需要uniapp端另外单独购买：</span>
+          </div>
+          <div class="text item">
+            1、uniapp目前已经基本开发完成，预计于2.1版本一块发布<br>
+            2、uniapp目前支持打包微信小程序与APP(包括安卓Android与苹果IOS)<br>
+            3、uniapp目前只针对会员预售而且预售阶段是有优惠的哦<br>
+            4、可选<br>
           </div>
         </el-card>
       </div>
@@ -85,6 +96,99 @@
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span style="font-weight: bolder">更新日志</span>
+          </div>
+          <div class="text item">
+            <span style="font-weight: bolder">（预计4月初发布）yshop2.1版本(已上演示版的公众号/H5版本) 更新如下：</span>
+          </div>
+          <div class="text item">
+            1、单门店升级为多门店）
+          </div>
+          <div class="text item">
+            2、充值新增充值方案
+          </div>
+          <div class="text item">
+            3、打通小程序与公众号账号
+          </div>
+          <div class="text item">
+            4、新增微信app支付
+          </div>
+          <div class="text item">
+            5、会员等级升级新增手动解锁
+          </div>
+          <div class="text item">
+            6、app分销海报与商品详情海报新增了邀请码
+          </div>
+          <div class="text item">
+            7、app注册新增了邀请码形成分销关系）
+          </div>
+          <div class="text item">
+            8、后台素材按照时间排序#I1C6MK
+          </div>
+          <div class="text item">
+            9、商品分类新增判断自己不能选择自己作为父级#I1C5AP
+          </div>
+          <div class="text item">
+            10、修复订单详情昵称不显示问题#I1C055
+          </div>
+          <div class="text item">
+            11、修复导入微信地址必须要刷新的问题#I1CCEJ
+          </div>
+          <div class="text item">
+            12、修复当设置最大抵扣积为0的导致积分不能抵扣的问题
+          </div>
+          <div class="text item">
+            13、优化订单详情腾讯key的提示
+          </div>
+          <div class="text item">
+            14、优化订单列表新增门店标识
+          </div>
+          <div class="text item">
+            <span style="font-weight: bolder">（2020-03-15）2.0.X修复优化版本 发布更新如下：</span>
+          </div>
+          <div class="text item">
+            1、修复后台上传图片点击图片预览关闭按钮不显示的问题#I1B8RB
+          </div>
+          <div class="text item">
+            2、后台新增物流快递查询
+          </div>
+          <div class="text item">
+            3、修复后台不能一次删除多个商品分类且优化删除分类#I1BASM
+          </div>
+          <div class="text item">
+            4、修复商品管理/管理商品/待上架产品删除问题#I1B9O7
+          </div>
+          <div class="text item">
+            5、微信支付新增小程序渠道,修复小程序与其他支付appid冲突问题，后台微信支付配置移除appid选项
+          </div>
+          <div class="text item">
+            6、后台微信菜单与自动回复显示字体调整
+          </div>
+          <div class="text item">
+            7、后台订单列表修改为状态栏展示
+          </div>
+          <div class="text item">
+            8、微信授权与小程序授权优化及其确认订单优化
+          </div>
+          <div class="text item">
+            9、新增公众号获取微信地址权限
+          </div>
+          <div class="text item">
+            10、修复打开图片素材库的标红警告#I1BLJM
+          </div>
+          <div class="text item">
+            11、修复后台订单详情时间显示不对的问题#I1BLV6
+          </div>
+          <div class="text item">
+            12、修复提交订单页面选取优惠时显示优惠券有效期错乱#I1BHA1
+          </div>
+          <div class="text item">
+            13、修复PC端图片素材“删除分组标红警告 #I1BNII
+          </div>
+          <div class="text item">
+            14、小程序增加下拉刷新功能#I1AHAX
+          </div>
+          <div class="text item">
+            15、修复小程序首页--促销单品--更多 报错#I1AA47
           </div>
           <div class="text item">
             <span style="font-weight: bolder">（2020-03-07）yshop2.0版本 发布更新如下：</span>
@@ -163,45 +267,6 @@
           </div>
           <div class="text item">
             25、修复公众号商品直接微信分享标题不显示的问题#I1AX0R
-          </div>
-          <div class="text item">
-            <span style="font-weight: bolder">（2020-02-24）yshop修复优化版本 发布更新如下：</span>
-          </div>
-          <div class="text item">
-            1.修复小程序积分支付功能#I1A03I
-          </div>
-          <div class="text item">
-            2.修复小程序砍价功能上面时间没有进行倒计时#I1A037
-          </div>
-          <div class="text item">
-            3.优化小程序底层导航栏适配ios#I1A1QX
-          </div>
-          <div class="text item">
-            4.修复小程序返回的问题#I1A036
-          </div>
-          <div class="text item">
-            5.修复小程序地址管理#I1A03U
-          </div>
-          <div class="text item">
-            6.调整小程序首页样式修改与H5保持同步
-          </div>
-          <div class="text item">
-            7.H5首页数据加载顺序调整
-          </div>
-          <div class="text item">
-            <span style="font-weight: bolder">（2020-02-20）yshop1.9.10版本 发布更新如下：</span>
-          </div>
-          <div class="text item">
-            1.小程序新增了商品详情海报功能
-          </div>
-          <div class="text item">
-            2.小程序新增了手机号绑定功能
-          </div>
-          <div class="text item">
-            3.修复小程序选择规格的问题#I19PD7
-          </div>
-          <div class="text item">
-            4.修改移动端二维码海报生成拆分为H5端与小程序端
           </div>
         </el-card>
       </div>

@@ -3,6 +3,13 @@
     <!--工具栏-->
     <div class="head-container">
       <!-- 新增 -->
+      <el-button
+        type="danger"
+        class="filter-item"
+        size="mini"
+        icon="el-icon-refresh"
+        @click="toQuery"
+      >刷新</el-button>
 
     </div>
     <!--表单组件-->
@@ -10,8 +17,8 @@
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
       <el-table-column prop="id" label="ID" />
-      <el-table-column prop="username" label="用户" />
-      <el-table-column prop="productName" label="商品信息" />
+      <el-table-column prop="user.nickname" label="用户" />
+      <el-table-column prop="storeProduct.storeName" label="商品信息" />
       <el-table-column prop="productScore" label="商品分数" />
       <el-table-column prop="serviceScore" label="服务分数" />
       <el-table-column prop="comment" label="评论内容" />

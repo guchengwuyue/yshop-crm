@@ -1,8 +1,9 @@
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="150px">
-      <el-form-item label="AppID">
-        <el-input v-model="form.wxpay_appId" style="width: 370px;" />
+      <el-form-item label="微信APP支付AppID">
+        <el-input v-model="form.wx_native_app_appId" style="width: 370px;" />
+        <p style="color: red">微信开放平台审核通过的应用APPID（请登录open.weixin.qq.com查看，注意与公众号的APPID不同）</p>
       </el-form-item>
       <el-form-item label="商户id">
         <el-input v-model="form.wxpay_mchId" style="width: 370px;" type="password" />
@@ -37,7 +38,7 @@ export default {
     return {
       delLoading: false,
       form: {
-        wxpay_appId: '',
+        wx_native_app_appId: '',
         wxpay_mchId: '',
         wxpay_mchKey: '',
         wxpay_keyPath: ''

@@ -21,7 +21,8 @@
       <el-table-column prop="id" label="ID" />
       <el-table-column prop="map.name" label="标题" />
       <el-table-column prop="map.url" label="链接url" />
-      <el-table-column prop="map.wxapp_url" label="小程序跳转page" />
+      <el-table-column prop="map.wxapp_url" label="mpvue小程序路由" width="140" />
+      <el-table-column prop="map.uniapp_url" label="uniapp路由" />
       <el-table-column ref="table" label="图片">
         <template slot-scope="scope">
           <a :href="scope.row.map.pic" style="color: #42b983" target="_blank"><img :src="scope.row.map.pic" alt="点击打开" class="el-avatar"></a>
@@ -90,7 +91,7 @@ export default {
     beforeInit() {
       this.url = 'api/yxSystemGroupData'
       const sort = 'id,desc'
-      this.params = { page: this.page, size: this.size, sort: sort, groupName: 'routine_home_banner' }
+      this.params = { page: this.page, size: this.size, sort: sort, groupName: 'yshop_home_banner' }
       return true
     },
     subDelete(id) {
@@ -124,6 +125,7 @@ export default {
         name: data.map.name,
         url: data.map.url,
         wxapp_url: data.map.wxapp_url,
+        uniapp_url: data.map.uniapp_url,
         pic: data.map.pic,
         imageArr: data.map.pic ? data.map.pic.split(',') : [],
         sort: data.sort,

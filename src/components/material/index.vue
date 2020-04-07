@@ -53,7 +53,7 @@
           <el-tabs v-model="materialgroupObjId" v-loading="materialgroupLoading" tab-position="left" @tab-click="tabClick">
             <el-tab-pane
               v-for="(item,index) in materialgroupList"
-              :key="index"
+              :key="item.id"
               :name="item.id"
             >
               <span slot="label"> {{ item.name }}</span>
@@ -103,6 +103,7 @@
                         :src="item.url"
                         fit="contain"
                         :preview-src-list="[item.url]"
+                        :z-index="999"
                       />
                       <div>
                         <el-checkbox class="material-name" :label="item.url">
@@ -337,7 +338,8 @@ export default {
         page: page.currentPage - 1,
         size: page.pageSize,
         descs: this.page.descs,
-        ascs: this.page.ascs
+        ascs: this.page.ascs,
+        sort: 'createTime,desc'
       }, {
         groupId: this.groupId
       })).then(response => {
@@ -458,6 +460,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  /deep/ .el-icon-circle-close{
+    color: red;
+  }
   .material-name{
     padding: 8px 0px;
   }

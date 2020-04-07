@@ -1,5 +1,14 @@
 <template>
   <div class="app-container">
+    <div class="head-container">
+      <el-button
+        type="danger"
+        class="filter-item"
+        size="mini"
+        icon="el-icon-refresh"
+        @click="toQuery"
+      >刷新</el-button>
+    </div>
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
       <el-table-column prop="nickname" label="用户名" />

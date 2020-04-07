@@ -1,7 +1,15 @@
 <template>
   <div class="app-container">
     <!--工具栏-->
-    <div class="head-container" />
+    <div class="head-container" >
+      <el-button
+        type="danger"
+        class="filter-item"
+        size="mini"
+        icon="el-icon-refresh"
+        @click="toQuery"
+      >刷新</el-button>
+    </div>
     <!--表单组件-->
     <eForm ref="form" :is-add="isAdd" />
     <!--表格渲染-->

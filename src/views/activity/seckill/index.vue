@@ -9,6 +9,13 @@
       </el-select>
       <el-button class="filter-item" size="mini" type="success" icon="el-icon-search" @click="toQuery">搜索</el-button>
       <!-- 新增 -->
+      <el-button
+        type="danger"
+        class="filter-item"
+        size="mini"
+        icon="el-icon-refresh"
+        @click="toQuery"
+      >刷新</el-button>
     </div>
     <!--表单组件-->
     <eForm ref="form" :is-add="isAdd" />
@@ -156,7 +163,8 @@ export default {
         isHot: data.isHot,
         isDel: data.isDel,
         num: data.num,
-        isShow: data.isShow
+        isShow: data.isShow,
+        timeId: data.timeId
       }
       _this.dialog = true
     }

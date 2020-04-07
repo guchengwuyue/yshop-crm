@@ -25,17 +25,35 @@
           <div class="text item">订单状态: {{ form.statusName }}</div>
           <div class="text item">商品总价: {{ form.totalPrice }}</div>
           <div class="text item">优惠券金额: {{ form.couponPrice }}</div>
-          <div class="text item">创建时间: {{ formatTime(form.addTime) }}</div>
-          <div class="text item">支付时间: {{ formatTime(form.payTime) }}</div>
+          <div class="text item">创建时间: {{ parseTime(form.addTime) }}</div>
+          <div class="text item">支付时间: {{ parseTime(form.payTime) }}</div>
         </el-col>
       </el-row>
     </el-card>
-    <el-card>
+    <el-card v-if="form.storeId == 0">
       <div slot="header">
         <span>物流信息</span>
       </div>
       <div class="text item">快递公司:{{ form.deliveryName }}</div>
       <div class="text item">快递单号:{{ form.deliveryId }}</div>
+
+      <div><el-button :loading="loading" type="primary" @click="express">查看物流</el-button></div>
+      <div style="margin-top: 20px">
+      <el-timeline v-if="form.deliveryId && expressInfo.length > 0">
+        <el-timeline-item
+          v-for="(obj, index) in expressInfo"
+          :key="index"
+          :timestamp="obj.acceptTime"
+          >
+          {{obj.acceptStation}}
+        </el-timeline-item>
+      </el-timeline>
+      <el-timeline :reverse="false" v-else>
+        <el-timeline-item>
+          暂无物流信息
+        </el-timeline-item>
+      </el-timeline>
+      </div>
     </el-card>
     <el-card>
       <div slot="header">
@@ -47,8 +65,8 @@
 </template>
 
 <script>
-import { add, edit } from '@/api/yxStoreOrder'
-import { formatTime } from '@/utils/index'
+import { add, edit, express } from '@/api/yxStoreOrder'
+import { parseTime } from '@/utils/index'
 export default {
   props: {
     isAdd: {
@@ -58,7 +76,7 @@ export default {
   },
   data() {
     return {
-      loading: false, dialog: false,
+      loading: false, dialog: false, expressInfo: [],
       form: {
         id: '',
         orderId: '',
@@ -89,6 +107,7 @@ export default {
         refundReason: '',
         refundPrice: '',
         deliveryName: '',
+        deliverySn: '',
         deliveryType: '',
         deliveryId: '',
         gainIntegral: '',
@@ -120,9 +139,27 @@ export default {
     }
   },
   methods: {
-    formatTime,
+    parseTime,
     cancel() {
-      this.resetForm()
+      this.dialog = false
+    },
+    express() {
+      let params ={
+        "orderCode": this.form.id,
+        "shipperCode": this.form.deliverySn,
+        "logisticCode": this.form.deliveryId
+      }
+
+      express(params).then(res=>{
+
+        console.log(res)
+        this.expressInfo = res.Traces
+
+      }).catch(err => {
+        this.loading = false
+        console.log(err.response.data.message)
+      })
+
     },
     doSubmit() {
       this.loading = true

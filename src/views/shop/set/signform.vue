@@ -39,7 +39,7 @@ export default {
       loading: false, dialog: false,
       form: {
         id: '',
-        groupName: 'sign_day_num',
+        groupName: 'yshop_sign_day_num',
         day: 1,
         sign_num: 0,
         sort: 0,
@@ -94,7 +94,7 @@ export default {
       this.$refs['form'].resetFields()
       this.form = {
         id: '',
-        groupName: 'sign_day_num',
+        groupName: 'yshop_sign_day_num',
         day: 1,
         sign_num: 0,
         sort: 0,

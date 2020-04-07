@@ -21,7 +21,8 @@
       <el-table-column prop="id" label="ID" />
       <el-table-column prop="map.info" label="滚动文字" />
       <el-table-column prop="map.url" label="链接url" />
-      <el-table-column prop="map.wxapp_url" label="小程序跳转page" />
+      <el-table-column prop="map.wxapp_url" label="mpvue小程序路由" width="140" />
+      <el-table-column prop="map.uniapp_url" label="uniapp路由" />
       <el-table-column prop="sort" label="排序" />
       <el-table-column label="状态" align="center">
         <template slot-scope="scope">
@@ -85,7 +86,7 @@ export default {
     beforeInit() {
       this.url = 'api/yxSystemGroupData'
       const sort = 'id,desc'
-      this.params = { page: this.page, size: this.size, sort: sort, groupName: 'routine_home_roll_news' }
+      this.params = { page: this.page, size: this.size, sort: sort, groupName: 'yshop_home_roll_news' }
       return true
     },
     subDelete(id) {
@@ -120,6 +121,7 @@ export default {
         info: data.map.info,
         url: data.map.url,
         wxapp_url: data.map.wxapp_url,
+        uniapp_url: data.map.uniapp_url,
         pic: data.map.pic,
         sort: data.sort,
         status: data.status

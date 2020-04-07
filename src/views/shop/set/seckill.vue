@@ -75,7 +75,7 @@ export default {
     beforeInit() {
       this.url = 'api/yxSystemGroupData'
       const sort = 'id,desc'
-      this.params = { page: this.page, size: this.size, sort: sort, groupName: 'routine_seckill_time' }
+      this.params = { page: this.page, size: this.size, sort: sort, groupName: 'yshop_seckill_time' }
       return true
     },
     subDelete(id) {
