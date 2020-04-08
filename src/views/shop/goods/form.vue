@@ -2,7 +2,7 @@
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="900px">
     <el-form ref="form" :model="form" :inline="true" :rules="rules" size="small" label-width="80px">
       <el-form-item style="margin-bottom: 0px;" label="商品分类">
-        <treeselect v-model="form.cateId" :options="cates" style="width: 370px;" placeholder="选择商品分类" />
+        <treeselect v-model="form.storeCategory.id" :options="cates" style="width: 370px;" placeholder="选择商品分类" />
       </el-form-item>
       <el-form-item label="商品名称">
         <el-input v-model="form.storeName" style="width: 500px;" />
@@ -119,6 +119,7 @@ export default {
         keyword: '',
         barCode: '',
         cateId: 1,
+        storeCategory: {id:null},
         price: 0,
         vipPrice: 0,
         otPrice: 0,
@@ -218,6 +219,7 @@ export default {
         keyword: '',
         barCode: '',
         cateId: 1,
+        storeCategory: {},
         price: 0,
         vipPrice: 0,
         otPrice: 0,
