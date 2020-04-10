@@ -103,7 +103,7 @@
 <script>
 import checkPermission from '@/utils/permission'
 import initData from '@/mixins/crud'
-import { del, add, get } from '@/api/yxCache'
+import { del, add, get } from '@/api/YxWechatMenu'
 import eForm from './form'
 import { Message } from 'element-ui'
 export default {
@@ -129,7 +129,7 @@ export default {
   methods: {
     checkPermission,
     beforeInit() {
-      this.url = 'api/yxCache'
+      this.url = 'api/YxWechatMenu'
       const sort = 'key,desc'
       this.params = { page: this.page, size: this.size, sort: sort }
       return true

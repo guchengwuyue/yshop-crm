@@ -103,7 +103,7 @@
                         :src="item.url"
                         fit="contain"
                         :preview-src-list="[item.url]"
-                        :z-index="999"
+                        :z-index=999
                       />
                       <div>
                         <el-checkbox class="material-name" :label="item.url">

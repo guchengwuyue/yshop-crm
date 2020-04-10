@@ -216,7 +216,7 @@ export default {
         storeInfo: data.storeInfo,
         keyword: data.keyword,
         barCode: data.barCode,
-        storeCategory: data.storeCategory,
+        storeCategory: data.storeCategory || {id:null},
         price: data.price,
         vipPrice: data.vipPrice,
         otPrice: data.otPrice,

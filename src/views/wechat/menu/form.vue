@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { add, edit } from '@/api/yxCache'
+import { add, edit } from '@/api/YxWechatMenu'
 export default {
   props: {
     isAdd: {

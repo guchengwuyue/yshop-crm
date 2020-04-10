@@ -5,7 +5,7 @@
       <!-- 新增 -->
       <div style="display: inline-block;margin: 0px 2px;">
         <el-button
-          v-permission="['admin','YXCACHE_ALL','YXCACHE_CREATE']"
+          v-permission="['admin','YxWechatMenu_ALL','YxWechatMenu_CREATE']"
           class="filter-item"
           size="mini"
           type="primary"
@@ -21,12 +21,12 @@
       <el-table-column prop="key" label="key" />
       <el-table-column prop="result" label="缓存数据" />
       <el-table-column prop="addTime" label="缓存时间" />
-      <el-table-column v-if="checkPermission(['admin','YXCACHE_ALL','YXCACHE_EDIT','YXCACHE_DELETE'])" label="操作" width="150px" align="center">
+      <el-table-column v-if="checkPermission(['admin','YxWechatMenu_ALL','YxWechatMenu_EDIT','YxWechatMenu_DELETE'])" label="操作" width="150px" align="center">
         <template slot-scope="scope">
-          <el-button v-permission="['admin','YXCACHE_ALL','YXCACHE_EDIT']" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)" />
+          <el-button v-permission="['admin','YxWechatMenu_ALL','YxWechatMenu_EDIT']" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)" />
           <el-popover
             :ref="scope.row.key"
-            v-permission="['admin','YXCACHE_ALL','YXCACHE_DELETE']"
+            v-permission="['admin','YxWechatMenu_ALL','YxWechatMenu_DELETE']"
             placement="top"
             width="180"
           >
@@ -55,7 +55,7 @@
 <script>
 import checkPermission from '@/utils/permission'
 import initData from '@/mixins/crud'
-import { del } from '@/api/yxCache'
+import { del } from '@/api/YxWechatMenu'
 import eForm from './form'
 export default {
   components: { eForm },
@@ -73,7 +73,7 @@ export default {
   methods: {
     checkPermission,
     beforeInit() {
-      this.url = 'api/yxCache'
+      this.url = 'api/YxWechatMenu'
       const sort = 'key,desc'
       this.params = { page: this.page, size: this.size, sort: sort }
       return true
