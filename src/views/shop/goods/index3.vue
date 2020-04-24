@@ -155,7 +155,7 @@ export default {
         storeInfo: data.storeInfo,
         keyword: data.keyword,
         barCode: data.barCode,
-        cateId: data.cateId,
+        storeCategory: data.storeCategory || {id:null},
         price: data.price,
         vipPrice: data.vipPrice,
         otPrice: data.otPrice,
