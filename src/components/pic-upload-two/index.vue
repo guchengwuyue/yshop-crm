@@ -2,7 +2,7 @@
   <div>
     <el-upload
       class="pic-uploader-component"
-      :action="qiNiuUploadApi"
+      :action="uploadApi"
       :headers="headers"
       :show-file-list="false"
       :on-success="handleUploadSuccess"
@@ -34,14 +34,14 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'qiNiuUploadApi'
+      'uploadApi'
     ])
   },
   methods: {
     // 图片上传
     handleUploadSuccess(response, file, fileList) {
       console.log(file)
-      this.$emit('input', file.response.data[0])
+      this.$emit('input', file.response.link)
     },
     // 限制图片上传大小
     beforeAvatarUpload(file) {

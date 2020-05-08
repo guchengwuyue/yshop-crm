@@ -79,8 +79,9 @@
                     :on-progress="handleProgress"
                     :before-upload="beforeUpload"
                     :on-success="handleSuccess"
+                    multiple
                   >
-                    <el-button size="small" type="primary">点击上传</el-button>
+                    <el-button size="small" type="primary">批量上传</el-button>
                   </el-upload>
                 </el-col>
               </el-row>
@@ -103,7 +104,7 @@
                         :src="item.url"
                         fit="contain"
                         :preview-src-list="[item.url]"
-                        :z-index=999
+                        :z-index="999"
                       />
                       <div>
                         <el-checkbox class="material-name" :label="item.url">
@@ -198,6 +199,7 @@ export default {
       materialgroupObj: {},
       materialgroupLoading: false,
       tableData: [],
+      resultNumber: 0,
       page: {
         total: 0, // 总页数
         currentPage: 1, // 当前页数
@@ -418,6 +420,7 @@ export default {
       })
     },
     handleProgress(event, file, fileList) {
+      console.log(event)
       // let uploadProgress = file.percentage.toFixed(0)
       // this.uploadProgress = uploadProgress
     },
@@ -429,16 +432,20 @@ export default {
         groupId: this.groupId != '-1' ? this.groupId : null,
         name: file.name,
         url: response.link
-      }).then(function() {
-        that.getPage(that.page)
+      }).then(() => {
+        this.resultNumber++
+        if (fileList.length === this.resultNumber) {
+          that.getPage(that.page)
+          this.resultNumber = 0
+        }
       })
     },
     beforeUpload(file) {
       const isPic =
-          file.type === 'image/jpeg' ||
-          file.type === 'image/png' ||
-          file.type === 'image/gif' ||
-          file.type === 'image/jpg'
+        file.type === 'image/jpeg' ||
+        file.type === 'image/png' ||
+        file.type === 'image/gif' ||
+        file.type === 'image/jpg'
       const isLt2M = file.size / 1024 / 1024 < 2
       if (!isPic) {
         this.$message.error('上传图片只能是 JPG、JPEG、PNG、GIF 格式!')

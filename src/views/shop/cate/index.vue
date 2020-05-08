@@ -24,6 +24,9 @@
             <el-radio :label="0">隐藏</el-radio>
           </el-radio-group>
         </el-form-item>
+        <el-form-item label="排序">
+          <el-input v-model="form.sort" style="width: 370px;" />
+        </el-form-item>
         <el-form-item style="margin-bottom: 0;" label="上级分类" prop="pid">
           <treeselect v-model="form.pid" :options="depts" style="width: 370px;" placeholder="选择上级分类" />
         </el-form-item>
@@ -34,7 +37,7 @@
       </div>
     </el-dialog>
     <!--表格渲染-->
-    <el-table ref="table" v-loading="crud.loading" :tree-props="{children: 'children', hasChildren: 'hasChildren'}" default-expand-all :data="crud.data" row-key="id" @select="crud.selectChange" @select-all="crud.selectAllChange" @selection-change="crud.selectionChangeHandler">
+    <el-table ref="table" v-loading="crud.loading" :tree-props="{children: 'children', hasChildren: 'hasChildren'}" :data="crud.data" row-key="id" @select="crud.selectChange" @select-all="crud.selectAllChange" @selection-change="crud.selectionChangeHandler">
       <el-table-column :selectable="checkboxT" type="selection" width="55" />
       <el-table-column v-if="columns.visible('cateName')" label="名称" prop="cateName" />
       <el-table-column v-if="columns.visible('isShow')" label="状态" align="center" prop="isShow">
@@ -45,7 +48,7 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column v-if="columns.visible('sort')" label="排序" prop="sort" />
+      <el-table-column v-if="columns.visible('sort')" label="排序" prop="sort" sortable/>
       <el-table-column v-permission="['admin','cate:edit','cate:del']" label="操作" width="130px" align="center" fixed="right">
         <template slot-scope="scope">
           <udOperation
@@ -72,8 +75,8 @@ import picUpload from '@/components/pic-upload'
 import MaterialList from '@/components/material'
 
 // crud交由presenter持有
-const defaultCrud = CRUD({ title: '分类', url: 'api/yxStoreCategory', crudMethod: { ...crudDept }})
-const defaultForm = { id: null, cateName: null, pid: 0, isShow: 1 }
+const defaultCrud = CRUD({ title: '分类', url: 'api/yxStoreCategory', sort: 'sort,desc', crudMethod: { ...crudDept }})
+const defaultForm = { id: null, cateName: null, pid: 0, isShow: 1 , sort:  1}
 export default {
   name: 'Dept',
   components: { Treeselect, crudOperation, rrOperation, udOperation, picUpload, MaterialList },
