@@ -2,7 +2,7 @@
 
 
 #### 项目简介
-yshop基于当前流行技术组合的前后端分离商城系统： SpringBoot2+Jpa+MybatisPlus+SpringSecurity+jwt+redis+Vue的前后端分离的商城系统， 包含商城、拼团、砍价、商户管理、 秒杀、优惠券、积分、分销、会员、充值、多门店等功能，更适合企业或个人二次开发；；
+yshop基于当前流行技术组合的前后端分离商城系统： SpringBoot2+MybatisPlus+SpringSecurity+jwt+redis+Vue的前后端分离的商城系统， 包含商城、拼团、砍价、商户管理、 秒杀、优惠券、积分、分销、会员、充值、多门店等功能，更适合企业或个人二次开发；；
 
 
 #### 体验地址（里面有演示地址与文档）
@@ -43,6 +43,7 @@ yshop基于当前流行技术组合的前后端分离商城系统： SpringBoot2
 - yshop-tools     第三方工具模块
 - yshop-generator 代码生成模块
 - yshop-shop      商城模块
+- yshop-mproot    mybatisPlus
 
 #### 系统预览
 <table>
@@ -75,7 +76,6 @@ yshop基于当前流行技术组合的前后端分离商城系统： SpringBoot2
     * 1.1 SpringBoot2
     * 1.2 mybatis、MyBatis-Plus
     * 1.3 SpringSecurity
-    * 1.4 JPA
     * 1.5 Druid
     * 1.6 Slf4j
     * 1.7 Fastjson
@@ -94,7 +94,6 @@ yshop基于当前流行技术组合的前后端分离商城系统： SpringBoot2
 * 前端使用技术
     * 2.1 Vue 全家桶
     * 2.2 Element
-    * 2.3 mpvue
     * 2.3 uniapp
 
 
