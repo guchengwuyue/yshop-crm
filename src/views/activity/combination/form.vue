@@ -35,33 +35,29 @@
         <MaterialList v-model="form.sliderImageArr" style="width: 500px" type="image" :num="4" :width="150" :height="150" />
       </el-form-item>
       <el-form-item label="拼团时效(单位小时)">
-        <el-input v-model="form.effectiveTime" style="width: 500px;" />
+        <el-input-number v-model="form.effectiveTime" style="width: 500px;" />
       </el-form-item>
       <el-form-item label="拼团价">
-        <el-input v-model="form.price" />
+        <el-input-number v-model="form.price" />
       </el-form-item>
       <el-form-item label="拼团人数">
-        <el-input v-model="form.people" />
+        <el-input-number v-model="form.people" />
       </el-form-item>
       <el-form-item label="库存">
-        <el-input v-model="form.stock" />
+        <el-input-number v-model="form.stock" />
       </el-form-item>
       <el-form-item label="销量">
-        <el-input v-model="form.sales" />
+        <el-input-number v-model="form.sales" />
       </el-form-item>
       <el-form-item label="排序">
-        <el-input v-model="form.sort" />
+        <el-input-number v-model="form.sort" />
       </el-form-item>
       <el-form-item label="邮费">
-        <el-input v-model="form.postage" />
+        <el-input-number v-model="form.postage" />
       </el-form-item>
       <el-form-item label="是否包邮">
         <el-radio v-model="form.isPostage" :label="1">是</el-radio>
         <el-radio v-model="form.isPostage" :label="0" style="width: 110px;">否</el-radio>
-      </el-form-item>
-      <el-form-item label="热门推荐">
-        <el-radio v-model="form.isHost" :label="1">是</el-radio>
-        <el-radio v-model="form.isHost" :label="0" style="width: 200px;">否</el-radio>
       </el-form-item>
       <el-form-item label="活动状态">
         <el-radio v-model="form.isShow" :label="1">开启</el-radio>

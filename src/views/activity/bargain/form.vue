@@ -59,22 +59,15 @@
       <el-form-item label="用户每次砍价的次数">
         <el-input-number v-model="form.bargainNum" />
       </el-form-item>
-      <el-form-item label="反多少积分">
-        <el-input-number v-model="form.giveIntegral" />
-      </el-form-item>
       <el-form-item label="砍价状态">
-        <el-radio v-model="form.status" :label="1">到砍价时间自动开启</el-radio>
-        <el-radio v-model="form.status" :label="0" style="width: 110px;">到砍价时间不自动开启</el-radio>
+        <el-radio v-model="form.status" :label="1">开启</el-radio>
+        <el-radio v-model="form.status" :label="0" style="width: 110px;">关闭</el-radio>
       </el-form-item>
       <el-form-item label="成本价">
         <el-input-number v-model="form.cost" />
       </el-form-item>
       <el-form-item label="排序">
         <el-input-number v-model="form.sort" />
-      </el-form-item>
-      <el-form-item label="是否推荐">
-        <el-radio v-model="form.isHot" :label="1">是</el-radio>
-        <el-radio v-model="form.isHot" :label="0" style="width: 110px;">否</el-radio>
       </el-form-item>
       <el-form-item label="是否包邮">
         <el-radio v-model="form.isPostage" :label="1">是</el-radio>

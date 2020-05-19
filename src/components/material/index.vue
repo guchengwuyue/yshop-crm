@@ -341,7 +341,7 @@ export default {
         size: page.pageSize,
         descs: this.page.descs,
         ascs: this.page.ascs,
-        sort: 'createTime,desc'
+        sort: 'create_time,desc'
       }, {
         groupId: this.groupId
       })).then(response => {
