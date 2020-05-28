@@ -30,7 +30,8 @@ yshop基于当前流行技术组合的前后端分离商城系统： SpringBoot2
 * 五：配置模块：各种配置
 * 六：用户模块：登陆、注册、会员卡、充值等
 * 七：其他等
-       
+
+    
 
 
 #### 项目结构
@@ -67,7 +68,7 @@ yshop基于当前流行技术组合的前后端分离商城系统： SpringBoot2
 <table>
     <tr>
         <td><img src="https://images.gitee.com/uploads/images/2020/0407/180521_10ece580_477893.jpeg"/></td>
-        <td><img src="https://images.gitee.com/uploads/images/2020/0407/180547_09fb7ab2_477893.jpeg"/></td>
+        <td><img src="https://images.gitee.com/uploads/images/2020/0528/104130_3808f305_477893.jpeg"/></td>
     </tr>
 </table>
 
@@ -94,6 +95,7 @@ yshop基于当前流行技术组合的前后端分离商城系统： SpringBoot2
 * 前端使用技术
     * 2.1 Vue 全家桶
     * 2.2 Element
+    * 2.3 mpvue
     * 2.3 uniapp
 
 
