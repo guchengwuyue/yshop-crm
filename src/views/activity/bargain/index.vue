@@ -29,6 +29,7 @@
       </el-table-column>
       <el-table-column prop="minPrice" label="最低价" />
       <el-table-column prop="stock" label="库存" />
+      <el-table-column prop="statusStr" label="砍价状态" />
       <el-table-column prop="startTime" label="开始时间">
         <template slot-scope="scope">
           <span>{{ formatTimeTwo(scope.row.startTime) }}</span>

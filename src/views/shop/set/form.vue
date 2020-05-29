@@ -7,9 +7,6 @@
       <el-form-item label="H5跳转url">
         <el-input v-model="form.url" style="width: 300px;" />
       </el-form-item>
-      <el-form-item label="mpvue小程序路由">
-        <el-input v-model="form.wxapp_url" style="width: 300px;" />
-      </el-form-item>
       <el-form-item label="uniapp路由">
         <el-input v-model="form.uniapp_url" style="width: 300px;" />
       </el-form-item>

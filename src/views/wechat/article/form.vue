@@ -68,11 +68,6 @@ export default {
     }
   },
   watch: {
-    'form.imageArr': function(val) {
-      if (val) {
-        this.form.imageInput = val.join(',')
-      }
-    }
   },
   methods: {
     cancel() {
@@ -80,6 +75,12 @@ export default {
     },
     doSubmit() {
       this.loading = true
+      if(this.form.imageArr.length > 0){
+        this.form.imageInput = this.form.imageArr.join(',')
+      }else{
+        this.form.imageInput = ''
+      }
+
       if (this.isAdd) {
         this.doAdd()
       } else this.doEdit()

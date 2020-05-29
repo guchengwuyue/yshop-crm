@@ -21,7 +21,6 @@
       <el-table-column prop="id" label="ID" />
       <el-table-column prop="map.name" label="分类名称" />
       <el-table-column prop="map.url" label="链接url" />
-      <el-table-column prop="map.wxapp_url" label="mpvue小程序路由" width="140" />
       <el-table-column prop="map.uniapp_url" label="uniapp路由" />
       <el-table-column ref="table" label="分类图标">
         <template slot-scope="scope">

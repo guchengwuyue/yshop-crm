@@ -21,7 +21,6 @@
       <el-table-column prop="id" label="ID" />
       <el-table-column prop="map.info" label="滚动文字" />
       <el-table-column prop="map.url" label="链接url" />
-      <el-table-column prop="map.wxapp_url" label="mpvue小程序路由" width="140" />
       <el-table-column prop="map.uniapp_url" label="uniapp路由" />
       <el-table-column prop="sort" label="排序" />
       <el-table-column label="状态" align="center">
