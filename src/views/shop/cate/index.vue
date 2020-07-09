@@ -49,7 +49,7 @@
         </template>
       </el-table-column>
       <el-table-column v-if="columns.visible('sort')" label="排序" prop="sort" sortable/>
-      <el-table-column v-permission="['admin','cate:edit','cate:del']" label="操作" width="130px" align="center" fixed="right">
+      <el-table-column v-permission="['admin','YXSTORECATEGORY_EDIT','YXSTORECATEGORY_DELETE']" label="操作" width="130px" align="center" fixed="right">
         <template slot-scope="scope">
           <udOperation
             :data="scope.row"
