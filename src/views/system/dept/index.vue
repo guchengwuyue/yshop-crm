@@ -113,22 +113,83 @@ export default {
     }
   },
   methods: {
+    getDeptDatas(tree, treeNode, resolve) {
+      const params = { pid: tree.id }
+      setTimeout(() => {
+        crudDept.getDepts(params).then(res => {
+          resolve(res.content)
+        })
+      }, 100)
+    },
     // 新增与编辑前做的操作
     [CRUD.HOOK.afterToCU](crud, form) {
+      if (form.pid !== null) {
+        form.isTop = '0'
+      } else if (form.id !== null) {
+        form.isTop = '1'
+      }
       form.enabled = `${form.enabled}`
-      // 获取所有部门
-      crudDept.getDepts({ enabled: true }).then(res => {
-        this.depts = res.content
+      if (form.id != null) {
+        this.getSupDepts(form.id)
+      } else {
+        this.getDepts()
+      }
+    },
+    getSupDepts(id) {
+      var data={"pid":id};
+      crudDept.getDeptSuperior(data).then(res => {
+        const date = res.content
+        this.buildDepts(date)
+        this.depts = date
       })
+    },
+    buildDepts(depts) {
+      depts.forEach(data => {
+        if (data.children) {
+          this.buildDepts(data.children)
+        }
+        if (data.hasChildren && !data.children) {
+          data.children = null
+        }
+      })
+    },
+    getDepts() {
+      crudDept.getDepts({ enabled: true }).then(res => {
+        this.depts = res.content.map(function(obj) {
+          if (obj.hasChildren) {
+            obj.children = null
+          }
+          return obj
+        })
+      })
+    },
+    // 获取弹窗内部门数据
+    loadDepts({ action, parentNode, callback }) {
+      if (action === LOAD_CHILDREN_OPTIONS) {
+        crudDept.getDepts({ enabled: true, pid: parentNode.id }).then(res => {
+          parentNode.children = res.content.map(function(obj) {
+            if (obj.hasChildren) {
+              obj.children = null
+            }
+            return obj
+          })
+          setTimeout(() => {
+            callback()
+          }, 100)
+        })
+      }
     },
     // 提交前的验证
     [CRUD.HOOK.afterValidateCU]() {
-      if (!this.form.pid) {
+      if (this.form.pid !== null && this.form.pid === this.form.id) {
         this.$message({
           message: '上级部门不能为空',
           type: 'warning'
         })
         return false
+      }
+      if (this.form.isTop === '1') {
+        this.form.pid = null
       }
       return true
     },
@@ -156,5 +217,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style rel="stylesheet/scss" lang="scss" scoped>
+::v-deep .vue-treeselect__control,::v-deep .vue-treeselect__placeholder,::v-deep .vue-treeselect__single-value {
+  height: 30px;
+  line-height: 30px;
+}
+</style>
+<style rel="stylesheet/scss" lang="scss" scoped>
+::v-deep .el-input-number .el-input__inner {
+  text-align: left;
+}
 </style>

@@ -41,9 +41,8 @@ export default {
     }
   },
   mounted() {
-    // console.log(222)
-    console.log(this.value)
     this.editor = new E(this.$refs.editor)
+    this.editor.customConfig = this.editor.customConfig ? this.editor.customConfig : this.editor.config
     this.editor.customConfig.uploadImgShowBase64 = true // 使用 base64 保存图片
     // 不可修改
     this.editor.customConfig.uploadImgHeaders = this.headers
@@ -68,7 +67,7 @@ export default {
 </script>
 
 <style scoped>
-  .editor-content{
-    padding-left: 5px;
-  }
+.editor-content{
+  padding-left: 5px;
+}
 </style>

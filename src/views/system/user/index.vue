@@ -255,6 +255,9 @@ export default {
           { required: true, message: '请输入邮箱地址', trigger: 'blur' },
           { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' }
         ],
+        roles: [
+          { required: true, message: '请选择角色', trigger: 'blur' },
+        ],
         phone: [
           { required: true, trigger: 'blur', validator: validPhone }
         ]

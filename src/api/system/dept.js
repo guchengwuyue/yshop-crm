@@ -32,4 +32,12 @@ export function edit(data) {
   })
 }
 
-export default { add, edit, del, getDepts }
+export function getDeptSuperior(data) {
+  return request({
+    url: 'api/dept',
+    method: 'get',
+    data
+  })
+}
+
+export default { add, edit, del, getDepts, getDeptSuperior }

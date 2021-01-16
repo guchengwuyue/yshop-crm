@@ -64,7 +64,9 @@ export default {
   methods: {
     init() {
       get().then(res => {
-        this.form = res
+        if(res){
+          this.form = res
+        }
       })
     },
     doSubmit() {
