@@ -13,7 +13,7 @@
       <el-form-item label="秒杀开始时间">
         <template>
           <el-date-picker
-            v-model="form.startTimeDate"
+            v-model="form.startTime"
             type="date"
             placeholder="选择日期时间"
           />
@@ -22,7 +22,7 @@
       <el-form-item label="秒杀结束时间">
         <template>
           <el-date-picker
-            v-model="form.endTimeDate"
+            v-model="form.stopTime"
             type="date"
             placeholder="选择日期时间"
           />
@@ -64,13 +64,6 @@
       </el-form-item>
       <el-form-item label="限购">
         <el-input-number v-model="form.num" />
-      </el-form-item>
-      <el-form-item label="邮费">
-        <el-input-number v-model="form.postage" />
-      </el-form-item>
-      <el-form-item label="是否包邮">
-        <el-radio v-model="form.isPostage" :label="1">是</el-radio>
-        <el-radio v-model="form.isPostage" :label="0" style="width: 110px;">否</el-radio>
       </el-form-item>
       <el-form-item label="活动状态">
         <el-radio v-model="form.status" :label="1">开启</el-radio>
@@ -120,19 +113,12 @@ export default {
         stock: '',
         sales: '',
         unitName: '',
-        postage: '',
         description: '',
         startTime: '',
         stopTime: '',
-        addTime: '',
         status: 1,
-        isPostage: 1,
-        isHot: '',
-        isDel: 0,
         num: '',
         isShow: '',
-        startTimeDate: '',
-        endTimeDate: '',
         timeId: null
       },
       rules: {
@@ -218,15 +204,10 @@ export default {
         stock: '',
         sales: '',
         unitName: '',
-        postage: '',
         description: '',
         startTime: '',
         stopTime: '',
-        addTime: '',
         status: '',
-        isPostage: '',
-        isHot: '',
-        isDel: '',
         num: '',
         isShow: ''
       }

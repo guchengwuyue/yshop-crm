@@ -32,12 +32,12 @@
       <el-table-column prop="statusStr" label="砍价状态" />
       <el-table-column prop="startTime" label="开始时间">
         <template slot-scope="scope">
-          <span>{{ formatTimeTwo(scope.row.startTime) }}</span>
+          <span>{{ parseTime(scope.row.startTime) }}</span>
         </template>
       </el-table-column>
       <el-table-column prop="stopTime" label="结束时间">
         <template slot-scope="scope">
-          <span>{{ formatTimeTwo(scope.row.stopTime) }}</span>
+          <span>{{ parseTime(scope.row.stopTime) }}</span>
         </template>
       </el-table-column>
       <el-table-column prop="sales" label="销量" />

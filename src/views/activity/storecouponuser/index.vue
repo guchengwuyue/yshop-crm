@@ -27,12 +27,12 @@
       <el-table-column prop="useMinPrice" label="优惠券最低消费" />
       <el-table-column label="优惠券开始时间">
         <template slot-scope="scope">
-          {{ formatTimeTwo(scope.row.addTime) }}
+          {{ parseTime(scope.row.createime) }}
         </template>
       </el-table-column>
       <el-table-column label="优惠券结束时间">
         <template slot-scope="scope">
-          {{ formatTimeTwo(scope.row.endTime) }}
+          {{ parseTime(scope.row.endTime) }}
         </template>
       </el-table-column>
       <el-table-column label="获取方式">

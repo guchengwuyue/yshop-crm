@@ -19,8 +19,8 @@
       <el-table-column prop="cname" label="优惠券名称" />
       <el-table-column label="领取日期">
         <template slot-scope="scope">
-          <p>{{ formatTimeTwo(scope.row.startTime) }}</p>
-          <p>{{ formatTimeTwo(scope.row.endTime) }}</p>
+          <p>{{ parseTime(scope.row.startTime) }}</p>
+          <p>{{ parseTime(scope.row.endTime) }}</p>
         </template>
       </el-table-column>
       <el-table-column label="发布数量">

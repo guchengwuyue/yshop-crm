@@ -6,9 +6,9 @@
     <el-tab-pane label="待上架产品" name="second">
       <unonSale ref="unonSale" />
     </el-tab-pane>
-    <el-tab-pane label="产品回收站" name="thrid">
+    <!-- <el-tab-pane label="产品回收站" name="thrid">
       <recycle ref="recycle" />
-    </el-tab-pane>
+    </el-tab-pane> -->
   </el-tabs>
 </template>
 

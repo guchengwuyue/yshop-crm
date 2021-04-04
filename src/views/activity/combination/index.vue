@@ -47,7 +47,7 @@
       </el-table-column>
       <el-table-column prop="stopTime" label="结束时间">
         <template slot-scope="scope">
-          <span>{{ formatTimeTwo(scope.row.stopTime) }}</span>
+          <span>{{ parseTime(scope.row.stopTime) }}</span>
         </template>
       </el-table-column>
       <el-table-column v-if="checkPermission(['admin','YXSTORECOMBINATION_ALL','YXSTORECOMBINATION_EDIT','YXSTORECOMBINATION_DELETE'])" label="操作" width="150px" align="center" fixed="right">

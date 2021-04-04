@@ -36,12 +36,12 @@
       <el-table-column prop="statusStr" label="秒杀状态" />
       <el-table-column prop="stopTime" label="开始时间">
         <template slot-scope="scope">
-          <span>{{ formatTimeTwo(scope.row.startTime) }}</span>
+          <span>{{ parseTime(scope.row.startTime) }}</span>
         </template>
       </el-table-column>
       <el-table-column prop="stopTime" label="结束时间">
         <template slot-scope="scope">
-          <span>{{ formatTimeTwo(scope.row.stopTime) }}</span>
+          <span>{{ parseTime(scope.row.stopTime) }}</span>
         </template>
       </el-table-column>
       <el-table-column v-if="checkPermission(['admin','YXSTORESECKILL_ALL','YXSTORESECKILL_EDIT','YXSTORESECKILL_DELETE'])" label="操作" width="150px" align="center">

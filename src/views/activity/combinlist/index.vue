@@ -23,7 +23,7 @@
       </el-table-column>
       <el-table-column label="开团时间">
         <template slot-scope="scope">
-          <span>{{ formatTimeTwo(scope.row.addTime) }}</span>
+          <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
       <el-table-column label="拼团产品">
@@ -37,7 +37,7 @@
       <el-table-column prop="countPeople" label="几人参加" />
       <el-table-column label="结束时间">
         <template slot-scope="scope">
-          <span>{{ formatTimeTwo(scope.row.stopTime) }}</span>
+          <span>{{ parseTime(scope.row.stopTime) }}</span>
         </template>
       </el-table-column>
       <el-table-column label="状态">

@@ -10,7 +10,7 @@
       <el-form-item label="领取开启时间">
         <template>
           <el-date-picker
-            v-model="form.startTimeDate"
+            v-model="form.startTime"
             type="datetime"
             placeholder="选择日期时间"
           />
@@ -19,7 +19,7 @@
       <el-form-item label="券领结束时间">
         <template>
           <el-date-picker
-            v-model="form.endTimeDate"
+            v-model="form.endTime"
             type="datetime"
             placeholder="选择日期时间"
           />
@@ -60,14 +60,12 @@ export default {
         id: '',
         cid: '',
         cname: '',
-        startTimeDate: '',
-        endTimeDate: '',
+        startTime: '',
+        endTime: '',
         totalCount: 0,
         remainCount: 0,
         isPermanent: 0,
-        status: 1,
-        isDel: 0,
-        addTime: ''
+        status: 1
       },
       rules: {
       }
@@ -124,9 +122,7 @@ export default {
         totalCount: '',
         remainCount: '',
         isPermanent: '',
-        status: '',
-        isDel: '',
-        addTime: ''
+        status: ''
       }
     }
   }

@@ -55,7 +55,7 @@
       </el-table-column>
       <el-table-column :show-overflow-tooltip="true" prop="addTime" label="创建日期">
         <template slot-scope="scope">
-          <span>{{ formatTime(scope.row.addTime) }}</span>
+          <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
     </el-table>

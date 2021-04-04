@@ -39,7 +39,7 @@
       </el-table-column>
       <el-table-column prop="addTime" label="创建时间">
         <template slot-scope="scope">
-          <span>{{ formatTime(scope.row.addTime) }}</span>
+          <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
       <el-table-column v-if="checkPermission(['admin','YXSTORECOUPON_ALL','YXSTORECOUPON_EDIT','YXSTORECOUPON_DELETE'])" width="200" label="操作" align="center">

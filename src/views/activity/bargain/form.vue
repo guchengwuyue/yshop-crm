@@ -14,7 +14,7 @@
       <el-form-item label="活动开始时间">
         <template>
           <el-date-picker
-            v-model="form.startTimeDate"
+            v-model="form.startTime"
             type="datetime"
             placeholder="选择日期时间"
           />
@@ -23,7 +23,7 @@
       <el-form-item label="活动结束时间">
         <template>
           <el-date-picker
-            v-model="form.endTimeDate"
+            v-model="form.stopTime"
             type="datetime"
             placeholder="选择日期时间"
           />
@@ -68,13 +68,6 @@
       </el-form-item>
       <el-form-item label="排序">
         <el-input-number v-model="form.sort" />
-      </el-form-item>
-      <el-form-item label="是否包邮">
-        <el-radio v-model="form.isPostage" :label="1">是</el-radio>
-        <el-radio v-model="form.isPostage" :label="0" style="width: 110px;">否</el-radio>
-      </el-form-item>
-      <el-form-item v-if="form.isPostage ===0" label="邮费">
-        <el-input-number v-model="form.postage" />
       </el-form-item>
       <el-form-item label="砍价规则">
         <editor v-model="form.rule" />
@@ -131,16 +124,9 @@ export default {
         info: '',
         cost: '',
         sort: 0,
-        isHot: 0,
-        isDel: 0,
-        addTime: '',
-        isPostage: 1,
-        postage: '',
         rule: '',
         look: '',
-        share: '',
-        startTimeDate: '',
-        endTimeDate: ''
+        share: ''
       },
       rules: {
       }
@@ -227,11 +213,6 @@ export default {
         info: '',
         cost: '',
         sort: '',
-        isHot: '',
-        isDel: '',
-        addTime: '',
-        isPostage: '',
-        postage: '',
         rule: '',
         look: '',
         share: ''
