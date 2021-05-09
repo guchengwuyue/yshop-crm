@@ -129,7 +129,7 @@
         </el-table-column>
         <el-table-column prop="addTime" width="160" label="创建时间">
           <template slot-scope="scope">
-            <span>{{ formatTime(scope.row.addTime) }}</span>
+            <span>{{ formatTime(scope.row.createTime) }}</span>
           </template>
         </el-table-column>
         <el-table-column v-if="checkPermission(['admin','YXSTOREORDER_ALL','YXSTOREORDER_EDIT','YXSTOREORDER_DELETE'])" label="操作" width="200" align="center" fixed="right">
@@ -256,7 +256,7 @@
     mixins: [initData],
     data() {
       return {
-        delLoading: false, status: '-9', orderType: '0',createTime: '', checkList: [], printChecked: false, batchHandle: '', batchExport: '', listContent: [],
+        delLoading: false, status: '0', orderType: '0',createTime: '', checkList: [], printChecked: false, batchHandle: '', batchExport: '', listContent: [],
         queryTypeOptions: [
           { key: 'orderId', display_name: '订单号' },
           { key: 'realName', display_name: '用户姓名' },
