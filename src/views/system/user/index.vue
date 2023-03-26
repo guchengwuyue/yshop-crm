@@ -93,7 +93,7 @@
               />
             </el-form-item>
             <el-form-item label="岗位" prop="job.id">
-              <el-select v-model="form.job.id" style="width: 178px" placeholder="请先选择部门">
+              <el-select v-model="form.job.id" style="width: 178px" placeholder="请先选择岗位">
                 <el-option
                   v-for="(item, index) in jobs"
                   :key="item.name + index"
@@ -119,10 +119,10 @@
             </el-form-item>
             <el-form-item style="margin-bottom: 0;" label="角色" prop="roles">
               <el-select
-                v-model="form.roles"
+                v-model="form.roleDatas"
                 style="width: 437px"
                 multiple
-                placeholder="请选择"
+                placeholder="请选择角色"
                 @remove-tag="deleteTag"
                 @change="changeRole"
               >
@@ -138,7 +138,7 @@
           </el-form>
           <div slot="footer" class="dialog-footer">
             <el-button type="text" @click="crud.cancelCU">取消</el-button>
-            <el-button :loading="crud.cu === 2" type="primary" @click="crud.submitCU">确认</el-button>
+            <el-button :loading="crud.status.cu === 2" type="primary" @click="crud.submitCU">确认</el-button>
           </div>
         </el-dialog>
         <!--表格渲染-->
@@ -211,7 +211,7 @@ import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 let userRoles = []
 // crud交由presenter持有
 const defaultCrud = CRUD({ title: '用户', url: 'api/users', crudMethod: { ...crudUser }})
-const defaultForm = { username: null, nickName: null, sex: '男', email: null, enabled: 'false', roles: [], job: { id: null }, dept: { id: null }, phone: null }
+const defaultForm = { username: null, nickName: null, sex: '男', email: null, enabled: 'false', roles: [],roleDatas: [], job: { id: null }, dept: { id: null }, phone: null }
 export default {
   name: 'User',
   components: { Treeselect, crudOperation, rrOperation, udOperation, pagination },
@@ -320,15 +320,19 @@ export default {
       this.getDepts()
       this.getRoles()
       this.getRoleLevel()
+      this.getJobs(null)
       form.enabled = form.enabled.toString()
     },
     // 打开编辑弹窗前做的操作
     [CRUD.HOOK.beforeToEdit](crud, form) {
-      this.getJobs(this.form.dept.id)
+      this.getJobs()
       userRoles = []
+      this.form.roleDatas = []
       const roles = []
+      const that = this
       form.roles.forEach(function(role, index) {
         roles.push(role.id)
+        that.form.roleDatas.push(role.id)
         // 初始化编辑时候的角色
         const rol = { id: role.id }
         userRoles.push(rol)
@@ -349,7 +353,7 @@ export default {
           type: 'warning'
         })
         return false
-      } else if (this.roles.length === 0) {
+      } else if (this.form.roleDatas.length === 0) {
         this.$message({
           message: '角色不能为空',
           type: 'warning'
