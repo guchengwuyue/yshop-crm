@@ -48,7 +48,7 @@
     "js-beautify": "^1.10.2",
     "js-cookie": "2.2.0",
     "jsencrypt": "^3.0.0-rc.1",
-    "jszip": "3.1.5",
+    "jszip": "3.8.0",
     "mavon-editor": "^2.7.0",
     "normalize.css": "7.0.0",
     "nprogress": "0.2.0",
