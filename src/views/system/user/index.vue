@@ -117,7 +117,7 @@
                 >{{ item.label }}</el-radio>
               </el-radio-group>
             </el-form-item>
-            <el-form-item style="margin-bottom: 0;" label="角色" prop="roles">
+            <el-form-item style="margin-bottom: 0;" label="角色" prop="roledatas">
               <el-select
                 v-model="form.roleDatas"
                 style="width: 437px"

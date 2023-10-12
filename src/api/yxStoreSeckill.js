@@ -22,3 +22,10 @@ export function edit(data) {
     data
   })
 }
+
+export function getSecKillInfo(id) {
+  return request({
+    url: 'api/yxStoreSecKill/info/' + id,
+    method: 'get'
+  })
+}

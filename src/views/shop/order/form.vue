@@ -8,7 +8,7 @@
             v-for="item in express"
             :key="item.id"
             :label="item.name"
-            :value="item.id"
+            :value="item.name"
           />
         </el-select>
       </el-form-item>
@@ -25,7 +25,7 @@
 
 <script>
 
-import { add, edit, get } from '@/api/yxStoreOrder'
+import { add, edit, get,updateDelivery } from '@/api/yxStoreOrder'
 export default {
   props: {
     isAdd: {
@@ -79,19 +79,36 @@ export default {
       })
     },
     doEdit() {
-      edit(this.form).then(res => {
-        this.resetForm()
-        this.$notify({
-          title: '操作成功',
-          type: 'success',
-          duration: 2500
+      if(this.form._status == 4){
+        updateDelivery(this.form).then(res => {
+          this.resetForm()
+          this.$notify({
+            title: '操作成功',
+            type: 'success',
+            duration: 2500
+          })
+          this.loading = false
+          this.$parent.init()
+        }).catch(err => {
+          this.loading = false
+          console.log(err.response.data.message)
         })
-        this.loading = false
-        this.$parent.init()
-      }).catch(err => {
-        this.loading = false
-        console.log(err.response.data.message)
-      })
+      }else{
+        edit(this.form).then(res => {
+          this.resetForm()
+          this.$notify({
+            title: '操作成功',
+            type: 'success',
+            duration: 2500
+          })
+          this.loading = false
+          this.$parent.init()
+        }).catch(err => {
+          this.loading = false
+          console.log(err.response.data.message)
+        })
+      }
+
     },
     resetForm() {
       this.dialog = false

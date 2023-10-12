@@ -3,7 +3,7 @@ import request from '@/utils/request'
 export function add(data) {
   return request({
     url: 'api/yxStoreBargain',
-    method: 'post',
+    method: 'put',
     data
   })
 }

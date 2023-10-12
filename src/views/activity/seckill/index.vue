@@ -9,16 +9,19 @@
       </el-select>
       <el-button class="filter-item" size="mini" type="success" icon="el-icon-search" @click="toQuery">搜索</el-button>
       <!-- 新增 -->
-      <el-button
-        type="danger"
-        class="filter-item"
-        size="mini"
-        icon="el-icon-refresh"
-        @click="toQuery"
-      >刷新</el-button>
+      <div style="display: inline-block;margin: 0px 2px;">
+        <el-button
+          class="filter-item"
+          size="mini"
+          type="primary"
+          icon="el-icon-plus"
+          @click="toAddURL"
+        >
+            新增
+        </el-button>
+      </div>
     </div>
     <!--表单组件-->
-    <eForm ref="form" :is-add="isAdd" />
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
       <el-table-column prop="id" label="id" />
@@ -36,17 +39,24 @@
       <el-table-column prop="statusStr" label="秒杀状态" />
       <el-table-column prop="stopTime" label="开始时间">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.startTime) }}</span>
+          <span>{{ formatTimeTwo(scope.row.startTime) }}</span>
         </template>
       </el-table-column>
       <el-table-column prop="stopTime" label="结束时间">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.stopTime) }}</span>
+          <span>{{ formatTimeTwo(scope.row.stopTime) }}</span>
         </template>
       </el-table-column>
       <el-table-column v-if="checkPermission(['admin','YXSTORESECKILL_ALL','YXSTORESECKILL_EDIT','YXSTORESECKILL_DELETE'])" label="操作" width="150px" align="center">
         <template slot-scope="scope">
-          <el-button v-permission="['admin','YXSTORESECKILL_ALL','YXSTORESECKILL_EDIT']" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)" />
+          <el-button
+            size="mini"
+            type="primary"
+            icon="el-icon-edit"
+            @click="toUpdateURL(scope.row.id)"
+          >
+              编辑
+          </el-button>
           <el-popover
             :ref="scope.row.id"
             v-permission="['admin','YXSTORESECKILL_ALL','YXSTORESECKILL_DELETE']"
@@ -74,15 +84,12 @@
     />
   </div>
 </template>
-
 <script>
 import checkPermission from '@/utils/permission'
 import initData from '@/mixins/crud'
 import { del } from '@/api/yxStoreSeckill'
-import eForm from './form'
 import { formatTimeTwo, parseTime } from '@/utils/index'
 export default {
-  components: { eForm },
   mixins: [initData],
   data() {
     return {
@@ -98,6 +105,12 @@ export default {
     })
   },
   methods: {
+    toAddURL(){
+      this.$router.push({ path: '/activity/secKillAdd' })
+    },
+    toUpdateURL(id){
+      this.$router.push({ path: '/activity/secKillEdit/'+id })
+    },
     parseTime,
     formatTimeTwo,
     checkPermission,
@@ -128,45 +141,6 @@ export default {
         this.$refs[id].doClose()
         console.log(err.response.data.message)
       })
-    },
-    add() {
-      this.isAdd = true
-      this.$refs.form.dialog = true
-    },
-    edit(data) {
-      this.isAdd = false
-      const _this = this.$refs.form
-      _this.form = {
-        id: data.id,
-        productId: data.productId,
-        image: data.image,
-        images: data.images,
-        imageArr: data.image.split(','),
-        sliderImageArr: data.images.split(','),
-        title: data.title,
-        info: data.info,
-        price: data.price,
-        cost: data.cost,
-        otPrice: data.otPrice,
-        giveIntegral: data.giveIntegral,
-        sort: data.sort,
-        stock: data.stock,
-        sales: data.sales,
-        unitName: data.unitName,
-        postage: data.postage,
-        description: data.description,
-        startTimeDate: new Date(data.startTimeDate),
-        endTimeDate: new Date(data.endTimeDate),
-        addTime: data.addTime,
-        status: data.status,
-        isPostage: data.isPostage,
-        isHot: data.isHot,
-        isDel: data.isDel,
-        num: data.num,
-        isShow: data.isShow,
-        timeId: data.timeId
-      }
-      _this.dialog = true
     }
   }
 }

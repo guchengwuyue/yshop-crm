@@ -25,7 +25,7 @@
       <el-table-column prop="extractPrice" label="提现金额" />
       <el-table-column prop="extractType" label="提现方式">
         <template slot-scope="scope">
-          <div v-if="scope.row.extractType='weixin'">
+          <div v-if="scope.row.extractType=='weixin'">
             姓名:{{ scope.row.realName }}<br>
             微信号:{{ scope.row.wechat }}
           </div>
@@ -35,9 +35,9 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column prop="createTime" label="添加时间">
+      <el-table-column prop="addTime" label="添加时间">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.createTime) }}</span>
+          <span>{{ formatTimeTwo(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
       <el-table-column prop="status" label="审核状态">
@@ -49,7 +49,7 @@
             提现未通过<br>
             未通过原因：{{ scope.row.failMsg }}
             <br>
-            未通过时间：{{ parseTime(scope.row.failTime) }}
+            未通过时间：{{ formatTimeTwo(scope.row.failTime) }}
           </div>
           <div v-else>
             未提现

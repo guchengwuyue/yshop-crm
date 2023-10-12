@@ -29,3 +29,11 @@ export function publish(id) {
     method: 'get'
   })
 }
+
+
+export function get(id) {
+  return request({
+    url: 'api/yxArticle/info/' + id,
+    method: 'get'
+  })
+}

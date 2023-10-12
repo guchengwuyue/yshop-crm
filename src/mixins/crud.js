@@ -11,6 +11,7 @@ import checkPermission from '@/utils/permission'
 export default {
   data() {
     return {
+      cateList: [],
       // 表格数据
       data: [],
       // 排序规则，默认 id 降序， 支持多字段排序 ['id,desc', 'createTime,asc']
@@ -60,6 +61,7 @@ export default {
         this.loading = true
         // 请求数据
         initData(this.url, this.getQueryParame()).then(data => {
+          this.cateList = data.cateList
           this.total = data.totalElements
           this.data = data.content
           // time 毫秒后显示表格
@@ -76,7 +78,7 @@ export default {
     beforeInit() {
       return true
     },
-    getQueryParame: function() {
+    getQueryParame() {
       return {
         page: this.page,
         size: this.size,

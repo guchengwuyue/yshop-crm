@@ -12,6 +12,18 @@ yshop基于当前流行技术组合的前后端分离商城系统： SpringBoot2
 | 关注公众号点击单商户体验小程序与H5  |  ![输入图片说明](https://images.gitee.com/uploads/images/2021/0121/154904_12c09826_477893.png) |
 
 
+
+#### 核心依赖
+
+| 依赖              | 版本     |
+|-----------------|--------|
+| Spring Boot     | 2.7.10 |
+| weixin-java     | 4.4.0  |
+| Spring Security | 2.7.10 |
+| Mybatis Plus    | 3.5.2  |
+| hutool          | 5.8.16 |
+| swagger         | 3.0.0  |
+
 # 本地安装
 ### 基本环境（必备）
 - 1、JDK：8+
@@ -32,21 +44,21 @@ git clone https://gitee.com/guchengwuyue/yshopmall.git
 ```
 3、idea打开项目加载依赖目录如下：
 
-<img src="https://doc.yixiang.co/img/test1.png"/>
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0811/163004_833fc53d_477893.png "test1.png")
 
 4、导入数据库，配置开发环境数据库信息及其redis信息，文件路径如下：
 
-<img src="https://doc.yixiang.co/img/test2.png"/>
-<img src="https://doc.yixiang.co/img/test3.png"/>
-<img src="https://doc.yixiang.co/img/test4.png"/>
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0811/163043_bd75fb21_477893.png "test2.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0811/163103_927e6c40_477893.png "test3.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0811/163118_29a4fa04_477893.png "test4.png")
 
 5、然后在父级pom.xml输入命令 mvn clean install 或者用idea工具操作
 
-<img src="https://doc.yixiang.co/img/test5.png"/>
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0811/163132_913fc5fd_477893.png "test5.png")
 
 6、启动程序，启动程序路径如下：
 
-<img src="https://doc.yixiang.co/img/test6.png"/>
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0811/163145_8f078abc_477893.png "test6.png")
 
 
 
@@ -59,10 +71,24 @@ git clone https://gitee.com/guchengwuyue/yshopmall_qd
 ```
 3、cnpm install或者yarn install,当前所有命令必须当前工程目录下进行，目录结构如下：
 
-<img src="https://doc.yixiang.co/img/test8.png"/>
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0811/163159_895e12de_477893.png "test8.png")
 
-4、在控制台输入命令：npm run dev，控制台打印出如下画面，恭喜表示本项目启动成功拉。
-<img src="https://doc.yixiang.co/img/test9.png"/>
+4、安装依赖失败
+```
+npm config set registry https://registry.npm.taobao.org
+配置后可通过下面方式来验证是否成功
+npm config get registry
+
+在 ~/.npmrc 加入下面内容，可以避免安装 node-sass 失败
+sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
+
+.npmrc 文件位于
+win：C:\Users\[你的账户名称]\.npmrc
+linux：直接使用 vi ~/.npmrc
+```
+5、在控制台输入命令：npm run dev，控制台打印出如下画面，恭喜表示本项目启动成功拉。
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0811/163209_09ed1793_477893.png "test9.png")
+
 
 5、打开浏览器输入地址如图：
 

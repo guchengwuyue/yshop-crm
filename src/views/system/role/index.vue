@@ -110,8 +110,6 @@
             :data="menus"
             :default-checked-keys="menuIds"
             :props="defaultProps"
-            check-strictly
-            accordion
             show-checkbox
             node-key="id"
           />
@@ -238,7 +236,9 @@ export default {
         this.menuIds = []
         // 菜单数据需要特殊处理
         val.menus.forEach(function(data, index) {
-          _this.menuIds.push(data.id)
+           if(data.pid!=0){
+            _this.menuIds.push(data.id)
+          }
         })
       }
     },
@@ -304,7 +304,7 @@ export default {
 </style>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-  /deep/ .el-input-number .el-input__inner {
+  ::v-deep .el-input-number .el-input__inner {
     text-align: left;
   }
 </style>

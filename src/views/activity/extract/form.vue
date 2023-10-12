@@ -2,10 +2,10 @@
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="500px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
       <el-form-item label="姓名">
-        <el-input v-model="form.realName" style="width: 370px;" />
+        <el-input v-model="form.realName" disabled style="width: 370px;" />
       </el-form-item>
       <el-form-item label="提现金额">
-        <el-input v-model="form.extractPrice" style="width: 370px;" />
+        <el-input-number v-model="form.extractPrice" disabled style="width: 370px;" />
       </el-form-item>
       <el-form-item label="审核状态">
         <el-radio v-model="form.status" :label="-1">无效</el-radio>

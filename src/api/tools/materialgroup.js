@@ -8,6 +8,14 @@ export function getPage(query) {
   })
 }
 
+export function getList(query) {
+  return request({
+    url: 'api/materialgroup/list',
+    method: 'get',
+    params: query
+  })
+}
+
 export function addObj(obj) {
   return request({
     url: 'api/materialgroup',

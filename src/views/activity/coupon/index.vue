@@ -21,6 +21,14 @@
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
       <!--<el-table-column prop="id" label="ID"/>-->
       <el-table-column prop="title" label="优惠券名称" />
+      <el-table-column prop="type" label="优惠券类型">
+        <template slot-scope="scope">
+          <div>
+            <el-tag v-if="scope.row.type === 1" style="cursor: pointer" :type="''">商品券</el-tag>
+            <el-tag v-else :type=" 'info' ">普通券</el-tag>
+          </div>
+        </template>
+      </el-table-column>
       <el-table-column prop="couponPrice" label="优惠券面值" />
       <el-table-column prop="useMinPrice" label="优惠券最低消费" />
       <el-table-column label="优惠券有效期限">
@@ -37,9 +45,9 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column prop="addTime" label="创建时间">
+      <el-table-column prop="createTime" label="创建时间" width="140">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.createTime) }}</span>
+          <span>{{ scope.row.createTime }}</span>
         </template>
       </el-table-column>
       <el-table-column v-if="checkPermission(['admin','YXSTORECOUPON_ALL','YXSTORECOUPON_EDIT','YXSTORECOUPON_DELETE'])" width="200" label="操作" align="center">
@@ -159,8 +167,9 @@ export default {
         couponTime: data.couponTime,
         sort: data.sort,
         status: data.status,
-        addTime: data.addTime,
-        isDel: data.isDel
+        type: data.type,
+        productId: data.productId,
+        product: data.product
       }
       _this.dialog = true
     },
@@ -170,6 +179,7 @@ export default {
       _this.form = {
         cid: data.id,
         cname: data.title,
+        ctype: data.type,
         isPermanent: 0,
         status: 1,
         totalCount: 0,

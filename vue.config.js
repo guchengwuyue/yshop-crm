@@ -9,7 +9,6 @@ function resolve(dir) {
 const name = defaultSettings.title // 网址标题
 const port = 8013 // 端口配置
 
-// All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
   publicPath: '/',
   outputDir: 'dist',
@@ -18,7 +17,7 @@ module.exports = {
   productionSourceMap: false,
   devServer: {
     port: port,
-    open: true,
+    open: false,
     overlay: {
       warnings: false,
       errors: true
@@ -51,9 +50,32 @@ module.exports = {
       }
     }
   },
+  // css: {
+  //   loaderOptions: {
+  //     sass: {
+  //       prependData: `
+  //         @import "@/assets/styles/contaner.scss";
+  //         `
+  //     }
+  //   }
+  // },
   chainWebpack(config) {
     config.plugins.delete('preload') // TODO: need test
     config.plugins.delete('prefetch') // TODO: need test
+
+    // sass-resources-loader
+    config.module
+      .rule('scss')
+      .oneOfs
+      .store
+      .forEach(item => {
+        item.use('sass-resources-loader')
+          .loader('sass-resources-loader')
+          .options({
+            resources: ['./src/assets/styles/contaner.scss']
+          })
+          .end()
+      })
 
     // set svg-sprite-loader
     config.module

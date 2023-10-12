@@ -1,11 +1,18 @@
 <template>
-  <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="500px">
+  <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog"
+             :title="isAdd ? '新增' : '编辑'" width="500px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="150px">
       <el-form-item label="开启时间(整数小时)">
-        <el-input v-model="form.time" style="width: 270px;" />
+        <el-input v-model="form.time" style="width: 270px;"/>
       </el-form-item>
       <el-form-item label="持续时间(整数小时)">
-        <el-input v-model="form.continued" style="width: 270px;" />
+        <el-input v-model="form.continued" style="width: 270px;"/>
+      </el-form-item>
+      <el-form-item label="是否开启">
+        <el-radio-group v-model="form.status">
+          <el-radio :label="1">开启</el-radio>
+          <el-radio :label="2">关闭</el-radio>
+        </el-radio-group>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -17,10 +24,11 @@
 </template>
 
 <script>
-import { add, edit } from '@/api/yxSystemGroupData'
+import {add, edit} from '@/api/yxSystemGroupData'
 import picUpload from '@/components/pic-upload'
+
 export default {
-  components: { picUpload },
+  components: {picUpload},
   props: {
     isAdd: {
       type: Boolean,
@@ -34,10 +42,10 @@ export default {
         id: '',
         groupName: 'yshop_seckill_time',
         time: 5,
+        status:2, //默认关闭
         continued: 2
       },
-      rules: {
-      }
+      rules: {}
     }
   },
   methods: {
@@ -45,6 +53,9 @@ export default {
       this.resetForm()
     },
     doSubmit() {
+      if (parseInt(this.form.continued) + parseInt(this.form.time) > 24) {
+        return this.$message.error("开启+持续时间不能超过24小时")
+      }
       this.loading = true
       if (this.isAdd) {
         this.doAdd()
@@ -87,7 +98,8 @@ export default {
         id: '',
         groupName: 'yshop_seckill_time',
         time: 5,
-        continued: 2
+        continued: 2,
+        status:2 //默认关闭
       }
     }
   }

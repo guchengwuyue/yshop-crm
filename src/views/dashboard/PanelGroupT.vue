@@ -1,50 +1,72 @@
 <template>
-  <el-row :gutter="40" class="panel-group">
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel">
-        <div class="card-panel-icon-wrapper icon-people">
-          <svg-icon icon-class="today" class-name="card-panel-icon" />
-        </div>
-        <div class="card-panel-description">
-          <div class="card-panel-text">今日订单数</div>
-          <count-to :start-val="0" :end-val="count.todayCount" :duration="2600" class="card-panel-num" />
-        </div>
-      </div>
-    </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel">
-        <div class="card-panel-icon-wrapper icon-message">
-          <svg-icon icon-class="ic-yesterday" class-name="card-panel-icon" />
-        </div>
-        <div class="card-panel-description">
-          <div class="card-panel-text">昨日订单数</div>
-          <count-to :start-val="0" :end-val="count.proCount" :duration="3000" class="card-panel-num" />
-        </div>
-      </div>
-    </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel">
-        <div class="card-panel-icon-wrapper icon-money">
-          <svg-icon icon-class="seven" class-name="card-panel-icon" />
-        </div>
-        <div class="card-panel-description">
-          <div class="card-panel-text">近七天订单数</div>
-          <count-to :start-val="0" :end-val="count.lastWeekCount" :duration="3200" class="card-panel-num" />
-        </div>
-      </div>
-    </el-col>
-    <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-      <div class="card-panel">
-        <div class="card-panel-icon-wrapper icon-shopping">
-          <svg-icon icon-class="monthlyview" class-name="card-panel-icon" />
-        </div>
-        <div class="card-panel-description">
-          <div class="card-panel-text">本月订单数</div>
-          <count-to :start-val="0" :end-val="count.monthCount" :duration="3600" class="card-panel-num" />
-        </div>
-      </div>
-    </el-col>
-  </el-row>
+  <div class="divBox">
+      <el-row :gutter="24" class="dashboard-console-grid">
+        <el-col v-bind="grid" class="ivu-mb">
+          <el-card :bordered="false">
+            <router-link :to="{ path: '/shop/cate' }">
+              <i class="el-icon-goods" style="color: #69c0ff" />
+              <p>商品管理</p>
+            </router-link>
+          </el-card>
+        </el-col>
+        <el-col v-bind="grid" class="ivu-mb">
+          <el-card :bordered="false">
+            <router-link :to="{ path: '/member/member' }">
+              <i class="el-icon-user" style="color: #95de64" />
+              <p>会员管理</p>
+            </router-link>
+          </el-card>
+        </el-col>
+        <el-col v-bind="grid" class="ivu-mb">
+          <el-card :bordered="false">
+            <router-link :to="{ path: '/order/order' }">
+              <i class="el-icon-s-order" style="color: #ff9c6e" />
+              <p>订单管理</p>
+            </router-link>
+          </el-card>
+        </el-col>
+        <el-col v-bind="grid" class="ivu-mb">
+          <el-card :bordered="false">
+            <router-link :to="{ path: '/syscoupon/coupon' }">
+              <i class="el-icon-s-ticket" style="color: #b37feb" />
+              <p>电子券管理</p>
+            </router-link>
+          </el-card>
+        </el-col>
+        <el-col v-bind="grid" class="ivu-mb">
+          <el-card :bordered="false">
+            <router-link :to="{ path: '/activity/combination' }">
+              <i class="el-icon-postcard" style="color: #ffd666" />
+              <p>营销管理</p>
+            </router-link>
+          </el-card>
+        </el-col>
+        <el-col v-bind="grid" class="ivu-mb">
+          <el-card :bordered="false">
+            <router-link :to="{ path: '/promoter/promoterconfig' }">
+              <i class="el-icon-notebook-1" style="color: #5cdbd3" />
+              <p>分销管理</p>
+            </router-link>
+          </el-card>
+        </el-col>
+        <el-col v-bind="grid" class="ivu-mb">
+          <el-card :bordered="false">
+            <router-link :to="{ path: '/price/extract' }">
+              <i class="el-icon-s-finance" style="color: #ff85c0" />
+              <p>财务管理</p>
+            </router-link>
+          </el-card>
+        </el-col>
+        <el-col v-bind="grid" class="ivu-mb">
+          <el-card :bordered="false">
+            <router-link :to="{ path: '/store/storeinfo' }">
+              <i class="el-icon-office-building" style="color: #ffc069" />
+              <p>门店管理</p>
+            </router-link>
+          </el-card>
+        </el-col>
+      </el-row>
+    </div>
 </template>
 <script>
 import CountTo from 'vue-count-to'
@@ -56,7 +78,14 @@ export default {
   data() {
     return {
       count: { todayPrice: 0, todayCount: 0, proPrice: 0, proCount: 0,
-        monthPrice: 0, monthCount: 0, lastWeekCount: 0, lastWeekPrice: 0 }
+        monthPrice: 0, monthCount: 0, lastWeekCount: 0, lastWeekPrice: 0 },
+        grid: {
+        xl: 3,
+        lg: 3,
+        md: 6,
+        sm: 8,
+        xs: 8,
+      },
     }
   },
   mounted() {
@@ -132,6 +161,31 @@ export default {
         font-size: 20px;
       }
     }
+  }
+}
+
+
+.ivu-mb {
+  margin-bottom: 10px;
+}
+.divBox {
+  // padding: 0 20px !important;
+}
+
+.dashboard-console-grid {
+  text-align: center;
+  .ivu-card-body {
+    padding: 0;
+  }
+  i {
+    font-size: 32px;
+  }
+  a {
+    display: block;
+    color: inherit;
+  }
+  p {
+    margin-top: 8px;
   }
 }
 </style>

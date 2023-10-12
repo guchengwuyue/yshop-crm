@@ -37,12 +37,12 @@
         </el-table-column>
         <el-table-column v-if="columns.visible('payTime')" prop="payTime" label="支付时间" >
           <template slot-scope="scope">
-            <span>{{ parseTime(scope.row.payTime) }}</span>
+            <span>{{ formatTimeTwo(scope.row.payTime) }}</span>
           </template>
         </el-table-column>
-        <el-table-column v-if="columns.visible('addTime')" prop="addTime" label="充值时间" >
+        <el-table-column v-if="columns.visible('createTime')" prop="createTime" label="充值时间" >
           <template slot-scope="scope">
-            <span>{{ parseTime(scope.row.addTime) }}</span>
+            <span>{{ formatTimeTwo(scope.row.createTime) }}</span>
           </template>
         </el-table-column>
       </el-table>
@@ -59,6 +59,7 @@ import rrOperation from '@crud/RR.operation'
 import crudOperation from '@crud/CRUD.operation'
 import udOperation from '@crud/UD.operation'
 import pagination from '@crud/Pagination'
+import { formatTimeTwo } from '@/utils/index'
 
 // crud交由presenter持有
 const defaultCrud = CRUD({ title: '充值管理', url: 'api/yxUserRecharge', sort: 'id,desc', crudMethod: { ...crudYxUserRecharge }, optShow: { add: false, edit: false, del: true, download: true}})
@@ -82,6 +83,7 @@ export default {
     }
   },
   methods: {
+    formatTimeTwo,
     // 获取数据前设置好接口地址
     [CRUD.HOOK.beforeRefresh]() {
       const query = this.query

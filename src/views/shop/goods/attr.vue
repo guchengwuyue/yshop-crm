@@ -67,7 +67,7 @@
               </el-col>
               <el-col :span="4">
                 <span :class="attr.check ? 'check':''">库存:</span>&nbsp;
-                <el-input v-model="attr.sales" placeholder="库存" style="width: 60%" :number="true" />
+                <el-input v-model="attr.sales" placeholder="库存" style="width: 60%" :number="true" maxlength="7"/>
               </el-col>
               <el-col :span="5">
                 <span :class="attr.check ? 'check':''">成本价:</span>&nbsp;

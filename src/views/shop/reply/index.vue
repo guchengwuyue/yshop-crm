@@ -32,13 +32,25 @@
           <div v-else>无图</div>
         </template>
       </el-table-column>
-      <el-table-column prop="addTime" label="评论时间">
+      <el-table-column prop="createTime" label="评论时间">
         <template slot-scope="scope">
-          <span>{{ formatTime(scope.row.addTime) }}</span>
+          <span>{{ formatTime(scope.row.createTime) }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column prop="merchantReplyTime" label="回复时间">
+        <template slot-scope="scope">
+          <span>{{ formatTime(scope.row.merchantReplyTime) }}</span>
         </template>
       </el-table-column>
       <el-table-column v-if="checkPermission(['admin','YXSTOREPRODUCTREPLY_ALL','YXSTOREPRODUCTREPLY_EDIT','YXSTOREPRODUCTREPLY_DELETE'])" label="操作" width="150px" align="center">
         <template slot-scope="scope">
+          <el-button
+            v-permission="['admin','YXSTOREPRODUCTREPLY_ALL','YXSTOREPRODUCTREPLY_EDIT']"
+            size="mini"
+            type="primary"
+            @click="edit(scope.row)"
+          >
+            回复</el-button>
           <el-popover
             :ref="scope.row.id"
             v-permission="['admin','YXSTOREPRODUCTREPLY_ALL','YXSTOREPRODUCTREPLY_DELETE']"

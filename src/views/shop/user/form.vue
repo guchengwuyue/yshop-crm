@@ -16,10 +16,6 @@
       <el-form-item label="用户积分">
         <el-input v-model="form.integral" style="width: 370px;" />
       </el-form-item>
-      <el-form-item label="推广员">
-        <el-radio v-model="form.isPromoter" :label="1">开启</el-radio>
-        <el-radio v-model="form.isPromoter" :label="0">关闭</el-radio>
-      </el-form-item>
       <el-form-item label="商户管理">
         <el-radio v-model="form.adminid" :label="1">开启</el-radio>
         <el-radio v-model="form.adminid" :label="0">关闭</el-radio>

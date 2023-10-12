@@ -66,9 +66,9 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column v-if="columns.visible('addTime')" prop="addTime" label="添加时间" >
+        <el-table-column v-if="columns.visible('createTime')" prop="createTime" label="添加时间" >
           <template slot-scope="scope">
-            <span>{{ parseTime(scope.row.addTime) }}</span>
+            <span>{{ formatTimeTwo(scope.row.createTime) }}</span>
           </template>
         </el-table-column>
         <el-table-column v-permission="['admin','yxSystemStoreStaff:edit','yxSystemStoreStaff:del']" label="操作" width="150px" align="center">
@@ -95,6 +95,7 @@ import udOperation from '@crud/UD.operation'
 import pagination from '@crud/Pagination'
 import cuser from '@/views/components/user'
 import crudYxSystemStore from '@/api/yxSystemStore'
+import { formatTimeTwo } from '@/utils/index'
 
 // crud交由presenter持有
 const defaultCrud = CRUD({ title: '门店店员', url: 'api/yxSystemStoreStaff', sort: 'id,desc', crudMethod: { ...crudYxSystemStoreStaff }})
@@ -141,6 +142,7 @@ export default {
     }
   },
   methods: {
+    formatTimeTwo,
     // 获取数据前设置好接口地址
     [CRUD.HOOK.beforeRefresh]() {
       const query = this.query
@@ -155,8 +157,8 @@ export default {
     },
     //新增与编辑前做的操作
     [CRUD.HOOK.afterToCU](crud, form) {
-      crudYxSystemStore.get().then(res => {
-         this.mystores= res.content
+      crudYxSystemStore.getAll().then(res => {
+         this.mystores= res
       })
     },
     // 编辑前

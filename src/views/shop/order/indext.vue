@@ -17,15 +17,12 @@
       <el-tab-pane name="4">
         <span slot="label"><i class="el-icon-circle-check"></i> 交易完成</span>
       </el-tab-pane>
-      <el-tab-pane name="-1">
-        <span slot="label"><i class="el-icon-back"></i> 退款中</span>
-      </el-tab-pane>
-      <el-tab-pane name="-2">
-        <span slot="label"><i class="el-icon-finished"></i> 已退款</span>
-      </el-tab-pane>
-      <el-tab-pane name="-4">
-        <span slot="label"><i class="el-icon-circle-close"></i> 已删除</span>
-      </el-tab-pane>
+      <!--<el-tab-pane name="-1">-->
+      <!--  <span slot="label"><i class="el-icon-back"></i> 退款中</span>-->
+      <!--</el-tab-pane>-->
+      <!--<el-tab-pane name="-2">-->
+      <!--  <span slot="label"><i class="el-icon-finished"></i> 已退款</span>-->
+      <!--</el-tab-pane>-->
     </el-tabs>
     <!--工具栏-->
     <div class="head-container">
@@ -73,7 +70,7 @@
                 :src="item.cartInfoMap.productInfo.attrInfo.image"
               >
             </span>
-            <span>{{ item.cartInfoMap.productInfo.storeName }}&nbsp;{{ item.cartInfoMap.productInfo.attrInfo.suk }}</span>
+            <span>{{ item.cartInfoMap.productInfo.storeName }}&nbsp;{{ item.cartInfoMap.productInfo.attrInfo.sku }}</span>
             <span> | ￥{{ item.cartInfoMap.truePrice }}×{{ item.cartInfoMap.cartNum }}</span>
           </div>
           <div v-else>
@@ -90,12 +87,12 @@
       <el-table-column prop="payTypeName" label="支付状态" />
       <el-table-column prop="statusName" label="订单状态">
         <template slot-scope="scope">
-          <span v-html="scope.row.statusName">{{ scope.row.addTime }}</span>
+          <span v-html="scope.row.statusName"></span>
         </template>
       </el-table-column>
       <el-table-column prop="addTime" width="160" label="创建时间">
         <template slot-scope="scope">
-          <span>{{ formatTime(scope.row.addTime) }}</span>
+          <span>{{ formatTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
       <el-table-column v-if="checkPermission(['admin','YXSTOREORDER_ALL','YXSTOREORDER_EDIT','YXSTOREORDER_DELETE'])" label="操作" width="200" align="center" fixed="right">
@@ -129,16 +126,16 @@
                 >
                   订单核销</el-button>
               </el-dropdown-item>
-              <el-dropdown-item>
-                <el-button
-                  v-if="scope.row._status == 3"
-                  v-permission="['admin','YXSTOREORDER_ALL','YXSTOREORDER_EDIT']"
-                  size="mini"
-                  type="primary"
-                  @click="refund(scope.row)"
-                >
-                  立刻退款</el-button>
-              </el-dropdown-item>
+<!--              <el-dropdown-item>-->
+<!--                <el-button-->
+<!--                  v-if="scope.row._status == 3"-->
+<!--                  v-permission="['admin','YXSTOREORDER_ALL','YXSTOREORDER_EDIT']"-->
+<!--                  size="mini"-->
+<!--                  type="primary"-->
+<!--                  @click="refund(scope.row)"-->
+<!--                >-->
+<!--                  立刻退款</el-button>-->
+<!--              </el-dropdown-item>-->
               <el-dropdown-item v-if="scope.row._status == 1">
                 <el-button
                   v-permission="['admin','YXSTOREORDER_ALL','YXSTOREORDER_EDIT']"
@@ -187,7 +184,7 @@ import initData from '@/mixins/crud'
 import { del } from '@/api/yxStoreOrder'
 import { getAll } from '@/api/yxSystemStore'
 import eForm from './formC'
-import eDetail from './detail'
+import eDetail from './detail1'
 import eRefund from './refund'
 import editOrder from './edit'
 import eRemark from './remark'
@@ -523,7 +520,7 @@ export default {
         paid: data.paid,
         payTime: data.payTime,
         payType: data.payType,
-        addTime: data.addTime,
+        createTime: data.createTime,
         status: data.status,
         refundStatus: data.refundStatus,
         refundReasonWapImg: data.refundReasonWapImg,

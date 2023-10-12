@@ -9,6 +9,17 @@
       </el-select>
       <el-button class="filter-item" size="mini" type="success" icon="el-icon-search" @click="toQuery">搜索</el-button>
       <!-- 新增 -->
+      <div style="display: inline-block;margin: 0px 2px;">
+        <el-button
+          class="filter-item"
+          size="mini"
+          type="primary"
+          icon="el-icon-plus"
+          @click="toAddURL"
+        >
+          新增
+        </el-button>
+      </div>
       <el-button
         type="danger"
         class="filter-item"
@@ -18,7 +29,7 @@
       >刷新</el-button>
     </div>
     <!--表单组件-->
-    <eForm ref="form" :is-add="isAdd" />
+<!--    <eForm ref="form" :is-add="isAdd" />-->
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
       <el-table-column prop="id" label="id" />
@@ -47,12 +58,19 @@
       </el-table-column>
       <el-table-column prop="stopTime" label="结束时间">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.stopTime) }}</span>
+          <span>{{ formatTimeTwo(scope.row.stopTime) }}</span>
         </template>
       </el-table-column>
       <el-table-column v-if="checkPermission(['admin','YXSTORECOMBINATION_ALL','YXSTORECOMBINATION_EDIT','YXSTORECOMBINATION_DELETE'])" label="操作" width="150px" align="center" fixed="right">
         <template slot-scope="scope">
-          <el-button v-permission="['admin','YXSTORECOMBINATION_ALL','YXSTORECOMBINATION_EDIT']" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)" />
+          <el-button
+            size="mini"
+            type="primary"
+            icon="el-icon-edit"
+            @click="toUpdateURL(scope.row.id)"
+          >
+              编辑
+          </el-button>
           <el-popover
             :ref="scope.row.id"
             v-permission="['admin','YXSTORECOMBINATION_ALL','YXSTORECOMBINATION_DELETE']"
@@ -85,10 +103,9 @@
 import checkPermission from '@/utils/permission'
 import initData from '@/mixins/crud'
 import { del, onsale } from '@/api/yxStoreCombination'
-import eForm from './form'
 import { formatTimeTwo, parseTime } from '@/utils/index'
 export default {
-  components: { eForm },
+  components: { },
   mixins: [initData],
   data() {
     return {
@@ -104,6 +121,12 @@ export default {
     })
   },
   methods: {
+    toAddURL(){
+      this.$router.push({ path: '/activity/combinationAdd' })
+    },
+    toUpdateURL(id){
+      this.$router.push({ path: '/activity/combinationEdit/'+id })
+    },
     parseTime,
     formatTimeTwo,
     checkPermission,
@@ -154,49 +177,6 @@ export default {
           })
         })
         .catch(() => { })
-    },
-    add() {
-      this.isAdd = true
-      this.$refs.form.dialog = true
-    },
-    edit(data) {
-      this.isAdd = false
-      const _this = this.$refs.form
-      _this.form = {
-        id: data.id,
-        productId: data.productId,
-        merId: data.merId,
-        image: data.image,
-        images: data.images,
-        imageArr: data.image.split(','),
-        sliderImageArr: data.images.split(','),
-        title: data.title,
-        attr: data.attr,
-        people: data.people,
-        info: data.info,
-        price: data.price,
-        sort: data.sort,
-        sales: data.sales,
-        stock: data.stock,
-        addTime: data.addTime,
-        isHost: data.isHost,
-        isShow: data.isShow,
-        isDel: data.isDel,
-        combination: data.combination,
-        merUse: data.merUse,
-        isPostage: data.isPostage,
-        postage: data.postage,
-        description: data.description,
-        startTime: data.startTime,
-        stopTime: data.stopTime,
-        startTimeDate: new Date(data.startTimeDate),
-        endTimeDate: new Date(data.endTimeDate),
-        effectiveTime: data.effectiveTime,
-        cost: data.cost,
-        browse: data.browse,
-        unitName: data.unitName
-      }
-      _this.dialog = true
     }
   }
 }

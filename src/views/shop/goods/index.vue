@@ -4,8 +4,14 @@
     <div class="head-container">
       <!-- 搜索 -->
       <el-input v-model="query.value" clearable placeholder="输入搜索内容" style="width: 200px;" class="filter-item" @keyup.enter.native="toQuery" />
-      <el-select v-model="query.type" clearable placeholder="类型" class="filter-item" style="width: 130px">
+      <el-select v-model="query.type" clearable placeholder="搜索类型" class="filter-item" style="width: 130px">
         <el-option v-for="item in queryTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
+      </el-select>
+      <el-select v-model="cateId"  clearable placeholder="商品分类" class="filter-item" filterable :filter-method="dataFilter" style="width: 130px">
+        <el-option v-for="item in optionsMetaShow" :disabled="item.disabled === 0"
+                   :value="item.value"
+                   :key="item.id"
+                   :label="item.label"></el-option>
       </el-select>
       <el-button class="filter-item" size="mini" type="success" icon="el-icon-search" @click="toQuery">搜索</el-button>
       <!-- 新增 -->
@@ -15,8 +21,10 @@
           size="mini"
           type="primary"
           icon="el-icon-plus"
-          @click="add"
-        >新增</el-button>
+          @click="toAddURL"
+        >
+            新增
+        </el-button>
         <el-button
           type="danger"
           class="filter-item"
@@ -27,11 +35,6 @@
       </div>
     </div>
     <!--表单组件-->
-    <eForm ref="form" :is-add="isAdd" />
-    <eAttr ref="form2" :is-attr="isAttr" />
-    <comForm ref="form3" :is-add="isAdd" />
-    <killForm ref="form4" :is-add="isAdd" />
-    <bargainForm ref="form5" :is-add="isAdd" />
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
       <el-table-column prop="id" label="商品id" />
@@ -45,6 +48,12 @@
       <el-table-column prop="price" label="商品价格" />
       <el-table-column prop="sales" label="销量" />
       <el-table-column prop="stock" label="库存" />
+      <el-table-column label="商品类型" align="center">
+        <template slot-scope="scope">
+          <el-tag v-if="scope.row.isIntegral === 1" style="cursor: pointer" :type="'warning'">积分商品</el-tag>
+          <el-tag v-else style="cursor: pointer" :type=" 'info' ">普通商品</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column label="状态" align="center">
         <template slot-scope="scope">
           <div @click="onSale(scope.row.id,scope.row.isShow)">
@@ -53,57 +62,28 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="操作" width="205px" align="center">
+      <el-table-column label="操作" width="265px" align="center">
         <template slot-scope="scope">
-          <el-button slot="reference" type="danger" size="mini" @click="attr(scope.row)">规格属性</el-button>
-          <el-dropdown size="mini" split-button type="primary" trigger="click">
-            操作
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>
-                <el-button
-                  size="mini"
-                  type="primary"
-                  icon="el-icon-edit"
-                  @click="edit(scope.row)"
-                >编辑</el-button>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <el-popover
-                  :ref="scope.row.id"
-                  placement="top"
-                  width="180"
-                >
-                  <p>确定删除本条数据吗？</p>
-                  <div style="text-align: right; margin: 0">
-                    <el-button size="mini" type="text" @click="$refs[scope.row.id].doClose()">取消</el-button>
-                    <el-button :loading="delLoading" type="primary" size="mini" @click="subDelete(scope.row.id)">确定</el-button>
-                  </div>
-                  <el-button slot="reference" type="danger" icon="el-icon-delete" size="mini">删除</el-button>
-                </el-popover>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <el-button
-                  size="mini"
-                  type="success"
-                  @click="editC(scope.row)"
-                >开启拼团</el-button>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <el-button
-                  size="mini"
-                  type="primary"
-                  @click="editD(scope.row)"
-                >开启秒杀</el-button>
-              </el-dropdown-item>
-              <el-dropdown-item>
-                <el-button
-                  size="mini"
-                  type="warning"
-                  @click="editE(scope.row)"
-                >开启砍价</el-button>
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
+          <el-button
+            size="mini"
+            type="primary"
+            icon="el-icon-edit"
+            @click="toUpdateURL(scope.row.id)"
+          >
+            编辑
+          </el-button>
+          <el-popover
+            :ref="scope.row.id"
+            placement="top"
+            width="180"
+          >
+            <p>确定删除本条数据吗？</p>
+            <div style="text-align: right; margin: 0">
+              <el-button size="mini" type="text" @click="$refs[scope.row.id].doClose()">取消</el-button>
+              <el-button :loading="delLoading" type="primary" size="mini" @click="subDelete(scope.row.id)">确定</el-button>
+            </div>
+            <el-button slot="reference" type="danger" icon="el-icon-delete" size="mini">删除</el-button>
+          </el-popover>
         </template>
       </el-table-column>
     </el-table>
@@ -123,35 +103,55 @@
 import checkPermission from '@/utils/permission'
 import initData from '@/mixins/crud'
 import { del, onsale } from '@/api/yxStoreProduct'
-import eForm from './form'
-import eAttr from './attr'
-import comForm from '@/views/activity/combination/form'
-import killForm from '@/views/activity/seckill/form'
-import bargainForm from '@/views/activity/bargain/form'
+import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+import Treeselect from '@riophae/vue-treeselect'
 export default {
-  components: { eForm, eAttr, comForm, killForm, bargainForm },
+  components: {  Treeselect },
   mixins: [initData],
   data() {
     return {
+      dropDownValue: '',
+      optionsMetaShow: [],
       delLoading: false,
       visible: false,
       queryTypeOptions: [
         { key: 'storeName', display_name: '商品名称' }
       ],
-      isAttr: false
+      isAttr: false,
+      cateId: null,
     }
   },
   created() {
     this.$nextTick(() => {
-      this.init()
+      this.init().then(() =>{
+        this.optionsMetaShow = this.cateList
+      })
     })
   },
   methods: {
+    toAddURL(){
+      this.$router.push({ path: '/shop/goodsAdd' })
+    },
+    toUpdateURL(id){
+      this.$router.push({ path: '/shop/goodsEdit/'+id })
+    },
+    dataFilter(val){
+      this.value=val
+      if(val){
+        this.optionsMetaShow=this.cateList.filter((item=>{
+          if (!!~item.label.indexOf(val) || !!~item.label.toUpperCase().indexOf(val.toUpperCase())) {
+            return true
+          }
+        }))
+      }else{
+        this.optionsMetaShow=this.cateList
+      }
+    },
     checkPermission,
     beforeInit() {
       this.url = 'api/yxStoreProduct'
       const sort = 'id,desc'
-      this.params = { page: this.page, size: this.size, sort: sort, isShow: 1, isDel: 0 }
+      this.params = { page: this.page, size: this.size, sort: sort, isShow: 1, isDel: 0,cateId: this.cateId }
       const query = this.query
       const type = query.type
       const value = query.value
@@ -244,105 +244,6 @@ export default {
         browse: data.browse,
         codePath: data.codePath,
         soureLink: data.soureLink
-      }
-      _this.dialog = true
-    },
-    editC(data) {
-      this.isAdd = false
-      const _this = this.$refs.form3
-      _this.form = {
-        productId: data.id,
-        merId: data.merId,
-        image: data.image,
-        images: data.sliderImage,
-        imageArr: data.image.split(','),
-        sliderImageArr: data.sliderImage.split(','),
-        title: data.storeName,
-        info: data.storeInfo,
-        postage: data.postage,
-        unitName: data.unitName,
-        sort: data.sort,
-        sales: data.sales,
-        stock: data.stock,
-        isShow: data.isShow,
-        isHost: data.isHot,
-        description: data.description,
-        isPostage: data.isPostage,
-        people: 0,
-        price: 0,
-        effectiveTime: 24,
-        combination: 1,
-        cost: data.cost,
-        isDel: 0,
-        browse: 0
-      }
-      _this.dialog = true
-    },
-    editD(data) {
-      this.isAdd = false
-      const _this = this.$refs.form4
-      _this.form = {
-        productId: data.id,
-        merId: data.merId,
-        image: data.image,
-        images: data.sliderImage,
-        imageArr: data.image.split(','),
-        sliderImageArr: data.sliderImage.split(','),
-        title: data.storeName,
-        info: data.storeInfo,
-        postage: data.postage,
-        unitName: data.unitName,
-        sort: data.sort,
-        sales: data.sales,
-        stock: data.stock,
-        isShow: data.isShow,
-        status: 1,
-        isHot: data.isHot,
-        description: data.description,
-        isPostage: data.isPostage,
-        people: 0,
-        price: 0.01,
-        effectiveTime: 24,
-        otPrice: data.otPrice,
-        cost: data.cost,
-        num: 1,
-        giveIntegral: 0,
-        isDel: 0,
-        browse: 0
-      }
-      _this.dialog = true
-    },
-    editE(data) {
-      this.isAdd = false
-      const _this = this.$refs.form5
-      _this.form = {
-        productId: data.id,
-        merId: data.merId,
-        image: data.image,
-        images: data.sliderImage,
-        imageArr: data.image.split(','),
-        sliderImageArr: data.sliderImage.split(','),
-        title: data.storeName,
-        info: data.storeInfo,
-        postage: data.postage,
-        unitName: data.unitName,
-        sort: data.sort,
-        sales: data.sales,
-        stock: data.stock,
-        isShow: data.isShow,
-        status: 1,
-        isHot: data.isHot,
-        description: data.description,
-        isPostage: data.isPostage,
-        people: 0,
-        price: 0.01,
-        effectiveTime: 24,
-        otPrice: data.otPrice,
-        cost: data.cost,
-        num: 1,
-        giveIntegral: 0,
-        isDel: 0,
-        browse: 0
       }
       _this.dialog = true
     },

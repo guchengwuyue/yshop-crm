@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style scoped>
-.editor-content{
-  padding-left: 5px;
-}
+  .editor-content{
+    padding-left: 5px;
+  }
 </style>

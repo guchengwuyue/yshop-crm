@@ -9,13 +9,13 @@
         <el-radio v-model="form.isForever" :label="0" style="width: 200px;">否</el-radio>
       </el-form-item>
       <el-form-item label="有效时间(天)">
-        <el-input v-model="form.validDate" style="width: 370px;" />
+        <el-input-number v-model="form.validDate" style="width: 370px;" />
       </el-form-item>
       <el-form-item label="会员等级">
-        <el-input v-model="form.grade" style="width: 370px;" />
+        <el-input-number v-model="form.grade" style="width: 370px;" />
       </el-form-item>
       <el-form-item label="享受折扣">
-        <el-input v-model="form.discount" style="width: 370px;" />
+        <el-input-number v-model="form.discount" style="width: 370px;" />
       </el-form-item>
       <el-form-item label="会员背景">
         <MaterialList v-model="form.imageArr" style="width: 300px" type="image" :num="1" :width="150" :height="150" />
@@ -73,6 +73,9 @@ export default {
         isDel: ''
       },
       rules: {
+        // grade: [
+        //   { type: 'number', message: '只能输入数字', trigger: 'blur' }
+        // ]
       }
     }
   },

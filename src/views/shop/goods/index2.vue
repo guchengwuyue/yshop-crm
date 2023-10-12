@@ -7,6 +7,12 @@
       <el-select v-model="query.type" clearable placeholder="类型" class="filter-item" style="width: 130px">
         <el-option v-for="item in queryTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
       </el-select>
+      <el-select v-model="cateId"  clearable placeholder="商品分类" class="filter-item" style="width: 130px">
+        <el-option v-for="item in cateList" :disabled="item.disabled === 0"
+                   :value="item.value"
+                   :key="item.id"
+                   :label="item.label"></el-option>
+      </el-select>
       <el-button class="filter-item" size="mini" type="success" icon="el-icon-search" @click="toQuery">搜索</el-button>
       <!-- 新增 -->
       <el-button
@@ -18,7 +24,6 @@
       >刷新</el-button>
     </div>
     <!--表单组件-->
-    <eForm ref="form" :is-add="isAdd" />
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
       <el-table-column prop="id" label="商品id" />
@@ -42,7 +47,11 @@
       </el-table-column>
       <el-table-column v-if="checkPermission(['admin','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT','YXSTOREPRODUCT_DELETE'])" label="操作" width="150px" align="center">
         <template slot-scope="scope">
-          <el-button v-permission="['admin','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT']" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)" />
+          <el-button v-permission="['admin','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_EDIT']" size="mini" type="primary" icon="el-icon-edit">
+            <router-link :to="'/shop/goodsEdit/'+scope.row.id">
+              编辑
+            </router-link>
+          </el-button>
           <el-popover
             :ref="scope.row.id"
             v-permission="['admin','YXSTOREPRODUCT_ALL','YXSTOREPRODUCT_DELETE']"
@@ -83,6 +92,7 @@ export default {
     return {
       delLoading: false,
       visible: false,
+      cateId: null,
       queryTypeOptions: [
         { key: 'storeName', display_name: '商品名称' }
       ]
@@ -98,7 +108,7 @@ export default {
     beforeInit() {
       this.url = 'api/yxStoreProduct'
       const sort = 'id,desc'
-      this.params = { page: this.page, size: this.size, sort: sort, isShow: 0, isDel: 0 }
+      this.params = { page: this.page, size: this.size, sort: sort, isShow: 0, isDel: 0,cateId: this.cateId  }
       const query = this.query
       const type = query.type
       const value = query.value

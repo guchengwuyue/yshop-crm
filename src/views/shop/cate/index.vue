@@ -54,7 +54,6 @@
           <udOperation
             :data="scope.row"
             :permission="permission"
-            :disabled-dle="scope.row.id === 1"
             msg="确定删除吗,如果存在下级节点则一并删除，此操作不能撤销！"
           />
         </template>

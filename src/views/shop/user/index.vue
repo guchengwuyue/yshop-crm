@@ -28,6 +28,7 @@
     <!--表单组件-->
     <eForm ref="form" :is-add="isAdd" />
     <pForm ref="formp" :is-add="isAdd" />
+    <detail ref="formd" />
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
       <el-table-column prop="uid" label="用户id" />
@@ -41,9 +42,9 @@
       <el-table-column prop="nowMoney" label="用户余额" />
       <el-table-column prop="brokeragePrice" label="佣金金额" />
       <el-table-column prop="integral" label="用户积分" />
-      <el-table-column :show-overflow-tooltip="true" prop="addTime" label="创建日期">
+      <el-table-column  prop="createTime" label="创建日期" width="140">
         <template slot-scope="scope">
-          <span>{{ formatTime(scope.row.addTime) }}</span>
+          <span>{{ scope.row.createTime }}</span>
         </template>
       </el-table-column>
       <el-table-column label="状态" align="center">
@@ -65,18 +66,25 @@
       </el-table-column>
       <el-table-column prop="spreadUid" label="推荐人" />
       <el-table-column prop="payCount" label="购买次数" />
-      <el-table-column v-if="checkPermission(['admin','YXUSER_ALL','YXUSER_EDIT','YXUSER_DELETE'])" label="操作" width="185" align="center" fixed="right">
+      <el-table-column v-if="checkPermission(['admin','YXUSER_ALL','YXUSER_EDIT','YXUSER_DELETE'])" label="操作" width="215" align="center" fixed="right">
         <template slot-scope="scope">
           <el-button
             v-permission="['admin','YXUSER_ALL','YXUSER_EDIT']"
             size="mini"
-            type="primary"
-            icon="el-icon-edit"
-            @click="edit(scope.row)"
-          />
+            type="danger"
+            @click="editD(scope.row)"
+          >查看下级</el-button>
           <el-dropdown size="mini" split-button type="primary" trigger="click">
             操作
             <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>
+                <el-button
+                  v-permission="['admin','YXUSER_ALL','YXUSER_EDIT']"
+                  size="mini"
+                  type="primary"
+                  @click="edit(scope.row)"
+                >修改用户</el-button>
+              </el-dropdown-item>
               <el-dropdown-item>
                 <el-button
                   v-permission="['admin','YXUSER_ALL','YXUSER_EDIT']"
@@ -87,20 +95,6 @@
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <!--
-         <el-popover
-            v-permission="['admin','YXUSER_ALL','YXUSER_DELETE']"
-            :ref="scope.row.uid"
-            placement="top"
-            width="180">
-            <p>确定删除本条数据吗？</p>
-            <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="$refs[scope.row.uid].doClose()">取消</el-button>
-              <el-button :loading="delLoading" type="primary" size="mini" @click="subDelete(scope.row.uid)">确定</el-button>
-            </div>
-            <el-button slot="reference" type="danger" icon="el-icon-delete" size="mini"/>
-          </el-popover>
-          -->
         </template>
       </el-table-column>
     </el-table>
@@ -122,9 +116,10 @@ import initData from '@/mixins/crud'
 import { del, onStatus } from '@/api/yxUser'
 import eForm from './form'
 import pForm from './formp'
+import detail from './detail'
 import { formatTime } from '@/utils/index'
 export default {
-  components: { eForm, pForm },
+  components: { eForm, pForm, detail },
   mixins: [initData],
   data() {
     return {
@@ -250,6 +245,15 @@ export default {
         money: 0
       }
       _this.dialog = true
+    },
+    editD(data) {
+      const _this = this.$refs.formd
+      _this.form = {
+        uid: data.uid,
+        nickname: data.nickname
+      }
+      _this.dialog = true
+      _this.spread(data.uid)
     }
   }
 }

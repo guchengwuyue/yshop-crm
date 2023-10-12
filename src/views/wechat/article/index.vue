@@ -10,12 +10,15 @@
           size="mini"
           type="primary"
           icon="el-icon-plus"
-          @click="add"
-        >新增</el-button>
+                 >
+          <router-link :to="'/wechat/artadd'">
+            新增
+          </router-link>
+        </el-button>
       </div>
     </div>
     <!--表单组件-->
-    <eForm ref="form" :is-add="isAdd" />
+    <!--<eForm ref="form" :is-add="isAdd" />-->
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
       <el-table-column prop="id" label="ID" />
@@ -26,14 +29,20 @@
           <a :href="scope.row.imageInput" style="color: #42b983" target="_blank"><img :src="scope.row.imageInput" alt="点击打开" class="el-avatar"></a>
         </template>
       </el-table-column>
-      <el-table-column :show-overflow-tooltip="true" prop="addTime" label="创建日期">
+      <el-table-column :show-overflow-tooltip="true" prop="createTime" label="创建日期">
         <template slot-scope="scope">
-          <span>{{ scope.row.addTime }}</span>
+          <span>{{ scope.row.createTime }}</span>
         </template>
       </el-table-column>
-      <el-table-column v-if="checkPermission(['admin','YXARTICLE_ALL','YXARTICLE_EDIT','YXARTICLE_DELETE'])" label="操作" width="180px" align="center">
+      <el-table-column v-if="checkPermission(['admin','YXARTICLE_ALL','YXARTICLE_EDIT','YXARTICLE_DELETE'])" label="操作" width="220px" align="center">
         <template slot-scope="scope">
-          <el-button v-permission="['admin','YXARTICLE_ALL','YXARTICLE_EDIT']" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)" />
+          <el-button v-permission="['admin','YXARTICLE_ALL','YXARTICLE_EDIT']" size="mini"
+                     type="primary" icon="el-icon-edit"
+                     >
+            <router-link :to="'/wechat/artadd/'+scope.row.id">
+              编辑
+            </router-link>
+          </el-button>
           <el-popover
             :ref="scope.row.id"
             v-permission="['admin','YXARTICLE_ALL','YXARTICLE_DELETE']"

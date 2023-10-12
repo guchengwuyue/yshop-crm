@@ -23,6 +23,14 @@ export function edit(data) {
   })
 }
 
+export function updateDelivery(data) {
+  return request({
+    url: 'api/yxStoreOrder/updateDelivery',
+    method: 'put',
+    data
+  })
+}
+
 export function editT(data) {
   return request({
     url: 'api/yxStoreOrder/check',
@@ -30,7 +38,6 @@ export function editT(data) {
     data
   })
 }
-
 
 export function refund(data) {
   return request({
@@ -71,3 +78,16 @@ export function express(data) {
   })
 }
 
+export function getOrderDetail(id) {
+  return request({
+    url: 'api/getStoreOrderDetail/' + id,
+    method: 'get'
+  })
+}
+
+export function getNowOrderStatus(id) {
+  return request({
+    url: '/api/getNowOrderStatus/' + id,
+    method: 'get'
+  })
+}

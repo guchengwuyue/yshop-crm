@@ -79,6 +79,7 @@
                     :on-progress="handleProgress"
                     :before-upload="beforeUpload"
                     :on-success="handleSuccess"
+                    :data="{type: 1}"
                     multiple
                   >
                     <el-button size="small" type="primary">批量上传</el-button>
@@ -104,7 +105,7 @@
                         :src="item.url"
                         fit="contain"
                         :preview-src-list="[item.url]"
-                        :z-index="999"
+                        :z-index="9999"
                       />
                       <div>
                         <el-checkbox class="material-name" :label="item.url">
@@ -145,7 +146,7 @@
 </template>
 
 <script>
-import { getPage as materialgroupPage, addObj as materialgroupAdd, delObj as materialgroupDel, putObj as materialgroupEdit } from '@/api/tools/materialgroup'
+import { getList as materialgroupPage, addObj as materialgroupAdd, delObj as materialgroupDel, putObj as materialgroupEdit } from '@/api/tools/materialgroup'
 import { getPage, addObj, delObj, putObj } from '@/api/tools/material'
 import { getToken } from '@/utils/auth'
 import { mapGetters } from 'vuex'
@@ -261,7 +262,7 @@ export default {
         sort: 'create_time,desc'// 降序字段
       }).then(response => {
         this.materialgroupLoading = false
-        const materialgroupList = response.content
+        const materialgroupList = response
         materialgroupList.unshift({
           id: '-1',
           name: '全部分组'
@@ -467,7 +468,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  /deep/ .el-icon-circle-close{
+  ::v-deep .el-icon-circle-close{
     color: red;
   }
   .material-name{

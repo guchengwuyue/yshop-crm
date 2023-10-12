@@ -57,6 +57,16 @@ export const constantRouterMap = [
         meta: { title: '个人中心' }
       }
     ]
+  },
+  {
+    path: '/yshop/materia/index',
+    name: `images`,
+    meta: {
+      title: '上传图片',
+      noCache: true
+    },
+    component: (resolve) => require(['@/components/editorMaterial/index'], resolve),
+    hidden: true
   }
 ]
 

@@ -24,7 +24,14 @@ export default {
   },
   data() {
     return {
-      chart: null
+      chart: null,
+      grid: {
+        xl: 3,
+        lg: 6,
+        md: 6,
+        sm: 8,
+        xs: 8,
+      },
     }
   },
   mounted() {

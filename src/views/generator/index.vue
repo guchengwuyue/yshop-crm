@@ -21,7 +21,12 @@
       </crudOperation>
     </div>
     <!--表格渲染-->
-    <el-table ref="table" v-loading="crud.loading" :data="crud.data" style="width: 100%;" @selection-change="crud.selectionChangeHandler">
+    <el-table
+    ref="table"
+    v-loading="crud.loading"
+    :data="crud.data"
+    style="width: 100%;"
+    @selection-change="crud.selectionChangeHandler">
       <el-table-column type="selection" width="55" />
       <el-table-column v-if="columns.visible('tableName')" :show-overflow-tooltip="true" prop="tableName" label="表名" />
       <el-table-column v-if="columns.visible('engine')" :show-overflow-tooltip="true" prop="engine" label="数据库引擎" />
@@ -29,7 +34,8 @@
       <el-table-column v-if="columns.visible('remark')" :show-overflow-tooltip="true" prop="remark" label="备注" />
       <el-table-column v-if="columns.visible('createTime')" prop="createTime" label="创建日期">
         <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.createTime) }}</span>
+          <!-- <span>{{ parseTime(scope.row.createTime) }}</span> -->
+          <span>{{ scope.row.createTime }}</span>
         </template>
       </el-table-column>
       <el-table-column label="操作" width="160px" align="center" fixed="right">

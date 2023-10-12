@@ -16,20 +16,28 @@
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
       <el-table-column prop="id" label="id" />
-      <el-table-column prop="cname" label="优惠券名称" />
-      <el-table-column label="领取日期">
+      <el-table-column prop="ctype" label="优惠券类型">
         <template slot-scope="scope">
-          <p>{{ parseTime(scope.row.startTime) }}</p>
-          <p>{{ parseTime(scope.row.endTime) }}</p>
+          <div>
+            <el-tag v-if="scope.row.ctype === 1" style="cursor: pointer" :type="''">商品券</el-tag>
+            <el-tag v-else :type=" 'info' ">普通券</el-tag>
+          </div>
         </template>
       </el-table-column>
-      <el-table-column label="发布数量">
+      <el-table-column prop="cname" label="优惠券名称" />
+      <el-table-column label="领取日期" prop="startTime">
+        <template slot-scope="scope">
+          <p>{{ formatTimeTwo(scope.row.startTime) }}</p>
+          <p>{{ formatTimeTwo(scope.row.endTime) }}</p>
+        </template>
+      </el-table-column>
+      <el-table-column label="发布数量" prop="totalCount">
         <template slot-scope="scope">
           <p>发布:{{ scope.row.totalCount }}</p>
-          <o>剩余:{{ scope.row.remainCount }}</o>
+          <p>剩余:{{ scope.row.remainCount }}</p>
         </template>
       </el-table-column>
-      <el-table-column label="状态" align="center">
+      <el-table-column label="状态" align="center" prop="status">
         <template slot-scope="scope">
           <div>
             <el-tag v-if="scope.row.status === 1" style="cursor: pointer" :type="''">开启</el-tag>

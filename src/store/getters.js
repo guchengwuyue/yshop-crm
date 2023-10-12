@@ -1,4 +1,9 @@
 const getters = {
+  // 画布
+  terminal: state => state.container.terminal,
+  activeComponent: state => state.container.activeComponent,
+  componentsData: state => state.container.componentsData,
+
   deployUploadApi: state => state.api.deployUploadApi,
   databaseUploadApi: state => state.api.databaseUploadApi,
   size: state => state.app.size,

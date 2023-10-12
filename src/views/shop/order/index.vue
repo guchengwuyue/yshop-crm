@@ -21,15 +21,12 @@
         <el-tab-pane name="4">
           <span slot="label"><i class="el-icon-circle-check"></i> 交易完成</span>
         </el-tab-pane>
-        <el-tab-pane name="-1">
-          <span slot="label"><i class="el-icon-back"></i> 退款中</span>
-        </el-tab-pane>
-        <el-tab-pane name="-2">
-          <span slot="label"><i class="el-icon-finished"></i> 已退款</span>
-        </el-tab-pane>
-        <el-tab-pane name="-4">
-          <span slot="label"><i class="el-icon-circle-close"></i> 已删除</span>
-        </el-tab-pane>
+        <!--<el-tab-pane name="-1">-->
+        <!--  <span slot="label"><i class="el-icon-back"></i> 退款中</span>-->
+        <!--</el-tab-pane>-->
+        <!--<el-tab-pane name="-2">-->
+        <!--  <span slot="label"><i class="el-icon-finished"></i> 已退款</span>-->
+        <!--</el-tab-pane>-->
       </el-tabs>
       <!--工具栏-->
       <div class="head-container">
@@ -100,31 +97,52 @@
         </el-table-column>
         <el-table-column prop="cartInfoList" width="300" label="商品信息">
           <template slot-scope="scope">
-            <div v-for="(item,index) in scope.row.cartInfoList" v-if="item.cartInfoMap.productInfo.attrInfo">
-            <span>
-              <img
-                style="width: 30px;height: 30px;margin:0;cursor: pointer;"
-                :src="item.cartInfoMap.productInfo.attrInfo.image"
-              >
-            </span>
+            <!-- <div v-for="(item,index) in scope.row.cartInfoList"
+            :key="index"
+            v-if="item.cartInfoMap.productInfo.attrInfo">
+              <span>
+                <img style="width: 30px;height: 30px;margin:0;cursor: pointer;"
+                  :src="item.cartInfoMap.productInfo.attrInfo.image"
+                >
+              </span>
               <span>{{ item.cartInfoMap.productInfo.storeName }}&nbsp;{{ item.cartInfoMap.productInfo.attrInfo.suk }}</span>
               <span> | ￥{{ item.cartInfoMap.truePrice }}×{{ item.cartInfoMap.cartNum }}</span>
             </div>
             <div v-else>
-            <span><img
-              style="width: 30px;height: 30px;margin:0;cursor: pointer;"
-              :src="item.cartInfoMap.productInfo.image"
-            ></span>
+              <span>
+                <img
+                style="width: 30px;height: 30px;margin:0;cursor: pointer;"
+                :src="item.cartInfoMap.productInfo.image">
+              </span>
               <span>{{ item.cartInfoMap.productInfo.storeName }}</span>
               <span> | ￥{{ item.cartInfoMap.truePrice }}×{{ item.cartInfoMap.cartNum }}</span>
+            </div> -->
+            <div v-for="(item,index) in scope.row.cartInfoList"
+            :key="index">
+                <span v-if="item.cartInfoMap.productInfo.attrInfo">
+                  <img style="width: 30px;height: 30px;margin:0;cursor: pointer;"
+                    :src="item.cartInfoMap.productInfo.attrInfo.image"
+                  >
+                </span>
+                <span v-else>
+                  <img
+                  style="width: 30px;height: 30px;margin:0;cursor: pointer;"
+                  :src="item.cartInfoMap.productInfo.image">
+                </span>
+                <span>
+                  {{ item.cartInfoMap.productInfo.storeName }}
+                  <span v-if="item.cartInfoMap.productInfo.attrInfo">&nbsp;{{ item.cartInfoMap.productInfo.attrInfo.sku }}</span>
+                </span>
+                <span> | ￥{{ item.cartInfoMap.truePrice }}×{{ item.cartInfoMap.cartNum }}</span>
             </div>
           </template>
         </el-table-column>
         <el-table-column prop="payPrice" label="实际支付" />
+        <el-table-column prop="payIntegral" label="消费积分" />
         <el-table-column prop="payTypeName" label="支付状态" />
         <el-table-column prop="statusName" label="订单状态">
           <template slot-scope="scope">
-            <span v-html="scope.row.statusName">{{ scope.row.addTime }}</span>
+            <span v-html="scope.row.statusName"></span>
           </template>
         </el-table-column>
         <el-table-column prop="addTime" width="160" label="创建时间">
@@ -138,7 +156,7 @@
               v-permission="['admin','YXSTOREORDER_ALL','YXSTOREORDER_EDIT']"
               size="mini"
               type="primary"
-              @click="detail(scope.row)"
+              @click="toDetailURL(scope.row.id)"
             >
               订单详情</el-button>
             <el-dropdown size="mini" split-button type="primary" trigger="click">
@@ -162,17 +180,25 @@
                     @click="edit(scope.row)"
                   >
                     去发货</el-button>
-                </el-dropdown-item>
-                <el-dropdown-item>
                   <el-button
-                    v-if="scope.row._status == 3"
+                    v-if="scope.row._status == 4"
                     v-permission="['admin','YXSTOREORDER_ALL','YXSTOREORDER_EDIT']"
                     size="mini"
                     type="primary"
-                    @click="refund(scope.row)"
+                    @click="edit(scope.row)"
                   >
-                    立刻退款</el-button>
+                    修改快递</el-button>
                 </el-dropdown-item>
+<!--                <el-dropdown-item>-->
+<!--                  <el-button-->
+<!--                    v-if="scope.row._status == 3"-->
+<!--                    v-permission="['admin','YXSTOREORDER_ALL','YXSTOREORDER_EDIT']"-->
+<!--                    size="mini"-->
+<!--                    type="primary"-->
+<!--                    @click="refund(scope.row)"-->
+<!--                  >-->
+<!--                    立刻退款</el-button>-->
+<!--                </el-dropdown-item>-->
                 <el-dropdown-item v-if="scope.row._status == 1">
                   <el-button
                     v-permission="['admin','YXSTOREORDER_ALL','YXSTOREORDER_EDIT']"
@@ -232,8 +258,7 @@
         style="margin-top: 8px;"
         layout="total, prev, pager, next, sizes"
         @size-change="sizeChange"
-        @current-change="pageChange"
-      />
+        @current-change="pageChange" />
     </el-footer>
   </div>
 </template>
@@ -243,7 +268,7 @@
   import initData from '@/mixins/crud'
   import { del } from '@/api/yxStoreOrder'
   import eForm from './form'
-  import eDetail from './detail'
+  import eDetail from './detail1'
   import eRefund from './refund'
   import editOrder from './edit'
   import eRemark from './remark'
@@ -256,7 +281,15 @@
     mixins: [initData],
     data() {
       return {
-        delLoading: false, status: '0', orderType: '0',createTime: '', checkList: [], printChecked: false, batchHandle: '', batchExport: '', listContent: [],
+        delLoading: false,
+        status: '-9',
+        orderType: '0',
+        createTime: '',
+        checkList: [],
+        printChecked: false,
+        batchHandle: '',
+        batchExport: '',
+        listContent: [],
         queryTypeOptions: [
           { key: 'orderId', display_name: '订单号' },
           { key: 'realName', display_name: '用户姓名' },
@@ -278,7 +311,9 @@
           { value: '1', label: '普通订单' },
           { value: '2', label: '拼团订单' },
           { value: '3', label: '秒杀订单' },
-          { value: '4', label: '砍价订单' }
+          { value: '4', label: '砍价订单' },
+          { value: '5', label: '核销订单' },
+          { value: '6', label: '积分订单' }
         ],
         handleOptions: [
           {value: '', label: '批量操作'},
@@ -303,6 +338,9 @@
       })
     },
     methods: {
+      toDetailURL(id){
+        this.$router.push({ path: '/order/detail/'+id })
+      },
       formatTime,
       checkPermission,
       handleOrder(tab, event) {
@@ -312,7 +350,15 @@
       beforeInit() {
         this.url = 'api/yxStoreOrder'
         const sort = 'id,desc'
-        this.params = { page: this.page, size: this.size, sort: sort, orderStatus: this.status, orderType: this.orderType, addTime: this.createTime, listContent: this.listContent  }
+        this.params = {
+          page: this.page,
+          size: this.size,
+          sort: sort,
+          orderStatus: this.status,
+          orderType: this.orderType,
+          createTime: this.createTime,
+          listContent: this.listContent
+        }
         const query = this.query
         const type = query.type
         const value = query.value
@@ -396,7 +442,8 @@
           shippingType: data.shippingType,
           isChannel: data.isChannel,
           isRemind: data.isRemind,
-          isSystemDel: data.isSystemDel
+          isSystemDel: data.isSystemDel,
+          _status:data._status
         }
         _this.dialog = true
       },
@@ -599,7 +646,7 @@
           paid: data.paid,
           payTime: data.payTime,
           payType: data.payType,
-          addTime: data.addTime,
+          createTime: data.createTime,
           status: data.status,
           refundStatus: data.refundStatus,
           refundReasonWapImg: data.refundReasonWapImg,
@@ -664,7 +711,7 @@
             orderNum += 1;
             orderPrice += item.totalPrice;
             storeNum += item.totalNum;
-            user.push(item.userDTO.account);
+            user.push(item.userDTO.nickname);
           })
           user = Array.from(new Set(user));
           this.caculateInfo = {
@@ -689,6 +736,7 @@
           this.$refs.multipleTable.clearSelection();
         }
       },
+      // 导出选中
       handlePrintOption(val){
         switch (val) {
           case '0':
@@ -782,7 +830,6 @@
     display: flex;
     background-color: #f6f6f6;
     bottom: 0;
-    flex-align: center;
     align-items: center;
     justify-content: space-between;
     width: 100%;

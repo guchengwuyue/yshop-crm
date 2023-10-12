@@ -6,20 +6,16 @@
     <el-tab-pane label="待上架产品" name="second">
       <unonSale ref="unonSale" />
     </el-tab-pane>
-    <!-- <el-tab-pane label="产品回收站" name="thrid">
-      <recycle ref="recycle" />
-    </el-tab-pane> -->
   </el-tabs>
 </template>
 
 <script>
 import onSale from '@/views/shop/goods/index'
 import unonSale from '@/views/shop/goods/index2'
-import recycle from '@/views/shop/goods/index3'
 import '@/assets/styles/description.scss'
 export default {
   name: 'Tab',
-  components: { onSale, unonSale, recycle },
+  components: { onSale, unonSale },
   data() {
     return {
       activeName: 'first'
@@ -31,8 +27,6 @@ export default {
         this.$refs.onSale.init()
       } else if (this.activeName === 'second') {
         this.$refs.unonSale.init()
-      } else {
-        this.$refs.recycle.init()
       }
     }
   }

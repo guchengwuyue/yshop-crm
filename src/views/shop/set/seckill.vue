@@ -21,6 +21,12 @@
       <el-table-column prop="id" label="ID" />
       <el-table-column prop="map.time" label="开启时间(整数小时)" />
       <el-table-column prop="map.continued" label="持续时间(整数小时)" />
+      <el-table-column prop="map.status" label="状态">
+        <template slot-scope="scope">
+          <el-tag v-show="scope.row.status == 1" type="success">开启</el-tag>
+          <el-tag v-show="scope.row.status == 2" type="danger">关闭</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column v-if="checkPermission(['admin','YXSYSTEMGROUPDATA_ALL','YXSYSTEMGROUPDATA_EDIT','YXSYSTEMGROUPDATA_DELETE'])" label="操作" width="150px" align="center">
         <template slot-scope="scope">
           <el-button v-permission="['admin','YXSYSTEMGROUPDATA_ALL','YXSYSTEMGROUPDATA_EDIT']" size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)" />
@@ -75,7 +81,7 @@ export default {
     beforeInit() {
       this.url = 'api/yxSystemGroupData'
       const sort = 'id,desc'
-      this.params = { page: this.page, size: this.size, sort: sort, groupName: 'yshop_seckill_time' }
+      this.params = { page: this.page, size: this.size, sort: sort, groupName: 'yshop_seckill_time'}
       return true
     },
     subDelete(id) {
@@ -107,7 +113,8 @@ export default {
         id: data.id,
         groupName: data.groupName,
         time: data.map.time,
-        continued: data.map.continued
+        continued: data.map.continued,
+        status:data.map.status
       }
       _this.dialog = true
     }

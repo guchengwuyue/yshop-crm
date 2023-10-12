@@ -3,6 +3,7 @@
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="100px">
       <el-form-item label="优惠券ID">
         <el-input v-model="form.cid" style="width: 300px;" :disabled="true" />
+        <el-input v-model="form.ctype" type="hidden" />
       </el-form-item>
       <el-form-item label="优惠券名称">
         <el-input v-model="form.cname" style="width: 300px;" :disabled="true" />
@@ -60,12 +61,15 @@ export default {
         id: '',
         cid: '',
         cname: '',
-        startTime: '',
-        endTime: '',
+        ctype: 0,
+        startTimeDate: '',
+        endTimeDate: '',
         totalCount: 0,
         remainCount: 0,
         isPermanent: 0,
-        status: 1
+        status: 1,
+        isDel: 0,
+        addTime: ''
       },
       rules: {
       }
@@ -122,7 +126,9 @@ export default {
         totalCount: '',
         remainCount: '',
         isPermanent: '',
-        status: ''
+        status: '',
+        isDel: '',
+        addTime: ''
       }
     }
   }

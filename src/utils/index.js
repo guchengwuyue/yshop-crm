@@ -54,6 +54,8 @@ export function parseTime(time, cFormat) {
  * @returns {string}
  */
 export function formatTime(time, option) {
+  if (time == null) return '----'
+
   if (('' + time).length === 10) {
     time = parseInt(time) * 1000
   } else {
@@ -92,6 +94,22 @@ export function formatTime(time, option) {
 }
 
 export function formatTimeTwo(time) {
+  if (time == null) return '无'
+  // time = time * 1000
+  const d = new Date(time)
+  return (
+    d.getFullYear() + '年' +
+    (d.getMonth() + 1) +
+    '月' +
+    d.getDate() +
+    '日' +
+    d.getHours() +
+    '时' +
+    d.getMinutes() +
+    '分'
+  )
+}
+export function formatTimeThree(time) {
   time = time * 1000
   const d = new Date(time)
   return (
@@ -106,7 +124,6 @@ export function formatTimeTwo(time) {
     '分'
   )
 }
-
 /**
  * @param {string} url
  * @returns {Object}
@@ -401,4 +418,17 @@ export function downloadFile(obj, name, suffix) {
   document.body.appendChild(link)
   link.click()
   document.body.removeChild(link)
+}
+
+export function RandomNumber() {
+  var min = 5; var max = 36
+  var randomStr = ''
+  var range = (max ? Math.round(Math.random() * (max - min)) + min : min)
+  var arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
+  for (var i = 0; i < range; i++) {
+    var index = Math.round(Math.random() * (arr.length - 1))
+    randomStr += arr[index]
+  }
+  return randomStr
 }

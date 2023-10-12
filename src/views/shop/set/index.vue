@@ -27,6 +27,7 @@
           <a :href="scope.row.map.pic" style="color: #42b983" target="_blank"><img :src="scope.row.map.pic" alt="点击打开" class="el-avatar"></a>
         </template>
       </el-table-column>
+      <el-table-column prop="map.color" label="轮播背景色" />
       <el-table-column prop="sort" label="排序" />
       <el-table-column label="状态" align="center">
         <template slot-scope="scope">
@@ -128,7 +129,8 @@ export default {
         pic: data.map.pic,
         imageArr: data.map.pic ? data.map.pic.split(',') : [],
         sort: data.sort,
-        status: data.status
+        status: data.status,
+        color: data.map.color
       }
       _this.dialog = true
     }

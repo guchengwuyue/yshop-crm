@@ -17,7 +17,17 @@
         <el-input v-model="form.api" :disabled="true" style="width: 370px;" />
       </el-form-item>
       <el-form-item label="微信分享图片">
-        <MaterialList v-model="form.imageArr" style="width: 370px" type="image" :num="1" :width="150" :height="150" />
+        <MaterialList v-model="imageArr" style="width: 370px" type="image" :num="1" :width="150" :height="150" />
+      </el-form-item>
+      <el-form-item label="关注二维码">
+        <MaterialList
+          v-model="wechat_follow_imgArr"
+          style="width: 500px"
+          type="image"
+          :num="1"
+          :width="150"
+          :height="150"
+        />
       </el-form-item>
       <el-form-item label="微信分享标题">
         <el-input v-model="form.wechat_share_title" style="width: 370px;" />
@@ -47,6 +57,8 @@ export default {
   mixins: [initData],
   data() {
     return {
+      wechat_follow_imgArr:[],
+      imageArr: [],
       delLoading: false,
       form: {
         wechat_name: '',
@@ -58,12 +70,12 @@ export default {
         wechat_encode: '',
         wechat_encodingaeskey: '',
         wechat_share_img: '',
-        imageArr: [],
+        wechat_follow_img: '',
         wechat_qrcode: '',
         wechat_type: '',
         wechat_share_title: '',
         wechat_share_synopsis: '',
-        api: 'http://你的H5端域名/api/wechat/serve',
+        api: 'http://你的yshop-app端域名/api/wechat/serve',
         wechat_avatar: ''
       },
       rules: {
@@ -71,9 +83,13 @@ export default {
     }
   },
   watch: {
-    'form.imageArr': function(val) {
+    imageArr: function(val) {
       if (val) {
         this.form.wechat_share_img = val.join(',')
+      }
+    },wechat_follow_imgArr: function(val) {
+      if (val) {
+        this.form.wechat_follow_img = val.join(',')
       }
     }
   },
@@ -88,7 +104,8 @@ export default {
         }
       })
 
-      this.form.imageArr = this.form.wechat_share_img.split(',')
+      this.imageArr = this.form.wechat_share_img.split(',')
+      this.wechat_follow_imgArr = this.form.wechat_follow_img.split(',')
     })
   },
   methods: {

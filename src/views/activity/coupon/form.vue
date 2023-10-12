@@ -1,20 +1,29 @@
 <template>
-  <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="500px">
-    <el-form ref="form" :model="form" :rules="rules" size="small" label-width="130px">
+  <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '编辑'" width="800px">
+    <el-form ref="form" :model="form" :rules="rules" size="small" label-width="140px">
+      <el-form-item label="优惠券类型">
+        <el-radio-group v-model="form.type" @change="couponsType">
+          <el-radio :label=0>通用券</el-radio>
+          <el-radio :label=1>商品券</el-radio>
+        </el-radio-group>
+      </el-form-item>
+      <el-form-item label="选择商品" v-if="form.type == 1">
+        <cgood v-model="form.product" @selectGoods="getGoods"></cgood>
+      </el-form-item>
       <el-form-item label="优惠券名称">
         <el-input v-model="form.title" style="width: 300px;" />
       </el-form-item>
       <el-form-item label="优惠券面值">
-        <el-input v-model="form.couponPrice" style="width: 300px;" />
+        <el-input-number v-model="form.couponPrice" style="width: 300px;" />
       </el-form-item>
       <el-form-item label="优惠券最低消费">
-        <el-input v-model="form.useMinPrice" style="width: 300px;" />
+        <el-input-number v-model="form.useMinPrice" style="width: 300px;" />
       </el-form-item>
       <el-form-item label="优惠券有效期限(天)">
-        <el-input v-model="form.couponTime" style="width: 300px;" />
+        <el-input-number v-model="form.couponTime" style="width: 300px;" />
       </el-form-item>
       <el-form-item label="排序">
-        <el-input v-model="form.sort" style="width: 300px;" />
+        <el-input-number v-model="form.sort" style="width: 300px;" />
       </el-form-item>
       <el-form-item label="状态">
         <el-radio v-model="form.status" :label="1">开启</el-radio>
@@ -30,11 +39,20 @@
 
 <script>
 import { add, edit } from '@/api/yxStoreCoupon'
+import cgood from '@/views/components/goods'
 export default {
+  components: { cgood },
   props: {
     isAdd: {
       type: Boolean,
       required: true
+    }
+  },
+  watch: {
+    "form.product":function(val){
+      if(val){
+        this.getGoods(val)
+      }
     }
   },
   data() {
@@ -49,14 +67,25 @@ export default {
         couponTime: 1,
         sort: 0,
         status: 1,
-        addTime: ''
-        // isDel: 0
+        type: 0,
+        productId: '',
+        product: []
       },
       rules: {
       }
     }
   },
   methods: {
+    getGoods(p) {
+      var ids = []
+      p.forEach((item,index) => {
+        ids.push(item.id)
+      })
+      this.form.productId = ids.join(",")
+    },
+    couponsType() {
+      //alert(this.form.type)
+    },
     cancel() {
       this.resetForm()
     },
@@ -108,7 +137,9 @@ export default {
         couponTime: 1,
         sort: 0,
         status: 1,
-        addTime: ''
+        type: 0,
+        productId: '',
+        product: []
       }
     }
   }

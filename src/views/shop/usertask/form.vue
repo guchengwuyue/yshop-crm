@@ -11,10 +11,10 @@
         <el-input v-model="form.name" style="width: 370px;" />
       </el-form-item>
       <el-form-item label="限定数">
-        <el-input v-model="form.number" style="width: 370px;" />
+        <el-input-number v-model="form.number" style="width: 370px;" />
       </el-form-item>
       <el-form-item label="排序">
-        <el-input v-model="form.sort" style="width: 370px;" />
+        <el-input-number v-model="form.sort" style="width: 370px;" />
       </el-form-item>
       <el-form-item label="是否显示">
         <el-radio v-model="form.isShow" :label="1">是</el-radio>

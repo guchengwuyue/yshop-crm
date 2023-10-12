@@ -79,6 +79,10 @@
                       label="日期框"
                       value="Date"
                     />
+                    <el-option
+                      label="图片文件"
+                      value="Imges"
+                    />
                   </el-select>
                 </template>
               </el-table-column>
@@ -320,7 +324,7 @@ export default {
 </style>
 
 <style scoped>
-  /deep/ .input-with-select .el-input-group__prepend {
+  ::v-deep .input-with-select .el-input-group__prepend {
     background-color: #fff;
   }
 </style>
