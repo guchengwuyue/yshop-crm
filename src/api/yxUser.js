@@ -39,7 +39,6 @@ export function editp(data) {
   })
 }
 
-
 export function getSpread(data) {
   return request({
     url: 'api/yxUser/spread',

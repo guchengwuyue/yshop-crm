@@ -30,7 +30,6 @@ export function publish(id) {
   })
 }
 
-
 export function get(id) {
   return request({
     url: 'api/yxArticle/info/' + id,

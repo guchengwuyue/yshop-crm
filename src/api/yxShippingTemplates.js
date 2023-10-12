@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function add(data,id) {
+export function add(data, id) {
   return request({
     url: `api/yxShippingTemplates/save/${id}`,
     method: 'post',
@@ -28,7 +28,7 @@ export function getCity() {
   return request({
     url: 'api/yxShippingTemplates/citys',
     method: 'get'
-  });
+  })
 }
 
-export default { add, edit, del,getCity }
+export default { add, edit, del, getCity }

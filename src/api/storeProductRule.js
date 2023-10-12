@@ -24,11 +24,11 @@ export function edit(data) {
   })
 }
 
-export function info (id) {
+export function info(id) {
   return request({
     url: `api/yxStoreProductRule/rule/${id}`,
     method: 'get'
-  });
+  })
 }
 
 export default { add, edit, del, info }
