@@ -71,7 +71,6 @@
                 />
               </template>
             </el-table-column>
-            <el-table-column label="所属门店" align="center" prop="shopName" />
             <el-table-column label="商品名称" align="center" prop="storeName" />
             <el-table-column label="商品价格" align="center" prop="price" />
             <el-table-column label="销量" align="center"  width="80" prop="sales" />

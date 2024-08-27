@@ -24,12 +24,26 @@ public class DemoFilter extends OncePerRequestFilter {
         String method = request.getMethod();
         String path = request.getRequestURI();
         //app端不过滤
-        Boolean res = StrUtil.contains(path,"/app-api/");
+       // Boolean res = StrUtil.contains(path,"/app-api/");
 
-        Boolean res6 = StrUtil.contains(path,"/admin-api/cashier/");
+
 
         //系统模块特殊处理
-        Boolean res2 = StrUtil.contains(path,"/admin-api/order/store-order/update");
+        Boolean res2 = StrUtil.contains(path,"/admin-api/crm/flow/create");
+        Boolean res22 = StrUtil.contains(path,"/admin-api/crm/flow/update");
+        if(res2 || res22){
+            return false;
+        }
+        Boolean res6 = StrUtil.contains(path,"/admin-api/crm/");
+        if(res6 && !StrUtil.equalsAnyIgnoreCase(method,  "DELETE") ) {
+            return true;
+        }
+
+        Boolean res66 = StrUtil.contains(path,"/admin-api/product/store-product/isFormatAttr");
+        if(res66) {
+            return true;
+        }
+
 
         Boolean res3 = StrUtil.contains(path,"/admin-api/system/auth/logout");
 
@@ -37,7 +51,7 @@ public class DemoFilter extends OncePerRequestFilter {
 
         Boolean res5 = StrUtil.contains(path,"/admin-api/system/captcha/get");
 
-        return res || res6 || res2 || res3 || res4 || res5 || !StrUtil.equalsAnyIgnoreCase(method,  "POST","PUT", "DELETE")  // 写操作时，不进行过滤率
+        return  res3 || res4 || res5  || !StrUtil.equalsAnyIgnoreCase(method,  "POST","PUT", "DELETE")  // 写操作时，不进行过滤率
                 || WebFrameworkUtils.getLoginUserId(request) == null; // 非登录用户时，不进行过滤
     }
 

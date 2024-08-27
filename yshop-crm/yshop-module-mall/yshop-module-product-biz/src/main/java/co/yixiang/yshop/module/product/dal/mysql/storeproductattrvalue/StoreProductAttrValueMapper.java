@@ -22,7 +22,7 @@ public interface StoreProductAttrValueMapper extends BaseMapperX<StoreProductAtt
      * @return
      */
     @Update("update yshop_store_product_attr_value set stock=stock-#{num}, sales=sales+#{num}" +
-            " where product_id=#{productId} and `sku`=#{unique} and stock >= #{num}")
+            " where product_id=#{productId} and `unique`=#{unique} and stock >= #{num}")
     int decStockIncSales(@Param("num") Integer num, @Param("productId") Long productId,
                          @Param("unique")  String unique);
 
@@ -34,7 +34,7 @@ public interface StoreProductAttrValueMapper extends BaseMapperX<StoreProductAtt
      * @return
      */
     @Update("update yshop_store_product_attr_value set stock=stock+#{num}, sales=sales-#{num}" +
-            " where product_id=#{productId} and `sku`=#{unique}")
+            " where product_id=#{productId} and `unique`=#{unique}")
     int incStockDecSales(@Param("num") Integer num,@Param("productId") Long productId,
                          @Param("unique")  String unique);
 

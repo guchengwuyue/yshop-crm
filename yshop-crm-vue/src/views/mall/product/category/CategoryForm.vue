@@ -71,7 +71,7 @@ const formData = ref({
 const formRules = reactive({
   parentId: [{ required: true, message: '请选择上级分类', trigger: 'blur' }],
   name: [{ required: true, message: '分类名称不能为空', trigger: 'blur' }],
-  picUrl: [{ required: true, message: '分类图片不能为空', trigger: 'blur' }],
+  //picUrl: [{ required: true, message: '分类图片不能为空', trigger: 'blur' }],
   sort: [{ required: true, message: '分类排序不能为空', trigger: 'blur' }],
   status: [{ required: true, message: '开启状态不能为空', trigger: 'blur' }]
 })

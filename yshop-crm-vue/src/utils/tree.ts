@@ -332,9 +332,9 @@ export const handleTree3 = (data: any[], id?: string, parentId?: string, childre
 
   for (const d of data) {
     const parentId = d[config.parentId]
-    if (parentId == 0) {
-        d.disabled = true
-    }
+    // if (parentId == 0) {
+    //     d.disabled = true
+    // }
     if (childrenListMap[parentId] == null) {
       childrenListMap[parentId] = []
     }

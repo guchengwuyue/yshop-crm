@@ -222,8 +222,8 @@
     </el-form>
     <template #footer>
       <el-button v-if="activeName !== 'one'" @click="upTab">上一步</el-button>
-      <el-button type="primary"  v-if="activeName !== 'four'" @click="downTab">下一步</el-button>
-      <el-button v-if="activeName == 'four'" @click="submitForm" type="primary" :disabled="formLoading">保 存</el-button>
+      <el-button type="primary"  v-if="activeName !== 'three'" @click="downTab">下一步</el-button>
+      <el-button v-if="activeName == 'three'" @click="submitForm" type="primary" :disabled="formLoading">保 存</el-button>
       <el-button @click="dialogVisible = false">取 消</el-button>
     </template>
   </Dialog>
@@ -469,7 +469,7 @@ const open = async (type: string, id?: number) => {
   }
   getInfo(id)
    // 获得分类树
- // await getTree()
+  getTree()
  
 }
 defineExpose({ open }) // 提供 open 方法，用于打开弹窗

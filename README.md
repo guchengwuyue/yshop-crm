@@ -109,8 +109,6 @@ yshop-crm意象客户关系管理系统，专门为企业销售团队量身定�
 - element-plus:https://element-plus.gitee.io/zh-CN/
 - vue:https://cn.vuejs.org/
 - pay-java-parent:https://gitee.com/egzosn/pay-java-parent
-- uvui：https://www.uvui.cn/
-- uniapp:https://uniapp.dcloud.net.cn/
 
 
 ## 使用须知

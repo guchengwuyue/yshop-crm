@@ -54,7 +54,7 @@ public class StoreProductDto
     private String storeInfo;
 
     /** 关键字 */
-    @NotBlank(message = "关键字不能为空")
+    //@NotBlank(message = "关键字不能为空")
     private String keyword;
 
     /** 商品条码（一维码） */
