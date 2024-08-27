@@ -49,13 +49,12 @@ yshop-crm意象客户关系管理系统，专门为企业销售团队量身定�
 -   3.1 请使用idea打开Java工程，自动会安装依赖
 -   3.2 创建数据库且导入工程目录下sql/yshop-crm.sql 文件
 -   3.3 找到项目下的yshop-server 的yml,修改数据库相关信息和redis相关信息，如图：
-     ![输入图片说明](image.png)
+     ![输入图片说明](3344.png)
 -   3.4 工程下输入
     ``` 
     mvn clean install package '-Dmaven.test.skip=true'
     ```
--   3.5 启动项目，如图
-    ![输入图片说明](1702544439568.jpg)
+-   3.5 启动项目
 
 ##### 4、后台vue启动
 
@@ -64,7 +63,7 @@ yshop-crm意象客户关系管理系统，专门为企业销售团队量身定�
     pnpm install
     ```
  - 4.2 配置api如图
- ![输入图片说明](1702544756749.jpg)
+ ![输入图片说明](3355.jpg)
  - 4.3 本地启动:
     ```
      npm run dev
