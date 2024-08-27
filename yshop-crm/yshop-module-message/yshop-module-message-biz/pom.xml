@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>yshop-module-message</artifactId>
+        <groupId>co.yixiang.boot</groupId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>yshop-module-message-biz</artifactId>
+    <packaging>jar</packaging>
+
+    <name>${project.artifactId}</name>
+    <description>
+        message 模块，模板消息 websocket 推送消息等等
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>co.yixiang.boot</groupId>
+            <artifactId>yshop-module-message-api</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>co.yixiang.boot</groupId>
+            <artifactId>yshop-spring-boot-starter-biz-tenant</artifactId>
+        </dependency>
+
+        <!-- Web 相关 -->
+        <dependency>
+            <groupId>co.yixiang.boot</groupId>
+            <artifactId>yshop-spring-boot-starter-security</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>co.yixiang.boot</groupId>
+            <artifactId>yshop-spring-boot-starter-redis</artifactId>
+        </dependency>
+
+
+        <!-- 消息队列相关 -->
+        <dependency>
+            <groupId>co.yixiang.boot</groupId>
+            <artifactId>yshop-spring-boot-starter-mq</artifactId>
+        </dependency>
+
+        <!-- Test 测试相关 -->
+        <dependency>
+            <groupId>co.yixiang.boot</groupId>
+            <artifactId>yshop-spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 工具类相关 -->
+        <dependency>
+            <groupId>co.yixiang.boot</groupId>
+            <artifactId>yshop-spring-boot-starter-excel</artifactId>
+        </dependency>
+
+
+
+    </dependencies>
+
+</project>

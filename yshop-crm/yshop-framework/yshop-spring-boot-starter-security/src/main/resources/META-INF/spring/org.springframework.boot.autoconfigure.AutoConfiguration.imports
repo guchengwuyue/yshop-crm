@@ -1,0 +1,3 @@
+co.yixiang.yshop.framework.security.config.YshopSecurityAutoConfiguration
+co.yixiang.yshop.framework.security.config.YshopWebSecurityConfigurerAdapter
+co.yixiang.yshop.framework.operatelog.config.YshopOperateLogConfiguration

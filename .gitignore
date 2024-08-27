@@ -1,0 +1,7 @@
+/.git
+/.idea
+*.log
+*.DS_Store
+/yshop-crm/target/
+/yshop-crm-vue/node_modules
+
