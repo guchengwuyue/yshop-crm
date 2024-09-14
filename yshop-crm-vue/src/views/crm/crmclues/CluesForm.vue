@@ -268,7 +268,7 @@ const resetForm = () => {
     city: undefined,
     area: undefined,
     detailAddress: undefined,
-    nextTime: undefined,
+    nextTime: Date.parse(new Date()),
     followTime: undefined,
     collectTime: undefined,
     followStatus: undefined

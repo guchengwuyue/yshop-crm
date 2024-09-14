@@ -163,7 +163,6 @@
       </el-col>
     </el-row>
     <template #footer>
-      <el-button @click="submitForm" type="primary">成 交</el-button>
       <el-button @click="dialogVisible = false">取 消</el-button>
     </template>
   </Dialog>

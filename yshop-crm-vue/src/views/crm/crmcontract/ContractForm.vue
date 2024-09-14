@@ -339,7 +339,7 @@ const resetForm = () => {
     orderAdminId: undefined,
     remark: undefined,
     ownerUserId: undefined,
-    nextTime: undefined,
+    nextTime: Date.parse(new Date()),
     expireHandle: undefined,
     invoiceMoney: undefined
   }

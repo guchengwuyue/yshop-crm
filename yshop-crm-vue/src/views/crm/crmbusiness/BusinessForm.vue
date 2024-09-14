@@ -211,7 +211,7 @@ const resetForm = () => {
     status: undefined,
     statusTime: undefined,
     isEnd: undefined,
-    nextTime: undefined,
+    nextTime: Date.parse(new Date()),
     name: undefined,
     money: undefined,
     totalPrice: 0,

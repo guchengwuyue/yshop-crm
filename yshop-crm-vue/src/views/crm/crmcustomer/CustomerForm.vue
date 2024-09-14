@@ -310,7 +310,7 @@ const resetForm = () => {
     detailAddress: undefined,
     lng: undefined,
     lat: undefined,
-    nextTime: undefined,
+    nextTime: Date.parse(new Date()),
     followTime: undefined,
     collectTime: undefined,
     weixin: undefined,
