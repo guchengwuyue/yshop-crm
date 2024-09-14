@@ -51,7 +51,7 @@ public class CrmCustomerDO extends BaseDO {
     /**
      * 成交时间
      */
-    private Integer dealTime;
+    private LocalDateTime dealTime;
     /**
      * 1锁定
      */

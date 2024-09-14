@@ -52,6 +52,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -335,6 +336,14 @@ public class CrmContractServiceImpl implements CrmContractService {
                         crmContractDO.setCheckStatus(ContractStatusEnum.STATUS_2.getValue());
                         crmContractDO.setFlowAdminId(new ArrayList<>());
                         crmFlowLogDO.setIsEnd(ShopCommonEnum.IS_STATUS_1.getValue());//审核结束
+
+                        //客户成交
+                        CrmCustomerDO customerDO = customerMapper.selectById(crmContractDO.getCustomerId());
+                        customerDO.setDealStatus(ShopCommonEnum.IS_STATUS_1.getValue());
+                        customerDO.setDealTime(LocalDateTime.now());
+                        customerDO.setPurchaseTimes(customerDO.getPurchaseTimes() + 1);
+                        customerDO.setPurchaseTotal(customerDO.getPurchaseTotal().add(crmContractDO.getMoney()));
+                        customerMapper.updateById(customerDO);
                     }
                     crmFlowLogDO.setStatus(ShopCommonEnum.IS_STATUS_1.getValue());//审核通过
                 }else {
