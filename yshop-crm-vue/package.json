@@ -119,7 +119,7 @@
     "unplugin-auto-import": "^0.16.7",
     "unplugin-element-plus": "^0.8.0",
     "unplugin-vue-components": "^0.25.2",
-    "vite": "5.1.4",
+    "vite": "5.2.14",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-ejs": "^1.7.0",
     "vite-plugin-eslint": "^1.8.1",
