@@ -30,7 +30,8 @@ public interface CrmBusinessMapper extends BaseMapperX<CrmBusinessDO> {
                 .leftJoin(CrmCustomerDO.class,CrmCustomerDO::getId, CrmBusinessDO::getCustomerId)
                 .leftJoin(AdminUserDO.class,AdminUserDO::getId, CrmBusinessDO::getOwnerUserId)
                 .in(!ids.isEmpty(),CrmBusinessDO::getOwnerUserId,ids)
-                .eqIfExists(CrmCustomerDO::getName, reqVO.getCustomerName())
+                .likeIfExists(CrmCustomerDO::getName, reqVO.getCustomerName())
+                .likeIfExists(CrmBusinessDO::getName,reqVO.getName())
                 .eqIfExists(CrmBusinessDO::getCustomerId, reqVO.getCustomerId())
                 .likeIfExists(AdminUserDO::getNickname, reqVO.getOwnerUserName())
         );
