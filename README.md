@@ -133,9 +133,7 @@ yshop-crm意象客户关系管理系统，专门为企业销售团队量身定�
 - pay-java-parent:https://gitee.com/egzosn/pay-java-parent
 
 
-## 使用须知
+## 开源协议
 
-- 1.允许用于个人学习、毕业设计、教学案例、公益事业等商业使用;
-- 2.如果商用必须保留版权信息，请自觉遵守;
-- 3.禁止将本项目的代码和资源进行任何形式的出售，产生的一切任何后果责任由侵权者自负。
+本项目采用比 Apache 2.0 更宽松的 [MIT License](https://gitee.com/guchengwuyue/crm/blob/master/LICENSE) 开源协议，个人与企业可 100% 免费使用，不用保留类作者、Copyright 信息。
 
