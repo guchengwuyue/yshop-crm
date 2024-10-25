@@ -36,7 +36,7 @@ public class CrmCustomerRespVO {
 
     @Schema(description = "成交时间")
     @ExcelProperty("成交时间")
-    private Integer dealTime;
+    private LocalDateTime dealTime;
 
     @Schema(description = "1锁定")
     @ExcelProperty("1锁定")

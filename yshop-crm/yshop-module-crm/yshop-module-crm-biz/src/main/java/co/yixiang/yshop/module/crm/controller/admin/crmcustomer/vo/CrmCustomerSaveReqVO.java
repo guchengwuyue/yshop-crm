@@ -36,7 +36,7 @@ public class CrmCustomerSaveReqVO {
     private Integer dealStatus;
 
     @Schema(description = "成交时间")
-    private Integer dealTime;
+    private LocalDateTime dealTime;
 
     @Schema(description = "1锁定")
     private Boolean isLock;
