@@ -218,6 +218,7 @@ const open = async (type: string, id?: number) => {
   formType.value = type
   resetForm()
   areaList.value = await AreaApi.getAreaTree()
+  cityArr.value = []
   // 修改时，设置数据
   if (id) {
     formLoading.value = true
