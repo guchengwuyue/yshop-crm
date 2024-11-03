@@ -101,7 +101,7 @@
           </el-tab-pane>
           <el-tab-pane label="意向产品">
             <el-table :data="productList" style="width: 100%">
-              <el-table-column prop="productName" label="产品名称"  />
+              <el-table-column prop="name" label="产品名称"  />
               <el-table-column prop="sku" label="产品规格"  />
               <el-table-column prop="price" label="产品单价" />
               <el-table-column prop="nums" label="产品数量" />
