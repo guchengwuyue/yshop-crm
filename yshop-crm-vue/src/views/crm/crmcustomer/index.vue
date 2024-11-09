@@ -124,22 +124,28 @@
         >
           <Icon icon="ep:plus" class="mr-5px" /> 新增
         </el-button>
-        <!-- <el-button
-          type="success"
+        <el-button
           plain
-          @click="handleExport"
-          :loading="exportLoading"
-          v-hasPermi="['crm:customer:export']"
+          @click="openSms"
+          :disabled = "isDisabled"
         >
-          <Icon icon="ep:download" class="mr-5px" /> 导出
-        </el-button> -->
+          <Icon icon="ep:notification" class="mr-5px" /> 发短信
+        </el-button>
+        <el-button
+          plain
+          @click="openMail"
+          :disabled = "isDisabled"
+        >
+          <Icon icon="ep:message" class="mr-5px" /> 发邮件
+        </el-button>
       </el-form-item>
     </el-form>
   </ContentWrap>
 
   <!-- 列表 -->
   <ContentWrap>
-    <el-table v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true">
+    <el-table v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true" @selection-change="handleSelectionChange">
+      <el-table-column type="selection" width="40" />
       <el-table-column label="ID" align="center" prop="id" />
       <el-table-column label="客户名称" align="center" prop="name" width="200">
         <template #default="scope">
@@ -251,6 +257,8 @@
   <!-- 表单弹窗：添加/修改 -->
   <CustomerForm ref="formRef" @success="getList" />
   <RecordForm ref="recordFormRef"  />
+  <SmsTemplateSendForm ref="smsTemplateSendFormRef"  />
+  <MailTemplateSendForm ref="mailTemplateSendFormRef"  />
 </template>
 
 <script setup lang="ts">
@@ -260,6 +268,8 @@ import { CustomerApi, CustomerVO } from '@/api/crm/crmcustomer'
 import CustomerForm from './CustomerForm.vue'
 import { DICT_TYPE, getIntDictOptions } from '@/utils/dict'
 import RecordForm from '@/views/crm/crmrecord/RecordForm.vue'
+import SmsTemplateSendForm from '@/views/components/sms/SmsTemplateSendForm.vue'
+import MailTemplateSendForm from '@/views/components/email/MailTemplateSendForm.vue'
 
 /** 客户 列表 */
 defineOptions({ name: 'CrmCustomer' })
@@ -293,6 +303,8 @@ const queryParams = reactive({
 const queryFormRef = ref() // 搜索的表单
 const exportLoading = ref(false) // 导出的加载中
 const activeIndex = ref('my')
+const selectCustomers = ref([])
+const isDisabled = ref(true)
 
 /** 查询列表 */
 const getList = async () => {
@@ -309,6 +321,13 @@ const getList = async () => {
   } finally {
     loading.value = false
   }
+}
+
+const handleSelectionChange = (val) => {
+  if(val.length > 0) {
+    isDisabled.value = false
+  }
+  selectCustomers.value = val
 }
 
 /** 搜索按钮操作 */
@@ -377,6 +396,16 @@ const handleExport = async () => {
   } finally {
     exportLoading.value = false
   }
+}
+
+const smsTemplateSendFormRef = ref()
+const openSms = () => {
+  smsTemplateSendFormRef.value.open(selectCustomers.value,true)
+}
+
+const mailTemplateSendFormRef = ref()
+const openMail = () => {
+  mailTemplateSendFormRef.value.open(selectCustomers.value,true)
 }
 
 /** 初始化 **/

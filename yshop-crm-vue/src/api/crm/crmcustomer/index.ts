@@ -76,6 +76,14 @@ export const CustomerApi = {
     return await request.download({ url: `/crm/customer/export-excel`, params })
   },
 
+   sendSms: async (data) => {
+    return await request.post({ url: `/crm/customer/send-sms`, data })
+  },
+  sendMail: async (data) => {
+    return await request.post({ url: `/crm/customer/send-mail`, data })
+  },
+  
+
 // ==================== 子表（联系人） ====================
 
   // 获得联系人列表
