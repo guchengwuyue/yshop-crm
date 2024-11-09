@@ -1,9 +1,7 @@
 package co.yixiang.yshop.module.crm.service.crmcustomer;
 
 import co.yixiang.yshop.framework.common.pojo.PageResult;
-import co.yixiang.yshop.module.crm.controller.admin.crmcustomer.vo.CrmCustomerPageReqVO;
-import co.yixiang.yshop.module.crm.controller.admin.crmcustomer.vo.CrmCustomerRespVO;
-import co.yixiang.yshop.module.crm.controller.admin.crmcustomer.vo.CrmCustomerSaveReqVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmcustomer.vo.*;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmcustomer.CrmCustomerDO;
 import jakarta.validation.Valid;
 
@@ -71,6 +69,20 @@ public interface CrmCustomerService {
      * @return 客户分页
      */
     PageResult<CrmCustomerRespVO> getCustomerPage2(CrmCustomerPageReqVO pageReqVO);
+
+    /**
+     * 发送短信
+     * @param sendVO
+     * @return
+     */
+    void sendSms(SmsTemplateSendVO sendVO);
+
+    /**
+     * 发送邮件
+     * @param sendVO
+     * @return
+     */
+    void sendMail(MailTemplateSendVO sendVO);
 
 
 

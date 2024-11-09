@@ -1,11 +1,12 @@
 package co.yixiang.yshop.module.crm.service.crmcustomer;
 
+import cn.hutool.core.util.StrUtil;
+import co.yixiang.yshop.framework.common.enums.UserTypeEnum;
+import co.yixiang.yshop.framework.common.exception.ErrorCode;
 import co.yixiang.yshop.framework.common.pojo.PageResult;
 import co.yixiang.yshop.framework.common.util.object.BeanUtils;
 import co.yixiang.yshop.framework.security.core.util.SecurityFrameworkUtils;
-import co.yixiang.yshop.module.crm.controller.admin.crmcustomer.vo.CrmCustomerPageReqVO;
-import co.yixiang.yshop.module.crm.controller.admin.crmcustomer.vo.CrmCustomerRespVO;
-import co.yixiang.yshop.module.crm.controller.admin.crmcustomer.vo.CrmCustomerSaveReqVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmcustomer.vo.*;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmcustomer.CrmCustomerDO;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmcustomercontacts.CrmCustomerContactsDO;
 import co.yixiang.yshop.module.crm.dal.mysql.crmcustomer.CrmCustomerMapper;
@@ -14,6 +15,8 @@ import co.yixiang.yshop.module.crm.enums.CustomerTypesEnum;
 import co.yixiang.yshop.module.crm.enums.RelationEnum;
 import co.yixiang.yshop.module.crm.service.crmoperatelog.CrmOperatelogService;
 import co.yixiang.yshop.module.system.api.user.AdminUserApi;
+import co.yixiang.yshop.module.system.service.mail.MailSendService;
+import co.yixiang.yshop.module.system.service.sms.SmsSendService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -44,6 +47,10 @@ public class CrmCustomerServiceImpl implements CrmCustomerService {
     private CrmCustomerContactsMapper customerContactsMapper;
     @Resource
     private AdminUserApi adminUserApi;
+    @Resource
+    private SmsSendService smsSendService;
+    @Resource
+    private MailSendService mailSendService;
 
 
     @Override
@@ -173,4 +180,52 @@ public class CrmCustomerServiceImpl implements CrmCustomerService {
     public PageResult<CrmCustomerRespVO> getCustomerPage2(CrmCustomerPageReqVO pageReqVO) {
         return customerMapper.selectPage2(pageReqVO);
     }
+
+
+    @Override
+    public void  sendSms(SmsTemplateSendVO sendVO) {
+        List<CrmCustomerContactsDO> crmCustomerDOS = null;
+        if(sendVO.getIsCustomer()){
+            crmCustomerDOS = customerContactsMapper.selectList(new LambdaQueryWrapper<CrmCustomerContactsDO>().
+                    in(CrmCustomerContactsDO::getCustomerId,sendVO.getCustomerIds()));
+        }else{
+            crmCustomerDOS = customerContactsMapper.selectList(new LambdaQueryWrapper<CrmCustomerContactsDO>().
+                    in(CrmCustomerContactsDO::getId,sendVO.getCustomerIds()));
+        }
+
+        if(crmCustomerDOS == null || crmCustomerDOS.isEmpty()){
+            throw exception(new ErrorCode(202409100,"客户信息不存在"));
+        }
+        crmCustomerDOS.forEach(customer -> {
+            //发送短信
+            if(StrUtil.isNotEmpty(customer.getMobile())){
+                smsSendService.sendSingleSms(customer.getMobile(),customer.getId(), UserTypeEnum.CUSTOMER.getValue(),
+                        sendVO.getTemplateCode(),sendVO.getTemplateParams());
+            }
+        });
+
+    }
+
+    @Override
+    public void sendMail(MailTemplateSendVO sendVO) {
+        List<CrmCustomerContactsDO> crmCustomerDOS = null;
+        if(sendVO.getIsCustomer()){
+            crmCustomerDOS = customerContactsMapper.selectList(new LambdaQueryWrapper<CrmCustomerContactsDO>().
+                    in(CrmCustomerContactsDO::getCustomerId,sendVO.getCustomerIds()));
+        }else{
+            crmCustomerDOS = customerContactsMapper.selectList(new LambdaQueryWrapper<CrmCustomerContactsDO>().
+                    in(CrmCustomerContactsDO::getId,sendVO.getCustomerIds()));
+        }
+        if(crmCustomerDOS == null || crmCustomerDOS.isEmpty()){
+            throw exception(new ErrorCode(202409101,"客户信息不存在"));
+        }
+        crmCustomerDOS.forEach(customer -> {
+            //发送邮件
+            if(StrUtil.isNotEmpty(customer.getEmail())){
+                mailSendService.sendSingleMail(customer.getEmail(),customer.getId(), UserTypeEnum.CUSTOMER.getValue(),
+                        sendVO.getTemplateCode(),sendVO.getTemplateParams());
+            }
+        });
+    }
+
 }

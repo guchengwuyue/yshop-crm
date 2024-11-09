@@ -6,9 +6,7 @@ import co.yixiang.yshop.framework.common.pojo.PageParam;
 import co.yixiang.yshop.framework.common.pojo.PageResult;
 import co.yixiang.yshop.framework.common.util.object.BeanUtils;
 import co.yixiang.yshop.framework.excel.core.util.ExcelUtils;
-import co.yixiang.yshop.module.crm.controller.admin.crmcustomer.vo.CrmCustomerPageReqVO;
-import co.yixiang.yshop.module.crm.controller.admin.crmcustomer.vo.CrmCustomerRespVO;
-import co.yixiang.yshop.module.crm.controller.admin.crmcustomer.vo.CrmCustomerSaveReqVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmcustomer.vo.*;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmcustomer.CrmCustomerDO;
 import co.yixiang.yshop.module.crm.service.crmcustomer.CrmCustomerService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -112,6 +110,20 @@ public class CrmCustomerController {
         // 导出 Excel
         ExcelUtils.write(response, "客户.xls", "数据", CrmCustomerRespVO.class,
                         BeanUtils.toBean(list, CrmCustomerRespVO.class));
+    }
+
+    @PostMapping("/send-sms")
+    @Operation(summary = "发送短信")
+    public CommonResult<Boolean> sendSms(@Valid @RequestBody SmsTemplateSendVO sendVO) {
+        customerService.sendSms(sendVO);
+        return success(true);
+    }
+
+    @PostMapping("/send-mail")
+    @Operation(summary = "发送邮件")
+    public CommonResult<Boolean> sendMail(@Valid @RequestBody MailTemplateSendVO sendVO) {
+        customerService.sendMail(sendVO);
+        return success(true);
     }
 
 
