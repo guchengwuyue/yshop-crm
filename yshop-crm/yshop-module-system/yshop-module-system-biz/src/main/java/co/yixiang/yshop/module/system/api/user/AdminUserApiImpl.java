@@ -41,7 +41,11 @@ public class AdminUserApiImpl implements AdminUserApi {
     @Override
     public List<Long> getUserListBySubordinateIds(Long id) {
         List<AdminUserRespDTO> adminUserRespDTOS = getUserListBySubordinate(id);
-        return adminUserRespDTOS.stream().map(AdminUserRespDTO::getId).collect(Collectors.toList());
+        List<Long> ids =  adminUserRespDTOS.stream().map(AdminUserRespDTO::getId).collect(Collectors.toList());
+        if(ids.isEmpty()){
+            ids.add(-99L);
+        }
+        return ids;
     }
 
     @Override
