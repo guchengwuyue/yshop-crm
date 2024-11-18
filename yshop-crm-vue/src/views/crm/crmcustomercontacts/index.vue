@@ -74,21 +74,30 @@
       <el-form-item>
         <el-button @click="handleQuery"><Icon icon="ep:search" class="mr-5px" /> 搜索</el-button>
         <el-button @click="resetQuery"><Icon icon="ep:refresh" class="mr-5px" /> 重置</el-button>
-        <!-- <el-button
-          type="primary"
+        <el-button
+          type="warning"
           plain
-          @click="openForm('create')"
-          v-hasPermi="['crm:customer-contacts:create']"
+          @click="openSms"
+          :disabled = "isDisabled"
         >
-          <Icon icon="ep:delete" class="mr-5px" /> 回收站
-        </el-button> -->
+          <Icon icon="ep:notification" class="mr-5px" /> 发短信
+        </el-button>
+        <el-button
+          type="danger"
+          plain
+          @click="openMail"
+          :disabled = "isDisabled"
+        >
+          <Icon icon="ep:message" class="mr-5px" /> 发邮件
+        </el-button>
       </el-form-item>
     </el-form>
   </ContentWrap>
 
   <!-- 列表 -->
   <ContentWrap>
-    <el-table v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true">
+    <el-table v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true" @selection-change="handleSelectionChange">
+      <el-table-column type="selection" width="40" />
       <el-table-column label="客户名称" align="center" prop="customerName" width="150"  />
       <el-table-column label="姓名" align="center" prop="name" width="150"  />
       <el-table-column label="手机" align="center" prop="mobile" width="120" />
@@ -160,6 +169,8 @@
 
   <!-- 表单弹窗：添加/修改 -->
   <CustomerContactsForm ref="formRef" @success="getList" />
+  <SmsTemplateSendForm ref="smsTemplateSendFormRef"  />
+  <MailTemplateSendForm ref="mailTemplateSendFormRef"  />
 </template>
 
 <script setup lang="ts">
@@ -167,6 +178,8 @@ import { dateFormatter } from '@/utils/formatTime'
 import download from '@/utils/download'
 import { CustomerContactsApi, CustomerContactsVO } from '@/api/crm/crmcustomercontacts'
 import CustomerContactsForm from './CustomerContactsForm.vue'
+import SmsTemplateSendForm from '@/views/components/sms/SmsTemplateSendForm.vue'
+import MailTemplateSendForm from '@/views/components/email/MailTemplateSendForm.vue'
 
 /** 联系人 列表 */
 defineOptions({ name: 'CrmCustomerContacts' })
@@ -194,6 +207,8 @@ const queryParams = reactive({
 const queryFormRef = ref() // 搜索的表单
 const exportLoading = ref(false) // 导出的加载中
 const activeIndex = ref('my')
+const selectCustomers = ref([])
+const isDisabled = ref(true)
 
 /** 查询列表 */
 const getList = async () => {
@@ -205,6 +220,13 @@ const getList = async () => {
   } finally {
     loading.value = false
   }
+}
+
+const handleSelectionChange = (val) => {
+  if(val.length > 0) {
+    isDisabled.value = false
+  }
+  selectCustomers.value = val
 }
 
 const handleSelect = (key) => {
@@ -257,6 +279,17 @@ const handleExport = async () => {
     exportLoading.value = false
   }
 }
+
+const smsTemplateSendFormRef = ref()
+const openSms = () => {
+  smsTemplateSendFormRef.value.open(selectCustomers.value,false)
+}
+
+const mailTemplateSendFormRef = ref()
+const openMail = () => {
+  mailTemplateSendFormRef.value.open(selectCustomers.value,false)
+}
+
 
 /** 初始化 **/
 onMounted(() => {

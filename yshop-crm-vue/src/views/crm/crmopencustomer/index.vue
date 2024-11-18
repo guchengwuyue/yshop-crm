@@ -98,13 +98,28 @@
       <el-form-item>
         <el-button @click="handleQuery"><Icon icon="ep:search" class="mr-5px" /> 搜索</el-button>
         <el-button @click="resetQuery"><Icon icon="ep:refresh" class="mr-5px" /> 重置</el-button>
+        <el-button
+          plain
+          @click="openSms"
+          :disabled = "isDisabled"
+        >
+          <Icon icon="ep:notification" class="mr-5px" /> 发短信
+        </el-button>
+        <el-button
+          plain
+          @click="openMail"
+          :disabled = "isDisabled"
+        >
+          <Icon icon="ep:message" class="mr-5px" /> 发邮件
+        </el-button>
       </el-form-item>
     </el-form>
   </ContentWrap>
 
   <!-- 列表 -->
   <ContentWrap>
-    <el-table v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true">
+    <el-table v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true" @selection-change="handleSelectionChange">
+      <el-table-column type="selection" width="40" />
       <el-table-column label="ID" align="center" prop="id" />
       <el-table-column label="客户名称" align="center" prop="name" width="200" />
       <el-table-column label="手机" align="center" prop="mobile" width="120" />
@@ -183,6 +198,9 @@
     />
   </ContentWrap>
 
+  <SmsTemplateSendForm ref="smsTemplateSendFormRef"  />
+  <MailTemplateSendForm ref="mailTemplateSendFormRef"  />
+
 </template>
 
 <script setup lang="ts">
@@ -190,6 +208,8 @@ import { dateFormatter } from '@/utils/formatTime'
 import download from '@/utils/download'
 import { CustomerApi, CustomerVO } from '@/api/crm/crmcustomer'
 import { DICT_TYPE, getIntDictOptions } from '@/utils/dict'
+import SmsTemplateSendForm from '@/views/components/sms/SmsTemplateSendForm.vue'
+import MailTemplateSendForm from '@/views/components/email/MailTemplateSendForm.vue'
 
 
 /** 客户 列表 */
@@ -220,6 +240,8 @@ const queryParams = reactive({
 })
 const queryFormRef = ref() // 搜索的表单
 const exportLoading = ref(false) // 导出的加载中
+const selectCustomers = ref([])
+const isDisabled = ref(true)
 
 /** 查询列表 */
 const getList = async () => {
@@ -250,6 +272,22 @@ const resetQuery = () => {
   handleQuery()
 }
 
+const handleSelectionChange = (val) => {
+  if(val.length > 0) {
+    isDisabled.value = false
+  }
+  selectCustomers.value = val
+}
+
+const smsTemplateSendFormRef = ref()
+const openSms = () => {
+  smsTemplateSendFormRef.value.open(selectCustomers.value,true)
+}
+
+const mailTemplateSendFormRef = ref()
+const openMail = () => {
+  mailTemplateSendFormRef.value.open(selectCustomers.value,true)
+}
 
 
 const handleReceive = async (id: number) => {
