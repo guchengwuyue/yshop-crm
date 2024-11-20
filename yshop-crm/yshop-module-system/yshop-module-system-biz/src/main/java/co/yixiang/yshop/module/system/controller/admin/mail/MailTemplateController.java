@@ -65,7 +65,6 @@ public class MailTemplateController {
 
     @GetMapping("/page")
     @Operation(summary = "获得邮件模版分页")
-    @PreAuthorize("@ss.hasPermission('system:mail-template:query')")
     public CommonResult<PageResult<MailTemplateRespVO>> getMailTemplatePage(@Valid MailTemplatePageReqVO pageReqVO) {
         PageResult<MailTemplateDO> pageResult = mailTempleService.getMailTemplatePage(pageReqVO);
         return success(BeanUtils.toBean(pageResult, MailTemplateRespVO.class));

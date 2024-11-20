@@ -63,7 +63,6 @@ public class StoreProductController {
     @GetMapping("/get")
     @Operation(summary = "获得商品")
     @Parameter(name = "id", description = "编号", required = true, example = "1024")
-    @PreAuthorize("@ss.hasPermission('shop:store-product:query')")
     public CommonResult<StoreProductRespVO> getStoreProduct(@RequestParam("id") Long id) {
         StoreProductDO storeProduct = storeProductService.getStoreProduct(id);
         return success(StoreProductConvert.INSTANCE.convert(storeProduct));
@@ -72,7 +71,6 @@ public class StoreProductController {
     @GetMapping("/list")
     @Operation(summary = "获得商品列表")
     @Parameter(name = "ids", description = "编号列表", required = true, example = "1024,2048")
-    @PreAuthorize("@ss.hasPermission('shop:store-product:query')")
     public CommonResult<List<StoreProductRespVO>> getStoreProductList(@RequestParam("ids") Collection<Long> ids) {
         List<StoreProductDO> list = storeProductService.getStoreProductList(ids);
         return success(StoreProductConvert.INSTANCE.convertList(list));
@@ -80,7 +78,6 @@ public class StoreProductController {
 
     @GetMapping("/page")
     @Operation(summary = "获得商品分页")
-    @PreAuthorize("@ss.hasPermission('shop:store-product:query')")
     public CommonResult<PageResult<StoreProductRespVO>> getStoreProductPage(@Valid StoreProductPageReqVO pageVO) {
         PageResult<StoreProductDO> pageResult = storeProductService.getStoreProductPage(pageVO);
         return success(StoreProductConvert.INSTANCE.convertPage(pageResult));

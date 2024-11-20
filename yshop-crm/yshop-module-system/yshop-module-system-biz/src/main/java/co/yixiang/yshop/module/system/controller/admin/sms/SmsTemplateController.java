@@ -70,7 +70,6 @@ public class SmsTemplateController {
 
     @GetMapping("/page")
     @Operation(summary = "获得短信模板分页")
-    @PreAuthorize("@ss.hasPermission('system:sms-template:query')")
     public CommonResult<PageResult<SmsTemplateRespVO>> getSmsTemplatePage(@Valid SmsTemplatePageReqVO pageVO) {
         PageResult<SmsTemplateDO> pageResult = smsTemplateService.getSmsTemplatePage(pageVO);
         return success(BeanUtils.toBean(pageResult, SmsTemplateRespVO.class));
