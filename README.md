@@ -12,7 +12,7 @@ yshop-crm意象客户关系管理系统，专门为企业销售团队量身定�
 
 | 后台登陆：  | https://crm.yixiang.co/   账号/密码：admin/admin123  |
 |---|---|
-|  关注右边公众号可以体验移动端小程序 | ![输入图片说明](77a93e8c07a913b838a756abadb383b9.png) |
+|  关注右边公众号可以体验移动端小程序 | ![输入图片说明](assets/77a93e8c07a913b838a756abadb383b9.png) |
 
 ## 功能列表
 | 待办事项 | 统计、待审核事项                    |
@@ -63,7 +63,7 @@ yshop-crm意象客户关系管理系统，专门为企业销售团队量身定�
 -   3.1 请使用idea打开Java工程，自动会安装依赖
 -   3.2 创建数据库且导入工程目录下sql/yshop-crm.sql 文件
 -   3.3 找到项目下的yshop-server 的yml,修改数据库相关信息和redis相关信息，如图：
-     ![输入图片说明](3344.png)
+     ![输入图片说明](assets/3344.png)
 -   3.4 工程下输入
     ``` 
     mvn clean install package '-Dmaven.test.skip=true'
@@ -77,29 +77,29 @@ yshop-crm意象客户关系管理系统，专门为企业销售团队量身定�
     pnpm install
     ```
  - 4.2 配置api如图
- ![输入图片说明](3355.jpg)
+ ![输入图片说明](assets/3355.jpg)
  - 4.3 本地启动:
     ```
      npm run dev
     ```
 ## 手机端截图
 
-| ![输入图片说明](WechatIMG447.png)  |  ![输入图片说明](WechatIMG448.png) |
+| ![输入图片说明](assets/WechatIMG447.png)  |  ![输入图片说明](assets/WechatIMG448.png) |
 |---|---|
-|  ![输入图片说明](WechatIMG449.png) |  ![输入图片说明](WechatIMG450.png) |
-|  ![输入图片说明](WechatIMG453.png) |  ![输入图片说明](WechatIMG454.png) |
+|  ![输入图片说明](assets/WechatIMG449.png) |  ![输入图片说明](assets/WechatIMG450.png) |
+|  ![输入图片说明](assets/WechatIMG453.png) |  ![输入图片说明](assets/WechatIMG454.png) |
 
 
 ## 后台截图
 
-| ![输入图片说明](1.png)  | ![输入图片说明](2.png)  |
+| ![输入图片说明](assets/1.png)  | ![输入图片说明](assets/2.png)  |
 |---|---|
-| ![输入图片说明](3.png)  |  ![输入图片说明](4.png) |
-|  ![输入图片说明](5.png) | ![输入图片说明](6.png)  |
-| ![输入图片说明](7.png)  | ![输入图片说明](8.png)  |
-| ![输入图片说明](9.png)  |  ![输入图片说明](10.png) |
-| ![输入图片说明](11.png)  |  ![输入图片说明](12.png) |
-| ![输入图片说明](13.png)  |  ![输入图片说明](14.png) |
+| ![输入图片说明](assets/3.png)  |  ![输入图片说明](assets/4.png) |
+|  ![输入图片说明](assets/5.png) | ![输入图片说明](assets/6.png)  |
+| ![输入图片说明](assets/7.png)  | ![输入图片说明](assets/8.png)  |
+| ![输入图片说明](assets/9.png)  |  ![输入图片说明](assets/10.png) |
+| ![输入图片说明](assets/11.png)  |  ![输入图片说明](assets/12.png) |
+| ![输入图片说明](assets/13.png)  |  ![输入图片说明](assets/14.png) |
 
 
 
