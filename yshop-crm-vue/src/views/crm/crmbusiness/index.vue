@@ -56,13 +56,32 @@
         >
           <Icon icon="ep:plus" class="mr-5px" /> 新增
         </el-button>
+        <el-button
+          type="warning"
+          plain
+          @click="openSms"
+          :disabled = "isDisabled"
+          v-hasPermi="['crm:business:send-sms']"
+        >
+          <Icon icon="ep:notification" class="mr-5px" /> 发短信
+        </el-button>
+        <el-button
+          type="danger"
+          plain
+          @click="openMail"
+          :disabled = "isDisabled"
+          v-hasPermi="['crm:business:send-mail']"
+        >
+          <Icon icon="ep:message" class="mr-5px" /> 发邮件
+        </el-button>
       </el-form-item>
     </el-form>
   </ContentWrap>
 
   <!-- 列表 -->
   <ContentWrap>
-    <el-table v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true">
+    <el-table v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true" @selection-change="handleSelectionChange">
+      <el-table-column type="selection" width="40" />
       <el-table-column label="id" align="center" prop="id" />
       <el-table-column label="商机名称" align="center" prop="name" width="150">
         <template #default="scope">
@@ -144,6 +163,8 @@
   <BusinessForm ref="formRef" @success="getList" />
   <RecordForm ref="recordFormRef"  />
   <BusRecordForm ref="busRecordFormRef"  />
+  <SmsTemplateSendForm ref="smsTemplateSendFormRef"  />
+  <MailTemplateSendForm ref="mailTemplateSendFormRef"  />
 </template>
 
 <script setup lang="ts">
@@ -154,6 +175,8 @@ import BusinessForm from './BusinessForm.vue'
 import { DICT_TYPE, getIntDictOptions } from '@/utils/dict'
 import RecordForm from '@/views/crm/crmrecord/RecordForm.vue'
 import BusRecordForm from '@/views/crm/crmbusinessrecord/RecordForm.vue'
+import SmsTemplateSendForm from '@/views/components/sms/SmsTemplateSendForm.vue'
+import MailTemplateSendForm from '@/views/components/email/MailTemplateSendForm.vue'
 
 /** 商机 列表 */
 defineOptions({ name: 'CrmBusiness' })
@@ -177,6 +200,8 @@ const queryParams = reactive({
 const queryFormRef = ref() // 搜索的表单
 const exportLoading = ref(false) // 导出的加载中
 const activeIndex = ref('my')
+const selectCustomers = ref([])
+const isDisabled = ref(true)
 
 /** 查询列表 */
 const getList = async () => {
@@ -188,6 +213,20 @@ const getList = async () => {
   } finally {
     loading.value = false
   }
+}
+
+const handleSelectionChange = (val) => {
+  if(val.length > 0) {
+    isDisabled.value = false
+  }
+  let newArray = []
+  val.forEach(element => {
+    let obj = {}
+    obj.id = element.customerId
+    obj.name = element.customerName
+    newArray.push(obj)
+  })
+  selectCustomers.value = newArray
 }
 
 const handleSelect = (key) => {
@@ -236,19 +275,14 @@ const handleDelete = async (id: number) => {
   } catch {}
 }
 
-/** 导出按钮操作 */
-const handleExport = async () => {
-  try {
-    // 导出的二次确认
-    await message.exportConfirm()
-    // 发起导出
-    exportLoading.value = true
-    const data = await BusinessApi.exportBusiness(queryParams)
-    download.excel(data, '商机.xls')
-  } catch {
-  } finally {
-    exportLoading.value = false
-  }
+const smsTemplateSendFormRef = ref()
+const openSms = () => {
+  smsTemplateSendFormRef.value.open(selectCustomers.value,true)
+}
+
+const mailTemplateSendFormRef = ref()
+const openMail = () => {
+  mailTemplateSendFormRef.value.open(selectCustomers.value,true)
 }
 
 /** 初始化 **/
