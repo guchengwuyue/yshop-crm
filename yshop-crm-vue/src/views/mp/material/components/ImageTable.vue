@@ -63,7 +63,7 @@ const emit = defineEmits<{
   column-count: 5;
   margin-top: 10px;
 
-  /* 芋道源码：增加 10px，避免顶着上面 */
+  /* yshop源码：增加 10px，避免顶着上面 */
 }
 
 .waterfall-item {

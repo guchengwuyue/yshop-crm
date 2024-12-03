@@ -2,7 +2,7 @@
   - Copyright (C) 2018-2019
   - All rights reserved, Designed By www.joolun.com
   【微信消息 - 图文】
-  芋道源码：
+  yshop源码：
   ① 代码优化，补充注释，提升阅读性
 -->
 <template>

@@ -2,7 +2,7 @@
   - Copyright (C) 2018-2019
   - All rights reserved, Designed By www.joolun.com
   【微信消息 - 语音】
-   芋道源码：
+   yshop源码：
   ① bug 修复：
     1）joolun 的做法：使用 mediaId 从微信公众号，下载对应的 mp4 素材，从而播放内容；
       存在的问题：mediaId 有效期是 3 天，超过时间后无法播放
