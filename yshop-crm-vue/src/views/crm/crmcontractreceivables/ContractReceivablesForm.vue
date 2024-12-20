@@ -185,7 +185,11 @@ const saveCustomer = async(customer) => {
 
 const selectContractRef = ref()
 const chooseContract = () => {
-  selectContractRef.value.open()
+  if(!formData.value.customerId) {
+    message.error('请先选择客户')
+    return
+  }
+  selectContractRef.value.open(formData.value.customerId)
 }
 
 const saveContract = async(contract) => {

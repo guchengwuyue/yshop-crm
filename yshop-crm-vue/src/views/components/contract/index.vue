@@ -174,14 +174,19 @@ const resetQuery = () => {
   handleQuery()
 }
 
-const open = () => {
+const open = (customerId) => {
   groupVisible.value = true;
+  queryParams.customerId = customerId
   getList()
 }
 defineExpose({ open }) 
 
 const emit = defineEmits(['saveContract'])
 const doSelect = async (row) => {
+  if(row.checkStatus !== 2){
+    message.error('请选择已经审核过的合同')
+    return
+  }
   emit('saveContract', row);
   groupVisible.value = false;
 }

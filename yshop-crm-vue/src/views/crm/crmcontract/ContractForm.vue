@@ -296,7 +296,11 @@ const saveCustomer = async(customer) => {
 
 const selectBusinessRef = ref()
 const chooseBusiness = () => {
-  selectBusinessRef.value.open()
+  if(!formData.value.customerId) {
+    message.error('请先选择客户')
+    return
+  }
+  selectBusinessRef.value.open(formData.value.customerId)
 }
 
 const saveBusiness = (value) => {

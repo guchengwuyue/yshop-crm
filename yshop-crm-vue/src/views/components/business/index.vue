@@ -180,8 +180,9 @@ const resetQuery = () => {
   handleQuery()
 }
 
-const open = () => {
+const open = (customerId) => {
   groupVisible.value = true;
+  queryParams.customerId = customerId
   getList()
 }
 defineExpose({ open }) 
