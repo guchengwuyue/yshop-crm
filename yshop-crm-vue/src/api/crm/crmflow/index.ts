@@ -51,5 +51,8 @@ export const FlowApi = {
   },
   getFlowUserIds: async (type) => {
     return await request.get({ url: `/crm/flow/flow-users?flowType=` + type })
-  }
+  },
+  deleteFlowStep: async (id: number) => {
+    return await request.delete({ url: `/crm/flow/delete-step?id=` + id })
+  },
 }

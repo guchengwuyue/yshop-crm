@@ -44,7 +44,7 @@
       </el-table-column>
       <el-table-column align="center" fixed="right" label="操作" width="60">
         <template #default="{ $index }">
-          <el-button @click="handleDelete($index)" link>—</el-button>
+          <el-button @click="handleDelete($index,row.id)" link>—</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -109,10 +109,17 @@ const handleAdd = () => {
 }
 
 /** 删除按钮操作 */
-const handleDelete = (index) => {
-  formData.value.splice(index, 1)
-}
+const handleDelete = async(index,id) => {
+  try {
+    // 删除的二次确认
+    await message.delConfirm()
+    // 发起删除
+    await FlowApi.deleteFlowStep(id)
+    message.success(t('common.delSuccess'))
+    formData.value.splice(index, 1)
+  } catch {}
 
+}
 /** 表单校验 */
 const validate = () => {
   return formRef.value.validate()
