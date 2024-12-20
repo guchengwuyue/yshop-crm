@@ -95,7 +95,15 @@ public class CrmFlowController {
     @Operation(summary = "获得审批人列表")
     @Parameter(name = "flowType", description = "contract")
     public CommonResult<List<Long>> getFlowUserIds(@RequestParam("flowType") String flowType) {
-        return success(flowService.getFlowUserIds(flowType));
+        return success(flowService.getFlowUserIds(flowType,0L));
+    }
+
+    @DeleteMapping("/delete-step")
+    @Operation(summary = "删除审批步骤")
+    @Parameter(name = "id", description = "编号", required = true)
+    public CommonResult<Boolean> deleteFlowStep(@RequestParam("id") Long id) {
+        flowService.deleteFlowStep(id);
+        return success(true);
     }
 
 

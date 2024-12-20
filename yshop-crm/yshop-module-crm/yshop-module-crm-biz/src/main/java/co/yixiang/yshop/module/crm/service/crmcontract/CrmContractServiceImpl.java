@@ -34,6 +34,7 @@ import co.yixiang.yshop.module.crm.enums.ContractStatusEnum;
 import co.yixiang.yshop.module.crm.enums.FlowStepEnum;
 import co.yixiang.yshop.module.crm.enums.RelationEnum;
 import co.yixiang.yshop.module.crm.enums.TypesEnum;
+import co.yixiang.yshop.module.crm.service.crmflow.CrmFlowService;
 import co.yixiang.yshop.module.crm.service.crmoperatelog.CrmOperatelogService;
 import co.yixiang.yshop.module.product.dal.dataobject.storeproductattrvalue.StoreProductAttrValueDO;
 import co.yixiang.yshop.module.product.dal.mysql.storeproduct.StoreProductMapper;
@@ -102,6 +103,8 @@ public class CrmContractServiceImpl implements CrmContractService {
     private CrmOperatelogService crmOperatelogService;
     @Resource
     private AdminUserApi adminUserApi;
+    @Resource
+    private CrmFlowService flowService;
 
     private static final String LOCK_KEY = "contract:check:lock";
 
@@ -294,6 +297,15 @@ public class CrmContractServiceImpl implements CrmContractService {
                 .nickname(SecurityFrameworkUtils.getLoginUserNickname())
                 .build();
 
+        CrmFlowStepDO crmFlowStepDO = flowStepMapper.selectById(crmContractDO.getStepId());
+        if(crmFlowStepDO == null){
+            throw exception(new ErrorCode(202412042,"当前审核人不存在无法审核！"));
+        }
+        List<Long> userIds = flowService.getFlowUserIds("",crmFlowStepDO.getId());
+        if(!userIds.contains(loginAdminId)){
+            throw exception(new ErrorCode(202412041,"当前审核人已经变更无法审核！"));
+        }
+
         RLock lock = redissonClient.getLock(LOCK_KEY);
         if (lock.tryLock()) {
             //加锁防止并发审核
@@ -306,7 +318,6 @@ public class CrmContractServiceImpl implements CrmContractService {
                 crmContractDO.setCheckAdminId(checkAdminId);
                 if(ShopCommonEnum.AGREE_1.getValue().equals(checkInfoVO.getAgreeType())){
                     //查询当前合同处于那一步骤
-                    CrmFlowStepDO crmFlowStepDO = flowStepMapper.selectById(crmContractDO.getStepId());
                     if(crmFlowStepDO.getRelation() < count){
                         crmContractDO.setCheckStatus(ContractStatusEnum.STATUS_1.getValue());
                         //判断当前步骤是不是最后一个人,如果是 开始审核后开始存储下一步信息

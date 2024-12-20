@@ -66,8 +66,11 @@ public interface CrmFlowService {
     /**
      * 获取第一级审核人
      * @param flowType
+     * @param stepId 不揍ID！
      * @return
      */
-    List<Long> getFlowUserIds(String flowType);
+    List<Long> getFlowUserIds(String flowType,Long stepId);
+
+    void deleteFlowStep(Long id);
 
 }

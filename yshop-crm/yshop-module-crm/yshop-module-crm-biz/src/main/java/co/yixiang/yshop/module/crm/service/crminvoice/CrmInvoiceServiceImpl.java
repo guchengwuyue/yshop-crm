@@ -26,6 +26,7 @@ import co.yixiang.yshop.module.crm.dal.mysql.crmflow.CrmFlowStepMapper;
 import co.yixiang.yshop.module.crm.dal.mysql.crmflowlog.CrmFlowLogMapper;
 import co.yixiang.yshop.module.crm.dal.mysql.crminvoice.CrmInvoiceMapper;
 import co.yixiang.yshop.module.crm.enums.*;
+import co.yixiang.yshop.module.crm.service.crmflow.CrmFlowService;
 import co.yixiang.yshop.module.system.api.user.AdminUserApi;
 import co.yixiang.yshop.module.system.dal.dataobject.user.AdminUserDO;
 import co.yixiang.yshop.module.system.dal.mysql.user.AdminUserMapper;
@@ -79,6 +80,8 @@ public class CrmInvoiceServiceImpl implements CrmInvoiceService {
     private AdminUserMapper userMapper;
     @Resource
     private CrmFlowLogMapper crmFlowLogMapper;
+    @Resource
+    private CrmFlowService flowService;
 
     private static final String LOCK_KEY = "invoice:check:lock";
 
@@ -225,6 +228,15 @@ public class CrmInvoiceServiceImpl implements CrmInvoiceService {
                 .nickname(SecurityFrameworkUtils.getLoginUserNickname())
                 .build();
 
+        CrmFlowStepDO crmFlowStepDO = flowStepMapper.selectById(invoiceDO.getStepId());
+        if(crmFlowStepDO == null){
+            throw exception(new ErrorCode(202412045,"当前审核人不存在无法审核！"));
+        }
+        List<Long> userIds = flowService.getFlowUserIds("",crmFlowStepDO.getId());
+        if(!userIds.contains(loginAdminId)){
+            throw exception(new ErrorCode(202412046,"当前审核人已经变更无法审核！"));
+        }
+
         RLock lock = redissonClient.getLock(LOCK_KEY);
         if (lock.tryLock()) {
             //加锁防止并发审核
@@ -237,7 +249,6 @@ public class CrmInvoiceServiceImpl implements CrmInvoiceService {
                 invoiceDO.setCheckAdminId(checkAdminId);
                 if(ShopCommonEnum.AGREE_1.getValue().equals(checkInfoVO.getAgreeType())){
                     //查询当前合同处于那一步骤
-                    CrmFlowStepDO crmFlowStepDO = flowStepMapper.selectById(invoiceDO.getStepId());
                     if(crmFlowStepDO.getRelation() < count){
                         invoiceDO.setCheckStatus(ContractStatusEnum.STATUS_1.getValue());
                         //判断当前步骤是不是最后一个人,如果是 开始审核后开始存储下一步信息

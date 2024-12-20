@@ -27,7 +27,7 @@
     <url>https://gitee.com/guchengwuyue/yshop-crm</url>
 
     <properties>
-        <revision>1.0.0</revision>
+        <revision>1.1.3</revision>
         <!-- Maven 相关 -->
         <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>

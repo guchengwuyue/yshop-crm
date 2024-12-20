@@ -107,19 +107,25 @@ public class CrmFlowServiceImpl implements CrmFlowService {
     }
 
     @Override
-    public List<Long> getFlowUserIds(String flowType) {
+    public List<Long> getFlowUserIds(String flowType,Long stepId) {
         List<Long> list = new  ArrayList<>();
-        CrmFlowDO crmFlowDO = flowMapper.selectOne(new LambdaQueryWrapper<CrmFlowDO>()
-                .eq(CrmFlowDO::getTypes,flowType)
-                .orderByDesc(CrmFlowDO::getId)
-                .last("limit 1"));
-        if(crmFlowDO == null){
-            return list;
+        CrmFlowStepDO crmFlowStepDO = null;
+        if(stepId > 0){
+            crmFlowStepDO = flowStepMapper.selectById(stepId);
+        }else{
+            CrmFlowDO crmFlowDO = flowMapper.selectOne(new LambdaQueryWrapper<CrmFlowDO>()
+                    .eq(CrmFlowDO::getTypes,flowType)
+                    .orderByDesc(CrmFlowDO::getId)
+                    .last("limit 1"));
+            if(crmFlowDO == null){
+                return list;
+            }
+            crmFlowStepDO = flowStepMapper.selectOne(new LambdaQueryWrapper<CrmFlowStepDO>()
+                    .eq(CrmFlowStepDO::getFlowId,crmFlowDO.getId())
+                    .orderByAsc(CrmFlowStepDO::getId)
+                    .last("limit 1"));
         }
-        CrmFlowStepDO crmFlowStepDO = flowStepMapper.selectOne(new LambdaQueryWrapper<CrmFlowStepDO>()
-                .eq(CrmFlowStepDO::getFlowId,crmFlowDO.getId())
-                .orderByAsc(CrmFlowStepDO::getId)
-                .last("limit 1"));
+
         if(FlowStepEnum.TYPE_2.getValue().equals(crmFlowStepDO.getType())){
             list.add(crmFlowStepDO.getAdminIds());
         }else if(FlowStepEnum.TYPE_3.getValue().equals(crmFlowStepDO.getType())){
@@ -143,13 +149,19 @@ public class CrmFlowServiceImpl implements CrmFlowService {
     }
 
     private void updateFlowStepList(Long flowId, List<CrmFlowStepDO> list) {
-        deleteFlowStepByFlowId(flowId);
-		list.forEach(o -> o.setId(null).setUpdater(null).setUpdateTime(null)); // 解决更新情况下：1）id 冲突；2）updateTime 不更新
-        createFlowStepList(flowId, list);
+        flowStepMapper.updateBatch(list);
+//        deleteFlowStepByFlowId(flowId);
+//		list.forEach(o -> o.setId(null).setUpdater(null).setUpdateTime(null)); // 解决更新情况下：1）id 冲突；2）updateTime 不更新
+//        createFlowStepList(flowId, list);
     }
 
     private void deleteFlowStepByFlowId(Long flowId) {
         flowStepMapper.deleteByFlowId(flowId);
+    }
+
+    @Override
+    public void deleteFlowStep(Long id) {
+        flowStepMapper.deleteById(id);
     }
 
 }
