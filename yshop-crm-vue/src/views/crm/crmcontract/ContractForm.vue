@@ -1,5 +1,7 @@
 <template>
   <Dialog :title="dialogTitle" v-model="dialogVisible" width="70%">
+    <el-alert title="审核通过，不可修改数据" type="success" v-if="formData.checkStatus == 2" style="margin-bottom:20px" />
+    <el-alert title="审核中，不可修改数据" type="warning" v-else-if="formData.checkStatus == 1" style="margin-bottom:20px" />
     <el-form
       ref="formRef"
       :model="formData"
@@ -146,7 +148,7 @@
     </el-form>
 
     <template #footer>
-      <el-button @click="submitForm" type="primary" :disabled="formLoading">确 定</el-button>
+      <el-button @click="submitForm" type="primary" :disabled="formLoading2">确 定</el-button>
       <el-button @click="dialogVisible = false">取 消</el-button>
     </template>
   </Dialog>
@@ -173,6 +175,7 @@ const message = useMessage() // 消息弹窗
 const dialogVisible = ref(false) // 弹窗的是否展示
 const dialogTitle = ref('') // 弹窗的标题
 const formLoading = ref(false) // 表单的加载中：1）修改时的数据加载；2）提交的按钮禁用
+const formLoading2 = ref(false)
 const formType = ref('') // 表单的类型：create - 新增；update - 修改
 const formData = ref({
   id: undefined,
@@ -238,7 +241,11 @@ const open = async (type: string, id?: number) => {
     } finally {
       formLoading.value = false
     }
+    if(formData.value.checkStatus == 2 || formData.value.checkStatus == 1){
+      formLoading2.value = true
+    }
   }else{
+    formLoading2.value = false
     formData.value.number = await ContractApi.getContractNo()
     formData.value.flowAdminId = await FlowApi.getFlowUserIds('contract')
     formData.value.orderAdminId = userStore.getUser.id

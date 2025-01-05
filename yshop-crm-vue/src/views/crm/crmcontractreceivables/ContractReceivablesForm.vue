@@ -1,5 +1,7 @@
 <template>
   <Dialog :title="dialogTitle" v-model="dialogVisible">
+    <el-alert title="审核通过，不可修改数据" type="success" v-if="formData.checkStatus == 2" style="margin-bottom:20px" />
+    <el-alert title="审核中，不可修改数据" type="warning" v-else-if="formData.checkStatus == 1" style="margin-bottom:20px" />
     <el-form
       ref="formRef"
       :model="formData"
@@ -58,7 +60,7 @@
       </el-form-item>
     </el-form>
     <template #footer>
-      <el-button @click="submitForm" type="primary" :disabled="formLoading">确 定</el-button>
+      <el-button @click="submitForm" type="primary" :disabled="formLoading2">确 定</el-button>
       <el-button @click="dialogVisible = false">取 消</el-button>
     </template>
   </Dialog>
@@ -112,6 +114,7 @@ const formRules = reactive({
 })
 const formRef = ref() // 表单 Ref
 const userList = ref<UserApi.UserVO[]>([]) // 用户列表
+const formLoading2 = ref(false)
 
 /** 打开弹窗 */
 const open = async (type: string, id?: number) => {
@@ -127,7 +130,11 @@ const open = async (type: string, id?: number) => {
     } finally {
       formLoading.value = false
     }
+    if(formData.value.checkStatus == 2 || formData.value.checkStatus == 1){
+      formLoading2.value = true
+    }
   }else{
+    formLoading2.value = false
     formData.value.number = await ContractReceivablesApi.getCode()
     formData.value.flowAdminId = await FlowApi.getFlowUserIds('receivables')
   }
