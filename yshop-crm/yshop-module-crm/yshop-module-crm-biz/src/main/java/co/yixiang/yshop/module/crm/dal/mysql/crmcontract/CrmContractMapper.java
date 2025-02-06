@@ -34,6 +34,7 @@ public interface CrmContractMapper extends BaseMapperX<CrmContractDO> {
                 .leftJoin(AdminUserDO.class, "t1",AdminUserDO::getId, CrmContractDO::getOrderAdminId)
                 .leftJoin(AdminUserDO.class, "t2",AdminUserDO::getId, CrmContractDO::getCreator)
                 .likeIfExists(CrmCustomerDO::getName, reqVO.getCustomerName())
+                .likeIfExists(CrmContractDO::getName, reqVO.getName())
                 .eqIfExists(CrmContractDO::getNumber, reqVO.getNumber())
                 .eqIfExists(CrmContractDO::getCustomerId, reqVO.getCustomerId())
                 .eqIfExists(CrmContractDO::getCheckStatus, reqVO.getCheckStatus())
