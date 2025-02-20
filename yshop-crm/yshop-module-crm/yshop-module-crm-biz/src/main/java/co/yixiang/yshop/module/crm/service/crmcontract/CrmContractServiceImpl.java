@@ -363,6 +363,11 @@ public class CrmContractServiceImpl implements CrmContractService {
                     crmContractDO.setCheckAdminId("");
                     crmContractDO.setFlowAdminId(new ArrayList<>());
                     crmFlowLogDO.setRemark(checkInfoVO.getRemark());
+                    //回退库存
+                    List<CrmContractProductDO> list = contractProductMapper
+                            .selectList(new LambdaQueryWrapper<CrmContractProductDO>()
+                                    .eq(CrmContractProductDO::getContractId,crmContractDO.getId()));
+                    list.forEach(product -> incProductStock(product.getNums(),product.getProductId(),product.getProductAttrUnique()));
                 }
                 contractMapper.updateById(crmContractDO);
                 //存入审批日志
@@ -374,6 +379,22 @@ public class CrmContractServiceImpl implements CrmContractService {
             }
         }
 
+    }
+
+    /**
+     * 增加库存 减少销量
+     *
+     * @param num       数量
+     * @param productId 商品id
+     * @param unique    sku唯一值
+     */
+    private void incProductStock(Integer num, Long productId, String unique) {
+        //处理属性sku
+        if (StrUtil.isNotEmpty(unique)) {
+            storeProductAttrValueMapper.incStockDecSales(num, productId, unique);
+        }
+        //先处理商品库存，活动商品也要处理，因为共享库存
+        storeProductMapper.incStockDecSales(num, productId);
     }
 
     private void createContractProductList(Long contractId, List<CrmContractProductDO> list) {
