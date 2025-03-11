@@ -43,7 +43,7 @@
         </template>
       </el-table-column>
       <el-table-column align="center" fixed="right" label="操作" width="60">
-        <template #default="{ $index }">
+        <template #default="{ row,$index }">
           <el-button @click="handleDelete($index,row.id)" link>—</el-button>
         </template>
       </el-table-column>
@@ -58,6 +58,8 @@ import { FlowApi } from '@/api/crm/crmflow'
 import * as UserApi from '@/api/system/user'
 import * as DeptApi from '@/api/system/dept'
 import { defaultProps, handleTree } from '@/utils/tree'
+const message = useMessage() // 消息弹窗
+const { t } = useI18n() // 国际化
 
 const props = defineProps<{
   flowId: undefined // 审批流程ID（主表的关联字段）
@@ -110,6 +112,7 @@ const handleAdd = () => {
 
 /** 删除按钮操作 */
 const handleDelete = async(index,id) => {
+  console.log(index,id)
   try {
     // 删除的二次确认
     await message.delConfirm()
@@ -117,7 +120,9 @@ const handleDelete = async(index,id) => {
     await FlowApi.deleteFlowStep(id)
     message.success(t('common.delSuccess'))
     formData.value.splice(index, 1)
-  } catch {}
+  } catch(e) {
+    console.log('e:',e)
+  }
 
 }
 /** 表单校验 */
