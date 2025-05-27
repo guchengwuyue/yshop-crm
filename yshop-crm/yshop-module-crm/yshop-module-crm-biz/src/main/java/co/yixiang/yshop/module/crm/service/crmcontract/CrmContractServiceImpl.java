@@ -355,6 +355,14 @@ public class CrmContractServiceImpl implements CrmContractService {
                         customerDO.setPurchaseTimes(customerDO.getPurchaseTimes() + 1);
                         customerDO.setPurchaseTotal(customerDO.getPurchaseTotal().add(crmContractDO.getMoney()));
                         customerMapper.updateById(customerDO);
+                        if(crmContractDO.getBusinessId() != null && crmContractDO.getBusinessId() > 0){
+                            crmBusinessMapper.update(CrmBusinessDO.builder()
+                                            .isEnd(ShopCommonEnum.IS_STATUS_1.getValue())
+                                            .remark("合同已签署成交")
+                                            .build(),
+                                    new LambdaQueryWrapper<CrmBusinessDO>()
+                                            .eq(CrmBusinessDO::getId,crmContractDO.getBusinessId()));
+                        }
                     }
                     crmFlowLogDO.setStatus(ShopCommonEnum.IS_STATUS_1.getValue());//审核通过
                 }else {
