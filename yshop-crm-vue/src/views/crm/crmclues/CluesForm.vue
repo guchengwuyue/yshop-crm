@@ -194,6 +194,7 @@ const open = async (type: string, id?: number) => {
     try {
       formData.value = await CluesApi.getClues(id)
       tagsArr.value = formData.value.tags.split(',')
+      cityArr.value = []
       cityArr.value.push(formData.value.province)
       cityArr.value.push(formData.value.city)
       cityArr.value.push(formData.value.area)

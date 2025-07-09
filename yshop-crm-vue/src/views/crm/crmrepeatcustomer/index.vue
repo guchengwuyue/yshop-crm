@@ -49,7 +49,7 @@
       <el-form-item label="负责人" prop="ownUserName">
         <el-input
           v-model="queryParams.ownUserName"
-          placeholder="请输入QQ"
+          placeholder="请输入负责人"
           clearable
           @keyup.enter="handleQuery"
           class="!w-240px"
@@ -58,7 +58,7 @@
       <el-form-item label="创建人" prop="createName">
         <el-input
           v-model="queryParams.createName"
-          placeholder="请输入QQ"
+          placeholder="请输入创建人"
           clearable
           @keyup.enter="handleQuery"
           class="!w-240px"
