@@ -121,6 +121,7 @@ public class CrmCluesServiceImpl implements CrmCluesService {
         crmCluesDO.setOwnerUserId(SecurityFrameworkUtils.getLoginUserId());
         crmCluesDO.setCollectTime(LocalDateTime.now());
         crmCluesDO.setFollowTime(LocalDateTime.now());
+        crmCluesDO.setStatus(CluesStatusEnum.STATUS_0.getValue());
         cluesMapper.updateById(crmCluesDO);
 
     }
