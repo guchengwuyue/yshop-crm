@@ -39,7 +39,7 @@ public interface CrmCustomerMapper extends BaseMapperX<CrmCustomerDO> {
                 .orderByDesc(CrmCustomerDO::getId));
     }
 
-    default PageResult<CrmCustomerRespVO> selectPage2(CrmCustomerPageReqVO reqVO) {
+    default PageResult<CrmCustomerRespVO> selectPage2(CrmCustomerPageReqVO reqVO,List<Long> ids) {
 
         return selectJoinPage(reqVO, CrmCustomerRespVO.class, new MPJLambdaWrapper<CrmCustomerDO>()
                 .selectAll(CrmCustomerDO.class)
@@ -47,10 +47,16 @@ public interface CrmCustomerMapper extends BaseMapperX<CrmCustomerDO> {
                 .selectAs("t2",AdminUserDO::getNickname, CrmCustomerRespVO::getCreateName)
                 .leftJoin(AdminUserDO.class, "t1",AdminUserDO::getId, CrmCustomerDO::getOwnerUserId)
                 .leftJoin(AdminUserDO.class, "t2",AdminUserDO::getId, CrmCustomerDO::getCreator)
-                .eqIfExists(CrmCustomerDO::getName, reqVO.getName())
+                .in(!ids.isEmpty(),CrmCustomerDO::getOwnerUserId,ids)
+                .likeIfExists(CrmCustomerDO::getName, reqVO.getName())
                 .eqIfExists(CrmCustomerDO::getMobile, reqVO.getMobile())
                 .eqIfExists(CrmCustomerDO::getTelephone, reqVO.getTelephone())
                 .eqIfExists(CrmCustomerDO::getWeixin, reqVO.getWeixin())
+                .eqIfExists(CrmCustomerDO::getQq, reqVO.getQq())
+                .eqIfExists(CrmCustomerDO::getDealStatus,reqVO.getDealStatus())
+                .eqIfExists(CrmCustomerDO::getLevel, reqVO.getLevel())
+                .eqIfExists(CrmCustomerDO::getIndustry, reqVO.getIndustry())
+                .eqIfExists(CrmCustomerDO::getSource, reqVO.getSource())
                 .likeIfExists("t1",AdminUserDO::getNickname, reqVO.getOwnUserName())
                 .likeIfExists("t2",AdminUserDO::getNickname, reqVO.getCreateName())
         );

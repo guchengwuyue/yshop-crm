@@ -203,6 +203,7 @@
       />
       <el-table-column label="微信" align="center" prop="weixin" width="120" />
       <el-table-column label="QQ" align="center" prop="qq" width="120" />
+      <el-table-column label="负责人" align="center" prop="ownUserName" width="150" />
       <el-table-column
         label="创建时间"
         align="center"
@@ -310,7 +311,7 @@ const isDisabled = ref(true)
 const getList = async () => {
   loading.value = true
   try {
-    const data = await CustomerApi.getCustomerPage(queryParams)
+    const data = await CustomerApi.getCustomerPage2(queryParams)
     list.value = data.list
     list.value.map((value) => {
         if(value.tags != ''){

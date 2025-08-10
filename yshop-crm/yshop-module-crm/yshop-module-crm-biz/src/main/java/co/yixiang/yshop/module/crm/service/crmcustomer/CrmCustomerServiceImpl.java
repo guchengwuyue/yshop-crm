@@ -160,7 +160,7 @@ public class CrmCustomerServiceImpl implements CrmCustomerService {
     }
 
     @Override
-    public PageResult<CrmCustomerDO> getCustomerPage(CrmCustomerPageReqVO pageReqVO) {
+    public PageResult<CrmCustomerRespVO> getCustomerPage(CrmCustomerPageReqVO pageReqVO) {
         List<Long> ids = new ArrayList<>();
         Long adminId = SecurityFrameworkUtils.getLoginUserId();
         if(CustomerTypesEnum.OPEN.getValue().equals(pageReqVO.getType())){
@@ -172,13 +172,13 @@ public class CrmCustomerServiceImpl implements CrmCustomerService {
                 ids = adminUserApi.getUserListBySubordinateIds(adminId);
             }
         }
-        return customerMapper.selectPage(pageReqVO,ids);
+        return customerMapper.selectPage2(pageReqVO,ids);
     }
 
 
     @Override
     public PageResult<CrmCustomerRespVO> getCustomerPage2(CrmCustomerPageReqVO pageReqVO) {
-        return customerMapper.selectPage2(pageReqVO);
+        return customerMapper.selectPage2(pageReqVO,new ArrayList<>());
     }
 
 

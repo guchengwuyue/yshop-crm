@@ -60,7 +60,7 @@ public interface CrmCustomerService {
      * @param pageReqVO 分页查询
      * @return 客户分页
      */
-    PageResult<CrmCustomerDO> getCustomerPage(CrmCustomerPageReqVO pageReqVO);
+    PageResult<CrmCustomerRespVO> getCustomerPage(CrmCustomerPageReqVO pageReqVO);
 
     /**
      * 获得客户分页2
