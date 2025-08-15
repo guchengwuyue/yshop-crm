@@ -63,7 +63,7 @@
     "video.js": "^7.21.5",
     "vue": "3.4.21",
     "vue-dompurify-html": "^4.1.4",
-    "vue-i18n": "9.10.2",
+    "vue-i18n": "9.14.2",
     "vue-router": "^4.3.0",
     "vue-types": "^5.1.1",
     "vuedraggable": "^4.1.0",
