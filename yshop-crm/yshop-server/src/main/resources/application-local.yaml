@@ -46,22 +46,22 @@ spring:
       primary: master
       datasource:
         master:
-          url: jdbc:mysql://127.0.0.1:3306/yshop-crm-open?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true # MySQL Connector/J 8.X 连接的示例
-          username: root
-          password: root
+          url: jdbc:mysql://127.0.0.1:3306/db_crm_master?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true # MySQL Connector/J 8.X 连接的示例
+          username: db_crm_master
+          password: PkXa3JF3AimWnL8Z
         slave: # 模拟从库，可根据自己需要修改
           lazy: true # 开启懒加载，保证启动速度
-          url: jdbc:mysql://127.0.0.1:3306/yshop-crm-open?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
-          username: root
-          password: root
+          url: jdbc:mysql://127.0.0.1:3306/db_crm_slave?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
+          username: db_crm_slave
+          password: G7xD6SydmAcwCLea
 
   # Redis 配置。Redisson 默认的配置足够使用，一般不需要进行调优
   data:
     redis:
-      host: 127.0.0.1 # 地址 118
+      host: bookeeping.redis.rds.aliyuncs.com # 地址 118
       port: 6379 # 端口
-      database: 0 # 数据库索引
-#    password: dev # 密码，建议生产环境开启
+      database: 2 # 数据库索引
+      password: GLpIEnf#*WIfpM#P # 密码，建议生产环境开启
 
 --- #################### 定时任务相关配置 ####################
 
