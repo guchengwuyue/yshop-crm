@@ -1,4 +1,4 @@
-意象电商 http://www.yixiang.co
+客户管理 http://crm-demo.lvzhegn.com
 Application Version: ${yshop.info.version}
 Spring Boot Version: ${spring-boot.version}
 

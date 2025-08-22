@@ -25,7 +25,7 @@ public class MaterialBaseVO {
     @NotNull(message = "素材名不能为空")
     private String name;
 
-    @Schema(description = "素材链接", example = "https://www.yixiang.co")
+    @Schema(description = "素材链接", example = "https://crm-demo.lvzheng.com")
     private String url;
 
 }

@@ -152,7 +152,7 @@ yshop:
     isActive: true
   web:
     admin-ui:
-      url: http://dashboard.yshop.yixiang.co # Admin 管理后台 UI 的地址
+      url: https://crm-demo.lvzheng.com # Admin 管理后台 UI 的地址
   security:
     permit-all_urls:
       - /admin-api/mp/open/** # 微信公众号开放平台，微信回调接口，不需要登录
@@ -171,13 +171,13 @@ yshop:
       topic: ${spring.application.name}-websocket # 消息发送的 Kafka Topic
       consumer-group: ${spring.application.name}-websocket-consumer # 消息发送的 Kafka Consumer Group
   swagger:
-    title: yshop意象点餐系统
+    title: 客户管理系统
     description: 提供管理后台、用户 App 的所有功能
     version: ${yshop.info.version}
     url: ${yshop.web.admin-ui.url}
-    email: yshop@yixiang.co
+    email: ops@lvzheng.com
     license: MIT
-    license-url: https://gitee.com/guchengwuyue/yshop-crm
+    license-url: https://crm-demo.lvzheng.com
   captcha:
     enable: true # 验证码的开关，默认为 true
   codegen:

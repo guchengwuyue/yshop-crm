@@ -113,8 +113,8 @@ export default {
     small: '小'
   },
   login: {
-    welcome: '欢迎使用yshop意象客户关系管理系统',
-    message: '欢迎使用yshop意象客户关系管理系统',
+    welcome: '欢迎使用客户管理系统',
+    message: '欢迎使用客户管理系统',
     tenantname: '租户名称',
     username: '用户名',
     password: '密码',

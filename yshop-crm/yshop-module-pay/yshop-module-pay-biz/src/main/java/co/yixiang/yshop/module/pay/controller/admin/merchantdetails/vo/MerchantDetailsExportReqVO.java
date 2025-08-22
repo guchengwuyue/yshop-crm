@@ -31,10 +31,10 @@ public class MerchantDetailsExportReqVO {
     @Schema(description = "私钥证书或key证书的密码")
     private String keyCertPwd;
 
-    @Schema(description = "异步回调", example = "https://www.yixiang.co")
+    @Schema(description = "异步回调", example = "https://crm-demo.lvzheng.com")
     private String notifyUrl;
 
-    @Schema(description = "同步回调地址，大部分用于付款成功后页面转跳", example = "https://www.yixiang.co")
+    @Schema(description = "同步回调地址，大部分用于付款成功后页面转跳", example = "https://crm-demo.lvzheng.com")
     private String returnUrl;
 
     @Schema(description = "签名方式,目前已实现多种签名方式详情查看com.egzosn.pay.common.util.sign.encrypt。MD5,RSA等等", example = "1")

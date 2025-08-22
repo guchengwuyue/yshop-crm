@@ -25,8 +25,8 @@ public class BannerApplicationRunner implements ApplicationRunner {
                             "接口文档: \t{} \n\t" +
                             "开发文档: \t{} \n\t" +
                             "----------------------------------------------------------",
-                    "https://www.yixiang.co/api-doc/",
-                    "https://www.yixiang.co");
+                    "https://crm-demo-api.lvzheng.com/api-doc/",
+                    "https://crm-demo-api.lvzheng.com");
 
 
         });

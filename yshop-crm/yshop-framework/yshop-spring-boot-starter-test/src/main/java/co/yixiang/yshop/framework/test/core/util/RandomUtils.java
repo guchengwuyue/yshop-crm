@@ -104,7 +104,7 @@ public class RandomUtils {
     }
 
     public static String randomURL() {
-        return "https://www.yixiang.co/" + randomString();
+        return "https://crm-demo.lvzheng.com/" + randomString();
     }
 
     @SafeVarargs

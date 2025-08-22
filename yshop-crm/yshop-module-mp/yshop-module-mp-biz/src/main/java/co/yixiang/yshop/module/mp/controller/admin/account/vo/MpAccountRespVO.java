@@ -16,7 +16,7 @@ public class MpAccountRespVO extends MpAccountBaseVO {
     @Schema(description = "编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "1024")
     private Long id;
 
-    @Schema(description = "二维码图片URL", example = "https://www.yixiang.co/1024.png")
+    @Schema(description = "二维码图片URL", example = "https://crm-demo.lvzheng.com/1024.png")
     private String qrCodeUrl;
 
     @Schema(description = "创建时间", requiredMode = Schema.RequiredMode.REQUIRED)

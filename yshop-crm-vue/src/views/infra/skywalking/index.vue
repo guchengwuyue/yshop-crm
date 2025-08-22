@@ -9,7 +9,7 @@ import * as ConfigApi from '@/api/infra/config'
 defineOptions({ name: 'InfraSkyWalking' })
 
 const loading = ref(true) // 是否加载中
-const src = ref('http://skywalking.shop.yixiang.co')
+const src = ref('https://crm-demo.lvzheng.com')
 
 /** 初始化 */
 onMounted(async () => {

@@ -1,6 +1,6 @@
 /**
  * Copyright (C) 2018-2022
- * All rights reserved, Designed By www.yixiang.co
+ * All rights reserved, Designed By www.lvzheng.com
 
  */
 package co.yixiang.yshop.framework.common.constant;
@@ -187,9 +187,9 @@ public interface ShopConstants {
 
 	String YSHOP_APP_LOGIN_USER = "app-online-token:";
 
-	String YSHOP_WECHAT_PUSH_REMARK = "yshop为您服务！";
+	String YSHOP_WECHAT_PUSH_REMARK = "小微为您服务！";
 
-	String DEFAULT_UNI_H5_URL = "https://h5.yixiang.co";
+	String DEFAULT_UNI_H5_URL = "https://h5.lvzhemg.com";
 
 	String YSHOP_MINI_SESSION_KET = "yshop:session_key:";
 

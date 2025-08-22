@@ -37,7 +37,7 @@ public class CrmOperatelogRespVO {
     @ExcelProperty("管理员账号")
     private String username;
 
-    @Schema(description = "操作页面", example = "https://www.yixiang.co")
+    @Schema(description = "操作页面", example = "https://crm-demo.lvzheng.com")
     @ExcelProperty("操作页面")
     private String url;
 

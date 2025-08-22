@@ -28,7 +28,7 @@ public class MaterialPageReqVO extends PageParam {
     @Schema(description = "素材名", example = "yshop")
     private String name;
 
-    @Schema(description = "素材链接", example = "https://www.yixiang.co")
+    @Schema(description = "素材链接", example = "https://crm-demo.lvzheng.com")
     private String url;
 
 }

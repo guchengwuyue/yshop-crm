@@ -28,7 +28,7 @@ public class ProjectReactor {
     private static final String GROUP_ID = "co.yixiang.boot";
     private static final String ARTIFACT_ID = "yshop";
     private static final String PACKAGE_NAME = "co.yixiang.yshop";
-    private static final String TITLE = "意象商城管理系统";
+    private static final String TITLE = "客户管理系统";
 
     /**
      * 白名单文件，不进行重写，避免出问题
@@ -46,7 +46,7 @@ public class ProjectReactor {
         String groupIdNew = "co.yixiang.boot";
         String artifactIdNew = "yshop";
         String packageNameNew = "co.yixiang.yshop";
-        String titleNew = "意象商城管理系统";
+        String titleNew = "客户管理系统";
         String projectBaseDirNew = projectBaseDir + "-new"; // 一键改名后，“新”项目所在的目录
         log.info("[main][检测新项目目录 ({})是否存在]", projectBaseDirNew);
         if (FileUtil.exist(projectBaseDirNew)) {

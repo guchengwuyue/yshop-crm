@@ -30,7 +30,7 @@ public class CrmOperatelogSaveReqVO {
     @Schema(description = "管理员账号", example = "王五")
     private String username;
 
-    @Schema(description = "操作页面", example = "https://www.yixiang.co")
+    @Schema(description = "操作页面", example = "https://crm-demo.lvzheng.com")
     private String url;
 
     @Schema(description = "日志标题")

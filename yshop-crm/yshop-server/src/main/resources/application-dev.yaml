@@ -173,7 +173,7 @@ yshop:
   demo: true # 开启演示模式
   tencent-lbs-key: TVDBZ-TDILD-4ON4B-PFDZA-RNLKH-VVF6E # QQ 地图的密钥 https://lbs.qq.com/service/staticV2/staticGuide/staticDoc
   file-path: /www/wwwroot/drink/file/
-  h5: https://www.yixiang.co/h5
+  h5: https://crm-demo.lvzheng.com/h5
 
 justauth:
   enabled: true
