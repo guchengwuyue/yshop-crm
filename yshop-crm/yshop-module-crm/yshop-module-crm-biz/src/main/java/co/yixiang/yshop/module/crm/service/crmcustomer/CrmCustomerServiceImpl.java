@@ -13,7 +13,9 @@ import co.yixiang.yshop.module.crm.dal.mysql.crmcustomer.CrmCustomerMapper;
 import co.yixiang.yshop.module.crm.dal.mysql.crmcustomercontacts.CrmCustomerContactsMapper;
 import co.yixiang.yshop.module.crm.enums.CustomerTypesEnum;
 import co.yixiang.yshop.module.crm.enums.RelationEnum;
+import co.yixiang.yshop.module.crm.enums.TypesEnum;
 import co.yixiang.yshop.module.crm.service.crmoperatelog.CrmOperatelogService;
+import co.yixiang.yshop.module.crm.service.crmrecord.CrmRecordService;
 import co.yixiang.yshop.module.system.api.user.AdminUserApi;
 import co.yixiang.yshop.module.system.service.mail.MailSendService;
 import co.yixiang.yshop.module.system.service.sms.SmsSendService;
@@ -51,6 +53,8 @@ public class CrmCustomerServiceImpl implements CrmCustomerService {
     private SmsSendService smsSendService;
     @Resource
     private MailSendService mailSendService;
+    @Resource
+    private CrmRecordService crmRecordService;
 
 
     @Override
@@ -105,6 +109,8 @@ public class CrmCustomerServiceImpl implements CrmCustomerService {
         // 删除
         customerMapper.deleteById(id);
 
+        crmRecordService.deleteByType(TypesEnum.CUSTOMER.getValue(),id);
+
         //插入日志
         crmOperatelogService.createLog("删除客户",id,0L,0L);
     }
@@ -122,7 +128,7 @@ public class CrmCustomerServiceImpl implements CrmCustomerService {
         //设置联系人的拥有0
         customerContactsMapper.update(CrmCustomerContactsDO.builder().ownerUserId(0L).build(),
                 new LambdaQueryWrapper<CrmCustomerContactsDO>().eq(CrmCustomerContactsDO::getCustomerId,id));
-
+        crmRecordService.deleteByType(TypesEnum.CUSTOMER.getValue(),id);
         //插入日志
         crmOperatelogService.createLog("放入公海",id,0L,0L);
     }

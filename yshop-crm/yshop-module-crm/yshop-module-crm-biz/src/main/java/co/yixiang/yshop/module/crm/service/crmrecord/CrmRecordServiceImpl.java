@@ -10,6 +10,7 @@ import co.yixiang.yshop.module.crm.dal.mysql.crmcustomer.CrmCustomerMapper;
 import co.yixiang.yshop.module.crm.enums.RelationEnum;
 import co.yixiang.yshop.module.crm.enums.TypesEnum;
 import co.yixiang.yshop.module.system.api.user.AdminUserApi;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.stereotype.Service;
 import jakarta.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -137,6 +138,13 @@ public class CrmRecordServiceImpl implements CrmRecordService {
 
         }
         return pageResult1;
+    }
+
+    @Override
+    public void deleteByType(String type, Long typeId) {
+        recordMapper.delete(new LambdaQueryWrapper<CrmRecordDO>()
+                .eq(CrmRecordDO::getTypes,type)
+                .eq(CrmRecordDO::getTypesId,typeId));
     }
 
 }

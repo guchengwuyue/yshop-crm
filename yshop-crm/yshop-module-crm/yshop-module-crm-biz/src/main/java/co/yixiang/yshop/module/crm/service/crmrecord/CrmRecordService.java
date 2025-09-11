@@ -52,4 +52,11 @@ public interface CrmRecordService {
      */
     PageResult<CrmRecordRespVO> getRecordPage(CrmRecordPageReqVO pageReqVO);
 
+    /**
+     * 跟进类型删除跟进记录
+     * @param type 类型
+     * @param typeId 类型ID
+     */
+    void deleteByType(String type,Long typeId);
+
 }

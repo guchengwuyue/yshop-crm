@@ -11,6 +11,7 @@ import co.yixiang.yshop.module.crm.enums.CluesStatusEnum;
 import co.yixiang.yshop.module.crm.enums.CustomerTypesEnum;
 import co.yixiang.yshop.module.crm.enums.RelationEnum;
 import co.yixiang.yshop.module.crm.enums.TypesEnum;
+import co.yixiang.yshop.module.crm.service.crmrecord.CrmRecordService;
 import co.yixiang.yshop.module.system.api.user.AdminUserApi;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,8 @@ public class CrmCluesServiceImpl implements CrmCluesService {
     private CrmCustomerMapper customerMapper;
     @Resource
     private CrmRecordMapper crmRecordMapper;
+    @Resource
+    private CrmRecordService crmRecordService;
 
     @Override
     public Long createClues(CrmCluesSaveReqVO createReqVO) {
@@ -74,6 +77,8 @@ public class CrmCluesServiceImpl implements CrmCluesService {
         validateCluesExists(id);
         // 删除
         cluesMapper.deleteById(id);
+
+        crmRecordService.deleteByType(TypesEnum.CLUES.getValue(),id);
     }
 
     private void validateCluesExists(Long id) {
@@ -110,6 +115,8 @@ public class CrmCluesServiceImpl implements CrmCluesService {
         }
         crmCluesDO.setOwnerUserId(0L);
         cluesMapper.updateById(crmCluesDO);
+
+        crmRecordService.deleteByType(TypesEnum.CLUES.getValue(),id);
     }
 
     @Override

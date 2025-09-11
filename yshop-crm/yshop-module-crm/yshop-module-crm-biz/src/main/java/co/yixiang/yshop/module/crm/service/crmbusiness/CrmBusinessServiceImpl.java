@@ -5,6 +5,8 @@ import co.yixiang.yshop.module.crm.dal.dataobject.crmcustomer.CrmCustomerDO;
 import co.yixiang.yshop.module.crm.dal.mysql.crmcustomer.CrmCustomerMapper;
 import co.yixiang.yshop.module.crm.enums.CustomerTypesEnum;
 import co.yixiang.yshop.module.crm.enums.RelationEnum;
+import co.yixiang.yshop.module.crm.enums.TypesEnum;
+import co.yixiang.yshop.module.crm.service.crmrecord.CrmRecordService;
 import co.yixiang.yshop.module.product.dal.dataobject.storeproduct.StoreProductDO;
 import co.yixiang.yshop.module.product.dal.dataobject.storeproductattrvalue.StoreProductAttrValueDO;
 import co.yixiang.yshop.module.product.dal.mysql.storeproduct.StoreProductMapper;
@@ -51,6 +53,8 @@ public class CrmBusinessServiceImpl implements CrmBusinessService {
     private CrmCustomerMapper customerMapper;
     @Resource
     private AdminUserApi adminUserApi;
+    @Resource
+    private CrmRecordService crmRecordService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -86,6 +90,8 @@ public class CrmBusinessServiceImpl implements CrmBusinessService {
         validateBusinessExists(id);
         // 删除
         businessMapper.deleteById(id);
+
+        crmRecordService.deleteByType(TypesEnum.BUSINESS.getValue(),id);
 
         // 删除子表
         deleteBusinessProductByBusinessId(id);
