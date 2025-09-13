@@ -124,7 +124,7 @@
           >
             菜单权限
           </el-button>
-          <el-button
+          <!-- <el-button
             v-hasPermi="['system:permission:assign-role-data-scope']"
             link
             preIcon="ep:coin"
@@ -133,7 +133,7 @@
             @click="openDataPermissionForm(scope.row)"
           >
             数据权限
-          </el-button>
+          </el-button> -->
           <el-button
             v-hasPermi="['system:role:delete']"
             link
