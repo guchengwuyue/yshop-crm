@@ -112,6 +112,13 @@
         </el-form-item>
       </el-col>
     </el-row>
+     <el-row>
+      <el-col :span="12">
+        <el-form-item label="上传附件" prop="files">
+          <UploadFile v-model="formData.files" />
+        </el-form-item>
+      </el-col>
+    </el-row>
     </el-form>
     <template #footer>
       <el-button @click="submitForm" type="primary" :disabled="formLoading">确 定</el-button>
@@ -205,6 +212,14 @@ const submitForm = async () => {
   formLoading.value = true
   try {
     const data = formData.value as unknown as InvoiceVO
+    if(!data.files){
+      message.error('请上传附件')
+      return
+    }
+    if(Array.isArray(data.files) && data.files.length >= 1){
+      const files = data.files.join(",")
+	    data.files = files
+    }
     await InvoiceApi.issueInvoice(data)
     message.success('操作成功')
     dialogVisible.value = false
