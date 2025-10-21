@@ -131,9 +131,11 @@ public class CrmInvoiceServiceImpl implements CrmInvoiceService {
         }
         Integer[] checkStatus = {0, 1};
         Long count = invoiceMapper.selectCount(new LambdaQueryWrapper<CrmInvoiceDO>()
-                .in(CrmInvoiceDO::getCheckStatus,checkStatus).or().eq(CrmInvoiceDO::getStatus,checkStatus));
-        if(count > 0){
-            throw exception(new ErrorCode(202406161,"该合同还有未审核或者未开票等申请，不可以继续申请发票"));
+                .eq(CrmInvoiceDO::getContractId,createReqVO.getContractId())
+                .and(q -> q.in(CrmInvoiceDO::getCheckStatus,checkStatus).or().in(CrmInvoiceDO::getStatus,checkStatus))
+        );
+        if(createReqVO.getId() == null && count > 0){
+            throw exception(new ErrorCode(202406161,"该合同还有未审核或者未开具发票申请,不可以继续申请发票"));
         }
         //判断开票金额
         BigDecimal money = createReqVO.getMoney().add(crmContractDO.getInvoiceMoney());
