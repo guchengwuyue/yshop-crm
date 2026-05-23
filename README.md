@@ -2,7 +2,7 @@
 
 ## 平台简介
 
-yshop-crm意象客户关系管理系统(支持企业微信)，专门为企业销售团队量身定制的工具，能够有效的管理跟进客户提供销售业绩，无缝斜街打通YSHOP单商户系统！技术： SpringBoot3、Spring Security OAuth2、MybatisPlus、SpringSecurity、jwt、redis、Vue3的前后端分离的系统
+yshop-crm意象CRM系统(支持企业微信)，专门为企业销售团队量身定制的工具(且支持多租户与SCRM企业微信)，全面解决企业销售团队的全流程客户服务难题旨在助力企业销售全流程精细化、数字化管理，全面解决企业销售团绩！技术： SpringBoot3、Spring Security OAuth2、MybatisPlus、SpringSecurity、jwt、redis、Vue3的前后端分离的系统
 
 官网地址：[https://www.yixiang.co/](https://www.yixiang.co/)
 
