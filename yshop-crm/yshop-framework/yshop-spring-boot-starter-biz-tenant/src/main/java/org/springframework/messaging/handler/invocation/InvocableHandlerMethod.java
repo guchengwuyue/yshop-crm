@@ -16,11 +16,6 @@
 
 package org.springframework.messaging.handler.invocation;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Type;
-import java.util.Arrays;
-
 import co.yixiang.yshop.framework.tenant.core.context.TenantContextHolder;
 import co.yixiang.yshop.framework.tenant.core.util.TenantUtils;
 import org.springframework.core.DefaultParameterNameDiscoverer;
@@ -31,6 +26,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.handler.HandlerMethod;
 import org.springframework.util.ObjectUtils;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Type;
+import java.util.Arrays;
 
 import static co.yixiang.yshop.framework.web.core.util.WebFrameworkUtils.HEADER_TENANT_ID;
 

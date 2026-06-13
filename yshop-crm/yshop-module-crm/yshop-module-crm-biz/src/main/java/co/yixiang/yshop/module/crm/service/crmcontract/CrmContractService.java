@@ -1,12 +1,14 @@
 package co.yixiang.yshop.module.crm.service.crmcontract;
 
-import java.util.*;
-import jakarta.validation.*;
-import co.yixiang.yshop.module.crm.controller.admin.crmcontract.vo.*;
-import co.yixiang.yshop.module.crm.dal.dataobject.crmcontract.CrmContractDO;
-import co.yixiang.yshop.module.crm.dal.dataobject.crmcontract.CrmContractProductDO;
 import co.yixiang.yshop.framework.common.pojo.PageResult;
-import co.yixiang.yshop.framework.common.pojo.PageParam;
+import co.yixiang.yshop.module.crm.controller.admin.crmcontract.vo.CheckInfoVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmcontract.vo.CrmContractPageReqVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmcontract.vo.CrmContractRespVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmcontract.vo.CrmContractSaveReqVO;
+import co.yixiang.yshop.module.crm.dal.dataobject.crmcontract.CrmContractProductDO;
+import jakarta.validation.Valid;
+
+import java.util.List;
 
 /**
  * 合同 Service 接口

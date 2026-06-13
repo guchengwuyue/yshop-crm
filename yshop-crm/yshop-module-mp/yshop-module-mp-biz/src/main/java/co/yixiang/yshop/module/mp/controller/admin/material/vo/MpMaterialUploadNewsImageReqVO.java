@@ -2,10 +2,9 @@ package co.yixiang.yshop.module.mp.controller.admin.material.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
-
-import jakarta.validation.constraints.NotNull;
 
 @Schema(description = "管理后台 - 公众号素材上传图文内容中的图片 Request VO")
 @Data

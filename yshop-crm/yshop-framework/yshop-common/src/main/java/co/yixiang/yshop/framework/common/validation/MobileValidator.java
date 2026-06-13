@@ -2,7 +2,6 @@ package co.yixiang.yshop.framework.common.validation;
 
 import cn.hutool.core.util.StrUtil;
 import co.yixiang.yshop.framework.common.util.validation.ValidationUtils;
-
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

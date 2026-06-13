@@ -1,9 +1,8 @@
 package co.yixiang.yshop.module.infra.api.websocket;
 
 import co.yixiang.yshop.framework.websocket.core.sender.WebSocketMessageSender;
-import org.springframework.stereotype.Component;
-
 import jakarta.annotation.Resource;
+import org.springframework.stereotype.Component;
 
 /**
  * WebSocket 发送器的 API 实现类

@@ -2,6 +2,7 @@ package co.yixiang.yshop.module.mp.service.statistics;
 
 import cn.hutool.core.date.DateUtil;
 import co.yixiang.yshop.module.mp.framework.mp.core.MpServiceFactory;
+import jakarta.annotation.Resource;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.datacube.WxDataCubeInterfaceResult;
@@ -11,7 +12,6 @@ import me.chanjar.weixin.mp.bean.datacube.WxDataCubeUserSummary;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
-import jakarta.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.List;
 

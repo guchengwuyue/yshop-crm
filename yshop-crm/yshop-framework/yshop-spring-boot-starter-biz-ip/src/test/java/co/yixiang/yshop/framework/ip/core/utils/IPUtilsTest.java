@@ -4,7 +4,6 @@ import co.yixiang.yshop.framework.ip.core.Area;
 import org.junit.jupiter.api.Test;
 import org.lionsoul.ip2region.xdb.Searcher;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**

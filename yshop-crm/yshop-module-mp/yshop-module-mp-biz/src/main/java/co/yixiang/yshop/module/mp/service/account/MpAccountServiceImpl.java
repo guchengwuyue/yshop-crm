@@ -22,6 +22,8 @@ import co.yixiang.yshop.module.mp.framework.mp.core.MpServiceFactory;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.binarywang.spring.starter.wxjava.mp.properties.WxMpProperties;
 import com.google.common.annotations.VisibleForTesting;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxErrorException;
@@ -35,8 +37,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;

@@ -5,6 +5,7 @@ import cn.hutool.core.lang.Assert;
 import cn.hutool.core.thread.ThreadUtil;
 import co.yixiang.yshop.framework.quartz.core.enums.JobDataKeyEnum;
 import co.yixiang.yshop.framework.quartz.core.service.JobLogFrameworkService;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.JobExecutionContext;
@@ -13,7 +14,6 @@ import org.quartz.PersistJobDataAfterExecution;
 import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
-import jakarta.annotation.Resource;
 import java.time.LocalDateTime;
 
 import static cn.hutool.core.exceptions.ExceptionUtil.getRootCauseMessage;

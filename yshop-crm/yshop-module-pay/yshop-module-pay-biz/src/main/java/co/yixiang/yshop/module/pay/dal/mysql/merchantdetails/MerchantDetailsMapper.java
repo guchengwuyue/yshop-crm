@@ -1,13 +1,14 @@
 package co.yixiang.yshop.module.pay.dal.mysql.merchantdetails;
 
-import java.util.*;
-
 import co.yixiang.yshop.framework.common.pojo.PageResult;
-import co.yixiang.yshop.framework.mybatis.core.query.LambdaQueryWrapperX;
 import co.yixiang.yshop.framework.mybatis.core.mapper.BaseMapperX;
+import co.yixiang.yshop.framework.mybatis.core.query.LambdaQueryWrapperX;
+import co.yixiang.yshop.module.pay.controller.admin.merchantdetails.vo.MerchantDetailsExportReqVO;
+import co.yixiang.yshop.module.pay.controller.admin.merchantdetails.vo.MerchantDetailsPageReqVO;
 import co.yixiang.yshop.module.pay.dal.dataobject.merchantdetails.MerchantDetailsDO;
 import org.apache.ibatis.annotations.Mapper;
-import co.yixiang.yshop.module.pay.controller.admin.merchantdetails.vo.*;
+
+import java.util.List;
 
 /**
  * 支付服务商配置 Mapper

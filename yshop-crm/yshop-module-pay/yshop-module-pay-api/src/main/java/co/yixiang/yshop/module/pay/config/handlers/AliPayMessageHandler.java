@@ -6,9 +6,9 @@ import com.egzosn.pay.ali.bean.AliPayMessage;
 import com.egzosn.pay.common.api.PayMessageHandler;
 import com.egzosn.pay.common.bean.PayOutMessage;
 import com.egzosn.pay.common.exception.PayErrorException;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
-import jakarta.annotation.Resource;
 import java.util.Map;
 
 /**

@@ -2,8 +2,8 @@ package co.yixiang.yshop.module.mp.framework.mp.core;
 
 import co.yixiang.yshop.module.mp.dal.dataobject.account.MpAccountDO;
 import co.yixiang.yshop.module.mp.service.handler.menu.MenuHandler;
-import co.yixiang.yshop.module.mp.service.handler.message.MessageReceiveHandler;
 import co.yixiang.yshop.module.mp.service.handler.message.MessageAutoReplyHandler;
+import co.yixiang.yshop.module.mp.service.handler.message.MessageReceiveHandler;
 import co.yixiang.yshop.module.mp.service.handler.other.KfSessionHandler;
 import co.yixiang.yshop.module.mp.service.handler.other.NullHandler;
 import co.yixiang.yshop.module.mp.service.handler.other.ScanHandler;

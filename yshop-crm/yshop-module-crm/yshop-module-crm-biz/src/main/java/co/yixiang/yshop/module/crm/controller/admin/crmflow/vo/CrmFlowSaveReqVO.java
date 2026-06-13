@@ -1,10 +1,11 @@
 package co.yixiang.yshop.module.crm.controller.admin.crmflow.vo;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-import java.util.*;
-import jakarta.validation.constraints.*;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmflow.CrmFlowStepDO;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Data;
+
+import java.util.List;
 
 @Schema(description = "管理后台 - 审批流程新增/修改 Request VO")
 @Data

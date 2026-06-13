@@ -1,6 +1,5 @@
 package co.yixiang.yshop.module.crm.service.crmcontract;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.PatternPool;
 import cn.hutool.core.util.NumberUtil;

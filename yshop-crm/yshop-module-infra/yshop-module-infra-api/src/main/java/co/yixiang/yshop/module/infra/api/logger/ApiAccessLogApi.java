@@ -1,7 +1,6 @@
 package co.yixiang.yshop.module.infra.api.logger;
 
 import co.yixiang.yshop.module.infra.api.logger.dto.ApiAccessLogCreateReqDTO;
-
 import jakarta.validation.Valid;
 
 /**

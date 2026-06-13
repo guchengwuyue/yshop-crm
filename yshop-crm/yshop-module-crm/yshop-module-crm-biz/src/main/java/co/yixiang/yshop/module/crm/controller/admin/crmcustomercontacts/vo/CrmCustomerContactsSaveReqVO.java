@@ -1,11 +1,12 @@
 package co.yixiang.yshop.module.crm.controller.admin.crmcustomercontacts.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-import java.util.*;
-import jakarta.validation.constraints.*;
-import org.springframework.format.annotation.DateTimeFormat;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Schema(description = "管理后台 - 联系人新增/修改 Request VO")
 @Data

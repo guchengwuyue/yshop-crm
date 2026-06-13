@@ -1,15 +1,14 @@
 package co.yixiang.yshop.module.product.dal.mysql.storeproductrule;
 
-import java.util.*;
-
 import co.yixiang.yshop.framework.common.pojo.PageResult;
-import co.yixiang.yshop.framework.mybatis.core.query.LambdaQueryWrapperX;
 import co.yixiang.yshop.framework.mybatis.core.mapper.BaseMapperX;
+import co.yixiang.yshop.framework.mybatis.core.query.LambdaQueryWrapperX;
+import co.yixiang.yshop.module.product.controller.admin.storeproductrule.vo.StoreProductRuleExportReqVO;
+import co.yixiang.yshop.module.product.controller.admin.storeproductrule.vo.StoreProductRulePageReqVO;
 import co.yixiang.yshop.module.product.dal.dataobject.storeproductrule.StoreProductRuleDO;
 import org.apache.ibatis.annotations.Mapper;
-import co.yixiang.yshop.module.product.controller.admin.storeproductrule.vo.*;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Update;
+
+import java.util.List;
 
 /**
  * 商品规则值(规格) Mapper

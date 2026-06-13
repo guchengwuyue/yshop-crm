@@ -1,10 +1,8 @@
 package co.yixiang.yshop.module.pay.controller.admin.merchantdetails.vo;
 
-import co.yixiang.yshop.framework.desensitize.core.slider.annotation.SliderDesensitize;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 /**
 * 支付服务商配置 Base VO，提供给添加、修改、详细的子 VO 使用

@@ -2,17 +2,17 @@ package co.yixiang.yshop.framework.security.core.handler;
 
 import co.yixiang.yshop.framework.common.exception.enums.GlobalErrorCodeConstants;
 import co.yixiang.yshop.framework.common.pojo.CommonResult;
-import co.yixiang.yshop.framework.security.core.util.SecurityFrameworkUtils;
 import co.yixiang.yshop.framework.common.util.servlet.ServletUtils;
+import co.yixiang.yshop.framework.security.core.util.SecurityFrameworkUtils;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.ExceptionTranslationFilter;
 
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static co.yixiang.yshop.framework.common.exception.enums.GlobalErrorCodeConstants.FORBIDDEN;

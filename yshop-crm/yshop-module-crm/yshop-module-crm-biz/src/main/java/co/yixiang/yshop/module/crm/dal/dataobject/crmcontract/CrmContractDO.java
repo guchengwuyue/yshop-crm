@@ -2,7 +2,6 @@ package co.yixiang.yshop.module.crm.dal.dataobject.crmcontract;
 
 import co.yixiang.yshop.framework.mybatis.core.dataobject.BaseDO;
 import co.yixiang.yshop.framework.mybatis.core.type.LongListTypeHandler;
-import co.yixiang.yshop.framework.mybatis.core.type.StringListTypeHandler;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;

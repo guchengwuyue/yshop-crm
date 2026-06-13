@@ -1,13 +1,14 @@
 package co.yixiang.yshop.module.crm.controller.admin.crmcontract.vo;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-import java.util.*;
-import jakarta.validation.constraints.*;
-import java.math.BigDecimal;
-import org.springframework.format.annotation.DateTimeFormat;
-import java.time.LocalDateTime;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmcontract.CrmContractProductDO;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Schema(description = "管理后台 - 合同新增/修改 Request VO")
 @Data

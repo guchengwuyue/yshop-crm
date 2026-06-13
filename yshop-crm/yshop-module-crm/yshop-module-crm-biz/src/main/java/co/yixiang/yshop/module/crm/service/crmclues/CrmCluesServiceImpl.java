@@ -2,10 +2,17 @@ package co.yixiang.yshop.module.crm.service.crmclues;
 
 import co.yixiang.yshop.framework.common.enums.ShopCommonEnum;
 import co.yixiang.yshop.framework.common.exception.ErrorCode;
+import co.yixiang.yshop.framework.common.pojo.PageResult;
+import co.yixiang.yshop.framework.common.util.object.BeanUtils;
 import co.yixiang.yshop.framework.security.core.util.SecurityFrameworkUtils;
+import co.yixiang.yshop.module.crm.controller.admin.crmclues.vo.CrmCluesPageReqVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmclues.vo.CrmCluesRespVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmclues.vo.CrmCluesSaveReqVO;
 import co.yixiang.yshop.module.crm.controller.admin.crmcustomer.vo.CrmCustomerSaveReqVO;
+import co.yixiang.yshop.module.crm.dal.dataobject.crmclues.CrmCluesDO;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmcustomer.CrmCustomerDO;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmrecord.CrmRecordDO;
+import co.yixiang.yshop.module.crm.dal.mysql.crmclues.CrmCluesMapper;
 import co.yixiang.yshop.module.crm.dal.mysql.crmcustomer.CrmCustomerMapper;
 import co.yixiang.yshop.module.crm.dal.mysql.crmrecord.CrmRecordMapper;
 import co.yixiang.yshop.module.crm.enums.CluesStatusEnum;
@@ -15,23 +22,17 @@ import co.yixiang.yshop.module.crm.enums.TypesEnum;
 import co.yixiang.yshop.module.crm.service.crmrecord.CrmRecordService;
 import co.yixiang.yshop.module.system.api.user.AdminUserApi;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import org.springframework.stereotype.Service;
 import jakarta.annotation.Resource;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDateTime;
-import java.util.*;
-import co.yixiang.yshop.module.crm.controller.admin.crmclues.vo.*;
-import co.yixiang.yshop.module.crm.dal.dataobject.crmclues.CrmCluesDO;
-import co.yixiang.yshop.framework.common.pojo.PageResult;
-import co.yixiang.yshop.framework.common.pojo.PageParam;
-import co.yixiang.yshop.framework.common.util.object.BeanUtils;
-
-import co.yixiang.yshop.module.crm.dal.mysql.crmclues.CrmCluesMapper;
+import java.util.ArrayList;
+import java.util.List;
 
 import static co.yixiang.yshop.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static co.yixiang.yshop.module.crm.enums.ErrorCodeConstants.*;
+import static co.yixiang.yshop.module.crm.enums.ErrorCodeConstants.CLUES_NOT_EXISTS;
 
 /**
  * 线索 Service 实现类

@@ -1,13 +1,14 @@
 package co.yixiang.yshop.module.shop.dal.mysql.material;
 
-import java.util.*;
-
 import co.yixiang.yshop.framework.common.pojo.PageResult;
-import co.yixiang.yshop.framework.mybatis.core.query.LambdaQueryWrapperX;
 import co.yixiang.yshop.framework.mybatis.core.mapper.BaseMapperX;
+import co.yixiang.yshop.framework.mybatis.core.query.LambdaQueryWrapperX;
+import co.yixiang.yshop.module.shop.controller.admin.material.vo.MaterialExportReqVO;
+import co.yixiang.yshop.module.shop.controller.admin.material.vo.MaterialPageReqVO;
 import co.yixiang.yshop.module.shop.dal.dataobject.material.MaterialDO;
 import org.apache.ibatis.annotations.Mapper;
-import co.yixiang.yshop.module.shop.controller.admin.material.vo.*;
+
+import java.util.List;
 
 /**
  * 素材库 Mapper

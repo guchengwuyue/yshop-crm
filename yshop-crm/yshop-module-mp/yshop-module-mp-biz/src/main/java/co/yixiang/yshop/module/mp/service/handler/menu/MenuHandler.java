@@ -2,18 +2,15 @@ package co.yixiang.yshop.module.mp.service.handler.menu;
 
 import co.yixiang.yshop.module.mp.framework.mp.core.context.MpContextHolder;
 import co.yixiang.yshop.module.mp.service.menu.MpMenuService;
+import jakarta.annotation.Resource;
 import me.chanjar.weixin.common.session.WxSessionManager;
-import me.chanjar.weixin.mp.api.WxMpMenuService;
 import me.chanjar.weixin.mp.api.WxMpMessageHandler;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 import org.springframework.stereotype.Component;
 
-import jakarta.annotation.Resource;
 import java.util.Map;
-
-import static me.chanjar.weixin.common.api.WxConsts.MenuButtonType;
 
 /**
  * 自定义菜单的事件处理器

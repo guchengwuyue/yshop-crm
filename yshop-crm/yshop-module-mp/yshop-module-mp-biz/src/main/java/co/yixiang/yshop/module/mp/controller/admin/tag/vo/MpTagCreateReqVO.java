@@ -1,11 +1,10 @@
 package co.yixiang.yshop.module.mp.controller.admin.tag.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-
-import jakarta.validation.constraints.NotNull;
 
 @Schema(description = "管理后台 - 公众号标签创建 Request VO")
 @Data

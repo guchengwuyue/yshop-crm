@@ -19,7 +19,6 @@ package co.yixiang.yshop.module.mp.framework.mp.core.context;
 
 import co.yixiang.yshop.module.mp.controller.admin.open.vo.MpOpenHandleMessageReqVO;
 import com.alibaba.ttl.TransmittableThreadLocal;
-import lombok.experimental.UtilityClass;
 import me.chanjar.weixin.mp.api.WxMpMessageHandler;
 
 /**

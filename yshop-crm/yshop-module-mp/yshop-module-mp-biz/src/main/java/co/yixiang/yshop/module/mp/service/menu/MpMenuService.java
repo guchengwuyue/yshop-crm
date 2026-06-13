@@ -2,9 +2,9 @@ package co.yixiang.yshop.module.mp.service.menu;
 
 import co.yixiang.yshop.module.mp.controller.admin.menu.vo.MpMenuSaveReqVO;
 import co.yixiang.yshop.module.mp.dal.dataobject.menu.MpMenuDO;
+import jakarta.validation.Valid;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 
-import jakarta.validation.Valid;
 import java.util.List;
 
 /**

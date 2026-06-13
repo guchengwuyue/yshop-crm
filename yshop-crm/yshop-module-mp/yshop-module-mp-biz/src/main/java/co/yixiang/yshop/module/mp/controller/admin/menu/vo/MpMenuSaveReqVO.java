@@ -1,11 +1,11 @@
 package co.yixiang.yshop.module.mp.controller.admin.menu.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
-
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+
 import java.util.List;
 
 @Schema(description = "管理后台 - 公众号菜单保存 Request VO")

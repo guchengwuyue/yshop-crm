@@ -1,9 +1,8 @@
 package co.yixiang.yshop.module.mp.controller.admin.open.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
-
 import jakarta.validation.constraints.NotEmpty;
+import lombok.Data;
 
 @Schema(description = "管理后台 - 公众号校验签名 Request VO")
 @Data

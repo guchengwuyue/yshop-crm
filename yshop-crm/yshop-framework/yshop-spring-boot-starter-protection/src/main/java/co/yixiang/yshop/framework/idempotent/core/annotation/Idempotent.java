@@ -1,7 +1,7 @@
 package co.yixiang.yshop.framework.idempotent.core.annotation;
 
-import co.yixiang.yshop.framework.idempotent.core.keyresolver.impl.DefaultIdempotentKeyResolver;
 import co.yixiang.yshop.framework.idempotent.core.keyresolver.IdempotentKeyResolver;
+import co.yixiang.yshop.framework.idempotent.core.keyresolver.impl.DefaultIdempotentKeyResolver;
 import co.yixiang.yshop.framework.idempotent.core.keyresolver.impl.ExpressionIdempotentKeyResolver;
 import co.yixiang.yshop.framework.idempotent.core.keyresolver.impl.UserIdempotentKeyResolver;
 

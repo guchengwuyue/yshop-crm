@@ -1,7 +1,5 @@
 package co.yixiang.yshop.module.product.enums;
 
-import co.yixiang.yshop.framework.common.exception.ErrorCode;
-
 /**
  * Product 错误码枚举类
  *

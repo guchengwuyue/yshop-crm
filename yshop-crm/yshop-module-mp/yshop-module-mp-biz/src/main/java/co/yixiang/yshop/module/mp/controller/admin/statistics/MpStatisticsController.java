@@ -6,6 +6,7 @@ import co.yixiang.yshop.module.mp.convert.statistics.MpStatisticsConvert;
 import co.yixiang.yshop.module.mp.service.statistics.MpStatisticsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
 import me.chanjar.weixin.mp.bean.datacube.WxDataCubeInterfaceResult;
 import me.chanjar.weixin.mp.bean.datacube.WxDataCubeMsgResult;
 import me.chanjar.weixin.mp.bean.datacube.WxDataCubeUserCumulate;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.annotation.Resource;
 import java.util.List;
 
 import static co.yixiang.yshop.framework.common.pojo.CommonResult.success;

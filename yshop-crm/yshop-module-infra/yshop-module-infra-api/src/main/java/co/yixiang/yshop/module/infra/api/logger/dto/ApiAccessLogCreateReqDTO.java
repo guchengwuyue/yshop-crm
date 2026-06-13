@@ -1,8 +1,8 @@
 package co.yixiang.yshop.module.infra.api.logger.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 /**

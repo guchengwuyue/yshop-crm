@@ -1,7 +1,7 @@
 package co.yixiang.yshop.module.pay.controller.admin.merchantdetails.vo;
 
-import lombok.*;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
 
 @Schema(description = "管理后台 - 支付服务商配置 Excel 导出 Request VO，参数和 MerchantDetailsPageReqVO 是一致的")
 @Data

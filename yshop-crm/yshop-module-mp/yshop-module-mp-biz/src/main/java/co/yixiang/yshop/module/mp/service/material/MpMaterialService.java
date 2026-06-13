@@ -6,9 +6,9 @@ import co.yixiang.yshop.module.mp.controller.admin.material.vo.MpMaterialUploadN
 import co.yixiang.yshop.module.mp.controller.admin.material.vo.MpMaterialUploadPermanentReqVO;
 import co.yixiang.yshop.module.mp.controller.admin.material.vo.MpMaterialUploadTemporaryReqVO;
 import co.yixiang.yshop.module.mp.dal.dataobject.material.MpMaterialDO;
+import jakarta.validation.Valid;
 import me.chanjar.weixin.common.api.WxConsts;
 
-import jakarta.validation.Valid;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;

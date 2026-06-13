@@ -1,11 +1,11 @@
 package co.yixiang.yshop.module.crm.service.crmrecord;
 
-import java.util.*;
-import jakarta.validation.*;
-import co.yixiang.yshop.module.crm.controller.admin.crmrecord.vo.*;
-import co.yixiang.yshop.module.crm.dal.dataobject.crmrecord.CrmRecordDO;
 import co.yixiang.yshop.framework.common.pojo.PageResult;
-import co.yixiang.yshop.framework.common.pojo.PageParam;
+import co.yixiang.yshop.module.crm.controller.admin.crmrecord.vo.CrmRecordPageReqVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmrecord.vo.CrmRecordRespVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmrecord.vo.CrmRecordSaveReqVO;
+import co.yixiang.yshop.module.crm.dal.dataobject.crmrecord.CrmRecordDO;
+import jakarta.validation.Valid;
 
 /**
  * 跟进记录 Service 接口

@@ -1,11 +1,10 @@
 package co.yixiang.yshop.module.crm.dal.dataobject.crmflowlog;
 
-import lombok.*;
-import java.util.*;
-import java.time.LocalDateTime;
-import java.time.LocalDateTime;
-import com.baomidou.mybatisplus.annotation.*;
 import co.yixiang.yshop.framework.mybatis.core.dataobject.BaseDO;
+import com.baomidou.mybatisplus.annotation.KeySequence;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.*;
 
 /**
  * 审核日志 DO

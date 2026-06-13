@@ -4,11 +4,7 @@ import co.yixiang.yshop.framework.desensitize.core.base.annotation.DesensitizeBy
 import co.yixiang.yshop.framework.desensitize.core.regex.handler.DefaultRegexDesensitizationHandler;
 import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * 正则脱敏注解

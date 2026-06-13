@@ -1,11 +1,8 @@
 package co.yixiang.yshop.module.shop.controller.admin.material.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-import java.util.*;
-import java.time.LocalDateTime;
-import java.time.LocalDateTime;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 /**
 * 素材库 Base VO，提供给添加、修改、详细的子 VO 使用

@@ -2,13 +2,13 @@ package co.yixiang.yshop.module.mp.service.message.bo;
 
 import co.yixiang.yshop.module.mp.dal.dataobject.message.MpMessageDO;
 import co.yixiang.yshop.module.mp.framework.mp.core.util.MpUtils.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import me.chanjar.weixin.common.api.WxConsts;
 import org.hibernate.validator.constraints.URL;
 
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 /**

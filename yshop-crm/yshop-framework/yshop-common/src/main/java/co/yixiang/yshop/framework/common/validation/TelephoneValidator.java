@@ -2,7 +2,6 @@ package co.yixiang.yshop.framework.common.validation;
 
 import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.PhoneUtil;
-
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

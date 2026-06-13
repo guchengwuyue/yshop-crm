@@ -1,11 +1,10 @@
 package co.yixiang.yshop.module.product.controller.admin.storeproductrule.vo;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.fastjson.JSONArray;
-import lombok.*;
+import lombok.Data;
 
 import java.time.LocalDateTime;
-
-import com.alibaba.excel.annotation.ExcelProperty;
 
 /**
  * 商品规则值(规格) Excel VO

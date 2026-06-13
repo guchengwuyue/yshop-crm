@@ -36,7 +36,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Iterator;
 import java.util.Map;
 
-import static co.yixiang.yshop.framework.apilog.core.interceptor.ApiAccessLogInterceptor.*;
+import static co.yixiang.yshop.framework.apilog.core.interceptor.ApiAccessLogInterceptor.ATTRIBUTE_HANDLER_METHOD;
 import static co.yixiang.yshop.framework.common.util.json.JsonUtils.toJsonString;
 
 /**

@@ -5,11 +5,11 @@ import cn.hutool.core.map.TableMap;
 import cn.hutool.core.net.url.UrlBuilder;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.util.StringUtils;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import jakarta.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.nio.charset.Charset;
 import java.util.Map;

@@ -3,14 +3,13 @@ package co.yixiang.yshop.framework.security.core.handler;
 import co.yixiang.yshop.framework.common.exception.enums.GlobalErrorCodeConstants;
 import co.yixiang.yshop.framework.common.pojo.CommonResult;
 import co.yixiang.yshop.framework.common.util.servlet.ServletUtils;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.ExceptionTranslationFilter;
-
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 import static co.yixiang.yshop.framework.common.exception.enums.GlobalErrorCodeConstants.UNAUTHORIZED;
 

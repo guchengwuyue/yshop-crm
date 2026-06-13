@@ -1,13 +1,13 @@
 package co.yixiang.yshop.framework.idempotent.config;
 
 import co.yixiang.yshop.framework.idempotent.core.aop.IdempotentAspect;
+import co.yixiang.yshop.framework.idempotent.core.keyresolver.IdempotentKeyResolver;
 import co.yixiang.yshop.framework.idempotent.core.keyresolver.impl.DefaultIdempotentKeyResolver;
 import co.yixiang.yshop.framework.idempotent.core.keyresolver.impl.ExpressionIdempotentKeyResolver;
-import co.yixiang.yshop.framework.idempotent.core.keyresolver.IdempotentKeyResolver;
 import co.yixiang.yshop.framework.idempotent.core.keyresolver.impl.UserIdempotentKeyResolver;
 import co.yixiang.yshop.framework.idempotent.core.redis.IdempotentRedisDAO;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
 import co.yixiang.yshop.framework.redis.config.YshopRedisAutoConfiguration;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.StringRedisTemplate;
 

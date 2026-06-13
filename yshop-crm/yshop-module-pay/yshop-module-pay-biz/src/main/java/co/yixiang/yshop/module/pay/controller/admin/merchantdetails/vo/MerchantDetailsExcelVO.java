@@ -1,8 +1,7 @@
 package co.yixiang.yshop.module.pay.controller.admin.merchantdetails.vo;
 
-import lombok.*;
-
 import com.alibaba.excel.annotation.ExcelProperty;
+import lombok.Data;
 
 /**
  * 支付服务商配置 Excel VO

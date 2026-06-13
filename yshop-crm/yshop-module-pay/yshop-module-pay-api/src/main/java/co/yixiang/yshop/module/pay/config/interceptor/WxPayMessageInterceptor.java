@@ -1,14 +1,10 @@
 
 package co.yixiang.yshop.module.pay.config.interceptor;
 
-import com.egzosn.pay.ali.api.AliPayService;
-import com.egzosn.pay.ali.bean.AliPayMessage;
-import com.egzosn.pay.common.api.PayMessageHandler;
 import com.egzosn.pay.common.api.PayMessageInterceptor;
 import com.egzosn.pay.common.exception.PayErrorException;
 import com.egzosn.pay.wx.api.WxPayService;
 import com.egzosn.pay.wx.bean.WxPayMessage;
-import org.springframework.stereotype.Component;
 
 import java.util.Map;
 

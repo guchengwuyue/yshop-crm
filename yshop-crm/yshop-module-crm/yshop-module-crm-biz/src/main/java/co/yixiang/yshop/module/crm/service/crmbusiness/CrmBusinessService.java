@@ -1,12 +1,13 @@
 package co.yixiang.yshop.module.crm.service.crmbusiness;
 
-import java.util.*;
-import jakarta.validation.*;
-import co.yixiang.yshop.module.crm.controller.admin.crmbusiness.vo.*;
-import co.yixiang.yshop.module.crm.dal.dataobject.crmbusiness.CrmBusinessDO;
-import co.yixiang.yshop.module.crm.dal.dataobject.crmbusiness.CrmBusinessProductDO;
 import co.yixiang.yshop.framework.common.pojo.PageResult;
-import co.yixiang.yshop.framework.common.pojo.PageParam;
+import co.yixiang.yshop.module.crm.controller.admin.crmbusiness.vo.CrmBusinessPageReqVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmbusiness.vo.CrmBusinessRespVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmbusiness.vo.CrmBusinessSaveReqVO;
+import co.yixiang.yshop.module.crm.dal.dataobject.crmbusiness.CrmBusinessProductDO;
+import jakarta.validation.Valid;
+
+import java.util.List;
 
 /**
  * 商机 Service 接口

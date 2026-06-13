@@ -1,19 +1,22 @@
 package co.yixiang.yshop.module.shop.service.material;
 
-import org.springframework.stereotype.Service;
+import co.yixiang.yshop.framework.common.pojo.PageResult;
+import co.yixiang.yshop.module.shop.controller.admin.material.vo.MaterialCreateReqVO;
+import co.yixiang.yshop.module.shop.controller.admin.material.vo.MaterialExportReqVO;
+import co.yixiang.yshop.module.shop.controller.admin.material.vo.MaterialPageReqVO;
+import co.yixiang.yshop.module.shop.controller.admin.material.vo.MaterialUpdateReqVO;
+import co.yixiang.yshop.module.shop.convert.material.MaterialConvert;
+import co.yixiang.yshop.module.shop.dal.dataobject.material.MaterialDO;
+import co.yixiang.yshop.module.shop.dal.mysql.material.MaterialMapper;
 import jakarta.annotation.Resource;
+import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import java.util.*;
-import co.yixiang.yshop.module.shop.controller.admin.material.vo.*;
-import co.yixiang.yshop.module.shop.dal.dataobject.material.MaterialDO;
-import co.yixiang.yshop.framework.common.pojo.PageResult;
-
-import co.yixiang.yshop.module.shop.convert.material.MaterialConvert;
-import co.yixiang.yshop.module.shop.dal.mysql.material.MaterialMapper;
+import java.util.Collection;
+import java.util.List;
 
 import static co.yixiang.yshop.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static co.yixiang.yshop.module.shop.enums.ErrorCodeConstants.*;
+import static co.yixiang.yshop.module.shop.enums.ErrorCodeConstants.MATERIAL_NOT_EXISTS;
 
 /**
  * 素材库 Service 实现类

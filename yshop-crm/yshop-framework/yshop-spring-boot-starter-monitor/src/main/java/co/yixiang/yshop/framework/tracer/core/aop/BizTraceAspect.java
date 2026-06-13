@@ -2,8 +2,8 @@ package co.yixiang.yshop.framework.tracer.core.aop;
 
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.StrUtil;
-import co.yixiang.yshop.framework.tracer.core.annotation.BizTrace;
 import co.yixiang.yshop.framework.common.util.spring.SpringExpressionUtils;
+import co.yixiang.yshop.framework.tracer.core.annotation.BizTrace;
 import co.yixiang.yshop.framework.tracer.core.util.TracerFrameworkUtils;
 import io.opentracing.Span;
 import io.opentracing.Tracer;

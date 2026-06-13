@@ -3,9 +3,9 @@ package co.yixiang.yshop.module.infra.job.job;
 import co.yixiang.yshop.framework.quartz.core.handler.JobHandler;
 import co.yixiang.yshop.framework.tenant.core.aop.TenantIgnore;
 import co.yixiang.yshop.module.infra.service.job.JobLogService;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import jakarta.annotation.Resource;
 
 /**
  * 物理删除 N 天前的任务日志的 Job

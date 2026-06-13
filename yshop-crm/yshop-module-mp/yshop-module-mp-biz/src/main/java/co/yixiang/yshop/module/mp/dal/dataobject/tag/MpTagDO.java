@@ -1,10 +1,12 @@
 package co.yixiang.yshop.module.mp.dal.dataobject.tag;
 
-import co.yixiang.yshop.module.mp.dal.dataobject.account.MpAccountDO;
-import lombok.*;
-
-import com.baomidou.mybatisplus.annotation.*;
 import co.yixiang.yshop.framework.mybatis.core.dataobject.BaseDO;
+import co.yixiang.yshop.module.mp.dal.dataobject.account.MpAccountDO;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.KeySequence;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.*;
 import me.chanjar.weixin.mp.bean.tag.WxUserTag;
 
 /**

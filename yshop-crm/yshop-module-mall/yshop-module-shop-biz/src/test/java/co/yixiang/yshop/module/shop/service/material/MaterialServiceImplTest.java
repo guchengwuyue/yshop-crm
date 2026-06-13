@@ -1,32 +1,28 @@
 package co.yixiang.yshop.module.shop.service.material;
 
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.mock.mockito.MockBean;
-
-import jakarta.annotation.Resource;
-
+import co.yixiang.yshop.framework.common.pojo.PageResult;
 import co.yixiang.yshop.framework.test.core.ut.BaseDbUnitTest;
-
-import co.yixiang.yshop.module.shop.controller.admin.material.vo.*;
+import co.yixiang.yshop.module.shop.controller.admin.material.vo.MaterialCreateReqVO;
+import co.yixiang.yshop.module.shop.controller.admin.material.vo.MaterialExportReqVO;
+import co.yixiang.yshop.module.shop.controller.admin.material.vo.MaterialPageReqVO;
+import co.yixiang.yshop.module.shop.controller.admin.material.vo.MaterialUpdateReqVO;
 import co.yixiang.yshop.module.shop.dal.dataobject.material.MaterialDO;
 import co.yixiang.yshop.module.shop.dal.mysql.material.MaterialMapper;
-import co.yixiang.yshop.framework.common.pojo.PageResult;
-
 import jakarta.annotation.Resource;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.Import;
-import java.util.*;
-import java.time.LocalDateTime;
 
-import static cn.hutool.core.util.RandomUtil.*;
-import static co.yixiang.yshop.module.shop.enums.ErrorCodeConstants.*;
-import static co.yixiang.yshop.framework.test.core.util.AssertUtils.*;
-import static co.yixiang.yshop.framework.test.core.util.RandomUtils.*;
-import static co.yixiang.yshop.framework.common.util.date.LocalDateTimeUtils.*;
-import static co.yixiang.yshop.framework.common.util.object.ObjectUtils.*;
-import static co.yixiang.yshop.framework.common.util.date.DateUtils.*;
+import java.util.List;
+
+import static co.yixiang.yshop.framework.common.util.date.LocalDateTimeUtils.buildBetweenTime;
+import static co.yixiang.yshop.framework.common.util.object.ObjectUtils.cloneIgnoreId;
+import static co.yixiang.yshop.framework.test.core.util.AssertUtils.assertPojoEquals;
+import static co.yixiang.yshop.framework.test.core.util.AssertUtils.assertServiceException;
+import static co.yixiang.yshop.framework.test.core.util.RandomUtils.randomLongId;
+import static co.yixiang.yshop.framework.test.core.util.RandomUtils.randomPojo;
+import static co.yixiang.yshop.module.shop.enums.ErrorCodeConstants.MATERIAL_NOT_EXISTS;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 /**
 * {@link MaterialServiceImpl} 的单元测试类

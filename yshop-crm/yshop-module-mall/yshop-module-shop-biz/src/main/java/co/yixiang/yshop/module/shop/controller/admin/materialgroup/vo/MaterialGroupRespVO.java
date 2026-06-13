@@ -1,7 +1,10 @@
 package co.yixiang.yshop.module.shop.controller.admin.materialgroup.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import java.time.LocalDateTime;
 
 @Schema(description = "管理后台 - 素材分组 Response VO")

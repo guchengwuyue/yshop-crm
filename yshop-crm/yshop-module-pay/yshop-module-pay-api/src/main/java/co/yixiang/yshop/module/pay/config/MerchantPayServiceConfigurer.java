@@ -9,11 +9,9 @@ import com.egzosn.pay.spring.boot.core.merchant.PaymentPlatform;
 import com.egzosn.pay.spring.boot.core.provider.merchant.platform.AliPaymentPlatform;
 import com.egzosn.pay.spring.boot.core.provider.merchant.platform.PaymentPlatforms;
 import com.egzosn.pay.spring.boot.core.provider.merchant.platform.WxPaymentPlatform;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import jakarta.annotation.Resource;
 
 
 /**

@@ -1,11 +1,10 @@
 package co.yixiang.yshop.module.crm.service.crmcustomercontacts;
 
-import java.util.*;
-import jakarta.validation.*;
-import co.yixiang.yshop.module.crm.controller.admin.crmcustomercontacts.vo.*;
-import co.yixiang.yshop.module.crm.dal.dataobject.crmcustomercontacts.CrmCustomerContactsDO;
 import co.yixiang.yshop.framework.common.pojo.PageResult;
-import co.yixiang.yshop.framework.common.pojo.PageParam;
+import co.yixiang.yshop.module.crm.controller.admin.crmcustomercontacts.vo.CrmCustomerContactsPageReqVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmcustomercontacts.vo.CrmCustomerContactsRespVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmcustomercontacts.vo.CrmCustomerContactsSaveReqVO;
+import jakarta.validation.Valid;
 
 /**
  * 联系人 Service 接口

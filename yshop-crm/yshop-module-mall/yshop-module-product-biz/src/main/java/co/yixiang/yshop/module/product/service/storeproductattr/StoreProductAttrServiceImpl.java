@@ -14,11 +14,11 @@ import co.yixiang.yshop.module.product.service.storeproductattrvalue.StoreProduc
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
-import jakarta.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.*;
 

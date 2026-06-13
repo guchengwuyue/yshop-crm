@@ -1,13 +1,13 @@
 package co.yixiang.yshop.module.crm.dal.mysql.crmrecord;
 
-import java.util.*;
-
 import co.yixiang.yshop.framework.common.pojo.PageResult;
-import co.yixiang.yshop.framework.mybatis.core.query.LambdaQueryWrapperX;
 import co.yixiang.yshop.framework.mybatis.core.mapper.BaseMapperX;
+import co.yixiang.yshop.framework.mybatis.core.query.LambdaQueryWrapperX;
+import co.yixiang.yshop.module.crm.controller.admin.crmrecord.vo.CrmRecordPageReqVO;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmrecord.CrmRecordDO;
 import org.apache.ibatis.annotations.Mapper;
-import co.yixiang.yshop.module.crm.controller.admin.crmrecord.vo.*;
+
+import java.util.List;
 
 /**
  * 跟进记录 Mapper

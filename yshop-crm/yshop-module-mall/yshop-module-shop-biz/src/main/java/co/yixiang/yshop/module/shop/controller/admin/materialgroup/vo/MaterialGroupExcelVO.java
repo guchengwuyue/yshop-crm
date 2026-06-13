@@ -1,12 +1,9 @@
 package co.yixiang.yshop.module.shop.controller.admin.materialgroup.vo;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-import java.util.*;
-import java.time.LocalDateTime;
-import java.time.LocalDateTime;
-
 import com.alibaba.excel.annotation.ExcelProperty;
+import lombok.Data;
+
+import java.time.LocalDateTime;
 
 /**
  * 素材分组 Excel VO

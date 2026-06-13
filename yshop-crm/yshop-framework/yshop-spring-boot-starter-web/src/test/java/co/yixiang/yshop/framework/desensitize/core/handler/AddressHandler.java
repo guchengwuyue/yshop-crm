@@ -1,8 +1,8 @@
 package co.yixiang.yshop.framework.desensitize.core.handler;
 
 import co.yixiang.yshop.framework.desensitize.core.DesensitizeTest;
-import co.yixiang.yshop.framework.desensitize.core.base.handler.DesensitizationHandler;
 import co.yixiang.yshop.framework.desensitize.core.annotation.Address;
+import co.yixiang.yshop.framework.desensitize.core.base.handler.DesensitizationHandler;
 
 /**
  * {@link Address} 的脱敏处理器

@@ -5,10 +5,10 @@ import co.yixiang.yshop.module.product.dal.mysql.storeproductattrresult.StorePro
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import jakarta.annotation.Resource;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;

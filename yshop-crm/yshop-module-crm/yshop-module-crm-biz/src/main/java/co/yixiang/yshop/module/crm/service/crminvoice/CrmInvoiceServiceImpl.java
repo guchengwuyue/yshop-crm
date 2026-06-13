@@ -8,12 +8,10 @@ import co.yixiang.yshop.framework.common.util.object.BeanUtils;
 import co.yixiang.yshop.framework.mybatis.core.query.LambdaQueryWrapperX;
 import co.yixiang.yshop.framework.security.core.util.SecurityFrameworkUtils;
 import co.yixiang.yshop.module.crm.controller.admin.crmcontract.vo.CheckInfoVO;
-import co.yixiang.yshop.module.crm.controller.admin.crmcontractreceivables.vo.CrmContractReceivablesRespVO;
 import co.yixiang.yshop.module.crm.controller.admin.crminvoice.vo.CrmInvoicePageReqVO;
 import co.yixiang.yshop.module.crm.controller.admin.crminvoice.vo.CrmInvoiceRespVO;
 import co.yixiang.yshop.module.crm.controller.admin.crminvoice.vo.CrmInvoiceSaveReqVO;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmcontract.CrmContractDO;
-import co.yixiang.yshop.module.crm.dal.dataobject.crmcontractreceivables.CrmContractReceivablesDO;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmcustomer.CrmCustomerDO;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmflow.CrmFlowDO;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmflow.CrmFlowStepDO;
@@ -48,7 +46,6 @@ import java.util.stream.Collectors;
 
 import static co.yixiang.yshop.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static co.yixiang.yshop.module.crm.enums.ErrorCodeConstants.*;
-import static co.yixiang.yshop.module.crm.enums.ErrorCodeConstants.FLOW_NOT_EXISTS;
 
 /**
  * 发票 Service 实现类

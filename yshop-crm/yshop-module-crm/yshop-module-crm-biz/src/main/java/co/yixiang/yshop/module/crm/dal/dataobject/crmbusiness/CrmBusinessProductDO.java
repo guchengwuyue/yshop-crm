@@ -1,13 +1,13 @@
 package co.yixiang.yshop.module.crm.dal.dataobject.crmbusiness;
 
-import lombok.*;
-import java.util.*;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.time.LocalDateTime;
-import com.baomidou.mybatisplus.annotation.*;
 import co.yixiang.yshop.framework.mybatis.core.dataobject.BaseDO;
+import com.baomidou.mybatisplus.annotation.KeySequence;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.*;
+
+import java.math.BigDecimal;
 
 /**
  * 商机产品关联 DO

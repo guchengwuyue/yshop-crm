@@ -6,11 +6,10 @@ import com.egzosn.pay.common.api.PayService;
 import com.egzosn.pay.common.bean.PayOutMessage;
 import com.egzosn.pay.common.exception.PayErrorException;
 import com.egzosn.pay.wx.bean.WxPayMessage;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import jakarta.annotation.Resource;
 import java.util.Map;
 
 /**

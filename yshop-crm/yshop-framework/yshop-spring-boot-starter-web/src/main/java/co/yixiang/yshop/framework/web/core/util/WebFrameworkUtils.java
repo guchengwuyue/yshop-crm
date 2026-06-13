@@ -1,18 +1,15 @@
 package co.yixiang.yshop.framework.web.core.util;
 
 import cn.hutool.core.util.NumberUtil;
-import cn.hutool.extra.servlet.ServletUtil;
 import co.yixiang.yshop.framework.common.enums.TerminalEnum;
 import co.yixiang.yshop.framework.common.enums.UserTypeEnum;
 import co.yixiang.yshop.framework.common.pojo.CommonResult;
-import co.yixiang.yshop.framework.common.util.servlet.ServletUtils;
 import co.yixiang.yshop.framework.web.config.WebProperties;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * 专属于 web 包的工具类

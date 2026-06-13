@@ -4,10 +4,9 @@ import co.yixiang.yshop.module.product.controller.admin.category.vo.ProductCateg
 import co.yixiang.yshop.module.product.controller.admin.category.vo.ProductCategoryListReqVO;
 import co.yixiang.yshop.module.product.controller.admin.category.vo.ProductCategoryUpdateReqVO;
 import co.yixiang.yshop.module.product.dal.dataobject.category.ProductCategoryDO;
-import co.yixiang.yshop.module.product.dal.dataobject.storeproduct.StoreProductDO;
 import com.baomidou.mybatisplus.extension.service.IService;
-
 import jakarta.validation.Valid;
+
 import java.util.List;
 
 /**

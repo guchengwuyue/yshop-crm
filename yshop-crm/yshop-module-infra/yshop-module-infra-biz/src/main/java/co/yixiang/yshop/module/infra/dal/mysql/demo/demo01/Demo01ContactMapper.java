@@ -1,8 +1,8 @@
 package co.yixiang.yshop.module.infra.dal.mysql.demo.demo01;
 
 import co.yixiang.yshop.framework.common.pojo.PageResult;
-import co.yixiang.yshop.framework.mybatis.core.query.LambdaQueryWrapperX;
 import co.yixiang.yshop.framework.mybatis.core.mapper.BaseMapperX;
+import co.yixiang.yshop.framework.mybatis.core.query.LambdaQueryWrapperX;
 import co.yixiang.yshop.module.infra.controller.admin.demo.demo01.vo.Demo01ContactPageReqVO;
 import co.yixiang.yshop.module.infra.dal.dataobject.demo.demo01.Demo01ContactDO;
 import org.apache.ibatis.annotations.Mapper;

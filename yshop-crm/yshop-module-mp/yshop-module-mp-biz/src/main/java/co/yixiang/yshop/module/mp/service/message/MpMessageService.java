@@ -5,10 +5,9 @@ import co.yixiang.yshop.module.mp.controller.admin.message.vo.message.MpMessageP
 import co.yixiang.yshop.module.mp.controller.admin.message.vo.message.MpMessageSendReqVO;
 import co.yixiang.yshop.module.mp.dal.dataobject.message.MpMessageDO;
 import co.yixiang.yshop.module.mp.service.message.bo.MpMessageSendOutReqBO;
+import jakarta.validation.Valid;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
-
-import jakarta.validation.Valid;
 
 /**
  * 公众号消息 Service 接口

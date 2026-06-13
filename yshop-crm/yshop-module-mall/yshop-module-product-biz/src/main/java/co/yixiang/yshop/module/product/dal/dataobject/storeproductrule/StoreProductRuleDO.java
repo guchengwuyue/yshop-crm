@@ -1,10 +1,13 @@
 package co.yixiang.yshop.module.product.dal.dataobject.storeproductrule;
 
+import co.yixiang.yshop.framework.mybatis.core.dataobject.BaseDO;
 import com.alibaba.fastjson.JSONArray;
+import com.baomidou.mybatisplus.annotation.KeySequence;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler;
 import lombok.*;
-import com.baomidou.mybatisplus.annotation.*;
-import co.yixiang.yshop.framework.mybatis.core.dataobject.BaseDO;
 
 /**
  * 商品规则值(规格) DO

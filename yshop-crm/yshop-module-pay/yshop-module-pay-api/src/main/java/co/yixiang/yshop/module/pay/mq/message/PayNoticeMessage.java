@@ -1,9 +1,8 @@
 package co.yixiang.yshop.module.pay.mq.message;
 
 import co.yixiang.yshop.framework.mq.redis.core.stream.AbstractRedisStreamMessage;
-import lombok.Data;
-
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 @Data
 public class PayNoticeMessage extends AbstractRedisStreamMessage {

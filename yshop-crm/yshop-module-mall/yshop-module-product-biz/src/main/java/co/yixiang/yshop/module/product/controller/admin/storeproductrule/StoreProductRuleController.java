@@ -1,28 +1,27 @@
 package co.yixiang.yshop.module.product.controller.admin.storeproductrule;
 
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.web.bind.annotation.*;
-import jakarta.annotation.Resource;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.security.access.prepost.PreAuthorize;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Operation;
-
-import jakarta.validation.*;
-import java.util.*;
-import java.io.IOException;
-
-import co.yixiang.yshop.framework.common.pojo.PageResult;
 import co.yixiang.yshop.framework.common.pojo.CommonResult;
-import static co.yixiang.yshop.framework.common.pojo.CommonResult.success;
-
+import co.yixiang.yshop.framework.common.pojo.PageResult;
 import co.yixiang.yshop.framework.excel.core.util.ExcelUtils;
-
 import co.yixiang.yshop.module.product.controller.admin.storeproductrule.vo.*;
-import co.yixiang.yshop.module.product.dal.dataobject.storeproductrule.StoreProductRuleDO;
 import co.yixiang.yshop.module.product.convert.storeproductrule.StoreProductRuleConvert;
+import co.yixiang.yshop.module.product.dal.dataobject.storeproductrule.StoreProductRuleDO;
 import co.yixiang.yshop.module.product.service.storeproductrule.StoreProductRuleService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.util.Collection;
+import java.util.List;
+
+import static co.yixiang.yshop.framework.common.pojo.CommonResult.success;
 
 @Tag(name = "管理后台 - 商品规则值(规格)")
 @RestController

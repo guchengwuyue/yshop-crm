@@ -1,13 +1,12 @@
 package co.yixiang.yshop.module.crm.service.crmclues;
 
-import java.util.*;
-
-import co.yixiang.yshop.module.crm.controller.admin.crmcustomer.vo.CrmCustomerSaveReqVO;
-import jakarta.validation.*;
-import co.yixiang.yshop.module.crm.controller.admin.crmclues.vo.*;
-import co.yixiang.yshop.module.crm.dal.dataobject.crmclues.CrmCluesDO;
 import co.yixiang.yshop.framework.common.pojo.PageResult;
-import co.yixiang.yshop.framework.common.pojo.PageParam;
+import co.yixiang.yshop.module.crm.controller.admin.crmclues.vo.CrmCluesPageReqVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmclues.vo.CrmCluesRespVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmclues.vo.CrmCluesSaveReqVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmcustomer.vo.CrmCustomerSaveReqVO;
+import co.yixiang.yshop.module.crm.dal.dataobject.crmclues.CrmCluesDO;
+import jakarta.validation.Valid;
 
 /**
  * 线索 Service 接口

@@ -1,12 +1,12 @@
 package co.yixiang.yshop.module.infra.dal.mysql.demo.demo02;
 
-import java.util.*;
-
-import co.yixiang.yshop.framework.mybatis.core.query.LambdaQueryWrapperX;
 import co.yixiang.yshop.framework.mybatis.core.mapper.BaseMapperX;
+import co.yixiang.yshop.framework.mybatis.core.query.LambdaQueryWrapperX;
 import co.yixiang.yshop.module.infra.controller.admin.demo.demo02.vo.Demo02CategoryListReqVO;
 import co.yixiang.yshop.module.infra.dal.dataobject.demo.demo02.Demo02CategoryDO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * 示例分类 Mapper

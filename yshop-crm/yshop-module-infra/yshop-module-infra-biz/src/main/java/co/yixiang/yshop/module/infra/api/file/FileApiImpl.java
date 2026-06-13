@@ -1,10 +1,9 @@
 package co.yixiang.yshop.module.infra.api.file;
 
 import co.yixiang.yshop.module.infra.service.file.FileService;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-
-import jakarta.annotation.Resource;
 
 /**
  * 文件 API 实现类

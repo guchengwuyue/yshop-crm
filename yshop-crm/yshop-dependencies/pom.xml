@@ -78,6 +78,7 @@
         <pay.boot.version>1.0.5</pay.boot.version>
         <pay.version>2.14.9</pay.version>
         <zxing.version>3.3.3</zxing.version>
+        <langchain4j.version>1.0.0-beta3</langchain4j.version>
     </properties>
 
     <dependencyManagement>
@@ -87,6 +88,20 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-bom</artifactId>
+                <version>${langchain4j.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-community-bom</artifactId>
+                <version>${langchain4j.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -244,6 +259,7 @@
                 <artifactId>DmJdbcDriver18</artifactId>
                 <version>${dm8.jdbc.version}</version>
             </dependency>
+
 
             <!-- Job 定时任务相关 -->
             <dependency>

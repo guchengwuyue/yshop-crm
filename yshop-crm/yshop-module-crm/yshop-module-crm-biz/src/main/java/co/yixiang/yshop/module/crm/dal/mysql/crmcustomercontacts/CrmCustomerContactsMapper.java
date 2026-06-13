@@ -1,16 +1,16 @@
 package co.yixiang.yshop.module.crm.dal.mysql.crmcustomercontacts;
 
-import java.util.*;
-
 import co.yixiang.yshop.framework.common.pojo.PageResult;
-import co.yixiang.yshop.framework.mybatis.core.query.LambdaQueryWrapperX;
 import co.yixiang.yshop.framework.mybatis.core.mapper.BaseMapperX;
+import co.yixiang.yshop.module.crm.controller.admin.crmcustomercontacts.vo.CrmCustomerContactsPageReqVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmcustomercontacts.vo.CrmCustomerContactsRespVO;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmcustomer.CrmCustomerDO;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmcustomercontacts.CrmCustomerContactsDO;
 import co.yixiang.yshop.module.system.dal.dataobject.user.AdminUserDO;
 import com.github.yulichang.wrapper.MPJLambdaWrapper;
 import org.apache.ibatis.annotations.Mapper;
-import co.yixiang.yshop.module.crm.controller.admin.crmcustomercontacts.vo.*;
+
+import java.util.List;
 
 /**
  * 联系人 Mapper

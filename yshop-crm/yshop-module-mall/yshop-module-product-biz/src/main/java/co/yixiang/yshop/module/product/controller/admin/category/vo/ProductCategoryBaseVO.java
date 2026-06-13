@@ -1,10 +1,9 @@
 package co.yixiang.yshop.module.product.controller.admin.category.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 /**
 * 商品分类 Base VO，提供给添加、修改、详细的子 VO 使用

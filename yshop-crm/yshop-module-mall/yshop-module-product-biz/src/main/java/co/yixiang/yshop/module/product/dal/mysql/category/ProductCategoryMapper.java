@@ -2,7 +2,6 @@ package co.yixiang.yshop.module.product.dal.mysql.category;
 
 import co.yixiang.yshop.framework.mybatis.core.mapper.BaseMapperX;
 import co.yixiang.yshop.framework.mybatis.core.query.LambdaQueryWrapperX;
-import co.yixiang.yshop.framework.security.core.util.SecurityFrameworkUtils;
 import co.yixiang.yshop.module.product.controller.admin.category.vo.ProductCategoryListReqVO;
 import co.yixiang.yshop.module.product.dal.dataobject.category.ProductCategoryDO;
 import org.apache.ibatis.annotations.Mapper;

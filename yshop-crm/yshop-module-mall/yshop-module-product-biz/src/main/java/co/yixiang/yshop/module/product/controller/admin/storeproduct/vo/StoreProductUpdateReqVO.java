@@ -1,11 +1,11 @@
 package co.yixiang.yshop.module.product.controller.admin.storeproduct.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Schema(description = "管理后台 - 商品更新 Request VO")

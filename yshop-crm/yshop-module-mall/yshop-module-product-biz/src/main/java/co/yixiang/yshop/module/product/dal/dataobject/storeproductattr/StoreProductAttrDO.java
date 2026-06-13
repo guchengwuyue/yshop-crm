@@ -1,9 +1,9 @@
 package co.yixiang.yshop.module.product.dal.dataobject.storeproductattr;
 
+import com.baomidou.mybatisplus.annotation.KeySequence;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
-import java.util.*;
-import com.baomidou.mybatisplus.annotation.*;
-import co.yixiang.yshop.framework.mybatis.core.dataobject.BaseDO;
 
 /**
  * 商品属性 DO

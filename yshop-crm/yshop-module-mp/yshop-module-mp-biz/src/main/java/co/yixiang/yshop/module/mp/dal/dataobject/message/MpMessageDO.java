@@ -10,11 +10,13 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.AbstractJsonTypeHandler;
-import lombok.*;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.mp.builder.kefu.NewsBuilder;
 
-import jakarta.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.List;
 

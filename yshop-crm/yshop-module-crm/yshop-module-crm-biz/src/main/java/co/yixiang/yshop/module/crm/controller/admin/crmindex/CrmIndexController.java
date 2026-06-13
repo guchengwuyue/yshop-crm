@@ -9,7 +9,6 @@ import jakarta.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import static co.yixiang.yshop.framework.common.pojo.CommonResult.success;
@@ -22,10 +21,16 @@ public class CrmIndexController {
     @Resource
     private CrmIndexService crmIndexService;
 
+
     @GetMapping("/getCount")
     @Operation(summary = "首页统计")
     public CommonResult<CrmIndexRespVO> getCount() {
         return success(crmIndexService.getIndexCount());
     }
+
+
+
+
+
 
 }

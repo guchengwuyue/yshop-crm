@@ -1,17 +1,16 @@
 package co.yixiang.yshop.module.crm.dal.mysql.crmbusiness;
 
-import java.util.*;
-
 import co.yixiang.yshop.framework.common.pojo.PageResult;
-import co.yixiang.yshop.framework.mybatis.core.query.LambdaQueryWrapperX;
 import co.yixiang.yshop.framework.mybatis.core.mapper.BaseMapperX;
-import co.yixiang.yshop.module.crm.controller.admin.crmcustomer.vo.CrmCustomerRespVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmbusiness.vo.CrmBusinessPageReqVO;
+import co.yixiang.yshop.module.crm.controller.admin.crmbusiness.vo.CrmBusinessRespVO;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmbusiness.CrmBusinessDO;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmcustomer.CrmCustomerDO;
 import co.yixiang.yshop.module.system.dal.dataobject.user.AdminUserDO;
 import com.github.yulichang.wrapper.MPJLambdaWrapper;
 import org.apache.ibatis.annotations.Mapper;
-import co.yixiang.yshop.module.crm.controller.admin.crmbusiness.vo.*;
+
+import java.util.List;
 
 /**
  * 商机 Mapper

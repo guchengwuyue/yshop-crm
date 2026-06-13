@@ -2,10 +2,9 @@ package co.yixiang.yshop.module.mp.framework.mp.core.util;
 
 import cn.hutool.core.util.StrUtil;
 import co.yixiang.yshop.framework.common.util.validation.ValidationUtils;
+import jakarta.validation.Validator;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.api.WxConsts;
-
-import jakarta.validation.Validator;
 
 /**
  * 公众号工具类

@@ -1,9 +1,10 @@
 package co.yixiang.yshop.module.shop.controller.admin.material.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-import java.util.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Schema(description = "管理后台 - 素材库更新 Request VO")
 @Data

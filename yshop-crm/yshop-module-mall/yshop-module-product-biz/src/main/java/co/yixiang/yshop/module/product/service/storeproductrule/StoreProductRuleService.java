@@ -1,11 +1,15 @@
 package co.yixiang.yshop.module.product.service.storeproductrule;
 
-import java.util.*;
-import jakarta.validation.*;
-import co.yixiang.yshop.module.product.controller.admin.storeproductrule.vo.*;
-
 import co.yixiang.yshop.framework.common.pojo.PageResult;
+import co.yixiang.yshop.module.product.controller.admin.storeproductrule.vo.StoreProductRuleCreateReqVO;
+import co.yixiang.yshop.module.product.controller.admin.storeproductrule.vo.StoreProductRuleExportReqVO;
+import co.yixiang.yshop.module.product.controller.admin.storeproductrule.vo.StoreProductRulePageReqVO;
+import co.yixiang.yshop.module.product.controller.admin.storeproductrule.vo.StoreProductRuleUpdateReqVO;
 import co.yixiang.yshop.module.product.dal.dataobject.storeproductrule.StoreProductRuleDO;
+import jakarta.validation.Valid;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  * 商品规则值(规格) Service 接口
