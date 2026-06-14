@@ -246,13 +246,7 @@ langchain4j:
         api-key: xxxxxx
         model-name: qwen3-max
 
-#  open-ai:
-#    chat-model:
-#      api-key: sk-18037d94b0824a4482665e989b2a6d7a
-#      model-name: deepseek-r1
-#      log-requests: true
-#      log-responses: true
-#      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+
 spring:
   data:
     mongodb:
