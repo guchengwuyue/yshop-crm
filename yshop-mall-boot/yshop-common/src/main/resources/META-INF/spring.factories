@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-    co.yixiang.dozer.config.DozerMapperConfig

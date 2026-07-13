@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "我的订单",
-  "usingComponents": {
-    "loading": "/components/Loading",
-    "payment": "/components/Payment",
-    "data-format": "/components/DataFormat"
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "订单详情",
-  "usingComponents": {
-    "order-goods": "/components/OrderGoods",
-    "payment": "/components/Payment"
-  }
-}

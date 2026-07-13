@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>co.yixiang.boot</groupId>
+        <artifactId>yshop</artifactId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>yshop-server</artifactId>
+    <packaging>jar</packaging>
+
+    <name>${project.artifactId}</name>
+    <description>
+        后端 Server 的主项目，通过引入需要 yshop-module-xxx 的依赖，
+        从而实现提供 RESTful API 给前端项目。
+        本质上来说，它就是个空壳（容器）！！
+    </description>
+    <url>https://gitee.com/guchengwuyue/yshop-crm</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>co.yixiang.boot</groupId>
+            <artifactId>yshop-module-system-biz</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>co.yixiang.boot</groupId>
+            <artifactId>yshop-module-infra-biz</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+
+
+        <!-- spring boot 配置所需依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+
+        <!-- 支付服务 -->
+        <dependency>
+            <groupId>co.yixiang.boot</groupId>
+            <artifactId>yshop-module-pay-biz</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+
+        <!-- 消息服务 -->
+        <dependency>
+            <groupId>co.yixiang.boot</groupId>
+            <artifactId>yshop-module-message-biz</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <!-- 微信公众号模块。默认注释，保证编译速度 -->
+        <dependency>
+            <groupId>co.yixiang.boot</groupId>
+            <artifactId>yshop-module-mp-biz</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>co.yixiang.boot</groupId>
+            <artifactId>yshop-module-product-biz</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>co.yixiang.boot</groupId>
+            <artifactId>yshop-module-shop-biz</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>co.yixiang.boot</groupId>
+            <artifactId>yshop-module-crm-biz</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+
+        <!-- 服务保障相关 -->
+        <dependency>
+            <groupId>co.yixiang.boot</groupId>
+            <artifactId>yshop-spring-boot-starter-protection</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <!-- 设置构建的 jar 包名 -->
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <!-- 打包 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal> <!-- 将引入的 jar 打入其中 -->
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

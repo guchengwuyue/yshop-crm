@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "促销商品",
-  "usingComponents": {
-    "promotion-good": "/components/PromotionGood"
-  }
-}

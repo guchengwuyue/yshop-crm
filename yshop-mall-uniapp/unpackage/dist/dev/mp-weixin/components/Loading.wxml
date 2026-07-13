@@ -1,1 +1,0 @@
-<block wx:if="{{loading||!loaded}}"><view class="Loads acea-row row-center-wrapper" style="margin-top:20rpx;"><block wx:if="{{loading}}"><view class="iconfont icon-jiazai loading acea-row row-center-wrapper"></view>正在加载中</block><block wx:if="{{!loading}}">上拉加载更多</block></view></block>

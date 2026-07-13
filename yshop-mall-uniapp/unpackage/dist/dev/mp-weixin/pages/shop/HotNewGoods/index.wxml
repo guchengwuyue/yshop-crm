@@ -1,1 +1,0 @@
-<view class="quality-recommend"><view class="title acea-row row-center-wrapper"><view class="line"></view><view class="name"><text class="{{['iconfont',icon]}}"></text>{{name+''}}</view><view class="line"></view></view><good-list vue-id="2587f6c0-1" good-list="{{goodsList}}" is-sort="{{false}}" bind:__l="__l"></good-list></view>

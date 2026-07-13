@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "领取优惠券",
-  "usingComponents": {
-    "tui-button": "/components/tui-button/tui-button",
-    "loading": "/components/Loading",
-    "data-format-t": "/components/DataFormatT"
-  }
-}

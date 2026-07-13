@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "签到记录",
-  "usingComponents": {
-    "loading": "/components/Loading"
-  }
-}

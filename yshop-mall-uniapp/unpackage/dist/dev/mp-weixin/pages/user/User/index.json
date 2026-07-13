@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "我的",
-  "usingComponents": {
-    "switch-window": "/components/SwitchWindow",
-    "authorization": "/pages/authorization/index"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "我的积分",
-  "usingComponents": {
-    "loading": "/components/Loading"
-  }
-}

@@ -1,0 +1,26 @@
+package co.yixiang.yshop.module.crm.controller.admin.crmachievement.vo;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+
+@Schema(description = "管理后台 - 部门业绩信息 Response VO")
+@Data
+public class DeptAchieveSaveVO {
+
+    @Schema(description = "部门编号", example = "1024")
+    @NotNull(message = "对象ID不能为空")
+    private Long id;
+
+    @Schema(description = "部门名称", requiredMode = Schema.RequiredMode.REQUIRED, example = "yshop")
+    private String name;
+
+    private String nickname;
+
+    @Schema(description = "父部门 ID", requiredMode = Schema.RequiredMode.REQUIRED, example = "1024")
+    private Long parentId;
+
+    @Schema(description = "业绩明细")
+    private CrmAchievementSaveReqVO achievementRespVO;
+
+}

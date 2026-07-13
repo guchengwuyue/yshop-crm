@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "商品收藏",
-  "usingComponents": {
-    "recommend": "/components/Recommend",
-    "loading": "/components/Loading"
-  }
-}

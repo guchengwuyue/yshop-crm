@@ -1,8 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "uni-popup": "/components/uni-popup/uni-popup",
-    "uni-popup-message": "/components/uni-popup/uni-popup-message",
-    "uni-popup-dialog": "/components/uni-popup/uni-popup-dialog"
-  }
-}

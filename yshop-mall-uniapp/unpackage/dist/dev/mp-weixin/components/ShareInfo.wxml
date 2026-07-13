@@ -1,1 +1,0 @@
-<block wx:if="{{shareInfoStatus}}"><view class="poster-first data-v-cce6d03c"><view class="mask-share data-v-cce6d03c"></view></view></block>

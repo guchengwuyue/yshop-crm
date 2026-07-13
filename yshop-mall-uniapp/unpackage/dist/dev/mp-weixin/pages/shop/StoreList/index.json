@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "商家列表",
-  "usingComponents": {
-    "loading": "/components/Loading"
-  }
-}

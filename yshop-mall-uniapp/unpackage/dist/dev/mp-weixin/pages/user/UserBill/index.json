@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "账单记录",
-  "usingComponents": {
-    "loading": "/components/Loading"
-  }
-}

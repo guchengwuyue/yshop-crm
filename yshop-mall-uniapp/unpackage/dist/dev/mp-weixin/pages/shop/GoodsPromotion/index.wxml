@@ -1,1 +1,0 @@
-<view class="quality-recommend"><view class="title acea-row row-center-wrapper"><view class="line"></view><view class="name"><text class="iconfont icon-cuxiaoguanli"></text>促销单品</view><view class="line"></view></view><promotion-good vue-id="bbeb6834-1" benefit="{{goodsList}}" bind:__l="__l"></promotion-good></view>

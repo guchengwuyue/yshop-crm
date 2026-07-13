@@ -1,0 +1,2 @@
+co.yixiang.yshop.framework.tracer.config.YshopTracerAutoConfiguration
+co.yixiang.yshop.framework.tracer.config.YshopMetricsAutoConfiguration

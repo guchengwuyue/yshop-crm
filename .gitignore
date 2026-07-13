@@ -1,17 +1,7 @@
-*.classpath
-*.project
-*.iml
-*.factorypath
-target
-.idea/
-*.log
-logs
-*.DS_Store
 /.git
 /.idea
 *.log
 *.DS_Store
-/yshop-mall-boot/target/
-/yshop-mall-vue/node_modules
-/yshop-mall-uniapp/node_moduls
+/yshop-crm/target/
+/yshop-crm-vue/node_modules
 

@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "新增收货地址",
-  "usingComponents": {
-    "city-select": "/components/CitySelect"
-  }
-}

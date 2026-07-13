@@ -1,0 +1,3 @@
+co.yixiang.yshop.framework.mq.redis.config.YshopRedisMQProducerAutoConfiguration
+co.yixiang.yshop.framework.mq.redis.config.YshopRedisMQConsumerAutoConfiguration
+co.yixiang.yshop.framework.mq.rabbitmq.config.YshopRabbitMQAutoConfiguration

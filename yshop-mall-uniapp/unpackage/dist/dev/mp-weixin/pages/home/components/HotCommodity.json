@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "sh-activity-goods": "/components/sh-activity-goods"
-  }
-}

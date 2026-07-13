@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "购物车",
-  "usingComponents": {
-    "recommend": "/components/Recommend",
-    "authorization": "/pages/authorization/index"
-  }
-}

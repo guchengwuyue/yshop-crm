@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "热门商品",
-  "usingComponents": {
-    "good-list": "/components/GoodList"
-  }
-}

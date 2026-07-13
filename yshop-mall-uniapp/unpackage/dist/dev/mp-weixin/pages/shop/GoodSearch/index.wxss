@@ -1,5 +1,0 @@
-
-.noCommodity {
-  border-top: 0.05*100rpx solid #f5f5f5;
-}
-

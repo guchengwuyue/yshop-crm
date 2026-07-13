@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "我的足迹",
-  "usingComponents": {
-    "recommend": "/components/Recommend",
-    "loading": "/components/Loading"
-  }
-}
