@@ -67,6 +67,7 @@
 | 入口 | 说明 |
 |------|------|
 | **后台** | [https://lite.yixiang.co/](https://lite.yixiang.co/) <br>账号 / 密码：`admin` / `admin123`|
+| **移动端** | 关注公众号即可体验菜单CRM系统-库存<br>![公众号](assets/77a93e8c07a913b838a756abadb383b9.png) |
 | **操作路径** | 商品多规格 / 条码 → 扫码入库 → 扫码出库 → 扫码盘库 → 库存查询 / 时序 → 条码打印 |
 | **项目介绍** | [项目介绍](https://www.yixiang.co/p/cangkuwuzhikucunguanlileixitong.html)<br>关注公众号查看更新动态 |
 
