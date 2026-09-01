@@ -22,8 +22,7 @@
 
 | 入口 | 说明 |
 |------|------|
-| **后台** | [https://crm.yixiang.co/](https://crm.yixiang.co/)<br>账号 / 密码：`admin` / `admin123` |
-| **移动端** | 关注公众号即可体验小程序<br>![公众号](assets/77a93e8c07a913b838a756abadb383b9.png) |
+| 演示地址 | https://www.yixiang.co/p/yixiangcrmxitong.html|
 | **二开与定制** | ![联系二维码](assets/code.jpg) |
 
 ---
