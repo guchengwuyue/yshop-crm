@@ -210,7 +210,7 @@ public class CrmIndexServiceImpl implements CrmIndexService {
 
         QueryWrapper<CrmContractDO> queryWrapper06 = new QueryWrapper<>();
         queryWrapper06.select("sum(money) as count06");
-        queryWrapper06.eq("to_days(create_time)","to_days(now())");
+        queryWrapper06.between("create_time", todayStart, todayEnd);
         queryWrapper06.in(!ids.isEmpty(),"owner_user_id",ids);
         CrmContractDO crmContractDO = contractMapper.selectOne(queryWrapper06);
         BigDecimal count06 = BigDecimal.ZERO;
@@ -220,7 +220,7 @@ public class CrmIndexServiceImpl implements CrmIndexService {
 
         QueryWrapper<CrmContractDO> queryWrapper006 = new QueryWrapper<>();
         queryWrapper006.select("sum(money) as count006");
-        queryWrapper006.eq("to_days(now())-to_days(create_time)",1);
+        queryWrapper006.between("create_time", yesterdayStart, yesterdayEnd);
         queryWrapper006.in(!ids.isEmpty(),"owner_user_id",ids);
         CrmContractDO crmContractDO006 = contractMapper.selectOne(queryWrapper006);
         BigDecimal count006 = BigDecimal.ZERO;
@@ -236,15 +236,17 @@ public class CrmIndexServiceImpl implements CrmIndexService {
 
         QueryWrapper<CrmContractReceivablesDO> queryWrapper07 = new QueryWrapper<>();
         queryWrapper07.select("sum(money) as count07");
-        queryWrapper07.eq("to_days(create_time)","to_days(now())");
+        queryWrapper07.between("create_time", todayStart, todayEnd);
+        queryWrapper07.in(!ids.isEmpty(),"owner_user_id",ids);
         CrmContractReceivablesDO crmContractReceivablesDO = contractReceivablesMapper.selectOne(queryWrapper07);
         BigDecimal count07 = BigDecimal.ZERO;
-        if(crmContractDO != null){
+        if(crmContractReceivablesDO != null){
             count07 = crmContractReceivablesDO.getCount07();
         }
         QueryWrapper<CrmContractReceivablesDO> queryWrapper007 = new QueryWrapper<>();
         queryWrapper007.select("sum(money) as count007");
-        queryWrapper007.eq("to_days(now())-to_days(create_time)",1);
+        queryWrapper007.between("create_time", yesterdayStart, yesterdayEnd);
+        queryWrapper007.in(!ids.isEmpty(),"owner_user_id",ids);
         CrmContractReceivablesDO crmContractReceivablesDO007 = contractReceivablesMapper.selectOne(queryWrapper007);
         BigDecimal count007 = BigDecimal.ZERO;
         if(crmContractReceivablesDO007 != null){
