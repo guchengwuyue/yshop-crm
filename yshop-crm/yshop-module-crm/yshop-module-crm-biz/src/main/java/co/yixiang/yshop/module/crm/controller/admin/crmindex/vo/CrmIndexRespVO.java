@@ -1,12 +1,16 @@
 package co.yixiang.yshop.module.crm.controller.admin.crmindex.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Schema(description = "管理后台 - 首页统计 Response VO")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CrmIndexRespVO {
 
     @Schema(description = "需要跟进客户数量")
@@ -43,7 +47,5 @@ public class CrmIndexRespVO {
     private Long invoiceCheckCount;
 
     private BrieCountVO brieCountVO;
-
-
 
 }

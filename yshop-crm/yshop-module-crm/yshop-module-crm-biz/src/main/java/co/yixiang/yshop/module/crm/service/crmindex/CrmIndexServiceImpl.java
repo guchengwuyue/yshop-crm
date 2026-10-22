@@ -1,5 +1,6 @@
 package co.yixiang.yshop.module.crm.service.crmindex;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.NumberUtil;
 import co.yixiang.yshop.framework.common.enums.CommonStatusEnum;
@@ -12,7 +13,6 @@ import co.yixiang.yshop.module.crm.dal.dataobject.crmclues.CrmCluesDO;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmcontract.CrmContractDO;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmcontractreceivables.CrmContractReceivablesDO;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmcustomer.CrmCustomerDO;
-import co.yixiang.yshop.module.crm.dal.dataobject.crmcustomercontacts.CrmCustomerContactsDO;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmflowlog.CrmFlowLogDO;
 import co.yixiang.yshop.module.crm.dal.dataobject.crmrecord.CrmRecordDO;
 import co.yixiang.yshop.module.crm.dal.mysql.crmbusiness.CrmBusinessMapper;
@@ -23,6 +23,7 @@ import co.yixiang.yshop.module.crm.dal.mysql.crmcustomer.CrmCustomerMapper;
 import co.yixiang.yshop.module.crm.dal.mysql.crmcustomercontacts.CrmCustomerContactsMapper;
 import co.yixiang.yshop.module.crm.dal.mysql.crmflowlog.CrmFlowLogMapper;
 import co.yixiang.yshop.module.crm.dal.mysql.crmrecord.CrmRecordMapper;
+import co.yixiang.yshop.module.crm.dal.redis.RedisKeyConstants;
 import co.yixiang.yshop.module.crm.enums.CluesStatusEnum;
 import co.yixiang.yshop.module.crm.enums.FlowLogStatusEnum;
 import co.yixiang.yshop.module.crm.enums.RelationEnum;
@@ -33,16 +34,22 @@ import co.yixiang.yshop.module.system.dal.mysql.notice.NoticeMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import jakarta.annotation.Resource;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
- * 商机 Service 实现类
+ * 首页统计 Service 实现类
+ *
+ * <p>将今日/昨日对比改为 create_time BETWEEN；同一表用 SUM(CASE WHEN) 一次查出；
+ * 对高频接口加短 TTL Redis 缓存（60s）。
  *
  * @author yshop
  */
@@ -72,240 +79,288 @@ public class CrmIndexServiceImpl implements CrmIndexService {
     @Resource
     private AdminUserApi adminUserApi;
 
-
-
     @Override
+    @Cacheable(cacheNames = RedisKeyConstants.CRM_INDEX_COUNT,
+            key = "T(co.yixiang.yshop.framework.security.core.util.SecurityFrameworkUtils).getLoginUserId()"
+                    + " + ':' + #relation + ':' + T(cn.hutool.core.date.DateUtil).today()")
     public CrmIndexRespVO getIndexCount(String relation) {
         Long loginUserId = SecurityFrameworkUtils.getLoginUserId();
         Date todayStart = DateUtil.beginOfDay(new Date());
         Date todayEnd = DateUtil.endOfDay(new Date());
-        Date day30 = DateUtil.offsetDay(new Date(),30);
 
         Long followCustomerCount = customerMapper.selectCount(new LambdaQueryWrapper<CrmCustomerDO>()
-                .between(CrmCustomerDO::getNextTime,todayStart,todayEnd).eq(CrmCustomerDO::getOwnerUserId,loginUserId));
+                .between(CrmCustomerDO::getNextTime, todayStart, todayEnd)
+                .eq(CrmCustomerDO::getOwnerUserId, loginUserId));
         Long followBusinessCount = businessMapper.selectCount(new LambdaQueryWrapper<CrmBusinessDO>()
-                .between(CrmBusinessDO::getNextTime,todayStart,todayEnd).eq(CrmBusinessDO::getOwnerUserId,loginUserId));
+                .between(CrmBusinessDO::getNextTime, todayStart, todayEnd)
+                .eq(CrmBusinessDO::getOwnerUserId, loginUserId));
         Long followCluesCount = crmCluesMapper.selectCount(new LambdaQueryWrapper<CrmCluesDO>()
-                .between(CrmCluesDO::getNextTime,todayStart,todayEnd)
+                .between(CrmCluesDO::getNextTime, todayStart, todayEnd)
                 .eq(CrmCluesDO::getStatus, CluesStatusEnum.STATUS_0.getValue())
-                .eq(CrmCluesDO::getOwnerUserId,loginUserId));
-//        Long contractDueCount = contractMapper.selectCount(new LambdaQueryWrapper<CrmContractDO>()
-//                .between(CrmContractDO::getEndTime,todayStart,day30).eq(CrmContractDO::getOwnerUserId,loginUserId));
-//        Long customerDueCount = 0L;
-//        Long contractReturnCount = contractMapper.selectCount(new LambdaQueryWrapper<CrmContractDO>()
-//                .eq(CrmContractDO::getOwnerUserId,loginUserId).apply("money > return_money"));
-//        Long myInvoiceCount = crmInvoiceMapper.selectCount(new LambdaQueryWrapper<CrmInvoiceDO>()
-//                .eq(CrmInvoiceDO::getCreator,loginUserId));
-//        Long productCount = storeProductMapper.selectCount();
-//
-        Long contractCheckCount = crmFlowLogMapper.selectCount(new LambdaQueryWrapper<CrmFlowLogDO>()
-                .eq(CrmFlowLogDO::getTypes, TypesEnum.CONTRACT.getValue())
-                .eq(CrmFlowLogDO::getStatus, FlowLogStatusEnum.STATUS_0.getValue())
-                .eq(CrmFlowLogDO::getAdminId,loginUserId));
-        Long receivablesCheckCount = crmFlowLogMapper.selectCount(new LambdaQueryWrapper<CrmFlowLogDO>()
-                .eq(CrmFlowLogDO::getTypes, TypesEnum.RECEIVABLES.getValue())
-                .eq(CrmFlowLogDO::getStatus, FlowLogStatusEnum.STATUS_0.getValue())
-                .eq(CrmFlowLogDO::getAdminId,loginUserId));
-        Long invoiceCheckCount = crmFlowLogMapper.selectCount(new LambdaQueryWrapper<CrmFlowLogDO>()
-                .eq(CrmFlowLogDO::getTypes, TypesEnum.INVOICE.getValue())
-                .eq(CrmFlowLogDO::getStatus, FlowLogStatusEnum.STATUS_0.getValue())
-                .eq(CrmFlowLogDO::getAdminId,loginUserId));
+                .eq(CrmCluesDO::getOwnerUserId, loginUserId));
+
+        // 待审：合同 / 回款 / 发票 一次条件聚合
+        Map<String, Object> checkMap = selectAggMap(crmFlowLogMapper, new QueryWrapper<CrmFlowLogDO>()
+                .select(
+                        "SUM(CASE WHEN types = '" + TypesEnum.CONTRACT.getValue() + "' THEN 1 ELSE 0 END) AS contractCheckCount",
+                        "SUM(CASE WHEN types = '" + TypesEnum.RECEIVABLES.getValue() + "' THEN 1 ELSE 0 END) AS receivablesCheckCount",
+                        "SUM(CASE WHEN types = '" + TypesEnum.INVOICE.getValue() + "' THEN 1 ELSE 0 END) AS invoiceCheckCount"
+                )
+                .eq("admin_id", loginUserId)
+                .eq("status", FlowLogStatusEnum.STATUS_0.getValue())
+                .in("types", TypesEnum.CONTRACT.getValue(), TypesEnum.RECEIVABLES.getValue(), TypesEnum.INVOICE.getValue()));
 
         return CrmIndexRespVO.builder()
-               .followCustomerCount(followCustomerCount)
-              .followBusinessCount(followBusinessCount)
-               .followCluesCount(followCluesCount)
-//                .contractDueCount(contractDueCount)
-//                .customerDueCount(customerDueCount)
-//                .contractReturnCount(contractReturnCount)
-//                .myInvoiceCount(myInvoiceCount)
-//                .productCount(productCount)
-               .contractCheckCount(contractCheckCount)
-               .receivablesCheckCount(receivablesCheckCount)
-                .invoiceCheckCount(invoiceCheckCount)
-                .brieCountVO(getBrieCount(relation))
+                .followCustomerCount(followCustomerCount)
+                .followBusinessCount(followBusinessCount)
+                .followCluesCount(followCluesCount)
+                .contractCheckCount(toLong(checkMap, "contractCheckCount"))
+                .receivablesCheckCount(toLong(checkMap, "receivablesCheckCount"))
+                .invoiceCheckCount(toLong(checkMap, "invoiceCheckCount"))
+                .brieCountVO(getBrieCount(relation, loginUserId, todayStart, todayEnd))
                 .build();
     }
 
-
     /**
-     * 统计当天
-     * @return
+     * 按表合并今日/昨日统计，目标将 DB 往返降到个位数
      */
-    private BrieCountVO getBrieCount(String relation) {
-        Long loginUserId = SecurityFrameworkUtils.getLoginUserId();
-        Date todayStart = DateUtil.beginOfDay(new Date());
-        Date todayEnd = DateUtil.endOfDay(new Date());
-
+    private BrieCountVO getBrieCount(String relation, Long loginUserId, Date todayStart, Date todayEnd) {
         Date yesterdayStart = DateUtil.beginOfDay(DateUtil.yesterday());
         Date yesterdayEnd = DateUtil.endOfDay(DateUtil.yesterday());
+        String todayStartStr = DateUtil.formatDateTime(todayStart);
+        String todayEndStr = DateUtil.formatDateTime(todayEnd);
+        String yesterdayStartStr = DateUtil.formatDateTime(yesterdayStart);
+        String yesterdayEndStr = DateUtil.formatDateTime(yesterdayEnd);
+        String creator = String.valueOf(loginUserId);
 
-        List<Long> ids = new ArrayList<>();
-        Long adminId = SecurityFrameworkUtils.getLoginUserId();
-        if(RelationEnum.MY.getValue().equals(relation)){
-            ids.add(adminId);
-        }else if(RelationEnum.SUB.getValue().equals(relation)){
-            ids = adminUserApi.getUserListBySubordinateIds(adminId);
-        }
+        List<Long> ids = resolveOwnerIds(relation, loginUserId);
 
-        Long count01 = businessMapper.selectCount(new LambdaQueryWrapper<CrmBusinessDO>()
-                .in(!ids.isEmpty(),CrmBusinessDO::getOwnerUserId,ids)
-                .between(CrmBusinessDO::getCreateTime,todayStart,todayEnd));
-        Long count001 = businessMapper.selectCount(new LambdaQueryWrapper<CrmBusinessDO>()
-                .in(!ids.isEmpty(),CrmBusinessDO::getOwnerUserId,ids)
-                .between(CrmBusinessDO::getCreateTime,yesterdayStart,yesterdayEnd));
-        String per001 = "0";
-        if(count001 > 0){
-            per001 = NumberUtil.div(NumberUtil.sub(count01,count001),count001,2)
-                    .multiply(new BigDecimal("100")).toString();
-        }
+        String ownerInCond = buildOwnerInCond(ids);
 
-        Long count02 = crmCluesMapper.selectCount(new LambdaQueryWrapper<CrmCluesDO>()
-                .in(!ids.isEmpty(),CrmCluesDO::getOwnerUserId,ids)
-                .between(CrmCluesDO::getCreateTime,todayStart,todayEnd));
-        Long count002 = crmCluesMapper.selectCount(new LambdaQueryWrapper<CrmCluesDO>()
-                .in(!ids.isEmpty(),CrmCluesDO::getOwnerUserId,ids)
-                .between(CrmCluesDO::getCreateTime,yesterdayStart,yesterdayEnd));
-        String per002 = "0";
-        if(count002 > 0){
-            per002 = NumberUtil.div(NumberUtil.sub(count02,count002),count002,2)
-                    .multiply(new BigDecimal("100")).toString();
-        }
+        // 商机：今日/昨日新增 + 今日成交/未成交（create 统计需带 owner，避免与成交 OR 条件串数据）
+        Map<String, Object> businessMap = selectAggMap(businessMapper, new QueryWrapper<CrmBusinessDO>()
+                .select(
+                        caseCount("create_time", todayStartStr, todayEndStr, "todayCreate", ownerInCond),
+                        caseCount("create_time", yesterdayStartStr, yesterdayEndStr, "yesterdayCreate", ownerInCond),
+                        "SUM(CASE WHEN deal_time >= '" + todayStartStr + "' AND deal_time <= '" + todayEndStr
+                                + "' AND creator = '" + creator + "' AND is_end = " + ShopCommonEnum.IS_STATUS_1.getValue()
+                                + " THEN 1 ELSE 0 END) AS dealYes",
+                        "SUM(CASE WHEN deal_time >= '" + todayStartStr + "' AND deal_time <= '" + todayEndStr
+                                + "' AND creator = '" + creator + "' AND is_end = " + ShopCommonEnum.IS_STATUS_0.getValue()
+                                + " THEN 1 ELSE 0 END) AS dealNo"
+                )
+                .and(w -> w
+                        .nested(n -> n.in(!ids.isEmpty(), "owner_user_id", ids)
+                                .between("create_time", yesterdayStart, todayEnd))
+                        .or()
+                        .nested(n -> n.eq("creator", creator)
+                                .between("deal_time", todayStart, todayEnd))));
+        Long count01 = toLong(businessMap, "todayCreate");
+        Long count001 = toLong(businessMap, "yesterdayCreate");
+        Long count11 = toLong(businessMap, "dealYes");
+        Long count12 = toLong(businessMap, "dealNo");
 
-        Long count03 = customerMapper.selectCount(new LambdaQueryWrapper<CrmCustomerDO>()
-                .in(!ids.isEmpty(),CrmCustomerDO::getOwnerUserId,ids)
-                .between(CrmCustomerDO::getCreateTime,todayStart,todayEnd));
-        Long count003 = customerMapper.selectCount(new LambdaQueryWrapper<CrmCustomerDO>()
-                .in(!ids.isEmpty(),CrmCustomerDO::getOwnerUserId,ids)
-                .between(CrmCustomerDO::getCreateTime,yesterdayStart,yesterdayEnd));
-        String per003 = "0";
-        if(count003 > 0){
-            per003 = NumberUtil.div(NumberUtil.sub(count03,count003),count003,2)
-                    .multiply(new BigDecimal("100")).toString();
-        }
+        // 线索：今日/昨日新增
+        Map<String, Object> cluesMap = selectAggMap(crmCluesMapper, buildDayCompareCountWrapper(
+                ids, yesterdayStart, todayEnd, todayStartStr, todayEndStr, yesterdayStartStr, yesterdayEndStr));
+        Long count02 = toLong(cluesMap, "todayCreate");
+        Long count002 = toLong(cluesMap, "yesterdayCreate");
 
-        Long count04 = crmRecordMapper.selectCount(new LambdaQueryWrapper<CrmRecordDO>()
-                .in(!ids.isEmpty(),CrmRecordDO::getCreator,ids)
-                .between(CrmRecordDO::getCreateTime,todayStart,todayEnd));
-        Long count004 = crmRecordMapper.selectCount(new LambdaQueryWrapper<CrmRecordDO>()
-                .in(!ids.isEmpty(),CrmRecordDO::getCreator,ids)
-                .between(CrmRecordDO::getCreateTime,yesterdayStart,yesterdayEnd));
-        String per004 = "0";
-        if(count004 > 0){
-            per004 = NumberUtil.div(NumberUtil.sub(count04,count004),count004,2)
-                    .multiply(new BigDecimal("100")).toString();
-        }
+        // 客户：今日/昨日新增 + 今日成交/未成交
+        Map<String, Object> customerMap = selectAggMap(customerMapper, new QueryWrapper<CrmCustomerDO>()
+                .select(
+                        caseCount("create_time", todayStartStr, todayEndStr, "todayCreate", ownerInCond),
+                        caseCount("create_time", yesterdayStartStr, yesterdayEndStr, "yesterdayCreate", ownerInCond),
+                        "SUM(CASE WHEN deal_time >= '" + todayStartStr + "' AND deal_time <= '" + todayEndStr
+                                + "' AND creator = '" + creator + "' AND deal_status = " + ShopCommonEnum.IS_STATUS_1.getValue()
+                                + " THEN 1 ELSE 0 END) AS dealYes",
+                        "SUM(CASE WHEN deal_time >= '" + todayStartStr + "' AND deal_time <= '" + todayEndStr
+                                + "' AND creator = '" + creator + "' AND deal_status = " + ShopCommonEnum.IS_STATUS_0.getValue()
+                                + " THEN 1 ELSE 0 END) AS dealNo"
+                )
+                .and(w -> w
+                        .nested(n -> n.in(!ids.isEmpty(), "owner_user_id", ids)
+                                .between("create_time", yesterdayStart, todayEnd))
+                        .or()
+                        .nested(n -> n.eq("creator", creator)
+                                .between("deal_time", todayStart, todayEnd))));
+        Long count03 = toLong(customerMap, "todayCreate");
+        Long count003 = toLong(customerMap, "yesterdayCreate");
+        Long count09 = toLong(customerMap, "dealYes");
+        Long count10 = toLong(customerMap, "dealNo");
 
-        Long count05 = contractMapper.selectCount(new LambdaQueryWrapper<CrmContractDO>()
-                .in(!ids.isEmpty(),CrmContractDO::getOwnerUserId,ids)
-                .between(CrmContractDO::getCreateTime,todayStart,todayEnd));
-        Long count005 = contractMapper.selectCount(new LambdaQueryWrapper<CrmContractDO>()
-                .in(!ids.isEmpty(),CrmContractDO::getOwnerUserId,ids)
-                .between(CrmContractDO::getCreateTime,yesterdayStart,yesterdayEnd));
-        String per005 = "0";
-        if(count005 > 0){
-            per005 = NumberUtil.div(NumberUtil.sub(count05,count005),count005,2)
-                    .multiply(new BigDecimal("100")).toString();
-        }
+        // 跟进记录：今日/昨日（按 creator）
+        Map<String, Object> recordMap = selectAggMap(crmRecordMapper, new QueryWrapper<CrmRecordDO>()
+                .select(
+                        caseCount("create_time", todayStartStr, todayEndStr, "todayCreate"),
+                        caseCount("create_time", yesterdayStartStr, yesterdayEndStr, "yesterdayCreate")
+                )
+                .in(!ids.isEmpty(), "creator", toCreatorIds(ids))
+                .between("create_time", yesterdayStart, todayEnd));
+        Long count04 = toLong(recordMap, "todayCreate");
+        Long count004 = toLong(recordMap, "yesterdayCreate");
 
-        QueryWrapper<CrmContractDO> queryWrapper06 = new QueryWrapper<>();
-        queryWrapper06.select("sum(money) as count06");
-        queryWrapper06.between("create_time", todayStart, todayEnd);
-        queryWrapper06.in(!ids.isEmpty(),"owner_user_id",ids);
-        CrmContractDO crmContractDO = contractMapper.selectOne(queryWrapper06);
-        BigDecimal count06 = BigDecimal.ZERO;
-        if(crmContractDO != null){
-            count06 = crmContractDO.getCount06();
-        }
+        // 合同：今日/昨日数量 + 金额
+        Map<String, Object> contractMap = selectAggMap(contractMapper, new QueryWrapper<CrmContractDO>()
+                .select(
+                        caseCount("create_time", todayStartStr, todayEndStr, "todayCreate"),
+                        caseCount("create_time", yesterdayStartStr, yesterdayEndStr, "yesterdayCreate"),
+                        caseSum("money", "create_time", todayStartStr, todayEndStr, "todayMoney"),
+                        caseSum("money", "create_time", yesterdayStartStr, yesterdayEndStr, "yesterdayMoney")
+                )
+                .in(!ids.isEmpty(), "owner_user_id", ids)
+                .between("create_time", yesterdayStart, todayEnd));
+        Long count05 = toLong(contractMap, "todayCreate");
+        Long count005 = toLong(contractMap, "yesterdayCreate");
+        BigDecimal count06 = toDecimal(contractMap, "todayMoney");
+        BigDecimal count006 = toDecimal(contractMap, "yesterdayMoney");
 
-        QueryWrapper<CrmContractDO> queryWrapper006 = new QueryWrapper<>();
-        queryWrapper006.select("sum(money) as count006");
-        queryWrapper006.between("create_time", yesterdayStart, yesterdayEnd);
-        queryWrapper006.in(!ids.isEmpty(),"owner_user_id",ids);
-        CrmContractDO crmContractDO006 = contractMapper.selectOne(queryWrapper006);
-        BigDecimal count006 = BigDecimal.ZERO;
-        if(crmContractDO006 != null){
-            count006 = crmContractDO006.getCount006();
-        }
-        String per006 = "0";
-        if(count006.compareTo(BigDecimal.ZERO) > 0){
-            per006 = NumberUtil.div(NumberUtil.sub(count06,count006),count006,2)
-                    .multiply(new BigDecimal("100")).toString();
-        }
+        // 回款：今日/昨日金额
+        Map<String, Object> receivablesMap = selectAggMap(contractReceivablesMapper, new QueryWrapper<CrmContractReceivablesDO>()
+                .select(
+                        caseSum("money", "create_time", todayStartStr, todayEndStr, "todayMoney"),
+                        caseSum("money", "create_time", yesterdayStartStr, yesterdayEndStr, "yesterdayMoney")
+                )
+                .in(!ids.isEmpty(), "owner_user_id", ids)
+                .between("create_time", yesterdayStart, todayEnd));
+        BigDecimal count07 = toDecimal(receivablesMap, "todayMoney");
+        BigDecimal count007 = toDecimal(receivablesMap, "yesterdayMoney");
 
+        // 联系人：今日/昨日新增
+        Map<String, Object> contactsMap = selectAggMap(customerContactsMapper, buildDayCompareCountWrapper(
+                ids, yesterdayStart, todayEnd, todayStartStr, todayEndStr, yesterdayStartStr, yesterdayEndStr));
+        Long count08 = toLong(contactsMap, "todayCreate");
+        Long count008 = toLong(contactsMap, "yesterdayCreate");
 
-        QueryWrapper<CrmContractReceivablesDO> queryWrapper07 = new QueryWrapper<>();
-        queryWrapper07.select("sum(money) as count07");
-        queryWrapper07.between("create_time", todayStart, todayEnd);
-        queryWrapper07.in(!ids.isEmpty(),"owner_user_id",ids);
-        CrmContractReceivablesDO crmContractReceivablesDO = contractReceivablesMapper.selectOne(queryWrapper07);
-        BigDecimal count07 = BigDecimal.ZERO;
-        if(crmContractReceivablesDO != null){
-            count07 = crmContractReceivablesDO.getCount07();
-        }
-        QueryWrapper<CrmContractReceivablesDO> queryWrapper007 = new QueryWrapper<>();
-        queryWrapper007.select("sum(money) as count007");
-        queryWrapper007.between("create_time", yesterdayStart, yesterdayEnd);
-        queryWrapper007.in(!ids.isEmpty(),"owner_user_id",ids);
-        CrmContractReceivablesDO crmContractReceivablesDO007 = contractReceivablesMapper.selectOne(queryWrapper007);
-        BigDecimal count007 = BigDecimal.ZERO;
-        if(crmContractReceivablesDO007 != null){
-            count007 = crmContractReceivablesDO007.getCount007();
-        }
-        String per007 = "0";
-        if(count007.compareTo(BigDecimal.ZERO) > 0){
-            per007 = NumberUtil.div(NumberUtil.sub(count07,count007),count007,2)
-                    .multiply(new BigDecimal("100")).toString();
-        }
-
-        Long count08 = customerContactsMapper.selectCount(new LambdaQueryWrapper<CrmCustomerContactsDO>()
-                .in(!ids.isEmpty(),CrmCustomerContactsDO::getOwnerUserId,ids)
-                .between(CrmCustomerContactsDO::getCreateTime,todayStart,todayEnd));
-        Long count008 = customerContactsMapper.selectCount(new LambdaQueryWrapper<CrmCustomerContactsDO>()
-                .in(!ids.isEmpty(),CrmCustomerContactsDO::getOwnerUserId,ids)
-                .between(CrmCustomerContactsDO::getCreateTime,yesterdayStart,yesterdayEnd));
-        String per008 = "0";
-        if(count008 > 0){
-            per008 = NumberUtil.div(NumberUtil.sub(count08,count008),count008,2)
-                    .multiply(new BigDecimal("100")).toString();
-        }
-
-        Long count09 = customerMapper.selectCount(new LambdaQueryWrapper<CrmCustomerDO>()
-                .between(CrmCustomerDO::getDealTime,todayStart,todayEnd)
-                .eq(CrmCustomerDO::getDealStatus, ShopCommonEnum.IS_STATUS_1.getValue())
-                .eq(CrmCustomerDO::getCreator,loginUserId));
-        Long count10 = customerMapper.selectCount(new LambdaQueryWrapper<CrmCustomerDO>()
-                .between(CrmCustomerDO::getDealTime,todayStart,todayEnd)
-                .eq(CrmCustomerDO::getDealStatus, ShopCommonEnum.IS_STATUS_0.getValue())
-                .eq(CrmCustomerDO::getCreator,loginUserId));
-        Long count11 = businessMapper.selectCount(new LambdaQueryWrapper<CrmBusinessDO>()
-                .between(CrmBusinessDO::getDealTime,todayStart,todayEnd)
-                .eq(CrmBusinessDO::getIsEnd, ShopCommonEnum.IS_STATUS_1.getValue())
-                .eq(CrmBusinessDO::getCreator,loginUserId));
-        Long count12 = businessMapper.selectCount(new LambdaQueryWrapper<CrmBusinessDO>()
-                .between(CrmBusinessDO::getDealTime,todayStart,todayEnd)
-                .eq(CrmBusinessDO::getIsEnd, ShopCommonEnum.IS_STATUS_0.getValue())
-                .eq(CrmBusinessDO::getCreator,loginUserId));
         Long count13 = noticeMapper.selectCount(new LambdaQueryWrapper<NoticeDO>()
-                .between(NoticeDO::getCreateTime,todayStart,todayEnd)
+                .between(NoticeDO::getCreateTime, todayStart, todayEnd)
                 .eq(NoticeDO::getStatus, CommonStatusEnum.ENABLE.getStatus()));
 
         return BrieCountVO.builder()
-                .count01(count01).count001(count001).per001(per001)
-                .count02(count02).count002(count002).per002(per002)
-                .count03(count03).count003(count003).per003(per003)
-                .count04(count04).count004(count004).per004(per004)
-                .count05(count05).count005(count005).per005(per005)
-                .count06(count06).count006(count006).per006(per006)
-                .count07(count07).count007(count007).per007(per007)
-                .count08(count08).count008(count008).per008(per008)
+                .count01(count01).count001(count001).per001(calcPercent(count01, count001))
+                .count02(count02).count002(count002).per002(calcPercent(count02, count002))
+                .count03(count03).count003(count003).per003(calcPercent(count03, count003))
+                .count04(count04).count004(count004).per004(calcPercent(count04, count004))
+                .count05(count05).count005(count005).per005(calcPercent(count05, count005))
+                .count06(count06).count006(count006).per006(calcPercent(count06, count006))
+                .count07(count07).count007(count007).per007(calcPercent(count07, count007))
+                .count08(count08).count008(count008).per008(calcPercent(count08, count008))
                 .count09(count09)
                 .count10(count10)
                 .count11(count11)
                 .count12(count12)
                 .count13(count13)
                 .build();
-
-
     }
+
+    private List<Long> resolveOwnerIds(String relation, Long adminId) {
+        List<Long> ids = new ArrayList<>();
+        if (RelationEnum.MY.getValue().equals(relation)) {
+            ids.add(adminId);
+        } else if (RelationEnum.SUB.getValue().equals(relation)) {
+            ids = adminUserApi.getUserListBySubordinateIds(adminId);
+        }
+        return ids;
+    }
+
+    /**
+     * 跟进记录 creator 为 String，与 owner_user_id(Long) 列表对齐
+     */
+    private List<String> toCreatorIds(List<Long> ids) {
+        if (ids == null || ids.isEmpty()) {
+            return Collections.emptyList();
+        }
+        List<String> creators = new ArrayList<>(ids.size());
+        for (Long id : ids) {
+            creators.add(String.valueOf(id));
+        }
+        return creators;
+    }
+
+    private <T> QueryWrapper<T> buildDayCompareCountWrapper(List<Long> ids, Date yesterdayStart, Date todayEnd,
+                                                            String todayStartStr, String todayEndStr,
+                                                            String yesterdayStartStr, String yesterdayEndStr) {
+        return new QueryWrapper<T>()
+                .select(
+                        caseCount("create_time", todayStartStr, todayEndStr, "todayCreate"),
+                        caseCount("create_time", yesterdayStartStr, yesterdayEndStr, "yesterdayCreate")
+                )
+                .in(!ids.isEmpty(), "owner_user_id", ids)
+                .between("create_time", yesterdayStart, todayEnd);
+    }
+
+    private static String buildOwnerInCond(List<Long> ids) {
+        if (CollUtil.isEmpty(ids)) {
+            return "";
+        }
+        return " AND owner_user_id IN (" + CollUtil.join(ids, ",") + ")";
+    }
+
+    private static String caseCount(String timeColumn, String start, String end, String alias) {
+        return caseCount(timeColumn, start, end, alias, "");
+    }
+
+    private static String caseCount(String timeColumn, String start, String end, String alias, String extraCond) {
+        return "SUM(CASE WHEN " + timeColumn + " >= '" + start + "' AND " + timeColumn + " <= '" + end
+                + "'" + extraCond + " THEN 1 ELSE 0 END) AS " + alias;
+    }
+
+    private static String caseSum(String moneyColumn, String timeColumn, String start, String end, String alias) {
+        return "SUM(CASE WHEN " + timeColumn + " >= '" + start + "' AND " + timeColumn + " <= '" + end
+                + "' THEN IFNULL(" + moneyColumn + ", 0) ELSE 0 END) AS " + alias;
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, Object> selectAggMap(
+            com.baomidou.mybatisplus.core.mapper.BaseMapper<T> mapper, QueryWrapper<T> wrapper) {
+        List<Map<String, Object>> maps = mapper.selectMaps(wrapper);
+        if (maps == null || maps.isEmpty() || maps.get(0) == null) {
+            return Collections.emptyMap();
+        }
+        return maps.get(0);
+    }
+
+    private static Long toLong(Map<String, Object> map, String key) {
+        Object value = getIgnoreCase(map, key);
+        if (value == null) {
+            return 0L;
+        }
+        return Long.parseLong(value.toString());
+    }
+
+    private static BigDecimal toDecimal(Map<String, Object> map, String key) {
+        Object value = getIgnoreCase(map, key);
+        if (value == null) {
+            return BigDecimal.ZERO;
+        }
+        return new BigDecimal(value.toString());
+    }
+
+    private static Object getIgnoreCase(Map<String, Object> map, String key) {
+        if (map == null || map.isEmpty()) {
+            return null;
+        }
+        Object value = map.get(key);
+        if (value != null) {
+            return value;
+        }
+        return map.get(key.toLowerCase());
+    }
+
+    private static String calcPercent(Long today, Long yesterday) {
+        if (yesterday == null || yesterday <= 0) {
+            return "0";
+        }
+        return NumberUtil.div(NumberUtil.sub(today, yesterday), yesterday, 2)
+                .multiply(new BigDecimal("100")).toString();
+    }
+
+    private static String calcPercent(BigDecimal today, BigDecimal yesterday) {
+        if (yesterday == null || yesterday.compareTo(BigDecimal.ZERO) <= 0) {
+            return "0";
+        }
+        return NumberUtil.div(NumberUtil.sub(today, yesterday), yesterday, 2)
+                .multiply(new BigDecimal("100")).toString();
+    }
+
 }

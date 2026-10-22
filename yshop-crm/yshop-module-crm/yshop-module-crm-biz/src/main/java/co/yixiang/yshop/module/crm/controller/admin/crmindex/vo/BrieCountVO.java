@@ -1,13 +1,17 @@
 package co.yixiang.yshop.module.crm.controller.admin.crmindex.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class BrieCountVO {
 
     @Schema(description = "新增商机")
@@ -95,7 +99,5 @@ public class BrieCountVO {
 
     @Schema(description = "通知数")
     private Long count13;
-
-
 
 }
